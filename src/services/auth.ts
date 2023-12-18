@@ -49,8 +49,7 @@ export const sendResetService = async ({ email }: EmailDto) => {
 }
 
 export const sendVerificationService = async ({ email }: EmailDto) => {
-    console.log({email});
-    
+
     await delayer(2000)
     const account = await db.account.findUniqueOrThrow({ where: { email } })
     var verification = await db.verification.findFirst({ where: { accountId: account.id } })
