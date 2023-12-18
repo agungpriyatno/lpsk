@@ -41,18 +41,16 @@ export const sendResetService = async ({ email }: EmailDto) => {
         verification = await db.verification.update({ where: { id: verification.id }, data: { expiredAt: now } })
     }
 
-    const res = await smtp.sendMail({
+    await smtp.sendMail({
         to: email,
         from: process.env.SMTP_USER,
         html: `<a href="http://localhost:3000/admin/forgot/${verification.id}">link Reset Password</a>`,
     })
-
-    if (res.rejected) {
-        throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, ReasonPhrases.INTERNAL_SERVER_ERROR)
-    }
 }
 
 export const sendVerificationService = async ({ email }: EmailDto) => {
+    console.log({email});
+    
     await delayer(2000)
     const account = await db.account.findUniqueOrThrow({ where: { email } })
     var verification = await db.verification.findFirst({ where: { accountId: account.id } })
@@ -64,15 +62,12 @@ export const sendVerificationService = async ({ email }: EmailDto) => {
         verification = await db.verification.update({ where: { id: verification.id }, data: { expiredAt: now } })
     }
 
-    const res = await smtp.sendMail({
+    await smtp.sendMail({
         to: email,
         from: process.env.SMTP_USER,
         html: `<a href="http://localhost:3000/admin/verification/${verification.id}">Link Verifikasi</a>`,
     })
 
-    if (res.rejected) {
-        throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, ReasonPhrases.INTERNAL_SERVER_ERROR)
-    }
 }
 
 export const verificationEmail = async ({ id }: { id: string }) => {
