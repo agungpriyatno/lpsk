@@ -19,7 +19,7 @@ export const LinkCard = ({ title, description, image, className, ...props }: Lin
     return (
         <Link {...props} className={className}>
             <AspectRatio ratio={1.5 / 1} className={cn(
-                'overflow-hidden group rounded')}>
+                'overflow-hidden group rounded bg-background')}>
                 <Image src={image} alt='' fill sizes='100vh' className='group-hover:scale-125 transition-all duration-300 object-cover' />
                 <div className='absolute left-0 top-0 right-0 bottom-0 bg-slate-800/50'></div>
                 <div className='absolute left-5 bottom-5'>
