@@ -9,11 +9,11 @@ export const GallerySection = () => {
                     {
                         [0,0,0,0,0,0,0,0,0,0,0,0].map((item, i) => {
                             if (i == 0) {
-                                return <div className='col-span-2 row-span-2 h-full'>
+                                return <div className='col-span-2 row-span-2 h-full' key={i}>
                                 <GalleryItem url={`/images/galleries/${i + 1}.jpg`} />
                             </div>
                             }
-                            return <div className='col-span-1'>
+                            return <div className='col-span-1' key={i}>
                             <GalleryItem url={`/images/galleries/${i + 1}.jpg`}/>
                         </div>
                         })

@@ -48,7 +48,7 @@ export const AplicationContent = () => {
     return (
         <Suspense fallback={<AplicationContentLoading />}>
             <div className="grid grid-cols-3 md:grid-cols-9 gap-3 xl:gap-5">
-                {data.map((item) => <LinkCard className="col-span-3" href={item.link} target="blank" title={item.name} description={item.description ?? ""} image={item.images ?? ""}/>)}
+                {data.map((item) => <LinkCard key={item.name} className="col-span-3" href={item.link} target="blank" title={item.name} description={item.description ?? ""} image={item.images ?? ""}/>)}
             </div>
         </Suspense>
     )
@@ -60,7 +60,7 @@ export const AplicationExternalContent = () => {
     return (
         <Suspense fallback={<AplicationContentLoading />}>
             <div className="grid grid-cols-3 md:grid-cols-9 gap-3 xl:gap-5">
-                {data.map((item) => <LinkCard className="col-span-3" href={item.link} target="blank" title={item.name} description={item.description ?? ""} image={item.images ?? ""}/>)}
+                {data.map((item) => <LinkCard key={item.name} className="col-span-3" href={item.link} target="blank" title={item.name} description={item.description ?? ""} image={item.images ?? ""}/>)}
             </div>
         </Suspense>
     )
