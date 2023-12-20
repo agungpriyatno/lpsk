@@ -1,18 +1,11 @@
 "use client"
 
 
-import { AplicationExternalSection, AplicationSection } from '@/components/features/application-section';
-import { CarouselSection } from '@/components/features/carousel-section';
-import { ChartSection } from '@/components/features/chart-section';
 import { FooterFE } from '@/components/features/footer-section';
 import { GallerySection } from '@/components/features/gallery-section';
-import { AppHeader } from '@/components/features/header';
-import { AppRunningText } from '@/components/features/running-text';
 import { TextToSpeech } from '@/components/features/text-to-speech';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { AppContainer } from '@/components/ui/container';
-import { ContentCardA } from '@/components/ui/content-card';
-import { LinkCard } from '@/components/ui/link-card';
 import { HeaderSection } from '@/components/ui/typography';
 import Image from 'next/image';
 
@@ -25,7 +18,7 @@ export default function Page() {
                         <Image src={'/images/fondasi.png'} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
                     <div className=' absolute left-0 top-0 right-0 bottom-0 flex justify-center place-items-center'>
-                        <h1 className=' text-3xl font-bold absolute'>Sekilas LPSK</h1>
+                        <h1 className=' text-3xl font-bold absolute text-slate-100'>Sekilas LPSK</h1>
                     </div>
                 </div>
             </div>

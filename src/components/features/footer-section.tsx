@@ -1,15 +1,24 @@
 import Link from "next/link";
 import { AppContainer } from "../ui/container";
 import { MailIcon, PhoneCallIcon, PinIcon } from "lucide-react";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
+import { Button } from "../ui/button";
 
 
 export const FooterFE = () => {
 
     return (
         <footer className='w-full bg-background pb-20'>
-            <div className="relative w-full h-[300px] grid grid-cols-1 xl:grid-cols-2">
+            <div className="relative w-full h-[450px] xl:h-[300px] grid grid-cols-1 xl:grid-cols-2">
                 <iframe className="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1126.2326896294305!2d106.86336931595699!3d-6.314908720809776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f60a99f7eef3%3A0xbffc2b06bee2dd58!2sLembaga%20Perlindungan%20Saksi%20dan%20Korban%20(LPSK)!5e0!3m2!1sid!2sid!4v1703058028950!5m2!1sid!2sid" loading="lazy" ></iframe>
-                <iframe className="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1126.2326896294305!2d106.86336931595699!3d-6.314908720809776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f60a99f7eef3%3A0xbffc2b06bee2dd58!2sLembaga%20Perlindungan%20Saksi%20dan%20Korban%20(LPSK)!5e0!3m2!1sid!2sid!4v1703058028950!5m2!1sid!2sid" loading="lazy" ></iframe>
+                <form className="p-5 space-y-3">
+                    <h1 className="font-bold">KRITIK & SARAN</h1>
+                    <Input placeholder="Nama" />
+                    <Input placeholder="Email" />
+                    <Textarea placeholder="Kritik dan Saran" />
+                    <Button>KIRIM</Button>
+                </form>
             </div>
             <AppContainer className="py-5">
                 <div className=" grid grid-cols-2 h-full">

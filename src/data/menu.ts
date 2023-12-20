@@ -3,7 +3,7 @@ import { TMenuItem } from "@/types/utils";
 export const MENU: TMenuItem[] = [
     {
         title: "Beranda",
-        href: "/home",
+        href: "/beranda",
     },
     {
         title: "Profil",
@@ -15,7 +15,7 @@ export const MENU: TMenuItem[] = [
             },
             {
                 title: "Struktur Organisasi",
-                href: "/profile/organizational",
+                href: "/profile/organization-structural",
             },
             {
                 title: "Pejabat Strukturan",
@@ -27,7 +27,7 @@ export const MENU: TMenuItem[] = [
             },
             {
                 title: "Profil Pimpinan",
-                href: "/profile/",
+                href: "/profile/official",
             },
 
         ],
@@ -50,31 +50,31 @@ export const MENU: TMenuItem[] = [
         children: [
             {
                 title: "Standar Pelayanan Publik",
-                href: "/information",
+                href: "/informasi/pelayanan-publik",
             },
             {
                 title: "Standar Pelayanan Pemerintah Permohonan",
-                href: "/information",
+                href: "/informasi/pedoman",
             },
             {
                 title: "Standar Pelayanan Pro Aktif dan Darurat",
-                href: "/information",
+                href: "/informasi/proaktif-darurat",
             },
             {
                 title: "Standar Pelayanan Informasi Publik",
-                href: "/information",
+                href: "/informasi/informasi-publik",
             },
             {
                 title: "Standar Pelayanan Pemenuhan Hak",
-                href: "/information",
+                href: "/informasi/pemenuhan-hak",
             },
             {
                 title: "Informasi LHKPN",
-                href: "/information",
+                href: "/informasi",
             },
             {
                 title: "Pengaduan Pelayanan Publik",
-                href: "/information",
+                href: "/informasi",
             },
         ],
     },

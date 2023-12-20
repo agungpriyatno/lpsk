@@ -2,11 +2,9 @@
 
 
 import { FooterFE } from '@/components/features/footer-section';
-import { TextToSpeech } from '@/components/features/text-to-speech';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { AppContainer } from '@/components/ui/container';
-import { HeaderSection } from '@/components/ui/typography';
 import { DownloadCloudIcon, FileIcon } from 'lucide-react';
 import Image from 'next/image';
 
@@ -19,7 +17,7 @@ export default function Page() {
                         <Image src={'/images/fondasi.png'} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
                     <div className=' absolute left-0 top-0 right-0 bottom-0 flex justify-center place-items-center'>
-                        <h1 className=' text-3xl font-bold absolute text-slate-100'>Road Map & Rencana Strategi</h1>
+                        <h1 className=' text-3xl font-bold absolute text-slate-100'>Standar Pelayanan Penerimaan Permohonan</h1>
                     </div>
                 </div>
             </div>
@@ -31,7 +29,7 @@ export default function Page() {
                                 <FileIcon size={50}/>
                             </CardHeader>
                             <CardContent className='text-center'>
-                                <p>Roadmap 2018</p>
+                                <p>Prosedur Pelayanan Informasi Publik</p>
                             </CardContent>
                             <CardFooter className='flex justify-center place-items-center'>
                                 <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
@@ -42,7 +40,7 @@ export default function Page() {
                                 <FileIcon size={50}/>
                             </CardHeader>
                             <CardContent className='text-center'>
-                                <p>Roadmap 2018</p>
+                                <p>Petunjuk Teknis Informasi Pelayanan Publik</p>
                             </CardContent>
                             <CardFooter className='flex justify-center place-items-center'>
                                 <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
@@ -53,12 +51,46 @@ export default function Page() {
                                 <FileIcon size={50}/>
                             </CardHeader>
                             <CardContent className='text-center'>
-                                <p>Roadmap 2018</p>
+                                <p>Maklumat</p>
                             </CardContent>
                             <CardFooter className='flex justify-center place-items-center'>
                                 <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
                             </CardFooter>
                         </Card>
+                        <Card>
+                            <CardHeader  className='flex justify-center place-items-center'>
+                                <FileIcon size={50}/>
+                            </CardHeader>
+                            <CardContent className='text-center'>
+                                <p>Tata Cara Permohonan Informasi</p>
+                            </CardContent>
+                            <CardFooter className='flex justify-center place-items-center'>
+                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
+                            </CardFooter>
+                        </Card>
+                        <Card>
+                            <CardHeader  className='flex justify-center place-items-center'>
+                                <FileIcon size={50}/>
+                            </CardHeader>
+                            <CardContent className='text-center'>
+                                <p>Standar Pelayanan Penerimaan Permohonan</p>
+                            </CardContent>
+                            <CardFooter className='flex justify-center place-items-center'>
+                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
+                            </CardFooter>
+                        </Card>
+                        <Card>
+                            <CardHeader  className='flex justify-center place-items-center'>
+                                <FileIcon size={50}/>
+                            </CardHeader>
+                            <CardContent className='text-center'>
+                                <p>Standar Pelayanan Penanganan Pengaduan</p>
+                            </CardContent>
+                            <CardFooter className='flex justify-center place-items-center'>
+                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
+                            </CardFooter>
+                        </Card>
+
                     </div>
                 </AppContainer>
             </div>

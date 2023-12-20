@@ -7,6 +7,7 @@ import { TextToSpeech } from '@/components/features/text-to-speech';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { AppContainer } from '@/components/ui/container';
 import { HeaderSection } from '@/components/ui/typography';
+import { MailIcon, PhoneIcon, PinIcon } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Page() {
@@ -18,7 +19,7 @@ export default function Page() {
                         <Image src={'/images/fondasi.png'} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
                     <div className=' absolute left-0 top-0 right-0 bottom-0 flex justify-center place-items-center'>
-                        <h1 className=' text-3xl font-bold absolute text-slate-100'>Pejabat Struktural</h1>
+                        <h1 className=' text-3xl font-bold absolute text-slate-100'>Kontak Kami</h1>
                     </div>
                 </div>
             </div>
@@ -27,20 +28,24 @@ export default function Page() {
                     <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
                         <div className=" col-span-6 xl:px-5 group">
                             <div className="h-[300px] md:h-full w-full relative overflow-hidden">
-                                <Image src={"/images/pejabat.jpg"} fill sizes="100vh" alt="" className=" object-cover group-hover:scale-125 transition-all duration-300" />
+                                <Image src={"/images/lpsk-carousel.png"} fill sizes="100vh" alt="" className=" object-cover group-hover:scale-125 transition-all duration-300" />
                             </div>
                         </div>
                         <div className=" col-span-6 px-3  xl:px-5">
                             <div className='h-full flex flex-col justify-center space-y-2'>
-                                <HeaderSection>Dr. Ir. Noor Sidharta, M.H. MBA</HeaderSection>
+                                <HeaderSection className='flex gap-2'><PinIcon/> Alamat</HeaderSection>
                                 <TextToSpeech>
-                                    <p className='text-base font-bold'>(Sekretaris Jenderal LPSK RI)</p>
+                                    <p className='text-base pl-5'>Jl. Raya Bogor Km 24 No.47-49, Susukan Ciracas Jakarta Timur 13750</p>
                                 </TextToSpeech>
+                                <HeaderSection className='flex gap-2'><PhoneIcon/> Hubungi Kami</HeaderSection>
                                 <TextToSpeech>
-                                    <p className='text-base'>
-                                        Lahir di Malang pada 5 September 1964. Selepas lulus dari Sekolah Menengah Atas PPSP IKIP Malang, Noor Sidharta kuliah di Fakultas Perikanan Universitas Brawijaya. Dia melanjutkan pendidikan Managemen Business Administration di New Port University, California, Amerika Serikat, dan program pascasarjana di Fakultas Hukum Universitas Padjajaran (Unpad) Bandung. Gelar doktor ilmu hukum diraih setelah…
-                                    </p>
+                                    <p className='text-base pl-5'>Telp (021)29681560. Fax (021)29681551</p>
                                 </TextToSpeech>
+                                <HeaderSection className='flex gap-2'><MailIcon/> Email</HeaderSection>
+                                <TextToSpeech>
+                                    <p className='text-base pl-5'>lpsk_ri@lpsk.go.id</p>
+                                </TextToSpeech>
+                                
                             </div>
                         </div>
 

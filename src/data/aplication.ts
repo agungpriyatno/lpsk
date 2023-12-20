@@ -62,37 +62,37 @@ export const EXTERNAL_APLICATION: Aplication[] = [
     {
         id: "",
         name: "E-MANAJEMEN PENYIDIKAN POLRI",
-        description: "Sistem Informasi Perlindungan Saksi dan Korban",
+        description: "",
         type: "EXTERNAL",
-        link: "http://103.84.206.141/layanan/",
-        images: "/images/simpusako.png",
+        link: "https://robinops.bareskrim.polri.go.id/Account/Login?ReturnUrl=%2F",
+        images: "/images/bareskrim.jpg",
         createdAt: new Date()
     },
     {
         id: "",
         name: "CMS PUBLIK KEJAKSAAN RI",
-        description: "Tindak Lanjut Keputusan Rekomendasi",
+        description: "",
         type: "EXTERNAL",
-        link: "https://layanan.lpsk.go.id/monev/",
-        images: "/images/fondasi.png",
+        link: "https://cms-publik.kejaksaan.go.id/",
+        images: "/images/kejaksaan-ri.jpg",
         createdAt: new Date()
     },
     {
         id: "",
         name: "E-MINDIK BNN",
-        description: "Sahabat Saksi dan Korban",
+        description: "",
         type: "EXTERNAL",
-        link: "https://ssk.lpsk.go.id/",
-        images: "/images/ssk.png",
+        link: "https://mindik.bnn.go.id/",
+        images: "/images/bnn.jpg",
         createdAt: new Date()
     },
     {
         id: "",
         name: "SDP KEMENKUMHAM",
-        description: "Sistem Informasi Pelayanan Kantor",
+        description: "",
         type: "EXTERNAL",
         link: "",
-        images: "/images/simpusako.png",
+        images: "/images/kemenkumham.png",
         createdAt: new Date()
     },
     {
@@ -100,8 +100,8 @@ export const EXTERNAL_APLICATION: Aplication[] = [
         name: "KPK",
         description: "",
         type: "EXTERNAL",
-        link: "",
-        images: "/images/simpusako.png",
+        link: "https://kpk.go.id/",
+        images: "/images/kpk.jpg",
         createdAt: new Date()
     },
     {
@@ -109,8 +109,8 @@ export const EXTERNAL_APLICATION: Aplication[] = [
         name: "SP4N LAPOR",
         description: "",
         type: "EXTERNAL",
-        link: "",
-        images: "/images/simpusako.png",
+        link: "https://www.lapor.go.id/",
+        images: "/images/lapor.png",
         createdAt: new Date()
     },
 ]
