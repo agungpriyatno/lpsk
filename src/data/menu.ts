@@ -3,7 +3,7 @@ import { TMenuItem } from "@/types/utils";
 export const MENU: TMenuItem[] = [
     {
         title: "Beranda",
-        href: "/",
+        href: "/home",
     },
     {
         title: "Profil",
@@ -11,23 +11,23 @@ export const MENU: TMenuItem[] = [
         children: [
             {
                 title: "Sekilas LPSK",
-                href: "/information",
+                href: "/profile/about",
             },
             {
                 title: "Struktur Organisasi",
-                href: "/information",
+                href: "/profile/organizational",
             },
             {
                 title: "Pejabat Strukturan",
-                href: "/information",
+                href: "/profile/official-structural",
             },
             {
                 title: "Road Map & Rencana Strategi",
-                href: "/information",
+                href: "/profile/roadmap",
             },
             {
-                title: "Profil Pimmpinan",
-                href: "/information",
+                title: "Profil Pimpinan",
+                href: "/profile/",
             },
 
         ],

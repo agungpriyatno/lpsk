@@ -10,6 +10,19 @@ export type TCarouselItem = {
     image: string
 }
 
+export type TQuery = {
+    skip: number
+    take: number
+    search: string
+}
+
+type Payment = {
+    id: string
+    amount: number
+    status: "pending" | "processing" | "success" | "failed"
+    email: string
+  }
+
 export type Prettify<T> = {
     [K in keyof T]: T[K] & {}
 }

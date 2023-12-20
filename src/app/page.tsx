@@ -1,47 +1,35 @@
 "use client"
 
 
-import { AplicationSection } from '@/components/features/application-section';
+import { AplicationExternalSection, AplicationSection } from '@/components/features/application-section';
 import { CarouselSection } from '@/components/features/carousel-section';
-import { AppContainer } from '@/components/ui/container';
-import { ContentCardA, ContentCardB } from '@/components/ui/content-card';
-import { LinkCard } from '@/components/ui/link-card';
-import { HeaderSection } from '@/components/ui/typography';
-import { AspectRatio } from '@radix-ui/react-aspect-ratio';
-import { GalleryLoading } from "@/components/ui/gallery";
-import { GallerySection } from '@/components/features/gallery-section';
 import { ChartSection } from '@/components/features/chart-section';
 import { FooterFE } from '@/components/features/footer-section';
+import { GallerySection } from '@/components/features/gallery-section';
 import { AppHeader } from '@/components/features/header';
 import { AppRunningText } from '@/components/features/running-text';
+import { Button } from '@/components/ui/button';
+import { AppContainer } from '@/components/ui/container';
+import { ContentCardA } from '@/components/ui/content-card';
+import { LinkCard } from '@/components/ui/link-card';
+import { HeaderSection } from '@/components/ui/typography';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className='flex flex-col gap-10'>
-      <AppHeader />
-
-      <CarouselSection />
-      <div className='w-full'>
-        <AppContainer className=' space-y-5'>
-          <HeaderSection>INFORMASI LPSK</HeaderSection>
-          <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 xl:gap-5'>
-            <LinkCard href='/' title='SUBJEK PERLINDUNGAN' description='Saksi, Korban, Saksi Pelaku, Pelapor, Ahli' image='/images/subjek-perlindungan.png' />
-            <LinkCard href='/' title='KASUS PRIORITAS' description='Terorisme, Pelanggaran HAM yang Berat, Korupsi,Pencucian Uang, Tindak pidana lain' image='/images/kasus-prioritas.png' />
-            <LinkCard href='/' title='PROGRAM PERLINDUNGAN' description='Perlindungan Fisik, Perlindungan Prosedural, Perlindungan Hukum, dan lainnya' image='/images/program-perlindungan.png' />
-            <LinkCard href='/' title='CARA MENGAJUKAN PERMOHONAN' description='Tuntunan Cara Pengajuan Permohonan Perlindungan' image='/images/melakukan-permohonan.png' />
-          </div>
-        </AppContainer>
+    <div className='h-screen w-full'>
+      <div className='h-full w-full relative bg-slate-800'>
+        <Image src={'/images/lpsk-carousel.png'} alt='' fill sizes='100vh' className=' object-cover opacity-50' />
+        <div className=' absolute left-0 top-0 right-0 bottom-0 flex flex-col gap-5 justify-center place-items-center'>
+          <h1 className='text-4xl font-bold'>Selamat datang di Website LPSK</h1>
+          <Button variant={'default'} asChild>
+            <Link href={'/home'}>
+              MASUK
+            </Link>
+          </Button>
+        </div>
       </div>
-      <ContentCardA
-        title='TENTANG LPSK'
-        description='Lembaga Perlindungan Saksi dan Korban adalah lembaga nonstruktural yang didirikan dan bertanggung jawab untuk menangani pemberian perlindungan dan bantuan pada saksi dan korban. LPSK dibentuk berdasarkan UU No 13 Tahun 2006 tentang Perlindungan Saksi dan Korban.'
-        image='/images/lpsk-carousel.png'
-      />
-      <AplicationSection />
-      <ChartSection />
-      <GallerySection />
-      <FooterFE />
-      <AppRunningText />
     </div>
   )
 }

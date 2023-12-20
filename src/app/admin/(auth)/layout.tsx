@@ -11,7 +11,7 @@ export default function AuthLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className='absolute left-0 top-0 right-0 bottom-0 flex justify-center place-items-center'>
+    <div className='absolute left-0 top-0 right-0 bottom-0 flex justify-center place-items-center z-50'>
         {children}
     </div>
   )

@@ -6,13 +6,13 @@ import { AspectRatio } from "./aspect-ratio"
 
 
 
-export const GalleryItem = () => {
+export const GalleryItem = ({ url }: { url: string }) => {
     return (
         <Dialog modal>
             <DialogTrigger asChild>
                 <div className='w-full h-full bg-background rounded relative group overflow-hidden'>
-                    <AspectRatio ratio={1/1}>
-                        <Image src={'/images/lpsk-carousel.png'} alt="" fill sizes="100vh" className="object-cover group-hover:scale-125 transition-all duration-300" />
+                    <AspectRatio ratio={1 / 1}>
+                        <Image src={url} alt="" fill sizes="100vh" className="object-cover group-hover:scale-125 transition-all duration-300" />
                     </AspectRatio>
                 </div>
             </DialogTrigger>
@@ -20,7 +20,7 @@ export const GalleryItem = () => {
                 <DialogHeader>
                     <DialogTitle>Detail gambar</DialogTitle>
                 </DialogHeader>
-                <Image src={'/images/lpsk-carousel.png'} alt="" fill sizes="100vh" className="object-cover group-hover:scale-125 transition-all duration-300" />
+                <Image src={url} alt="" fill sizes="100vh" className="object-cover group-hover:scale-125 transition-all duration-300" />
             </DialogContent>
         </Dialog>
     )

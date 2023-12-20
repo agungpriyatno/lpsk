@@ -64,7 +64,7 @@ model Role {
 model Verification {
   id        String   @id @default(cuid())
   accountId String   @unique
-  account   Account  @relation(fields: [accountId], references: [id])
+  account   Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
   expiredAt DateTime @map("expired_at")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -75,8 +75,8 @@ model Verification {
 model RoleModule {
   roleId     String
   moduleCode String
-  role   Role   @relation(fields: [roleId], references: [id])
-  module Module @relation(fields: [moduleCode], references: [code])
+  role       Role   @relation(fields: [roleId], references: [id])
+  module     Module @relation(fields: [moduleCode], references: [code])
 
   @@id([roleId, moduleCode])
   @@map("role_modules")
@@ -87,9 +87,21 @@ model Module {
   name        String
   description String
   createdAt   DateTime     @default(now()) @map("created_at")
-  roles  RoleModule[]
+  roles       RoleModule[]
 
   @@map("modules")
+}
+
+model Aplication {
+  id        String   @id @default(cuid())
+  type      String
+  name      String
+  link      String
+  images    String?
+  description String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("aplications")
 }
 
 // ===== POST =====
