@@ -1,3 +1,4 @@
+import GoogleAnalytics from '@/components/features/analytic'
 import { AppHeader } from '@/components/features/header'
 import { AppRunningText } from '@/components/features/running-text'
 import type { Metadata } from 'next'
@@ -17,6 +18,7 @@ export default function Layout({
             <AppHeader/>
             {children}
             <AppRunningText />
+            <GoogleAnalytics/>
         </div>
     )
 }
