@@ -4,7 +4,7 @@ import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescript
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { deleteUserService } from "@/services/user-service"
+import { deleteDraftService } from "@/services/draft-service"
 import { DeleteIcon } from "lucide-react"
 import { useState } from "react"
 
@@ -17,15 +17,15 @@ export const DeleteUser = ({ id }: { id: string }) => {
     const submitHandler = async () => {
         try {
             setLoading(true)
-            await deleteUserService({ id })
+            await deleteDraftService({ id })
             toast({
-                title: "Berhasil Hapus Pengguna",
+                title: "Berhasil Hapus Pengajuan",
                 variant: "default",
             })
             setOpen(false)
         } catch (error) {
             toast({
-                title: "Gagal Hapus Pengguna",
+                title: "Gagal Hapus Pengajuan",
                 variant: "destructive",
             })
         } finally {

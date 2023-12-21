@@ -1,71 +1,40 @@
 "use client"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { DataTableColumnHeader } from "@/components/ui/data-table-header"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Role, User } from "@prisma/client"
+import { Draft } from "@prisma/client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { MoreHorizontal, Trash2Icon } from "lucide-react"
-import { UpdateUser } from "./update"
+import { MoreHorizontal } from "lucide-react"
 import { DeleteUser } from "./delete"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type UserTable = User & {
-    account: {
-        email: string;
-        verifiedAt: Date | null;
-    } | null;
-    role: Role | null
-} 
 
-export const columns: ColumnDef<UserTable>[] = [
+export type DraftTable = Draft
+
+export const columns: ColumnDef<DraftTable>[] = [
     {
-        id: "Avatar",
-        accessorKey: "avatar",
-        header: "Avatar",
+        id: "Judul",
+        accessorKey: "title",
+        header: ({ column }) =>
+            <DataTableColumnHeader column={column} title="Judul" />,
+    },
+    {
+        id: "Konten",
+        accessorKey: "content",
+        header: ({ column }) =>
+            <DataTableColumnHeader column={column} title="Konten" />,
         cell: ({ row }) => {
-            const data = row.original.name.split(" ")
-            const initial: string[] = []
-            data.forEach((val) => {
-                initial.push(val[0])
-            })
-            return <Avatar>
-                <AvatarFallback>{initial.join("").toUpperCase()}</AvatarFallback>
-                <AvatarImage src={row.original.avatar ?? ""} />
-            </Avatar>
-        }
-    },
-    {
-        id: "Name",
-        accessorKey: "name",
-        header: ({ column }) =>
-            <DataTableColumnHeader column={column} title="Name" />,
-    },
-    {
-        id: "Email",
-        accessorKey: "account.email",
-        header: ({ column }) =>
-            <DataTableColumnHeader column={column} title="Email" />,
-    },
-    {
-        id: "Verifikasi",
-        accessorKey: "account.verifiedAt",
-        header: ({ column }) =>
-            <DataTableColumnHeader column={column} title="Verifikasi" />,
-        cell: ({ row }) => {
-            const data: Date | null | undefined = row.original.account?.verifiedAt
-            return <div className="text-left font-medium">{data ? "Aktif" : "Non Aktif"}</div>
+            const data: string = row.original.content.slice(0, 50) + "..."
+            return <div className="text-left font-medium">{data}</div>
         },
     },
     {
-        id: "Hak Akses",
-        accessorKey: "role.name",
+        id: "Status",
+        accessorKey: "status",
         header: ({ column }) =>
-            <DataTableColumnHeader column={column ?? "Tidak ada"} title="Hak Akses" />,
+            <DataTableColumnHeader column={column} title="Status" />,
     },
     {
         header: "Aksi",
@@ -83,8 +52,7 @@ export const columns: ColumnDef<UserTable>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" space-x-2"><UpdateUser name={data.name} id={data.id} role={data.roleId ?? ""} /></DropdownMenuItem>
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteUser id={data.id}/></DropdownMenuItem>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteUser id={data.id} /></DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

@@ -1,6 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -9,9 +11,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { DraftCreateDto, draftCreateDto } from "@/lib/validators/draft"
+import { createDraftService } from "@/services/draft-service"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
-import { CalendarIcon, Calendar } from "lucide-react"
+import { CalendarIcon } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
@@ -23,28 +26,34 @@ export const CreateUser = () => {
     const [open, setOpen] = useState(false)
     const form = useForm<DraftCreateDto>({
         resolver: zodResolver(draftCreateDto),
+        defaultValues: {
+            publishedAt: null
+        }
     })
     const { toast } = useToast()
 
-    const submitHandler = async (data: DraftCreateDto) => {
-        console.log(file);
-
-        if (file) {
+    const submitHandler = async ({title, content, publishedAt}: DraftCreateDto) => {
+        
+        if (file?.length && file.length > 0) {
+            console.log({title, content, publishedAt, file: file[0]});
             try {
-                console.log(data);
-
-                // await createUserService(data)
-                console.log(data);
-
+                const formData = new FormData()
+                formData.append("title", title)
+                formData.append("content", content)
+                formData.append("thumbnail", file[0])
+                if (publishedAt) {
+                    formData.append("published_at", publishedAt.toISOString())
+                }
+                await createDraftService(formData)
                 toast({
-                    title: "Berhasil Tambah Pengguna",
+                    title: "Berhasil Tambah Pengajuan",
                     variant: "default",
                 })
                 form.reset()
-                // setOpen(false)
+                setOpen(false)
             } catch (error) {
                 toast({
-                    title: "Gagal Tambah Pengguna",
+                    title: "Gagal Tambah Pengajuan",
                     description: "Email anda sudah digunakan!",
                     variant: "destructive",
                 })
@@ -66,8 +75,7 @@ export const CreateUser = () => {
                     <DialogTitle>Tambah Pengajuan Konten</DialogTitle>
                 </DialogHeader>
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(submitHandler, (err) => console.log(err)
-                    )} className="space-y-3">
+                    <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-3">
                         <FormField control={form.control} name="title" render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Judul</FormLabel>
@@ -83,11 +91,25 @@ export const CreateUser = () => {
                                 <FormControl>
                                     <Textarea placeholder="Masukan Konten" {...field} />
                                 </FormControl>
-                                {message != null && <span className="text-base text-destructive">{message}</span>}
+                                <FormMessage />
                             </FormItem>
                         )} />
+                        <FormItem>
+                            <FormLabel>Thumbnail</FormLabel>
+                            <Input placeholder="Foto Depan" type={"file"} onChange={(e => { setFile(e.target.files), setMessage("") })} />
+                            {message != null && <span className="text-base text-destructive">{message}</span>}
+                        </FormItem>
+                        <div className="flex items-center space-x-2">
+                            <Checkbox id="terms" onCheckedChange={() => { setPublished(!published), console.log("test") }} />
+                            <label
+                                htmlFor="terms"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Atur Jadwal Terbit
+                            </label>
+                        </div>
                         <FormField control={form.control} name="publishedAt" render={({ field }) => (
-                            <FormItem>
+                            <FormItem className={cn({ "hidden": !published })}>
                                 <FormLabel>Konten</FormLabel>
                                 <Popover>
                                     <PopoverTrigger asChild>
@@ -95,7 +117,7 @@ export const CreateUser = () => {
                                             <Button
                                                 variant={"outline"}
                                                 className={cn(
-                                                    "w-[240px] pl-3 text-left font-normal",
+                                                    "w-full pl-3 text-left font-normal",
                                                     !field.value && "text-muted-foreground"
                                                 )}
                                             >
@@ -111,22 +133,18 @@ export const CreateUser = () => {
                                     <PopoverContent className="w-auto p-0" align="start">
                                         <Calendar
                                             mode="single"
-                                            // selected={field.value}
+                                            selected={field.value ?? undefined}
                                             onSelect={field.onChange}
-                                            // disabled={(date) =>
-                                            //     date > new Date() || date < new Date("1900-01-01")
-                                            // }
-                                            // initialFocus
+                                            disabled={(date) =>
+                                                date < new Date()
+                                            }
+                                            initialFocus
                                         />
                                     </PopoverContent>
                                 </Popover>
 
                             </FormItem>
                         )} />
-                        <FormItem>
-                            <FormLabel>Thumbnail</FormLabel>
-                            <Input placeholder="Foto Depan" type={"file"} onChange={(e => { setFile(e.target.files), setMessage("") })} />
-                        </FormItem>
                         <Button className={cn("w-full", { "bg-muted-foreground": form.formState.isSubmitting })}>{form.formState.isSubmitting ? "Mengunggah..." : "TAMBAH"}</Button>
                     </form>
                 </Form>

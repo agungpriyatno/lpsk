@@ -29,6 +29,7 @@ import { Skeleton } from "./skeleton"
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[],
+    children?: React.ReactNode,
     options: TableOptions,
 }
 
@@ -37,11 +38,13 @@ type TableOptions = {
     skip?: string,
     total?: number,
     search?: string,
+    current?: string
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
+    children,
     options
 }: DataTableProps<TData, TValue>) {
     const router = useRouter()
@@ -66,7 +69,6 @@ export function DataTable<TData, TValue>({
 
     return (
         <div className="bg-background p-5 space-y-5 rounded">
-
             <div className="flex justify-between">
                 <form className="flex gap-2" onSubmit={onSearch}>
                     <Input placeholder="Cari Data" />
@@ -74,6 +76,7 @@ export function DataTable<TData, TValue>({
                 </form>
                 <DataTableViewOptions table={table} />
             </div>
+            {children}
             <div className="">
                 <Table>
                     <TableHeader>
