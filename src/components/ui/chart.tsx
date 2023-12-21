@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData, LinearScale, registerables } from 'chart.js';
-import { Bar, Pie } from 'react-chartjs-2';
+import { Bar, Line, Pie } from 'react-chartjs-2';
 import colors from "tailwindcss/colors";
 import {CategoryScale} from 'chart.js'; 
 
@@ -189,6 +189,24 @@ export const perdaganganManusia: ChartData<"bar", number[], unknown> = {
     ],
 };
 
+export const analyticData: ChartData<"line", number[], unknown> = {
+    labels: ['Oktober', 'November','Desember'],
+    datasets: [
+        {
+            label: "Statistik Pengunjung",
+            data: [135, 256, 94],
+            backgroundColor: [
+                colors.orange[100],
+                colors.orange[200],
+                colors.orange[300],
+            ],
+            borderColor: colors.slate[800],
+            borderWidth: 1,
+        },
+    ],
+};
+
+
 export const terorisme: ChartData<"bar", number[], unknown> = {
     labels: [
         'Permohonan',
@@ -246,3 +264,18 @@ export function BarChart({data}: {data: ChartData<"bar", number[], unknown>}) {
         }} />
     </div>
 }
+
+export function LineChart({data}: {data: ChartData<"line", number[], unknown>}) {
+    return <div className='w-full relative'>
+        <Line className='w-full' data={data} options={{
+            plugins: {
+                legend: {
+                    position: "bottom", labels: {
+                        padding: 16,
+                    },
+                }
+            }
+        }} />
+    </div>
+}
+
