@@ -1,11 +1,4 @@
-import { DataTable, DataTableLoading } from "@/components/ui/data-table"
-import { UserTable, columns } from "./colums"
-import { payments } from "@/data/table-dummy"
-import db from "@/lib/db"
-import { findManyUser } from "@/services/user-service"
-import { Button } from "@/components/ui/button"
-import { CreateUser } from "./create"
-import { delayer } from "@/helpers/delay"
+import { DataTableLoading } from "@/components/ui/data-table"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const UserPageLoading =  () => {

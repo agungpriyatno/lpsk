@@ -4,18 +4,35 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { SignUpDto, signUpDto } from "@/lib/validators/auth"
+import { findAllRole } from "@/services/role-service"
 import { createUserService } from "@/services/user-service"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { Role } from "@prisma/client"
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export const CreateUser = () => {
 
     const [obsecure, setObsecure] = useState(true)
+
+    const [loading, setLoading] = useState(true)
+    const [role, setRole] = useState<Role[]>([])
+    const fetchRole = async () => {
+        setLoading(true)
+        try {
+            const res = await findAllRole()
+            setRole(res)
+        } catch (error) {
+
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const [open, setOpen] = useState(false)
     const form = useForm<SignUpDto>({
@@ -32,7 +49,6 @@ export const CreateUser = () => {
             })
             form.reset()
             setOpen(false)
-            // router.refresh()
         } catch (error) {
             toast({
                 title: "Gagal Tambah Pengguna",
@@ -83,6 +99,23 @@ export const CreateUser = () => {
                                         {obsecure ? <EyeIcon /> : <EyeOffIcon />}
                                     </Button>
                                 </div>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
+                        <FormField control={form.control} name={`role`} render={({ field }) => (
+                            <FormItem className="flex-1">
+                                <Select onValueChange={field.onChange} defaultValue={field.value} onOpenChange={() => role.length == 0 && fetchRole()} >
+                                    <FormControl className="w-full">
+                                        <SelectTrigger className="w-full">
+                                            <SelectValue placeholder="Hak Akses" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        {loading ? <Loader2Icon className=" animate-spin"/> : (
+                                            role.map((item, i) => <SelectItem key={i} value={item.id}>{item.name}</SelectItem>)
+                                        )}
+                                    </SelectContent>
+                                </Select>
                                 <FormMessage />
                             </FormItem>
                         )} />

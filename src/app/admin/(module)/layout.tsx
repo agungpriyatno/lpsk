@@ -1,3 +1,4 @@
+import { Scroller } from "@/components/features/scroll"
 import { AppContainer } from "@/components/ui/container"
 
 export default function ModuleLayout({
@@ -12,7 +13,9 @@ export default function ModuleLayout({
                     <div className=" bg-background h-screen w-full"></div>
                 </div>
                 <div className=" col-span-12 xl:col-span-9 2xl:col-span-10">
-                    {children}
+                    <Scroller>
+                        {children}
+                    </Scroller>
                 </div>
             </div>
         </AppContainer>

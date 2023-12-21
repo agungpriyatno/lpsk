@@ -1,23 +1,24 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { SignUpDto, signUpDto } from "@/lib/validators/auth"
 import { UpdateUserDto, updateUserDto } from "@/lib/validators/user"
-import { signUpService } from "@/services/auth"
-import { createUserService, updateUserService } from "@/services/user-service"
+import { findAllRole } from "@/services/role-service"
+import { updateUserService } from "@/services/user-service"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Edit2Icon, EyeIcon, EyeOffIcon, Link } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { Role } from "@prisma/client"
+import { Edit2Icon, Loader2Icon, Trash2Icon } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
 
+    
     const [open, setOpen] = useState(false)
     const form = useForm<UpdateUserDto>({
         resolver: zodResolver(updateUserDto),
@@ -25,11 +26,26 @@ export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
             name: data.name
         }
     })
+
     const { toast } = useToast()
+    const [loading, setLoading] = useState(true)
+    const [role, setRole] = useState<Role[]>([])
+    const fetchRole = async () => {
+        setLoading(true)
+        try {
+            const res = await findAllRole()
+            setRole(res)
+        } catch (error) {
+
+
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const submitHandler = async (value: UpdateUserDto) => {
         try {
-            await updateUserService({ name: value.name, id: data.id })
+            await updateUserService({ name: value.name, id: data.id, role: value.role })
             toast({
                 title: "Berhasil Ubah Pengguna",
                 variant: "default",
@@ -56,12 +72,29 @@ export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
                 </DialogHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-3">
-                        <FormField name="name" render={({ field }) => (
+                        <FormField control={form.control} name="name" render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Nama</FormLabel>
                                 <FormControl>
                                     <Input placeholder="Masukan Nama" {...field} />
                                 </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
+                        <FormField control={form.control} name={`role`} render={({ field }) => (
+                            <FormItem className="flex-1">
+                                <Select onValueChange={field.onChange} defaultValue={field.value} onOpenChange={() => role.length == 0 && fetchRole()} >
+                                    <FormControl className="w-full">
+                                        <SelectTrigger className="w-full">
+                                            <SelectValue placeholder="Hak Akses" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        {loading ? <Loader2Icon className=" animate-spin"/> : (
+                                            role.map((item, i) => <SelectItem key={i} value={item.id}>{item.name}</SelectItem>)
+                                        )}
+                                    </SelectContent>
+                                </Select>
                                 <FormMessage />
                             </FormItem>
                         )} />

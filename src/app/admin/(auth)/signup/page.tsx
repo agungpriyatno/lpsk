@@ -35,7 +35,6 @@ const SignUpPage = () => {
             router.push("/admin/signin")
         } catch (error) {
             console.log(error);
-
             toast({
                 title: "Gagal Daftar",
                 description: "Email anda sudah digunakan!",

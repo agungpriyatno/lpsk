@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { SubmitButton } from "@/components/ui/submit-button"
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { SignInDto, signInDto } from "@/lib/validators/auth"
@@ -17,6 +16,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 const SignInPage = () => {
+
     const [obsecure, setObsecure] = useState(true)
     const [loading, setLoading] = useState(false)
     const router = useRouter()
@@ -46,6 +46,7 @@ const SignInPage = () => {
             setLoading(false)
         }
     }
+
     return (
         <Card className="max-w-[380px] md:max-w-[500px]">
             <CardHeader>

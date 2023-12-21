@@ -12,21 +12,33 @@ datasource db {
 
 // ===== USERS =====
 
+enum StatusPublication {
+  PUBLISH
+  TAKEDOWN
+}
+
+enum StatusDraft {
+  ACCEPT
+  REJECT
+  PROCESS
+}
+
 model User {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
+  roleId    String?  @map("role_id")
   name      String
   avatar    String?
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
   account   Account?
-  role      UserRole?
+  role      Role?    @relation(fields: [roleId], references: [id], onDelete: SetNull)
 
   @@map("users")
 }
 
 model Account {
   id           String        @id @default(cuid())
-  userId       String        @unique
+  userId       String        @unique @map("user_id")
   email        String        @unique
   hash         String
   verifiedAt   DateTime?     @map("verified_at")
@@ -38,32 +50,21 @@ model Account {
   @@map("accounts")
 }
 
-model UserRole {
-  userId String @unique @map("user_id")
-  roleId String @map("role_id")
-  user   User   @relation(fields: [userId], references: [id])
-  role   Role   @relation(fields: [roleId], references: [id])
-
-  @@id([userId, roleId])
-  @@unique([userId, roleId])
-  @@map("user_roles")
-}
-
 model Role {
   id           String       @id @default(cuid())
   name         String
   descriptions String?
   createdAt    DateTime     @default(now()) @map("created_at")
   updatedAt    DateTime     @updatedAt @map("updated_at")
-  role         UserRole[]
   modules      RoleModule[]
+  users        User[]
 
   @@map("roles")
 }
 
 model Verification {
   id        String   @id @default(cuid())
-  accountId String   @unique
+  accountId String   @unique @map("account_id")
   account   Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
   expiredAt DateTime @map("expired_at")
   createdAt DateTime @default(now()) @map("created_at")
@@ -74,8 +75,8 @@ model Verification {
 
 model RoleModule {
   roleId     String
-  moduleCode String
-  role       Role   @relation(fields: [roleId], references: [id])
+  moduleCode String @map("module_code")
+  role       Role   @relation(fields: [roleId], references: [id], onDelete: Cascade)
   module     Module @relation(fields: [moduleCode], references: [code])
 
   @@id([roleId, moduleCode])
@@ -93,90 +94,51 @@ model Module {
 }
 
 model Aplication {
-  id        String   @id @default(cuid())
-  type      String
-  name      String
-  link      String
-  images    String?
+  id          String   @id @default(cuid())
+  type        String
+  name        String
+  link        String
+  images      String?
   description String?
-  createdAt DateTime @default(now()) @map("created_at")
+  createdAt   DateTime @default(now()) @map("created_at")
 
   @@map("aplications")
 }
 
-// ===== POST =====
+model Draft {
+  id           String            @id @default(cuid())
+  thumbnail    String
+  title        String
+  content      String
+  status       StatusDraft       @default(PROCESS)
+  publishedAt  DateTime?         @default(now()) @map("published_at")
+  createdAt    DateTime          @default(now()) @map("created_at")
+  selected     Publication?
+  publications DraftPublication?
 
-// model Draft {
-//   id            String              @id @default(cuid())
-//   thumbnail     String
-//   title         String
-//   content       String
-//   publishedById String
-//   typeCode      String
-//   categoryId    String
-//   publishedAt   DateTime            @default(now()) @map("published_at")
-//   createdAt     DateTime            @default(now()) @map("created_at")
-//   publication   Publication?
-//   publications  PublicationDraft[]
-//   publishedBy   User                @relation(fields: [publishedById], references: [id])
-//   type          PublicationType     @relation(fields: [typeCode], references: [code])
-//   category      PublicationCategory @relation(fields: [categoryId], references: [id])
+  @@map("drafts")
+}
 
-//   @@map("draft")
-// }
+model DraftPublication {
+  draftId       String @unique @map("draft_id")
+  publicationId String @map("publication_id")
 
-// model Publication {
-//   id         String             @id @default(cuid())
-//   selectedId String             @unique
-//   statusCode String
-//   selected   Draft              @relation(fields: [selectedId], references: [id], onDelete: Cascade)
-//   draft      PublicationDraft[]
-//   status     StatusType         @relation(fields: [statusCode], references: [code])
+  draft       Draft       @relation(fields: [draftId], references: [id])
+  publication Publication @relation(fields: [publicationId], references: [id])
 
-//   @@map("publications")
-// }
+  @@id([draftId, publicationId])
+  @@map("draft_publications")
+}
 
-// model PublicationDraft {
-//   postId     String      @unique
-//   draftId    String
-//   statusCode String
-//   status     StatusType  @relation(fields: [statusCode], references: [code])
-//   post       Publication @relation(fields: [postId], references: [id], onDelete: Cascade)
-//   draft      Draft       @relation(fields: [draftId], references: [id])
+model Publication {
+  id         String   @id @default(cuid())
+  status     String
+  selectedId String   @unique @map("selected_id")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  createdAt  DateTime @default(now()) @map("created_at")
 
-//   @@id([postId, draftId])
-//   @@map("publication_draft")
-// }
+  selected Draft              @relation(fields: [selectedId], references: [id])
+  draft    DraftPublication[]
 
-// // ====== DATA MASTER ======
-
-// model PublicationType {
-//   code       String                @id
-//   name       String
-//   createdAt  DateTime              @default(now()) @map("created_at")
-//   categories PublicationCategory[]
-//   Draft      Draft[]
-
-//   @@map("publication_types")
-// }
-
-// model PublicationCategory {
-//   id        String          @id @default(cuid())
-//   typeCode  String
-//   name      String
-//   createdAt DateTime        @default(now()) @map("created_at")
-//   type      PublicationType @relation(fields: [typeCode], references: [code])
-//   draft     Draft[]
-
-//   @@map("publication_categories")
-// }
-
-// model StatusType {
-//   code        String             @id
-//   name        String
-//   createdAt   DateTime           @default(now()) @map("created_at")
-//   draft       PublicationDraft[]
-//   publication Publication[]
-
-//   @@map("status_types")
-// }
+  @@map("publications")
+}

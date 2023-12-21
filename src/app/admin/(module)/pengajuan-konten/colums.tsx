@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { DataTableColumnHeader } from "@/components/ui/data-table-header"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { User } from "@prisma/client"
+import { Role, User } from "@prisma/client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal, Trash2Icon } from "lucide-react"
@@ -19,31 +19,10 @@ export type UserTable = User & {
         email: string;
         verifiedAt: Date | null;
     } | null;
-}
+    role: Role | null
+} 
 
 export const columns: ColumnDef<UserTable>[] = [
-    // {
-    //     id: "select",
-    //     header: ({ table }) => (
-    //         <Checkbox
-    //             checked={
-    //                 table.getIsAllPageRowsSelected() ||
-    //                 (table.getIsSomePageRowsSelected() && "indeterminate")
-    //             }
-    //             onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-    //             aria-label="Select all"
-    //         />
-    //     ),
-    //     cell: ({ row }) => (
-    //         <Checkbox
-    //             checked={row.getIsSelected()}
-    //             onCheckedChange={(value) => row.toggleSelected(!!value)}
-    //             aria-label="Select row"
-    //         />
-    //     ),
-    //     enableSorting: false,
-    //     enableHiding: false,
-    // },
     {
         id: "Avatar",
         accessorKey: "avatar",
@@ -83,6 +62,12 @@ export const columns: ColumnDef<UserTable>[] = [
         },
     },
     {
+        id: "Hak Akses",
+        accessorKey: "role.name",
+        header: ({ column }) =>
+            <DataTableColumnHeader column={column ?? "Tidak ada"} title="Hak Akses" />,
+    },
+    {
         header: "Aksi",
         id: "actions",
         cell: ({ row }) => {
@@ -98,7 +83,7 @@ export const columns: ColumnDef<UserTable>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" space-x-2"><UpdateUser name={data.name} id={data.id} /></DropdownMenuItem>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" space-x-2"><UpdateUser name={data.name} id={data.id} role={data.roleId ?? ""} /></DropdownMenuItem>
                         <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteUser id={data.id}/></DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

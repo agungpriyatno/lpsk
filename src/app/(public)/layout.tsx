@@ -1,5 +1,6 @@
 import GoogleAnalytics from '@/components/features/analytic'
 import { AppHeader } from '@/components/features/header'
+import { HelpdeskIcon } from '@/components/features/help-desk'
 import { AppRunningText } from '@/components/features/running-text'
 import type { Metadata } from 'next'
 
@@ -19,6 +20,7 @@ export default function Layout({
             {children}
             <AppRunningText />
             <GoogleAnalytics/>
+            <HelpdeskIcon/>
         </div>
     )
 }

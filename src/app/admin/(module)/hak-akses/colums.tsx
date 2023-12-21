@@ -1,21 +1,22 @@
 "use client"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { DataTableColumnHeader } from "@/components/ui/data-table-header"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Role, RoleModule, User } from "@prisma/client"
+import { Role } from "@prisma/client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { MoreHorizontal, Trash2Icon } from "lucide-react"
-import { UpdateUser } from "./update"
-import { DeleteUser } from "./delete"
+import { MoreHorizontal } from "lucide-react"
+import { DeleteRole } from "./delete"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type RoleTable = Role & {
-    _count: { modules: number }
+    _count: {
+        modules: number;
+        users: number;
+    };
 }
 
 export const roleColums: ColumnDef<RoleTable>[] = [
@@ -49,15 +50,21 @@ export const roleColums: ColumnDef<RoleTable>[] = [
     },
     {
         id: "Deskripsi",
-        accessorKey: "deskription",
+        accessorKey: "descriptions",
         header: ({ column }) =>
             <DataTableColumnHeader column={column} title="Deskripsi" />,
     },
     {
-        id: "Modul",
-        accessorKey: "_count.module",
+        id: "Total Modul",
+        accessorKey: "_count.modules",
         header: ({ column }) =>
-            <DataTableColumnHeader column={column} title="Modul" />,
+            <DataTableColumnHeader column={column} title="Total Modul" />,
+    },
+    {
+        id: "Total Pengguna",
+        accessorKey: "_count.users",
+        header: ({ column }) =>
+            <DataTableColumnHeader column={column} title="Total Pengguna" />,
     },
     {
         header: "Aksi",
@@ -75,8 +82,7 @@ export const roleColums: ColumnDef<RoleTable>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" space-x-2"><UpdateUser name={data.name} id={data.id} /></DropdownMenuItem>
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteUser id={data.id} /></DropdownMenuItem>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteRole id={data.id} /></DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )
