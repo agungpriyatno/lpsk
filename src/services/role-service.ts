@@ -15,7 +15,8 @@ export const findManyRole = ({ query: { search, skip, take } }: FindManyRoleProp
         skip: isNaN(skip) ? 0 : skip,
         take: isNaN(take) ? 10 : take,
         where: { OR: [{ name: { contains: search } }, { descriptions: { contains: search } }] },
-        include: { _count: { select: { modules: true, users: true } } }
+        include: { _count: { select: { modules: true, users: true } } },
+        orderBy: { createdAt: "desc" }
     })
 }
 

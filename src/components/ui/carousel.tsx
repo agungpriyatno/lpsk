@@ -96,20 +96,18 @@ export const Carousel = ({ images }: { images: TCarouselItem[] }) => {
                         className="w-full h-full opacity-40 object-cover"
                         key={currentIndex}
                         src={images[currentIndex].image}
-                        variants={slideVariants}
-                        initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
-                        animate="visible"
-                        exit="exit"
+                        initial={{ x: 300, opacity: 0 }}
+                        animate={{ x: 0, opacity: 0.4, transition: { duration: 0.3 } }}
+                        exit={{ x: -300, opacity: 0, transition: { duration: 0.3 } }}
 
                     />
                 </div>
                 <motion.div
                     className="absolute left-0 top-0 h-full w-full flex flex-col justify-end"
                     key={currentIndex}
-                    variants={titleSlideVariant}
-                    initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
-                    animate="visible"
-                    exit="exit">
+                    initial={{ x: 300, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1, transition: { duration: 0.3 } }}
+                    exit={{ x: -300, opacity: 0, transition: { duration: 0.3 } }}>
                     <AppContainer>
                         <div className="flex flex-col py-20 justify-end h-full">
                             <TextToSpeech><h1 className='text-4xl font-bold'>{images[currentIndex].title}</h1></TextToSpeech>

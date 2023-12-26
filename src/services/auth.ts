@@ -1,15 +1,14 @@
 "use server"
 
-import { delayer } from "@/helpers/delay";
 import { generateHash, validateHash } from "@/helpers/hash";
-import { encryptToken } from "@/helpers/token";
+import { decryptToken, encryptToken } from "@/helpers/token";
 import db from "@/lib/db";
 import { smtp } from "@/lib/smtp";
 import { EmailDto, ResetDto, SignInDto, SignUpDto } from "@/lib/validators/auth";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { ApiError } from "next/dist/server/api-utils";
-import { cookies } from 'next/headers'
-import { date } from "zod";
+import { cookies } from 'next/headers';
+import { redirect } from "next/navigation";
 
 export const signInService = async ({ email, password }: SignInDto) => {
     const account = await db.account.findUniqueOrThrow({ where: { email } })
@@ -21,9 +20,9 @@ export const signInService = async ({ email, password }: SignInDto) => {
     cookies().set("session", token)
 }
 
-export const signUpService = async ({ name, email, password, role }: SignUpDto) => {
+export const signUpService = async ({ name, email, password }: SignUpDto) => {
     const hash = await generateHash(password)
-    await db.user.create({ data: { name, account: { create: { email, hash } }, role: { connect: { id: role } } } })
+    await db.user.create({ data: { name, account: { create: { email, hash } } } })
     await sendVerificationService({ email })
 }
 
@@ -82,4 +81,15 @@ export const resetPasswordService = async (id: string, { password }: ResetDto) =
 
 export const signOutService = () => {
     cookies().set("session", "", { maxAge: 0 })
+    redirect("/admin/signin")
+}
+
+export const sessionService = async () => {
+    const token = cookies().get("session")
+    if (!token) {
+        throw Error(ReasonPhrases.UNAUTHORIZED)
+    }
+    const id = decryptToken(token.value)
+    const account = await db.account.findUniqueOrThrow({ where: { id }, include: { user: true } })
+    return account.user
 }

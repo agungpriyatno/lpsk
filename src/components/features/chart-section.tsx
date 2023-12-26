@@ -1,4 +1,4 @@
-import { BarChart, PieChart, anak, hamBerat, membahayakanJiwa, pencucianUang, penganiayaanBerat, penyiksaan, seksual, terorisme, tindakPidanaKorupsi } from "../ui/chart"
+import { BarChart, PieChart, anak, hamBerat, membahayakanJiwa, pelayananPublik, pencucianUang, penganiayaanBerat, penyiksaan, perlindunganSaksiKorban, seksual, terorisme, tindakPidanaKorupsi } from "../ui/chart"
 import { AppContainer } from "../ui/container"
 import { HeaderSection } from "../ui/typography"
 
@@ -36,6 +36,10 @@ export const ChartSection = () => {
                         <h4 className='text-lg font-bold'>Membahayakan Jiwa</h4>
                         <PieChart data={membahayakanJiwa}/>
                     </div>
+                    <div className='flex flex-col gap-3 text-center'>
+                        <h4 className='text-lg font-bold'>Pelayan Publik</h4>
+                        <PieChart data={pelayananPublik}/>
+                    </div>
                     <div className='flex flex-col gap-3 text-center col-span-1 md:col-span-2'>
                         <h4 className='text-lg font-bold'>Kekerasan Seksual</h4>
                         <BarChart data={seksual}/>
@@ -47,6 +51,10 @@ export const ChartSection = () => {
                     <div className='flex flex-col gap-3 text-center col-span-1 md:col-span-2'>
                         <h4 className='text-lg font-bold'>Terorisme</h4>
                         <BarChart data={terorisme}/>
+                    </div>
+                    <div className='flex flex-col gap-3 text-center col-span-1 md:col-span-2'>
+                        <h4 className='text-lg font-bold'>Perlindungan Saksi dan Korban Kejahatan</h4>
+                        <BarChart data={perlindunganSaksiKorban}/>
                     </div>
                 </div>
             </AppContainer>

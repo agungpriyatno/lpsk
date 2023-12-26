@@ -53,6 +53,7 @@ export function DataTablePagination<TData>({
 
     const onSetSkip = (direction: "next" | "previous" | "last" | "first") => {
         const params: string[] = []
+        if (searchParams.get("status")) params.push(`status=${searchParams.get("status")}`)
         if (search) params.push(`search=${search}`)
         if (take) params.push(`take=${take}`)
 

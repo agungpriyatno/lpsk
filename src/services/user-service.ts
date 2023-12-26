@@ -6,7 +6,7 @@ import { SignUpDto } from "@/lib/validators/auth"
 import { TQuery } from "@/types/utils"
 import { revalidatePath } from "next/cache"
 import { sendVerificationService } from "./auth"
-import { UpdateUserDto } from "@/lib/validators/user"
+import { CreateUserDto, UpdateUserDto } from "@/lib/validators/user"
 
 export type FindManyUserProps = {
     query: TQuery
@@ -18,11 +18,13 @@ export const findManyUser = ({ query: { search, skip, take } }: FindManyUserProp
         skip: isNaN(skip) ? 0 : skip,
         take: isNaN(take) ? 10 : take,
         where: { OR: [{ name: { contains: search } }, { account: { email: { contains: search } } }] },
-        include: { account: { select: { email: true, verifiedAt: true } }, role: true }
+        include: { account: { select: { email: true, verifiedAt: true } }, role: true },
+        orderBy: { createdAt: "desc" }
+
     })
 }
 
-export const createUserService = async ({ name, email, password, role }: SignUpDto) => {
+export const createUserService = async ({ name, email, password, role }: CreateUserDto) => {
     const hash = await generateHash(password)
     await db.user.create({ data: { name, account: { create: { email, hash } }, role: { connect: { id: role } } } })
     await sendVerificationService({ email })

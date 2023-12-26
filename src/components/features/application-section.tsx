@@ -154,7 +154,7 @@ export const AplicationSection = () => {
                         <AplicationContent />
                     </div>
                     <div className="col-span-3 bg-background max-h-full overflow-hidden rounded p-5 space-y-3">
-                        <h2 className=" font-bold text-lg">TRACKING CEPAT</h2>
+                        <h2 className=" font-bold text-lg">TRACKING LAPORAN</h2>
                         <div className=" flex gap-2">
                             <Input placeholder="No Registrasi" />
                             <Button>Cari</Button>

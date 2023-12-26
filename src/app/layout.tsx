@@ -1,11 +1,9 @@
 import { AppProvider } from '@/components/providers/app-provider'
-import { AppHeader } from '@/components/features/header'
 import { cn } from '@/lib/utils'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { AppRunningText } from '@/components/features/running-text'
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +21,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cn(
         inter.className,
-        "bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-100"
+        "bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-100"
       )}>
         <AppProvider>
           {children}

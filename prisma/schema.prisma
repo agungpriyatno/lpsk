@@ -24,14 +24,16 @@ enum StatusDraft {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  roleId    String?  @map("role_id")
-  name      String
-  avatar    String?
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  account   Account?
-  role      Role?    @relation(fields: [roleId], references: [id], onDelete: SetNull)
+  id          String        @id @default(cuid())
+  roleId      String?       @map("role_id")
+  name        String
+  avatar      String?
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  account     Account?
+  role        Role?         @relation(fields: [roleId], references: [id], onDelete: SetNull)
+  draft       Draft[]
+  publication Publication[]
 
   @@map("users")
 }
@@ -106,39 +108,86 @@ model Aplication {
 }
 
 model Draft {
-  id           String            @id @default(cuid())
-  thumbnail    String
-  title        String
-  content      String
-  status       StatusDraft       @default(PROCESS)
-  publishedAt  DateTime?         @default(now()) @map("published_at")
-  createdAt    DateTime          @default(now()) @map("created_at")
-  selected     Publication?
-  publications DraftPublication?
+  id            String                  @id @default(cuid())
+  categoryId    String?                 @map("category_id")
+  authorId      String?                 @map("author_id")
+  publicationId String?                 @map("publication_id")
+  subCategoryId String?                 @map("sub_category_id")
+  thumbnail     String
+  title         String
+  content       String
+  publishedAt   DateTime?               @default(now()) @map("published_at")
+  createdAt     DateTime                @default(now()) @map("created_at")
+  status        StatusDraft             @default(PROCESS)
+  selected      Publication?
+  publications  Publication?            @relation("draft", fields: [publicationId], references: [id], onDelete: Cascade)
+  author        User?                   @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  category      PublicationCategory?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  subCategory   PublicationSubCategory? @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
+  media         Media[]
+  link          Link[]
 
   @@map("drafts")
 }
 
-model DraftPublication {
-  draftId       String @unique @map("draft_id")
-  publicationId String @map("publication_id")
-
-  draft       Draft       @relation(fields: [draftId], references: [id])
-  publication Publication @relation(fields: [publicationId], references: [id])
-
-  @@id([draftId, publicationId])
-  @@map("draft_publications")
-}
-
 model Publication {
-  id         String   @id @default(cuid())
-  status     String
-  selectedId String   @unique @map("selected_id")
-  updatedAt  DateTime @updatedAt @map("updated_at")
-  createdAt  DateTime @default(now()) @map("created_at")
+  id            String   @id @default(cuid())
+  authorId      String?  @map("author_id")
+  selectedId    String?  @unique @map("selected_id")
+  categoryId    String?  @map("category_id")
+  subCategoryId String?  @map("sub_category_id")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  createdAt     DateTime @default(now()) @map("created_at")
 
-  selected Draft              @relation(fields: [selectedId], references: [id])
-  draft    DraftPublication[]
+  status      StatusPublication       @default(PUBLISH)
+  author      User?                   @relation(fields: [authorId], references: [id])
+  draft       Draft[]                 @relation("draft")
+  selected    Draft?                  @relation(fields: [selectedId], references: [id])
+  category    PublicationCategory?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  subCategory PublicationSubCategory? @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
 
   @@map("publications")
+}
+
+model PublicationCategory {
+  id          String                   @id @default(cuid())
+  name        String
+  createdAt   DateTime                 @default(now()) @map("created_at")
+  draft       Draft[]
+  publication Publication[]
+  subs        PublicationSubCategory[]
+
+  @@map("publication_categories")
+}
+
+model PublicationSubCategory {
+  id          String              @id @default(cuid())
+  categoryId  String              @map("category_id")
+  name        String
+  createdAt   DateTime            @default(now()) @map("created_at")
+  draft       Draft[]
+  publication Publication[]
+  category    PublicationCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("publication_subcategories")
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  draftId   String   @map("draft_id")
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  draft     Draft    @relation(fields: [draftId], references: [id], onDelete: Cascade)
+
+  @@map("media")
+}
+
+model Link {
+  id        String   @id @default(cuid())
+  draftId   String   @map("draft_id")
+  url       String
+  createdAt DateTime @default(now()) @map("created_at")
+  draft     Draft    @relation(fields: [draftId], references: [id], onDelete: Cascade)
+
+  @@map("link")
 }

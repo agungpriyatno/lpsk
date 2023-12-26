@@ -8,6 +8,23 @@ import {CategoryScale} from 'chart.js';
 
 ChartJS.register(ArcElement,CategoryScale, LinearScale ,Tooltip, Legend,...registerables);
 
+export const pelayananPublik: ChartData<"pie", number[], unknown> = {
+    labels: ["Aplikasi Permohonan Perlindungan", "Datang Langsung", "Email", "Surat", "Whatsapp"],
+    datasets: [
+        {
+            data: [93, 2077, 154, 2514, 1166],
+            backgroundColor: [
+                colors.orange[100],
+                colors.orange[200],
+                colors.orange[300],
+                colors.orange[400],
+                colors.orange[500],
+            ],
+            borderColor: colors.transparent,
+            borderWidth: 1,
+        },
+    ],
+};
 
 export const hamBerat: ChartData<"pie", number[], unknown> = {
     labels: ['Jumlah Permohonan', 'Jumlah Terlindung', 'Dewasa', 'Anak', 'Laki Laki', 'Perempuan', 'Carry Over 2021', 'Diterima 2022', 'Dihentikan', 'Terlindung Aktif'],
@@ -184,6 +201,34 @@ export const perdaganganManusia: ChartData<"bar", number[], unknown> = {
             data: [150, 3, 27, 2, 4, 268, 208, 3, 14, 18, 7, 1],
             backgroundColor: colors.orange[100],
             borderColor: colors.transparent,
+            borderWidth: 1,
+        },
+    ],
+};
+
+export const perlindunganSaksiKorban : ChartData<"bar", number[], unknown> = {
+    labels: ['Pencucian Uang', 'Pelanggaran HAM Berat','Kekerasan Seks Anak', "Perdagangan Orang", "Terorisme", "Kekerasan Seksual", "Korupsi", "Penyiksaan", "Penganiayaan Berat", "Narkotika", "Tindak Pidana Lain", "Bukan Tindak Pidana"],
+    datasets: [
+        {
+            label: "2021",
+            data: [8, 348, 426, 147, 627, 60, 55, 31, 79, 5, 526, 73],
+            backgroundColor: [
+                colors.orange[100],
+                colors.orange[200],
+                colors.orange[300],
+            ],
+            borderColor: colors.slate[800],
+            borderWidth: 1,
+        },
+        {
+            label: "2022",
+            data: [3725, 600, 536, 150, 91, 99, 80, 43, 41, 6, 617, 116],
+            backgroundColor: [
+                colors.orange[100],
+                colors.orange[200],
+                colors.orange[300],
+            ],
+            borderColor: colors.slate[800],
             borderWidth: 1,
         },
     ],

@@ -34,11 +34,11 @@ export const MENU: TMenuItem[] = [
     },
     {
         title: "Berita",
-        href: "/",
+        href: "/berita",
     },
     {
         title: "Publikasi",
-        href: "/",
+        href: "/publikasi",
     },
     {
         title: "Peraturan",

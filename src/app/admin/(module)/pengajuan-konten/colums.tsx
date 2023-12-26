@@ -7,7 +7,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Draft } from "@prisma/client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { MoreHorizontal } from "lucide-react"
+import { FileSearchIcon, MoreHorizontal } from "lucide-react"
+import Link from "next/link"
 import { DeleteUser } from "./delete"
 
 
@@ -37,6 +38,16 @@ export const columns: ColumnDef<DraftTable>[] = [
             <DataTableColumnHeader column={column} title="Status" />,
     },
     {
+        id: "Jenis",
+        accessorKey: "publicationId",
+        header: ({ column }) =>
+            <DataTableColumnHeader column={column} title="Jenis" />,
+        cell: ({ row }) => {
+            const data = row.original.publicationId
+            return <div className="text-left font-medium">{data == null ? "Tambah" : "Ubah"}</div>
+        },
+    },
+    {
         header: "Aksi",
         id: "actions",
         cell: ({ row }) => {
@@ -52,7 +63,14 @@ export const columns: ColumnDef<DraftTable>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteUser id={data.id} /></DropdownMenuItem>
+                        {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteUser id={data.id} /></DropdownMenuItem> */}
+                        <DropdownMenuItem className="space-x-2" asChild>
+                            <Link href={"/admin/pengajuan-konten/" + data.id}>
+                                <div className="flex gap-2">
+                                    <FileSearchIcon size={20} /> <span>Detail</span>
+                                </div>
+                            </Link>
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

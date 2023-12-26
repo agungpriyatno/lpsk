@@ -94,7 +94,7 @@ const SignUpPage = () => {
                                 <Link href={'/admin/forgot'}>Lupa Password ?</Link>
                             </Button>
                         </div>
-                        <Button className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "DAFTAR"}</Button>
+                        <Button type="submit" className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "DAFTAR"}</Button>
                         <Button type="button" className="w-full" asChild variant={'outline'}>
                             <Link href={'/admin/signin'}>MASUK</Link>
                         </Button>

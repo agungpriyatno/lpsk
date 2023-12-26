@@ -23,7 +23,7 @@ import { DataTablePagination } from "./data-table-pagination"
 import { Input } from "./input"
 import { Button } from "./button"
 import { SearchIcon } from "lucide-react"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Skeleton } from "./skeleton"
 
 interface DataTableProps<TData, TValue> {
@@ -49,6 +49,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
     const router = useRouter()
     const pathname = usePathname()
+    const searchParams = useSearchParams()
     const [sorting, setSorting] = useState<SortingState>([])
     const table = useReactTable({
         data,
@@ -63,8 +64,10 @@ export function DataTable<TData, TValue>({
 
     const onSearch = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        const value = (event.currentTarget.elements[0] as HTMLInputElement).value
-        router.push(pathname + "?" + `search=${value}`)
+        const params: string[] = []
+        if (searchParams.get("status")) params.push(`status=${searchParams.get("status")}`)
+        params.push("search="+(event.currentTarget.elements[0] as HTMLInputElement).value)
+        router.push(pathname + "?" + params.join("&"))
     }
 
     return (

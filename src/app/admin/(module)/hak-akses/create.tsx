@@ -43,7 +43,7 @@ export const CreateRole = () => {
         } catch (error) {
             toast({
                 title: "Gagal Tambah Hak Akses",
-                description: "Email anda sudah digunakan!",
+                description: "",
                 variant: "destructive",
             })
         }

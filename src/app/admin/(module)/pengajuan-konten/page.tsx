@@ -1,14 +1,12 @@
 import { DataTable } from "@/components/ui/data-table"
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu"
 import db from "@/lib/db"
 import { findManyDraftService } from "@/services/draft-service"
-import { findAllRole } from "@/services/role-service"
-import { columns } from "./colums"
-import { CreateUser } from "./create"
-import { TabMenu } from "./tab"
 import { $Enums } from "@prisma/client"
+import { columns } from "./colums"
+import { CreateDraft } from "./create"
+import { TabMenu } from "./tab"
 
-type UserPageProps = {
+type PageProps = {
     searchParams: {
         take?: string,
         skip?: string,
@@ -17,34 +15,43 @@ type UserPageProps = {
     }
 }
 
-const UserPage = async ({ searchParams: { skip, take, search, status } }: UserPageProps) => {
+const Page = async ({ searchParams: { skip, take, search, status } }: PageProps) => {
     const data = await findManyDraftService({ query: { search: (search ?? ""), skip: Number(skip), take: Number(take) }, status })
-    const total = await db.user.count()
-    const active = await db.user.count({ where: { NOT: { account: { verifiedAt: null } } } })
-    const deactive = await db.user.count({ where: { account: { verifiedAt: null } } })
-    const roles = await findAllRole()
+    const total = await db.draft.count()
+    const process = await db.draft.count({ where: { status: "PROCESS" } })
+    const rejected = await db.draft.count({ where: { status: "REJECT" } })
+    const accepted = await db.draft.count({ where: { status: "ACCEPT" } })
+    const selectedTotal = status === "ACCEPT" ? accepted : status === "PROCESS" ? process : status === "REJECT" ? rejected : total
 
     return (
         <div className="space-y-5 py-5">
             <div className="flex flex-col xl:flex-row xl:justify-between gap-3">
                 <h1 className="text-2xl font-bold">Manajemen Pengajuan Konten</h1>
-                <CreateUser />
+                <CreateDraft />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
                 <div className="bg-background px-3 py-2 rounded">
-                    <h3 className="text-base">Pengguna Aktif</h3>
-                    <span className=" text-2xl font-bold">{active}</span>
+                    <h3 className="text-base">Semua Pengajuan</h3>
+                    <span className=" text-2xl font-bold">{total}</span>
                 </div>
                 <div className="bg-background px-3 py-2 rounded">
-                    <h3 className="text-base">Pengguna Non Aktif</h3>
-                    <span className=" text-2xl font-bold">{deactive}</span>
+                    <h3 className="text-base">Pengajuan Diproses</h3>
+                    <span className=" text-2xl font-bold">{process}</span>
+                </div>
+                <div className="bg-background px-3 py-2 rounded">
+                    <h3 className="text-base">Pengajuan Diterima</h3>
+                    <span className=" text-2xl font-bold">{accepted}</span>
+                </div>
+                <div className="bg-background px-3 py-2 rounded">
+                    <h3 className="text-base">Pengajuan Ditolak</h3>
+                    <span className=" text-2xl font-bold">{rejected}</span>
                 </div>
             </div>
-            <DataTable columns={columns} data={data} options={{ skip, search, take, total }}>
+            <DataTable columns={columns} data={data} options={{ skip, search, take, total: selectedTotal }}>
                 <TabMenu />
             </DataTable>
         </div>
     )
 }
 
-export default UserPage
+export default Page

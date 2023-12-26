@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { LineChart, analyticData } from "../ui/chart";
+import Image from "next/image";
 
 
 export const FooterFE = () => {
@@ -65,6 +66,10 @@ export const FooterFE = () => {
                     </div>
                     <div className="flex flex-col justify-between h-full">
                         <h3 className="font-bold text-xl">Lembaga Perlindungan Saksi dan Korban (LPSK)</h3>
+                        <div className="h-[100px] w-[100px] relative">
+                        <Image src="/images/lpsk-lg.png" alt="" fill sizes="100vh" />
+
+                        </div>
                         <div className="flex flex-col gap-5">
                             <small className="flex gap-2 place-items-center"><PhoneCallIcon size={14} /> 021-111-222-333</small>
                             <small className="flex gap-2 place-items-center"><MailIcon size={14} /> lpsk@email.go.id</small>

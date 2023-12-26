@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { SignUpDto, signUpDto } from "@/lib/validators/auth"
+import { CreateUserDto, createUserDto } from "@/lib/validators/user"
 import { findAllRole } from "@/services/role-service"
 import { createUserService } from "@/services/user-service"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -35,12 +35,12 @@ export const CreateUser = () => {
     }
 
     const [open, setOpen] = useState(false)
-    const form = useForm<SignUpDto>({
-        resolver: zodResolver(signUpDto),
+    const form = useForm<CreateUserDto>({
+        resolver: zodResolver(createUserDto),
     })
     const { toast } = useToast()
 
-    const submitHandler = async (data: SignUpDto) => {
+    const submitHandler = async (data: CreateUserDto) => {
         try {
             await createUserService(data)
             toast({
