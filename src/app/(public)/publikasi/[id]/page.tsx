@@ -61,7 +61,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                         <h3 className=" text-lg font-bold">Sumber</h3>
                         <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
                             {data.selected.link.map((item) => (
-                                <Button size={'sm'} asChild>
+                                <Button size={'sm'} asChild key={item.id}>
                                     <Link href={item.url} target={"_blank"}>{item.url}</Link>
                                 </Button>
                             ))}
