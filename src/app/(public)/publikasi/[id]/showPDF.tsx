@@ -36,7 +36,7 @@ export function ShowPDF({ url }: { url: string }) {
                         @ts-ignore */}
                         <HTMLFlipBook width={500} height={700} showCover={false} className="relative overflow-visible w-full h-screen" startPage={0}>
                             <div className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}></div>
-                            {Array(numPages).map((a, i) => (
+                            {Array.from(Array(numPages).keys()).map((a, i) => (
                                 <div key={i} className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}>
                                     <Page pageNumber={i + 1} width={500} height={700} scale={1} />
                                 </div>

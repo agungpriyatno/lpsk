@@ -18,7 +18,7 @@ type PageProps = {
 
 const Page = async ({ params: { id } }: PageProps) => {
     const data = await findPublicationService(id ?? "")
-
+    
     return (
         <div className=" space-y-5 py-5">
             <section className="space-y-5">

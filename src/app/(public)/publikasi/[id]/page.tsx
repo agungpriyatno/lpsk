@@ -11,6 +11,8 @@ import Link from "next/link"
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
     const data = await db.publication.findFirstOrThrow({ where: { id }, include: { selected: { include: { link: true, media: true } }, author: true } })
+    console.log(data.selected?.media);
+
     return (
         <div className=" space-y-5 w-full pb-16">
             <div className='h-[400px] w-full bg-background'>
