@@ -1,4 +1,4 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ShowPDF } from "../(public)/publikasi/[id]/showPDF";
 import { Test } from "./reader";
 
 function Page() {
