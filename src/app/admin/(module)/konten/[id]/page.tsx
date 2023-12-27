@@ -46,7 +46,7 @@ const Page = async ({ params: { id } }: PageProps) => {
             <section className="space-y-3">
                 <div className="flex justify-between">
                     <h3 className="text-xl font-bold">Log Pengajuan</h3>
-                    <CreateDraftFromPost id={data.id} title={data.selected?.title ?? ""} content={data.selected?.content ?? ""} publishedAt={data.selected?.publishedAt ?? null} sub={data.subCategoryId} category={data.categoryId}/>
+                    <CreateDraftFromPost id={data.id} title={data.selected?.title ?? ""} content={data.selected?.content ?? ""} publishedAt={data.selected?.publishedAt ?? null} sub={data.subCategoryId} category={data.categoryId} link={[]}/>
                 </div>
                 {data.draft.map((item) => (
                     <div key={item.id} className="px-5 py-3 bg-background rounded">

@@ -14,7 +14,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 
-export function ShowPDF({url}: {url: string}) {
+export function ShowPDF({ url }: { url: string }) {
 
     const [size, setSize] = useState(0)
 
@@ -23,20 +23,6 @@ export function ShowPDF({url}: {url: string}) {
 
     const onLoadSucces = ({ numPages }: { numPages: number }) => {
         setNumPage(numPages)
-    }
-
-    const generatePage = () => {
-        const pages = [
-            <div className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}></div>
-        ]
-
-        for (let i = 0; i < numPages; i++) {
-            pages.push(<div key={i} className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}>
-                <Page pageNumber={i + 1} width={500} height={700} scale={1} />
-            </div>)
-        }
-
-        return pages
     }
 
     return (
@@ -49,7 +35,12 @@ export function ShowPDF({url}: {url: string}) {
                         {/* 
                         @ts-ignore */}
                         <HTMLFlipBook width={500} height={700} showCover={false} className="relative overflow-visible w-full h-screen" startPage={0}>
-                            {generatePage()}
+                            <div className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}></div>
+                            {Array(numPages).map((a, i) => (
+                                <div key={i} className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}>
+                                    <Page pageNumber={i + 1} width={500} height={700} scale={1} />
+                                </div>
+                            ))}
                         </HTMLFlipBook>
                     </Document>
                 </div>
