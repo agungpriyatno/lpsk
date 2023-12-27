@@ -31,7 +31,7 @@ export function ShowPDF({url}: {url: string}) {
         ]
 
         for (let i = 0; i < numPages; i++) {
-            pages.push(<div className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}>
+            pages.push(<div key={i} className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}>
                 <Page pageNumber={i + 1} width={500} height={700} scale={1} />
             </div>)
         }

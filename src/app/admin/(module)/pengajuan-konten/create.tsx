@@ -159,7 +159,7 @@ export const CreateDraft = () => {
                                                     <div className="w-full flex justify-center place-items-center">
                                                         <Loader2Icon className=" animate-spin" />
                                                     </div>
-                                                ) : category.map((item => <SelectItem value={item.id}>{item.name}</SelectItem>))
+                                                ) : category.map(((item, i) => <SelectItem key={i} value={item.id}>{item.name}</SelectItem>))
                                             }
                                         </SelectContent>
                                     </Select>
@@ -180,7 +180,7 @@ export const CreateDraft = () => {
                                                 {
                                                     category.map((item => {
                                                         if (item.id === form.getValues("category")) {
-                                                            return item.subs.map(sub => <SelectItem value={sub.id}>{sub.name}</SelectItem>)
+                                                            return item.subs.map((sub, i) => <SelectItem key={i} value={sub.id}>{sub.name}</SelectItem>)
                                                         }
                                                     }))
                                                 }
@@ -268,7 +268,7 @@ export const CreateDraft = () => {
                             </div>
 
                             {includeLink && fields.map((item, i) => (
-                                <FormField control={form.control} name={`link.${i}.url`} key={item.id} render={({ field }) => (
+                                <FormField  control={form.control} name={`link.${i}.url`} key={i} render={({ field }) => (
                                     <div className="flex gap-3 w-full">
                                         <FormItem className="flex-1">
                                             <FormControl>
