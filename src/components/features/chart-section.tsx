@@ -6,7 +6,7 @@ export const ChartSection = () => {
     return (
         <section className="w-full">
             <AppContainer className="space-y-5 bg-background py-5">
-                <HeaderSection>APLIKASI LPSK</HeaderSection>
+                <HeaderSection>STATISTIK PERLINDUNGAN SAKSI DAN KORBAN</HeaderSection>
                 <div className=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 justify-around gap-3 xl:gap-5">
                     <div className='flex flex-col gap-3 text-center'>
                         <h4 className='text-lg font-bold'>Perlindungan Pelanggaran HAM BERAT</h4>

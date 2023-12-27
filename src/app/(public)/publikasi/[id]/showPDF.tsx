@@ -8,10 +8,11 @@ import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
 
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.js',
-    import.meta.url,
-).toString();
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//     'pdfjs-dist/build/pdf.worker.min.js',
+//     import.meta.url,
+// ).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 
 export function ShowPDF({ url }: { url: string }) {
@@ -30,7 +31,7 @@ export function ShowPDF({ url }: { url: string }) {
             <Button size={'icon'} onClick={() => setOpen(!open)}><EyeIcon /></Button>
             {open && (
                 <div className="fixed left-0 top-0 w-screen h-screen bg-slate-800 bg-opacity-80 z-50 flex flex-col justify-center place-items-center" onClick={() => setOpen(!open)}>
-                    <Document onLoadSuccess={(file) => onLoadSucces({ numPages: file.numPages })} file={url} className={cn(
+                    <Document onLoadSuccess={(file) => onLoadSucces({ numPages: file.numPages })} file={{url}} className={cn(
                         " flex flex-col h-screen w-full justify-center place-items-center gap-3 relative ")}>
                         {/* 
                         @ts-ignore */}
