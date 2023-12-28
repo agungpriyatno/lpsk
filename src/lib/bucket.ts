@@ -3,11 +3,11 @@ import * as Minio from "minio";
 
 
 export const bucket = new Minio.Client({
-    endPoint: '103.175.217.118',
+    endPoint: process.env.BUCKET_URL!,
     port: 43124,
     useSSL: false,
-    accessKey: 'VWTGwB4F60sMaV02GRcp',
-    secretKey: 'qbHTvRDoVZ65egZBo0UwGlrmC18rtADB2ejzt1uU',
+    accessKey: process.env.BUCKET_ACCESS!,
+    secretKey: process.env.BUCKET_SECRET!,
 })
 
 export const storeObject = async (file: File, bucketName: string): Promise<string> => {

@@ -32,7 +32,7 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                 {list.map(({ selected, id }) => (
                     <div className="bg-background rounded relative overflow-hidden group" key={id}>
                         <AspectRatio ratio={1 / 1}>
-                            <Link href={"/berita/" + id}>
+                            <Link href={"/voting/" + id}>
                                 <div className="flex flex-col p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
                                     <h5 className="text-base font-bold">{selected?.title.slice(0, 20)}...</h5>
                                     <p className="text-sm">{selected?.content.slice(0, 20)}</p>
@@ -40,7 +40,7 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                                 </div>
                             </Link>
                             <div className="relative w-full h-full bg-slate-800">
-                                <Image src={'http://103.175.217.118:43124/thumbnail/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
+                                <Image src={ process.env.BUCKET_URL_ACCESS + '/thumbnail/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
                             </div>
                             <div className=" absolute z-20 right-2 top-2">
                                 {/* {selected?.category != undefined && (

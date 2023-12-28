@@ -20,7 +20,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
             <div className='h-[400px] w-full bg-background'>
                 <div className=' flex flex-col w-full h-full justify-center place-items-center relative'>
                     <div className='h-full w-full absolute bg-slate-800'>
-                        <Image src={'http://103.175.217.118:43124/thumbnail/' + data.selected?.thumbnail} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
+                        <Image src={process.env.BUCKET_URL_ACCESS + '/thumbnail/' + data.selected?.thumbnail} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                                         <div className="p-4 2xl:p-4 flex flex-col justify-end h-full w-full gap-2">
                                             <p className="text-sm">{item.media.name}</p>
                                             <div className="flex gap-2 w-full justify-end">
-                                                {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={'http://103.175.217.118:43124/publication/' + item.media.name} />}
+                                                {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publication/' + item.media.name} />}
                                                 <Button size={'icon'} asChild>
                                                     <a href={"/documents/roadmap-birokrasi.pdf"} download>
                                                         <DownloadIcon />
@@ -67,7 +67,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                                     <div className=" bg-background rounded overflow-hidden" key={item.id}>
                                         <AspectRatio ratio={2 / 1}>
                                             <div className="h-full w-full bg-slate-800">
-                                                <Image src={'http://103.175.217.118:43124/media/' + item.thumbnail} alt="" fill sizes="100vh" className=" object-cover opacity-40"/>
+                                                <Image src={process.env.BUCKET_URL_ACCESS + '/media/' + item.thumbnail} alt="" fill sizes="100vh" className=" object-cover opacity-40"/>
                                             </div>
                                             <div className=" flex flex-col justify-end place-items-center h-full absolute left-0 top-0 w-full gap-2 p-5">
                                                 <p className="text-lg">{item._count.client}</p>
