@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { EyeIcon, MinusIcon, PlusIcon } from "lucide-react";
+import { EyeIcon, MinusIcon, PlusIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -30,16 +30,19 @@ export function ShowPDF({ url }: { url: string }) {
         <div>
             <Button size={'icon'} onClick={() => setOpen(!open)}><EyeIcon /></Button>
             {open && (
-                <div className="fixed left-0 top-0 w-screen h-screen bg-slate-800 bg-opacity-80 z-50 flex flex-col justify-center place-items-center" onClick={() => setOpen(!open)}>
+                <div className="fixed left-0 top-0 w-screen h-screen bg-slate-800 bg-opacity-80 z-50 flex flex-col justify-center place-items-center">
+                    <Button variant={'outline'} onClick={() =>setOpen(!open)} className=" top-5 right-5 absolute z-[100]">
+                        <XIcon size={25}/>
+                    </Button>
                     <Document onLoadSuccess={(file) => onLoadSucces({ numPages: file.numPages })} file={{url}} className={cn(
                         " flex flex-col h-screen w-full justify-center place-items-center gap-3 relative ")}>
                         {/* 
                         @ts-ignore */}
-                        <HTMLFlipBook width={500} height={700} showCover={false} className="relative overflow-visible w-full h-screen" startPage={0}>
+                        <HTMLFlipBook width={300} height={500} showCover={false} className="relative overflow-visible w-full h-screen" startPage={0}>
                             <div className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}></div>
                             {Array.from(Array(numPages).keys()).map((a, i) => (
                                 <div key={i} className="relative overflow-hidden" onClick={(event) => event.stopPropagation()}>
-                                    <Page pageNumber={i + 1} width={500} height={700} scale={1} />
+                                    <Page pageNumber={i + 1} width={300} height={500} scale={1} />
                                 </div>
                             ))}
                         </HTMLFlipBook>
