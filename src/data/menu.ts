@@ -41,6 +41,10 @@ export const MENU: TMenuItem[] = [
         href: "/publikasi",
     },
     {
+        title: "Voting",
+        href: "/voting",
+    },
+    {
         title: "Peraturan",
         href: "/",
     },

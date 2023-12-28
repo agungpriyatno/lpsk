@@ -6,7 +6,7 @@ import { SignUpDto } from "@/lib/validators/auth"
 import { TQuery } from "@/types/utils"
 import { revalidatePath } from "next/cache"
 import { sendVerificationService } from "./auth"
-import { CreateUserDto, UpdateUserDto } from "@/lib/validators/user"
+import { CreateUserDto, CreateVoteDto, UpdateUserDto } from "@/lib/validators/user"
 
 export type FindManyUserProps = {
     query: TQuery
@@ -39,4 +39,13 @@ export const updateUserService = async ({ name, id, role }: UpdateUserDto & { id
 export const deleteUserService = async ({ id }: { id: string }) => {
     await db.user.delete({ where: { id } })
     revalidatePath('/pengguna')
+}
+
+export const createVoteService = async (id: string, { name, email }: CreateVoteDto) => {
+    var client = await db.client.findUnique({ where: { email } })
+    if (!client) {
+        client = await db.client.create({ data: { name, email } })
+    }
+    await db.voteClient.create({ data: { clientId: client.id, optionId: id } })
+    revalidatePath('/vote')
 }

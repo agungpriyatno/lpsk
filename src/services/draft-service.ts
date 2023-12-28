@@ -1,6 +1,6 @@
 "use server"
 
-import { storeObject } from "@/lib/bucket";
+import { batchStoreObject, storeObject } from "@/lib/bucket";
 import db from "@/lib/db";
 import { TQuery } from "@/types/utils";
 import { $Enums } from "@prisma/client";
@@ -37,40 +37,33 @@ export const findManyDraftService = ({ query: { search, skip, take }, status }: 
 }
 
 export const findDraftService = async (id: string) => {
-    return await db.draft.findUniqueOrThrow({ where: { id }, include: { author: true } })
+    return await db.draft.findUniqueOrThrow({ where: { id }, include: { author: true, link: { include: { link: true } }, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } })
 }
 
 export const deleteDraftService = async ({ id }: { id: string }) => {
     await db.draft.delete({ where: { id } })
-    revalidatePath('/admin/pengajuan-konten')
+    revalidatePath('/backoffice/pengajuan-konten')
 }
 
 export const createDraftService = async (formData: FormData) => {
     const user = await sessionService()
     const title = formData.get("title") as string
     const category = formData.get("category") as string | null
-    const sub = formData.get("sub") as string | null
+    const sub = formData.get("sub_catebgory") as string | null
     const content = formData.get("content") as string
     const publishedAt = formData.get("published_at") as string | null
-    const thumbnail = formData.get("thumbnail") as File
+    const thumbnail = formData.get("thumbnail") as File | null
     const file = formData.getAll("file") as File[] | null
     const link = formData.getAll("link") as string[] | null
+    const voteOptions = formData.getAll("vote_options") as string[] | null
+    const voteOptionsDesc = formData.getAll("vote_descriptions") as string[] | null
+    const voteOptionsThumb = formData.getAll("vote_thumbnail") as File[] | null
+    const closedAt = formData.get("closed_at") as string | null
 
-    console.log(file);
-    
+    const thumbailName = thumbnail != null ? await storeObject(thumbnail, "thumbnail") : null
+    const filename = await batchStoreObject(file, "media")
+    const optionsThumbnailname = await batchStoreObject(voteOptionsThumb, "media")
 
-    const thumbailName = await storeObject(thumbnail, "publication")
-    const filename: string[] = []
-
-    if (file) {
-        for (let i = 0; i < file.length; i++) {
-            const data = file[i]
-            const name = await storeObject(data, "publication") 
-            filename.push(name)
-        }
-
-    }
-    
     await db.draft.create({
         data: {
             title,
@@ -80,37 +73,16 @@ export const createDraftService = async (formData: FormData) => {
             author: { connect: { id: user.id } },
             category: { connect: category != null ? { id: category } : undefined },
             subCategory: { connect: sub != null ? { id: sub } : undefined },
-            link: { createMany: link != null ? { data: link.map((item) => { return { url: item } }) } : undefined },
-            media: { createMany: filename != null ? { data: filename.map((item) => { return { name: item } }) } : undefined }
+            link: { create: link?.map((item) => { return { link: { create: { url: item } } } }) },
+            media: { create: filename?.map((item) => { return { media: { create: { name: item } } } }) },
+            vote: { create: { vote: { create: { closedAt: closedAt ?? new Date(), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } }
         }
     })
-    revalidatePath('/admin/pengajuan-konten')
+    revalidatePath('/backoffice/pengajuan-konten')
 }
-
-
-export const createUpdateDraftService = async (formData: FormData, postId: string) => {
-    const user = await sessionService()
-    const title = formData.get("title") as string
-    const content = formData.get("content") as string
-    const publishedAt = formData.get("published_at") as string
-    const thumbnail = formData.get("thumbnail") as File | null
-    var filename: string | undefined = ""
-    if (thumbnail) {
-        filename = await storeObject(thumbnail, "publication")
-    } else {
-        const publication = await findPublicationService(postId)
-        filename = publication.selected?.thumbnail
-    }
-
-    await db.draft.create({ data: { title, content, publishedAt, thumbnail: filename ?? "", author: { connect: { id: user.id } }, publications: { connect: { id: postId } } } })
-    revalidatePath('/admin/konten/' + postId)
-}
-
 
 export const acceptCreateService = async (id: string) => {
     const draft = await db.draft.findUniqueOrThrow({ where: { id } })
-    console.log(id);
-
 
     if (draft.status == "REJECT" || draft.authorId == null) {
         throw Error("error")
@@ -122,10 +94,32 @@ export const acceptCreateService = async (id: string) => {
         await db.publication.create({ data: { selected: { connect: { id: draft.id } }, author: { connect: { id: draft.authorId } }, draft: { connect: { id: draft.id } } } })
     }
     await db.draft.update({ where: { id }, data: { status: "ACCEPT" } })
-    revalidatePath('/admin/pengajuan-konten')
+    revalidatePath('/backoffice/pengajuan-konten')
 }
+
+
+export const createUpdateDraftService = async (formData: FormData, postId: string) => {
+    const user = await sessionService()
+    const title = formData.get("title") as string
+    const content = formData.get("content") as string
+    const publishedAt = formData.get("published_at") as string
+    const thumbnail = formData.get("thumbnail") as File | null
+    var filename: string | undefined = ""
+    // if (thumbnail) {
+    //     filename = await storeObject(thumbnail, "publication")
+    // } else {
+    //     const publication = await findPublicationService(postId)
+    //     filename = publication.selected?.thumbnail
+    // }
+
+    await db.draft.create({ data: { title, content, publishedAt, thumbnail: filename ?? "", author: { connect: { id: user.id } }, publications: { connect: { id: postId } } } })
+    revalidatePath('/backoffice/konten/' + postId)
+}
+
+
+
 
 export const rejectDraftService = async (id: string) => {
     const draft = await db.draft.update({ where: { id }, data: { status: "REJECT" } })
-    revalidatePath('/admin/pengajuan-konten')
+    revalidatePath('/backoffice/pengajuan-konten')
 }

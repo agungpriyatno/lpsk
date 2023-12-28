@@ -35,22 +35,22 @@ export const findManyPublicationService = ({ query: { search, skip, take }, stat
 }
 
 export const findPublicationService = async (id: string) => {
-    return await db.publication.findUniqueOrThrow({ where: { id }, include: { author: true, selected: true, draft: true } })
+    return await db.publication.findUniqueOrThrow({ where: { id }, include: { author: true, selected: {include: { author: true, link: { include: { link: true } }, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } }}, draft: true } })
 }
 
 export const takedownPublication = async (id: string) => {
     await db.publication.update({ where: { id }, data: { status: "TAKEDOWN" } })
-    revalidatePath('/admin/konten/' + id)
+    revalidatePath('/backoffice/konten/' + id)
 }
 
 export const publishPublication = async (id: string) => {
     await db.publication.update({ where: { id }, data: { status: "PUBLISH" } })
-    revalidatePath('/admin/konten/' + id)
+    revalidatePath('/backoffice/konten/' + id)
 }
 
 export const createPubCategory = async ({ name, subs }: PubCategoryDto) => {
     await db.publicationCategory.create({ data: { name, subs: { createMany: { data: subs } } } })
-    revalidatePath('/admin/konten/kategori')
+    revalidatePath('/backoffice/konten/kategori')
 }
 
 export const findManyPubCategory = async ({ query: { search, skip, take } }: FindManyPubCategory) => {
@@ -76,5 +76,5 @@ export const findAllCategory = () => {
 
 export const deletePubCategory = async (id: string) => {
     await db.publicationCategory.delete({ where: { id } })
-    revalidatePath('/admin/konten/kategori')
+    revalidatePath('/backoffice/konten/kategori')
 }

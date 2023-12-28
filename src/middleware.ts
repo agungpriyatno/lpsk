@@ -5,16 +5,16 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const userToken = cookies().get("session")?.value
 
-  if (pathname === "/admin/signin") {
+  if (pathname === "/backoffice/signin") {
     if (userToken) {
-      return NextResponse.redirect(new URL('/admin/dashboard', request.url))
+      return NextResponse.redirect(new URL('/backoffice/dashboard', request.url))
     }
     return NextResponse.next()
   }
 
-  if (pathname.includes("/admin/") && pathname === "/admin/signin") {
+  if (pathname.includes("/backoffice/") && pathname === "/backoffice/signin") {
     if (!userToken) {
-      return NextResponse.redirect(new URL('/admin/signin', request.url))
+      return NextResponse.redirect(new URL('/backoffice/signin', request.url))
     }
   }
 
@@ -25,6 +25,6 @@ export function middleware(request: NextRequest) {
 // Supports both a single string value or an array of matchers
 // export const config = {
 //     matcher: [
-//         '/admin/dashboard',
+//         '/backoffice/dashboard',
 //     ],
 //   }

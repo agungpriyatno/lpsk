@@ -19,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+      <meta charSet={"utf-8"} />
+      </head>
       <body className={cn(
         inter.className,
         "bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-100"
