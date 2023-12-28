@@ -45,7 +45,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                                         <div className="p-4 2xl:p-4 flex flex-col justify-end h-full w-full gap-2">
                                             <p className="text-sm">{item.media.name}</p>
                                             <div className="flex gap-2 w-full justify-end">
-                                                {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publication/' + item.media.name} />}
+                                                {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/media/' + item.media.name} />}
                                                 <Button size={'icon'} asChild>
                                                     <a href={"/documents/roadmap-birokrasi.pdf"} download>
                                                         <DownloadIcon />
