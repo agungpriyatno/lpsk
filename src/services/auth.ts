@@ -40,7 +40,7 @@ export const sendResetService = async ({ email }: EmailDto) => {
     await smtp.sendMail({
         to: email,
         from: process.env.SMTP_USER,
-        html: `<a href="https://lpsk.vercel.app/backoffice/forgot/${verification.id}">link Reset Password</a>`,
+        html: `<a href="${process.env.HOST}/backoffice/forgot/${verification.id}">link Reset Password</a>`,
     })
 }
 
@@ -59,7 +59,7 @@ export const sendVerificationService = async ({ email }: EmailDto) => {
     await smtp.sendMail({
         to: email,
         from: process.env.SMTP_USER,
-        html: `<a href="https://lpsk.vercel.app/backoffice/verification/${verification.id}">Link Verifikasi</a>`,
+        html: `<a href="${process.env.HOST}/backoffice/verification/${verification.id}">Link Verifikasi</a>`,
     })
 
 }
