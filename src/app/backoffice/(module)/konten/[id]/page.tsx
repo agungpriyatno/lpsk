@@ -28,7 +28,7 @@ const Page = async ({ params: { id } }: PageProps) => {
             </Button>
             <AspectRatio ratio={2 / 1} className="w-full rounded overflow-hidden">
                 <div className="w-full h-full relative">
-                    <Image src={'http://103.175.217.118:43124/thumbnail/' + data?.selected?.thumbnail} alt="" fill sizes="100vh" className=" bg-cover" />
+                    <Image src={'http://103.175.217.118:43124/publikasi/' + data?.selected?.thumbnail} alt="" fill sizes="100vh" className=" bg-cover" />
                 </div>
             </AspectRatio>
             <div className="flex flex-col">

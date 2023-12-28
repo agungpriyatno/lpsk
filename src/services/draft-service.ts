@@ -46,39 +46,44 @@ export const deleteDraftService = async ({ id }: { id: string }) => {
 }
 
 export const createDraftService = async (formData: FormData) => {
-    const user = await sessionService()
-    const title = formData.get("title") as string
-    const category = formData.get("category") as string | null
-    const sub = formData.get("sub_catebgory") as string | null
-    const content = formData.get("content") as string
-    const publishedAt = formData.get("published_at") as string | null
-    const thumbnail = formData.get("thumbnail") as File | null
-    const file = formData.getAll("file") as File[] | null
-    const link = formData.getAll("link") as string[] | null
-    const voteOptions = formData.getAll("vote_options") as string[] | null
-    const voteOptionsDesc = formData.getAll("vote_descriptions") as string[] | null
-    const voteOptionsThumb = formData.getAll("vote_thumbnail") as File[] | null
-    const closedAt = formData.get("closed_at") as string | null
+    console.log(formData);
+    
+    
+    // const user = await sessionService()
+    // const title = formData.get("title") as string
+    // const category = formData.get("category") as string | null
+    // const sub = formData.get("sub_catebgory") as string | null
+    // const content = formData.get("content") as string
+    // const publishedAt = formData.get("published_at") as string | null
+    // const thumbnail = formData.get("thumbnail") as File | null
+    // const file = formData.getAll("file") as File[] | null
+    // const link = formData.getAll("link") as string[] | null
+    // const voteOptions = formData.getAll("vote_options") as string[] | null
+    // const voteOptionsDesc = formData.getAll("vote_descriptions") as string[] | null
+    // const voteOptionsThumb = formData.getAll("vote_thumbnail") as File[] | null
+    // const closedAt = formData.get("closed_at") as string | null
+    
+    // const thumbailName = thumbnail != null ? await storeObject(thumbnail, "publikasi") : null
+    // const filename = await batchStoreObject(file, "publikasi")
+    // const optionsThumbnailname = await batchStoreObject(voteOptionsThumb, "publikasi")
 
-    const thumbailName = thumbnail != null ? await storeObject(thumbnail, "thumbnail") : null
-    const filename = await batchStoreObject(file, "media")
-    const optionsThumbnailname = await batchStoreObject(voteOptionsThumb, "media")
+    
 
-    await db.draft.create({
-        data: {
-            title,
-            content,
-            publishedAt,
-            thumbnail: thumbailName,
-            author: { connect: { id: user.id } },
-            category: { connect: category != null ? { id: category } : undefined },
-            subCategory: { connect: sub != null ? { id: sub } : undefined },
-            link: { create: link?.map((item) => { return { link: { create: { url: item } } } }) },
-            media: { create: filename?.map((item) => { return { media: { create: { name: item } } } }) },
-            vote: { create: { vote: { create: { closedAt: closedAt ?? new Date(), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } }
-        }
-    })
-    revalidatePath('/backoffice/pengajuan-konten')
+    // await db.draft.create({
+    //     data: {
+    //         title,
+    //         content,
+    //         publishedAt,
+    //         thumbnail: thumbailName,
+    //         author: { connect: { id: user.id } },
+    //         category: { connect: category != null ? { id: category } : undefined },
+    //         subCategory: { connect: sub != null ? { id: sub } : undefined },
+    //         link: { create: link?.map((item) => { return { link: { create: { url: item } } } }) },
+    //         media: { create: filename?.map((item) => { return { media: { create: { name: item } } } }) },
+    //         vote: { create: { vote: { create: { closedAt: closedAt ?? new Date(), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } }
+    //     }
+    // })
+    // revalidatePath('/backoffice/pengajuan-konten')
 }
 
 export const acceptCreateService = async (id: string) => {

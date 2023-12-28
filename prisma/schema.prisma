@@ -131,7 +131,7 @@ model Publication {
   createdAt     DateTime @default(now()) @map("created_at")
 
   status      StatusPublication       @default(PUBLISH)
-  author      User?                   @relation(fields: [authorId], references: [id])
+  author      User?                   @relation(fields: [authorId], references: [id], onDelete: SetNull)
   draft       Draft[]                 @relation("draft")
   selected    Draft?                  @relation(fields: [selectedId], references: [id])
   category    PublicationCategory?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
@@ -143,8 +143,8 @@ model Publication {
 model DraftMedia {
   draftId String @map("draft_id")
   mediaId String @map("media_id")
-  draft   Draft  @relation(fields: [draftId], references: [id])
-  media   Media  @relation(fields: [mediaId], references: [id])
+  draft   Draft  @relation(fields: [draftId], references: [id], onDelete: Cascade)
+  media   Media  @relation(fields: [mediaId], references: [id], onDelete: Cascade)
 
   @@id([draftId, mediaId])
   @@map("draft_media")
@@ -153,8 +153,8 @@ model DraftMedia {
 model LinkDraft {
   linkId  String @map("link_id")
   draftId String @map("draft_id")
-  link    Link   @relation(fields: [linkId], references: [id])
-  draft   Draft  @relation(fields: [draftId], references: [id])
+  link    Link   @relation(fields: [linkId], references: [id], onDelete: Cascade)
+  draft   Draft  @relation(fields: [draftId], references: [id], onDelete: Cascade)
 
   @@id([linkId, draftId])
   @@map("link_draft")
@@ -164,7 +164,7 @@ model VoteDraft {
   draftId String @unique @map("draft_id")
   voteId  String @map("vote_id")
 
-  draft Draft @relation(fields: [draftId], references: [id])
+  draft Draft @relation(fields: [draftId], references: [id], onDelete: Cascade)
   vote  Vote  @relation(fields: [voteId], references: [id])
 
   @@id([draftId, voteId])

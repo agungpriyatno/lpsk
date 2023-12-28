@@ -20,7 +20,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
             <div className='h-[400px] w-full bg-background'>
                 <div className=' flex flex-col w-full h-full justify-center place-items-center relative'>
                     <div className='h-full w-full absolute bg-slate-800'>
-                        <Image src={process.env.BUCKET_URL_ACCESS + '/thumbnail/' + data.selected?.thumbnail} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
+                        <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + data.selected?.thumbnail} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
                 </div>
             </div>
@@ -60,14 +60,14 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                         </div>
                     </section>
                 )}
-                {data.selected?.link != undefined && (
+                {data.selected?.vote != undefined && (
                     <section>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
                                 {data.selected.vote?.vote.options.map((item) => (
                                     <div className=" bg-background rounded overflow-hidden" key={item.id}>
                                         <AspectRatio ratio={2 / 1}>
                                             <div className="h-full w-full bg-slate-800">
-                                                <Image src={process.env.BUCKET_URL_ACCESS + '/media/' + item.thumbnail} alt="" fill sizes="100vh" className=" object-cover opacity-40"/>
+                                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.thumbnail} alt="" fill sizes="100vh" className=" object-cover opacity-40"/>
                                             </div>
                                             <div className=" flex flex-col justify-end place-items-center h-full absolute left-0 top-0 w-full gap-2 p-5">
                                                 <p className="text-lg">{item._count.client}</p>

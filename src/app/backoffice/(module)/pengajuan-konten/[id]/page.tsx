@@ -26,7 +26,7 @@ const Page = async ({ params: { id } }: PageProps) => {
             </Button>
             <AspectRatio ratio={2 / 1} className="w-full rounded overflow-hidden">
                 <div className="w-full h-full relative">
-                    <Image src={'http://103.175.217.118:43124/thumbnail/' + data?.thumbnail} alt="" fill sizes="100vh" className=" bg-cover" />
+                    <Image src={ process.env.BUCKET_URL_ACCESS + '/publikasi/' + data?.thumbnail} alt="" fill sizes="100vh" className=" bg-cover" />
                 </div>
             </AspectRatio>
             <div className="flex flex-col">
@@ -49,7 +49,7 @@ const Page = async ({ params: { id } }: PageProps) => {
                                         <div className="p-4 2xl:p-4 flex flex-col justify-end h-full w-full gap-2">
                                             <p className="text-sm">{item.media.name.split("Z-")[1].slice(0,25)}</p>
                                             <div className="flex gap-2 w-full justify-end">
-                                                {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={ process.env.BUCKET_URL +'/media/' + item.media.name} />}
+                                                {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={ process.env.BUCKET_URL_ACCESS +'/publikasi/' + item.media.name} />}
                                                 <Button size={'icon'} asChild>
                                                     <a href={"/documents/roadmap-birokrasi.pdf"} download>
                                                         <DownloadIcon />

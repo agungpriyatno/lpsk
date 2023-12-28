@@ -40,7 +40,7 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                                 </div>
                             </Link>
                             <div className="relative w-full h-full bg-slate-800">
-                                <Image src={ process.env.BUCKET_URL_ACCESS + '/thumbnail/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
+                                <Image src={ process.env.BUCKET_URL_ACCESS + '/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
                             </div>
                             <div className=" absolute z-20 right-2 top-2">
                                 {/* {selected?.category != undefined && (

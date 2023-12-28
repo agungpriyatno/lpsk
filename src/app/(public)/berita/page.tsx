@@ -14,7 +14,7 @@ type PageProps = {
 
 
 const Page = async ({ searchParams: { status, search } }: PageProps) => {
-    const data = await db.publicationCategory.findFirstOrThrow({ where: { id: "clqofhcth0000o4bk2owddhao" }, include: { subs: true } })
+    const data = await db.publicationCategory.findFirstOrThrow({ where: { id: "clqpk377u0000q5pjd6op7k4v" }, include: { subs: true } })
     const list = search == undefined ?
         await db.publication.findMany({ orderBy: { createdAt: "asc" }, where: status != undefined ? { selected: { subCategoryId: status } } : undefined, include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } } }) :
         await db.publication.findMany({ orderBy: { createdAt: "asc" }, where: { AND: [{ selected: { title: { contains: search } } }, status != undefined ? { selected: { subCategoryId: status } } : {}] }, include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } } })
@@ -43,7 +43,7 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                                 </div>
                             </Link>
                             <div className="relative w-full h-full bg-slate-800">
-                                <Image src={process.env.BUCKET_URL_ACCESS +'/thumbnail/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
+                                <Image src={process.env.BUCKET_URL_ACCESS +'/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
                             </div>
                             <div className=" absolute z-20 right-2 top-2">
                                 {/* {selected?.category != undefined && (
