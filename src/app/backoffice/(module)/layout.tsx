@@ -11,15 +11,14 @@ export default function ModuleLayout({
 }) {
     return (
         <AppContainer>
-            <div className='w-full grid grid-cols-12'>
-                <div className="absolute xl:relative xl:col-span-3 2xl:col-span-2">
-                    <div className="h-screen w-full py-5">
+            <div className='w-full flex gap-3'>
+                <div className="xl:w-[250px] py-3">
                         <SideBar/>
-                    </div>
                 </div>
-                <div className=" col-span-12 xl:col-span-9 2xl:col-span-10">
+                <div className="flex-1 relative">
                     <Scroller>
-                        <div className="w-full px-5">
+                        <div className=" bg-background px-3 py-2 absolute top-3 h-[50px] rounded left-0 w-full"></div>
+                        <div className="w-full pt-[60px]">
                             {children}
                         </div>
                     </Scroller>

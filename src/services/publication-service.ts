@@ -35,7 +35,7 @@ export const findManyPublicationService = ({ query: { search, skip, take }, stat
 }
 
 export const findPublicationService = async (id: string) => {
-    return await db.publication.findUniqueOrThrow({ where: { id }, include: { author: true, selected: {include: { author: true, link: { include: { link: true } }, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } }}, draft: true } })
+    return await db.publication.findUniqueOrThrow({ where: { id }, include: { author: true, selected: {include: { author: true,  media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } }}, draft: true } })
 }
 
 export const takedownPublication = async (id: string) => {
@@ -62,7 +62,6 @@ export const findManyPubCategory = async ({ query: { search, skip, take } }: Fin
             _count: {
                 select: {
                     subs: true,
-                    publication: true,
                     draft: true,
                 }
             }

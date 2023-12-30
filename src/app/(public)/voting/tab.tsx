@@ -40,7 +40,7 @@ export const TabMenu = ({ data }: {
                 <NavigationMenuList className=" flex gap-4">
                     {data.subs.map((item) => (
                         <NavigationMenuItem key={item.id} >
-                            <Link href={"/berita?status=" + item.id} legacyBehavior passHref>
+                            <Link shallow href={"/berita?status=" + item.id} legacyBehavior passHref>
                                 <NavigationMenuLink active={item.id === status} className={navigationMenuTriggerStyle()}>
                                     {item.name}
                                 </NavigationMenuLink>

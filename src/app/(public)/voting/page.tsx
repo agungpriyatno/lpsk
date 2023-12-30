@@ -7,15 +7,16 @@ import { TabMenu } from "./tab"
 
 type PageProps = {
     searchParams: {
-        status?: string,
         search?: string
     }
 }
 
 
-const Page = async ({ searchParams: { status, search } }: PageProps) => {
-    const data = await db.publicationCategory.findFirstOrThrow({ where: { id: "clqofhcth0000o4bk2owddhao" }, include: { subs: true } })
-    const list = await db.publication.findMany({ orderBy: { createdAt: "asc" }, where: { NOT: { selected: { vote: null } } }, include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } } })
+const Page = async ({ searchParams: { search } }: PageProps) => {
+    const list = await db.publication.findMany({
+        include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } },
+        where: { AND: [search != undefined ? { selected: { title: { contains: search } } } : {}], selected: { NOT: { vote: null } } }
+    })
     return (
         <div className=" space-y-5 w-full pb-16">
             <div className='h-[400px] w-full bg-background'>
@@ -32,22 +33,17 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                 {list.map(({ selected, id }) => (
                     <div className="bg-background rounded relative overflow-hidden group" key={id}>
                         <AspectRatio ratio={1 / 1}>
-                            <Link href={"/voting/" + id}>
+                            <Link shallow href={"/voting/" + id}>
                                 <div className="flex flex-col p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
                                     <h5 className="text-base font-bold">{selected?.title.slice(0, 20)}...</h5>
-                                    <p className="text-sm">{selected?.content.slice(0, 20)}</p>
+                                    <p className="text-sm">{selected?.content?.slice(0, 20)}</p>
                                     <small className="text-xs">Diunggah oleh {selected?.author?.name}</small>
                                 </div>
                             </Link>
                             <div className="relative w-full h-full bg-slate-800">
-                                <Image src={ process.env.BUCKET_URL_ACCESS + '/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
+                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
                             </div>
                             <div className=" absolute z-20 right-2 top-2">
-                                {/* {selected?.category != undefined && (
-                                    <div className="px-3 py-1 bg-background rounded-full flex justify-center place-items-center">
-                                        <small className="text-xs">{selected?.category?.name}</small>
-                                    </div>
-                                )} */}
                                 {selected?.subCategory != undefined && (
                                     <div className="px-3 py-1 bg-background rounded-full flex justify-center place-items-center">
                                         <small className="text-xs">{selected?.subCategory?.name}</small>

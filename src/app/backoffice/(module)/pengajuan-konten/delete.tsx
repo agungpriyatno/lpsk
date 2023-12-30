@@ -8,7 +8,7 @@ import { deleteDraftService } from "@/services/draft-service"
 import { DeleteIcon } from "lucide-react"
 import { useState } from "react"
 
-export const DeleteUser = ({ id }: { id: string }) => {
+export const DeleteContent = ({ id }: { id: string }) => {
 
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -41,11 +41,11 @@ export const DeleteUser = ({ id }: { id: string }) => {
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                    <AlertDialogDescription>
+                    <AlertDialogTitle>Kamu yakin ingin menghapus data ini ?</AlertDialogTitle>
+                    {/* <AlertDialogDescription>
                         This action cannot be undone. This will permanently delete your account
                         and remove your data from our servers.
-                    </AlertDialogDescription>
+                    </AlertDialogDescription> */}
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <Button variant={'destructive'} className={cn({ "bg-muted-foreground": loading })} onClick={submitHandler}>{loading ? "Mengunggah..." : "Hapus"}</Button>

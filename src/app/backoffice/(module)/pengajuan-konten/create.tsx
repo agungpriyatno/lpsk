@@ -51,7 +51,7 @@ export const CreateDraft = () => {
             sub: null,
             title: "",
             content: "",
-            link: [{ url: "" }]
+            link: [{ url: "", type: "" }]
         }
     })
 
@@ -149,7 +149,7 @@ export const CreateDraft = () => {
                                 <FormItem>
                                     <FormLabel>Konten</FormLabel>
                                     <FormControl>
-                                    <TextareaAutosize placeholder="Masukan konten" onKeyDown={onEnter} className="p-3 w-full focus:border-none focus:outline-none mb-5 text-foreground bg-background" {...field}></TextareaAutosize>
+                                        <TextareaAutosize placeholder="Masukan konten" onKeyDown={onEnter} className="p-3 w-full focus:border-none focus:outline-none mb-5 text-foreground bg-background" {...field}></TextareaAutosize>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -273,27 +273,48 @@ export const CreateDraft = () => {
                                     htmlFor="sumber"
                                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                 >
-                                    Tambahkan Sumber
+                                    Tambahkan Tautan
                                 </label>
                             </div>
 
                             {includeLink && fields.map((item, i) => (
-                                <FormField  control={form.control} name={`link.${i}.url`} key={i} render={({ field }) => (
-                                    <div className="flex gap-3 w-full">
-                                        <FormItem className="flex-1">
-                                            <FormControl>
-                                                <Input placeholder="Masukan Sumber" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                        <Button type="button" onClick={() => remove(fields.length - 1)} size={'icon'} variant={'destructive'}><Trash2Icon /></Button>
-                                    </div>
-                                )} />
+                                <div>
+                                    <FormField control={form.control} name={`link.${i}.type`} key={item.id} render={({ field }) => (
+                                        <div className="flex gap-3 w-full">
+                                            <FormItem className="flex-1">
+                                                <Select onValueChange={field.onChange} defaultValue={field.value} >
+                                                    <FormControl className="w-full">
+                                                        <SelectTrigger className="w-full">
+                                                            <SelectValue placeholder="Hak Akses" />
+                                                        </SelectTrigger>
+                                                    </FormControl>
+                                                    <SelectContent>
+                                                        <SelectItem value="video">Tautan Video</SelectItem>
+                                                        <SelectItem value="sumber">Tautan Sumber</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                                <FormMessage />
+                                            </FormItem>
+                                            <Button type="button" onClick={() => remove(fields.length - 1)} size={'icon'} variant={'destructive'}><Trash2Icon /></Button>
+                                        </div>
+                                    )} />
+                                    <FormField control={form.control} name={`link.${i}.url`} key={i} render={({ field }) => (
+                                        <div className="flex gap-3 w-full">
+                                            <FormItem className="flex-1">
+                                                <FormControl>
+                                                    <Input placeholder="Masukan Sumber" {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                            <Button type="button" onClick={() => remove(fields.length - 1)} size={'icon'} variant={'destructive'}><Trash2Icon /></Button>
+                                        </div>
+                                    )} />
+                                </div>
                             ))}
                             {includeLink && (
                                 <div className="flex w-full gap-3 place-items-center">
                                     <div className=" h-10 w-full bg-muted rounded"></div>
-                                    <Button type="button" onClick={() => append({ url: "" })} size={'icon'} variant={'outline'}><PlusIcon /></Button>
+                                    <Button type="button" onClick={() => append({ url: "", type: "" })} size={'icon'} variant={'outline'}><PlusIcon /></Button>
                                 </div>
                             )}
                             <Button className={cn("w-full", { "bg-muted-foreground": form.formState.isSubmitting })}>{form.formState.isSubmitting ? "Mengunggah..." : "TAMBAH"}</Button>

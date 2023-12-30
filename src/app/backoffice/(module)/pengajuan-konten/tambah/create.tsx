@@ -3,14 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
-import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 import { objectToFormdata } from "@/helpers/formdata"
 import { cn } from "@/lib/utils"
@@ -35,14 +32,16 @@ const CreateFeature = () => {
     const [category, setCategory] = useState<CategoryType[]>([])
     const [loadingCategory, setLoadingCategory] = useState<boolean>(false)
     const [published, setPublished] = useState(false)
-    const [message, setMessage] = useState<string | null>(null)
     const [thumbnail, setThumbnail] = useState<FileList | null>(null)
 
     const [file, setFile] = useState<FileList | null>(null)
+    const [fileVote, setFileVote] = useState<FileList[] | null>(null)
+
+    const [includeThumbnail, setIncludeThumbnail] = useState(false)
     const [includeFile, setIncludeFile] = useState(false)
     const [includeLink, setIncludeLink] = useState(false)
     const [includeVote, setIncludeVote] = useState(false)
-    const [fileVote, setFileVote] = useState<FileList[] | null>(null)
+    const [includeVideo, setIncludeVideo] = useState(false)
 
 
     const form = useForm<DraftCreateDto>({
@@ -51,11 +50,9 @@ const CreateFeature = () => {
             publishedAt: null,
             category: null,
             sub: null,
-            title: undefined,
-            content: undefined,
             closedAt: null,
-            link: [],
-            vote: [],
+            linkSource: "",
+            linkVideo: "",
         }
     })
 
@@ -67,10 +64,6 @@ const CreateFeature = () => {
     }
 
 
-    const { append, fields, remove } = useFieldArray({
-        name: "link",
-        control: form.control
-    })
 
     const voteList = useFieldArray({
         name: "vote",
@@ -120,7 +113,7 @@ const CreateFeature = () => {
         router.back()
     }
 
-    const submitHandler = async ({ title, content, publishedAt, category, sub, link, vote, closedAt }: DraftCreateDto) => {
+    const submitHandler = async ({ title, content, publishedAt, category, sub, linkSource, linkVideo, vote, closedAt }: DraftCreateDto) => {
         try {
             const formData = objectToFormdata({
                 title,
@@ -128,10 +121,11 @@ const CreateFeature = () => {
                 category,
                 sub_category: sub,
                 closed_at: includeVote ? closedAt?.toISOString() : null,
-                link: includeLink ? link.map((item) => item.url): null,
-                vote_options: includeVote ? vote.map((item) => item.name): null,
+                link_source: includeLink ? linkSource : null,
+                link_video: includeVideo ? linkVideo : null,
+                vote_options: includeVote ? vote.map((item) => item.name) : null,
                 vote_descriptions: includeVote ? vote.map((item) => item.description) : null,
-                thumbnail: thumbnail != null ? thumbnail[0] : null,
+                thumbnail: includeThumbnail && thumbnail != null ? thumbnail[0] : null,
                 published_at: published ? publishedAt?.toISOString() : null,
                 file: includeFile && file != null ? Array.from(file) : null,
             })
@@ -173,7 +167,7 @@ const CreateFeature = () => {
                     <FormItem>
                         <FormLabel>Konten</FormLabel>
                         <FormControl>
-                            <TextareaAutosize placeholder="Masukan konten" onKeyDown={onEnter} className="p-3 w-full  focus:outline-none mb-5 text-foreground border bg-transparent rounded" {...field}></TextareaAutosize>
+                            <TextareaAutosize placeholder="Masukan konten" onKeyDown={onEnter} className="p-3 w-full text-sm  focus:outline-none mb-5 text-foreground border bg-transparent rounded" {...field}></TextareaAutosize>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -181,7 +175,7 @@ const CreateFeature = () => {
                 <FormField control={form.control} name={`category`} render={({ field }) => (
                     <FormItem className="flex-1">
                         <FormLabel>Kategori</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value ?? ""} onOpenChange={() => category.length <= 0 && findOptions()} >
+                        <Select onValueChange={field.onChange} defaultValue={field.value ?? ""} onOpenChange={findOptions} >
                             <FormControl className="w-full">
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Pilih Kategori" />
@@ -224,14 +218,18 @@ const CreateFeature = () => {
                         </FormItem>
                     )} />
                 }
-                <FormItem>
-                    <FormLabel>Foto Sampul</FormLabel>
-                    <Input placeholder="Foto Sampul" type={"file"} onChange={(e => { setThumbnail(e.target.files), setMessage("") })} />
-                    {message != null && <span className="text-base text-destructive">{message}</span>}
-                </FormItem>
+                <Separator/>
+                <LabelCheckBox id="thumbnail" label="Tambahkan Foto Sampul" checked={includeThumbnail} onCheckedChange={() => setIncludeThumbnail(!includeThumbnail)} />
+                {includeThumbnail && (
+                    <div className=" border rounded p-3">
+                        <FormItem>
+                            <Input placeholder="Foto Sampul" type={"file"} onChange={(e => { setThumbnail(e.target.files) })} accept="image/png, image/gif, image/jpeg" />
+                        </FormItem>
+                    </div>
+                )}
                 <LabelCheckBox id="schedule" label="Atur Jadwal Terbit" checked={published} onCheckedChange={() => setPublished(!published)} />
                 {published && (
-                    <div className="space-y-3 border p-5 rounded">
+                    <div className="space-y-3 border p-3 rounded">
                         <FormField control={form.control} name="publishedAt" render={({ field }) => (
                             <FormItem>
                                 <Popover>
@@ -252,9 +250,9 @@ const CreateFeature = () => {
                                             mode="single"
                                             selected={field.value ?? undefined}
                                             onSelect={field.onChange}
-                                            // disabled={(date) =>
-                                            //     date < new Date()
-                                            // }
+                                            disabled={(date) =>
+                                                date < new Date()
+                                            }
                                             initialFocus
                                         />
                                     </PopoverContent>
@@ -264,41 +262,43 @@ const CreateFeature = () => {
                         )} />
                     </div>
                 )}
+                <LabelCheckBox id="source" label="Tambahkan Tautan Sumber" checked={includeLink} onCheckedChange={() => setIncludeLink(!includeLink)} />
+                {includeLink && (
+                    <div className=" border rounded p-3">
+                        <FormField control={form.control} name="linkSource" render={({ field }) => (
+                            <FormItem>
+                                <FormControl>
+                                    <Input placeholder="Masukan Tautan Sumber" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
+                    </div>
+                )}
+                <LabelCheckBox id="video" label="Tambahkan Tautan Video" checked={includeVideo} onCheckedChange={() => setIncludeVideo(!includeVideo)} />
+                {includeVideo && (
+                    <div className=" border rounded p-3">
+                        <FormField control={form.control} name="linkVideo" render={({ field }) => (
+                            <FormItem>
+                                <FormControl>
+                                    <Input id="video" placeholder="Masukan Tautan Video" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
+                    </div>
+                )}
                 <LabelCheckBox id="documents" label="Tambahkan Dokumen" checked={includeFile} onCheckedChange={() => setIncludeFile(!includeFile)} />
                 {includeFile && (
-                    <div className="space-y-3 border p-5 rounded">
+                    <div className="space-y-3 border p-3 rounded">
                         <FormItem>
                             <Input placeholder="Pilih Dokumen" type={"file"} multiple onChange={(e => setFile(e.target.files))} />
                         </FormItem>
                     </div>
                 )}
-                <LabelCheckBox id="source" label="Tambahkan Sumber" checked={includeLink} onCheckedChange={() => setIncludeLink(!includeLink)} />
-                {includeLink && (
-                    <div className="space-y-3 border p-5 rounded">
-                        {includeLink && fields.map((item, i) => (
-                            <FormField control={form.control} name={`link.${i}.url`} key={item.id} render={({ field }) => (
-                                <div className="flex gap-3 w-full">
-                                    <FormItem className="flex-1">
-                                        <FormControl>
-                                            <Input placeholder="Masukan Sumber" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                    <Button type="button" onClick={() => remove(i)} size={'icon'} variant={'destructive'}><Trash2Icon /></Button>
-                                </div>
-                            )} />
-                        ))}
-                        {includeLink && (
-                            <div className="flex w-full gap-3 place-items-center">
-                                <div className=" h-10 w-full bg-muted rounded"></div>
-                                <Button type="button" onClick={() => append({ url: "" })} size={'icon'} variant={'outline'}><PlusIcon /></Button>
-                            </div>
-                        )}
-                    </div>
-                )}
                 <LabelCheckBox id="vote" label="Tambahkan Voting" checked={includeVote} onCheckedChange={() => setIncludeVote(!includeVote)} />
                 {includeVote && (
-                    <div className="space-y-3 border p-5 rounded">
+                    <div className="space-y-3 border p-3 rounded">
                         <FormField control={form.control} name={`closedAt`} render={({ field }) => (
                             <FormItem className="flex-1">
                                 <FormControl>
@@ -320,9 +320,9 @@ const CreateFeature = () => {
                                                 mode="single"
                                                 selected={field.value ?? undefined}
                                                 onSelect={field.onChange}
-                                                // disabled={(date) =>
-                                                //     date < new Date()
-                                                // }
+                                                disabled={(date) =>
+                                                    date < new Date()
+                                                }
                                                 initialFocus
                                             />
                                         </PopoverContent>

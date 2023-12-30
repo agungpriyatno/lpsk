@@ -17,7 +17,7 @@ export type LinkCardProps = {
 
 export const LinkCard = ({ title, description, image, className, ...props }: LinkCardProps) => {
     return (
-        <Link {...props} className={className}>
+        <Link shallow {...props} className={className}>
             <AspectRatio ratio={1.5 / 1} className={cn(
                 'overflow-hidden group rounded bg-background')}>
                 <Image src={image} alt='' fill sizes='100vh' className='group-hover:scale-125 transition-all duration-300 object-cover' />

@@ -24,12 +24,12 @@ const UserPage = async ({ searchParams: { skip, take, search } }: UserPageProps)
     const roles = await findAllRole()
 
     return (
-        <div className="space-y-5 py-5">
+        <div className="space-y-3 py-3">
             <div className="flex flex-col xl:flex-row xl:justify-between gap-3">
                 <h1 className="text-2xl font-bold">Manajemen Pengguna</h1>
                 <CreateUser />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
                 <div className="bg-background px-3 py-2 rounded">
                     <h3 className="text-base">Pengguna Aktif</h3>
                     <span className=" text-2xl font-bold">{active}</span>

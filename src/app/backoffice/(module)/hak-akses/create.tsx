@@ -91,7 +91,9 @@ export const CreateRole = () => {
                                             </FormControl>
                                             <SelectContent>
                                                 <SelectItem value="LPSK-USER">Manajemen Pengguna</SelectItem>
-                                                <SelectItem value="LPSK-ROLE">Manajemen hak Akses</SelectItem>
+                                                <SelectItem value="LPSK-ROLE">Manajemen Hak Akses</SelectItem>
+                                                <SelectItem value="LPSK-DRAFT">Manajemen Pengajuan Konten</SelectItem>
+                                                <SelectItem value="LPSK-CONTENT">Manajemen Penerimaan Konten</SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />

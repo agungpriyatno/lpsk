@@ -39,19 +39,19 @@ export const INTERNAL_APLICATION: Aplication[] = [
     },
     {
         id: "",
-        name: "LEMON",
-        description: "",
+        name: "JDIH",
+        description: "Jaringan Dokumentasi dan Informasi Hukum",
         type: "INTERNAL",
-        link: "",
+        link: "https://jdih.lpsk.go.id/",
         images: "/images/lemon.png",
         createdAt: new Date()
     },
     {
         id: "",
-        name: "TRACKING PERMOHONAN",
-        description: "Sistem Informasi Perlindungan Saksi dan Korban",
+        name: "EPPID",
+        description: "Web portal Keterbukaan Informasi Elektronik Lembaga Perlindungan Saksi dan Korban",
         type: "INTERNAL",
-        link: "http://103.84.206.141/layanan/",
+        link: "https://eppid.lpsk.go.id/",
         images: "/images/simpusako.png",
         createdAt: new Date()
     }

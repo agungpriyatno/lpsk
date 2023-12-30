@@ -11,21 +11,21 @@ export const TabMenu = () => {
         <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <Link href={pathname} legacyBehavior passHref>
+                    <Link shallow href={pathname} legacyBehavior passHref>
                         <NavigationMenuLink active={!status} className={navigationMenuTriggerStyle()}>
                             Semua
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href={pathname + "?status=PROCESS"} legacyBehavior passHref>
+                    <Link shallow href={pathname + "?status=PROCESS"} legacyBehavior passHref>
                         <NavigationMenuLink active={status === "PROCESS"} className={navigationMenuTriggerStyle()}>
                             Diproses
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href={pathname + "?status=ACCEPT"} legacyBehavior passHref >
+                    <Link shallow href={pathname + "?status=ACCEPT"} legacyBehavior passHref >
                         <NavigationMenuLink active={status === "ACCEPT"} className={navigationMenuTriggerStyle()}>
                             Diterima
                         </NavigationMenuLink>
@@ -33,7 +33,7 @@ export const TabMenu = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <Link href={pathname + "?status=REJECT"} legacyBehavior passHref>
+                    <Link shallow href={pathname + "?status=REJECT"} legacyBehavior passHref>
                         <NavigationMenuLink  active={status === "REJECT"} className={navigationMenuTriggerStyle()}>
                             Ditolak
                         </NavigationMenuLink>

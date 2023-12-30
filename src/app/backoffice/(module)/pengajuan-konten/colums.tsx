@@ -9,7 +9,7 @@ import { Draft } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
 import { FileSearchIcon, MoreHorizontal } from "lucide-react"
 import Link from "next/link"
-import { DeleteUser } from "./delete"
+import { DeleteContent } from "./delete"
 
 
 export type DraftTable = Draft
@@ -27,7 +27,7 @@ export const columns: ColumnDef<DraftTable>[] = [
         header: ({ column }) =>
             <DataTableColumnHeader column={column} title="Konten" />,
         cell: ({ row }) => {
-            const data: string = row.original.content.slice(0, 50) + "..."
+            const data: string = row.original.content?.slice(0, 50) + "..."
             return <div className="text-left font-medium">{data}</div>
         },
     },
@@ -63,9 +63,9 @@ export const columns: ColumnDef<DraftTable>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteUser id={data.id} /></DropdownMenuItem> */}
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteContent id={data.id} /></DropdownMenuItem>
                         <DropdownMenuItem className="space-x-2" asChild>
-                            <Link href={"/backoffice/pengajuan-konten/" + data.id}>
+                            <Link shallow href={"/backoffice/pengajuan-konten/" + data.id}>
                                 <div className="flex gap-2">
                                     <FileSearchIcon size={20} /> <span>Detail</span>
                                 </div>

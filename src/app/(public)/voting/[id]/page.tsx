@@ -31,7 +31,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                 </section>
                 <section className="space-y-3">
                     {
-                        data.selected?.content.split("\n").map((content, i) => (
+                        data.selected?.content?.split("\n").map((content, i) => (
                             <p className=" text-base" key={i}>{content}</p>
                         ))
                     }
@@ -86,7 +86,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                         <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
                             {data.selected.link.map((item) => (
                                 <Button size={'sm'} asChild key={item.link.id}>
-                                    <Link href={item.link.url} target={"_blank"}>{item.link.url}</Link>
+                                    <Link shallow href={item.link.url} target={"_blank"}>{item.link.url}</Link>
                                 </Button>
                             ))}
                         </div>

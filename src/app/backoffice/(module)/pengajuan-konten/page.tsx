@@ -1,12 +1,11 @@
+import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import db from "@/lib/db"
 import { findManyDraftService } from "@/services/draft-service"
 import { $Enums } from "@prisma/client"
-import { columns } from "./colums"
-import { CreateDraft } from "./create"
-import { TabMenu } from "./tab"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { columns } from "./colums"
+import { TabMenu } from "./tab"
 
 
 type PageProps = {
@@ -27,12 +26,12 @@ const Page = async ({ searchParams: { skip, take, search, status } }: PageProps)
     const selectedTotal = status === "ACCEPT" ? accepted : status === "PROCESS" ? process : status === "REJECT" ? rejected : total
 
     return (
-        <div className="space-y-5 py-5">
-            <div className="flex flex-col xl:flex-row xl:justify-between gap-3">
+        <div className="space-y-3 py-3">
+            <div className="flex flex-col xl:flex-row xl:justify-between gap-3 place-items-center">
                 <h1 className="text-2xl font-bold">Manajemen Pengajuan Konten</h1>
-                <Button asChild><Link href={"/backoffice/pengajuan-konten/tambah"}>Tambah Data</Link></Button>
+                <Button asChild><Link shallow href={"/backoffice/pengajuan-konten/tambah"}>Tambah Data</Link></Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
                 <div className="bg-background px-3 py-2 rounded">
                     <h3 className="text-base">Semua Pengajuan</h3>
                     <span className=" text-2xl font-bold">{total}</span>

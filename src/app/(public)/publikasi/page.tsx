@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { AppContainer } from "@/components/ui/container"
 import db from "@/lib/db"
 import Image from "next/image"
 import Link from "next/link"
 import { TabMenu } from "./tab"
-import { AppContainer } from "@/components/ui/container"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 type PageProps = {
     searchParams: {
@@ -14,11 +13,11 @@ type PageProps = {
 }
 
 const Page = async ({ searchParams: { status, search } }: PageProps) => {
-    const data = await db.publicationCategory.findFirstOrThrow({ where: { id: "clqpk377u0000q5pjd6op7k4v" }, include: { subs: true } })
-    const list = search == undefined ?
-        await db.publication.findMany({ orderBy: { createdAt: "asc" }, where: status != undefined ? { selected: { subCategoryId: status } } : undefined, include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } } }) :
-        await db.publication.findMany({ orderBy: { createdAt: "asc" }, where: { AND: [{ selected: { title: { contains: search } } }, status != undefined ? { selected: { subCategoryId: status } } : {}] }, include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } } })
-    // const list = await db.publication.findMany({ orderBy: { createdAt: "asc" }, where: { OR: [{ selected: { title: { contains: search } } }, status != undefined ? { selected: { subCategoryId: status } } : {}] }, include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } } })
+    const data = await db.publicationCategory.findFirstOrThrow({ where: { name: "Publikasi" }, include: { subs: true } })
+    const list = await db.publication.findMany({
+        include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
+        where: { AND: [{ selected: { category: {name: "Publikasi"}} }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+    })
     return (
         <div className=" space-y-5 w-full pb-16">
             <div className='h-[400px] w-full bg-background'>
@@ -36,10 +35,10 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                 {list.map(({ selected, id }) => (
                     <div className="bg-background rounded relative overflow-hidden group" key={id}>
                         <AspectRatio ratio={1 / 1}>
-                            <Link href={"/publikasi/" + id}>
+                            <Link shallow href={"/publikasi/" + id}>
                                 <div className="flex flex-col p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
                                     <h5 className="text-base font-bold">{selected?.title}</h5>
-                                    <p className="text-sm">{selected?.content.slice(0, 20)}</p>
+                                    <p className="text-sm">{selected?.content?.slice(0, 20)}</p>
                                     <small className="text-xs">Diunggah oleh {selected?.author?.name}</small>
                                 </div>
                             </Link>

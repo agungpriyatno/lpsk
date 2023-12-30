@@ -46,11 +46,11 @@ export const MENU: TMenuItem[] = [
     },
     {
         title: "Peraturan",
-        href: "/",
+        href: "/peraturan",
     },
     {
         title: "Informasi & Pelayanan",
-        href: "/",
+        href: "/informasi",
         children: [
             {
                 title: "Standar Pelayanan Publik",
@@ -84,31 +84,31 @@ export const MENU: TMenuItem[] = [
     },
     {
         title: "Kerja Sama",
-        href: "/",
+        href: "/kerjasama",
         children: [
             {
                 title: "Instansi Aparat Penegak Hukum",
-                href: "/information",
+                href: "/kerjasama",
             },
             {
                 title: "Instansi Hukum",
-                href: "/information",
+                href: "/kerjasama",
             },
             {
                 title: "Internasional",
-                href: "/information",
+                href: "/kerjasama",
             },
             {
                 title: "Kesehatan",
-                href: "/information",
+                href: "/kerjasama",
             },
             {
                 title: "Pendidikan",
-                href: "/information",
+                href: "/kerjasama",
             },
             {
                 title: "LSM / Pers",
-                href: "/information",
+                href: "/kerjasama",
             },
         ],
     },

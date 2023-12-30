@@ -65,7 +65,7 @@ const SendForgotPage = () => {
                         )} />
                         <Button className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "KIRIM"}</Button>
                         <Button type="button" className="w-full" asChild variant={'outline'}>
-                            <Link href={'/backoffice/signin'}>KEMBALI</Link>
+                            <Link shallow href={'/backoffice/signin'}>KEMBALI</Link>
                         </Button>
                     </form>
                 </Form>

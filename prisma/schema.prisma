@@ -105,7 +105,9 @@ model Draft {
   subCategoryId String?                 @map("sub_category_id")
   thumbnail     String?
   title         String
-  content       String                  @db.Text
+  content       String?                 @db.Text
+  sourceLink    String?
+  videoLink     String?
   publishedAt   DateTime?               @default(now()) @map("published_at")
   createdAt     DateTime                @default(now()) @map("created_at")
   status        StatusDraft             @default(PROCESS)
@@ -115,27 +117,22 @@ model Draft {
   category      PublicationCategory?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   subCategory   PublicationSubCategory? @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
   media         DraftMedia[]
-  link          LinkDraft[]
   vote          VoteDraft?
 
   @@map("drafts")
 }
 
 model Publication {
-  id            String   @id @default(cuid())
-  authorId      String?  @map("author_id")
-  selectedId    String?  @unique @map("selected_id")
-  categoryId    String?  @map("category_id")
-  subCategoryId String?  @map("sub_category_id")
-  updatedAt     DateTime @updatedAt @map("updated_at")
-  createdAt     DateTime @default(now()) @map("created_at")
+  id         String   @id @default(cuid())
+  authorId   String?  @map("author_id")
+  selectedId String?  @unique @map("selected_id")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  createdAt  DateTime @default(now()) @map("created_at")
 
-  status      StatusPublication       @default(PUBLISH)
-  author      User?                   @relation(fields: [authorId], references: [id], onDelete: SetNull)
-  draft       Draft[]                 @relation("draft")
-  selected    Draft?                  @relation(fields: [selectedId], references: [id])
-  category    PublicationCategory?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  subCategory PublicationSubCategory? @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
+  status   StatusPublication @default(PUBLISH)
+  author   User?             @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  draft    Draft[]           @relation("draft")
+  selected Draft?            @relation(fields: [selectedId], references: [id])
 
   @@map("publications")
 }
@@ -148,16 +145,6 @@ model DraftMedia {
 
   @@id([draftId, mediaId])
   @@map("draft_media")
-}
-
-model LinkDraft {
-  linkId  String @map("link_id")
-  draftId String @map("draft_id")
-  link    Link   @relation(fields: [linkId], references: [id], onDelete: Cascade)
-  draft   Draft  @relation(fields: [draftId], references: [id], onDelete: Cascade)
-
-  @@id([linkId, draftId])
-  @@map("link_draft")
 }
 
 model VoteDraft {
@@ -219,24 +206,22 @@ model Client {
 // ===== DATA MASTER ======
 
 model PublicationCategory {
-  id          String                   @id @default(cuid())
-  name        String
-  createdAt   DateTime                 @default(now()) @map("created_at")
-  draft       Draft[]
-  publication Publication[]
-  subs        PublicationSubCategory[]
+  id        String                   @id @default(cuid())
+  name      String
+  createdAt DateTime                 @default(now()) @map("created_at")
+  draft     Draft[]
+  subs      PublicationSubCategory[]
 
   @@map("publication_categories")
 }
 
 model PublicationSubCategory {
-  id          String              @id @default(cuid())
-  categoryId  String              @map("category_id")
-  name        String
-  createdAt   DateTime            @default(now()) @map("created_at")
-  draft       Draft[]
-  publication Publication[]
-  category    PublicationCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  id         String              @id @default(cuid())
+  categoryId String              @map("category_id")
+  name       String
+  createdAt  DateTime            @default(now()) @map("created_at")
+  draft      Draft[]
+  category   PublicationCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@map("publication_subcategories")
 }
@@ -248,15 +233,6 @@ model Media {
   draft     DraftMedia[]
 
   @@map("media")
-}
-
-model Link {
-  id        String      @id @default(cuid())
-  url       String
-  createdAt DateTime    @default(now()) @map("created_at")
-  draft     LinkDraft[]
-
-  @@map("link")
 }
 
 model Module {

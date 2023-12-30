@@ -1,5 +1,6 @@
 "use client"
 
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -85,15 +86,15 @@ const SignInPage = () => {
                         )} />
                         <div className="w-full flex justify-between">
                             <Button type="button" className="w-fit" asChild variant={'link'} size={'sm'}>
-                                <Link href={'/backoffice/verification'}>Verifikasi Email</Link>
+                                <Link shallow href={'/backoffice/verification'}>Verifikasi Email</Link>
                             </Button>
                             <Button type="button" className="w-fit" asChild variant={'link'} size={'sm'}>
-                                <Link href={'/backoffice/forgot'}>Lupa Password ?</Link>
+                                <Link shallow href={'/backoffice/forgot'}>Lupa Password ?</Link>
                             </Button>
                         </div>
                         <Button className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "MASUK"}</Button>
                         <Button type="button" className="w-full" asChild variant={'outline'}>
-                            <Link href={'/backoffice/signup'}>DAFTAR</Link>
+                            <Link shallow href={'/backoffice/signup'}>DAFTAR</Link>
                         </Button>
                     </form>
                 </Form>

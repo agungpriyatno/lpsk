@@ -11,21 +11,21 @@ export const TabMenu = () => {
         <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <Link href={pathname} legacyBehavior passHref>
+                    <Link shallow href={pathname} legacyBehavior passHref>
                         <NavigationMenuLink active={!status} className={navigationMenuTriggerStyle()}>
                             Semua
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href={pathname + "?status=PUBLISH"} legacyBehavior passHref>
+                    <Link shallow href={pathname + "?status=PUBLISH"} legacyBehavior passHref>
                         <NavigationMenuLink active={status === "PUBLISH"} className={navigationMenuTriggerStyle()}>
                             Dinaikan
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href={pathname + "?status=TAKEDOWN"} legacyBehavior passHref >
+                    <Link shallow href={pathname + "?status=TAKEDOWN"} legacyBehavior passHref >
                         <NavigationMenuLink active={status === "TAKEDOWN"} className={navigationMenuTriggerStyle()}>
                             Diturunkan
                         </NavigationMenuLink>

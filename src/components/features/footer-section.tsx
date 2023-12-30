@@ -24,44 +24,21 @@ export const FooterFE = () => {
             </div>
             <AppContainer className="py-5">
                 <div className=" grid grid-cols-2 h-full gap-3">
-                    <div className=" grid grid-cols-4 gap-3">
-                        <div className=" col-span-2 space-y-2">
-                            <div className=" bg-slate-100 rounded">
-                                <LineChart data={analyticData} />
-                            </div>
-                            <div className=" bg-slate-100 text-slate-800 rounded grid grid-cols-1 text-sm">
-                                <div className=" grid grid-cols-2 bg-slate-200">
-                                    <div className="px-2 py-1 border border-slate-800">Bulan</div>
-                                    <div className="px-2 py-1 border border-slate-800">Pengunjung</div>
-                                </div>
-                                <div className=" grid grid-cols-2">
-                                    <div className="px-2 py-1 border border-slate-800">Oktober</div>
-                                    <div className="px-2 py-1 border border-slate-800">135</div>
-                                </div>
-                                <div className=" grid grid-cols-2">
-                                    <div className="px-2 py-1 border border-slate-800">November</div>
-                                    <div className="px-2 py-1 border border-slate-800">256</div>
-                                </div>
-                                <div className=" grid grid-cols-2">
-                                    <div className="px-2 py-1 border border-slate-800">Desember</div>
-                                    <div className="px-2 py-1 border border-slate-800">94</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className=" grid grid-cols-2 gap-3">
                         <div className="flex flex-col gap-2">
                             <h6 className="font-bold">Aplikasi</h6>
-                            <Link href={'/'} className="text-sm">Simpusako</Link>
-                            <Link href={'/'} className="text-sm">Simpelkan</Link>
-                            <Link href={'/'} className="text-sm">Fondasi</Link>
-                            <Link href={'/'} className="text-sm">Lemon</Link>
-                            <Link href={'/'} className="text-sm">L4por</Link>
-                            <Link href={'/'} className="text-sm">SSK</Link>
+                            <Link shallow href={'/'} className="text-sm">Simpusako</Link>
+                            <Link shallow href={'/'} className="text-sm">Simpelkan</Link>
+                            <Link shallow href={'/'} className="text-sm">Fondasi</Link>
+                            <Link shallow href={'/'} className="text-sm">Lemon</Link>
+                            <Link shallow href={'/'} className="text-sm">L4por</Link>
+                            <Link shallow href={'/'} className="text-sm">SSK</Link>
                         </div>
                         <div className="flex flex-col gap-2">
                             <h6 className="font-bold">Sosial Media</h6>
-                            <Link href={'/'} className="text-sm">Facebook</Link>
-                            <Link href={'/'} className="text-sm">Instagram</Link>
-                            <Link href={'/'} className="text-sm">Twitter (X)</Link>
+                            <Link shallow href={'/'} className="text-sm">Facebook</Link>
+                            <Link shallow href={'/'} className="text-sm">Instagram</Link>
+                            <Link shallow href={'/'} className="text-sm">Twitter (X)</Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-between h-full">

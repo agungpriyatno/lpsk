@@ -37,53 +37,55 @@ export const findManyDraftService = ({ query: { search, skip, take }, status }: 
 }
 
 export const findDraftService = async (id: string) => {
-    return await db.draft.findUniqueOrThrow({ where: { id }, include: { author: true, link: { include: { link: true } }, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } })
+    return await db.draft.findUniqueOrThrow({ where: { id }, include: { author: true, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } })
 }
 
 export const deleteDraftService = async ({ id }: { id: string }) => {
+    const data = await db.draft.findFirstOrThrow({ where: { id }, include: {publications: true} })
+    if (data.publicationId) throw new Error()
     await db.draft.delete({ where: { id } })
     revalidatePath('/backoffice/pengajuan-konten')
 }
 
 export const createDraftService = async (formData: FormData) => {
-    console.log(formData);
-    
-    
-    // const user = await sessionService()
-    // const title = formData.get("title") as string
-    // const category = formData.get("category") as string | null
-    // const sub = formData.get("sub_catebgory") as string | null
-    // const content = formData.get("content") as string
-    // const publishedAt = formData.get("published_at") as string | null
-    // const thumbnail = formData.get("thumbnail") as File | null
-    // const file = formData.getAll("file") as File[] | null
-    // const link = formData.getAll("link") as string[] | null
-    // const voteOptions = formData.getAll("vote_options") as string[] | null
-    // const voteOptionsDesc = formData.getAll("vote_descriptions") as string[] | null
-    // const voteOptionsThumb = formData.getAll("vote_thumbnail") as File[] | null
-    // const closedAt = formData.get("closed_at") as string | null
-    
-    // const thumbailName = thumbnail != null ? await storeObject(thumbnail, "publikasi") : null
-    // const filename = await batchStoreObject(file, "publikasi")
-    // const optionsThumbnailname = await batchStoreObject(voteOptionsThumb, "publikasi")
+    const user = await sessionService()
 
-    
+    const title = formData.get("title") as string
+    const category = formData.get("category") as string | null
+    const sub = formData.get("sub_category") as string | null
+    const content = formData.get("content") as string
+    const publishedAt = formData.get("published_at") as string | null
+    const thumbnail = formData.get("thumbnail") as File | null
+    const file = formData.getAll("file") as File[] | null
+    const voteOptions = formData.getAll("vote_options") as string[] | null
+    const voteOptionsDesc = formData.getAll("vote_descriptions") as string[] | null
+    const voteOptionsThumb = formData.getAll("vote_thumbnail") as File[] | null
+    const closedAt = formData.get("closed_at") as string | null
+    const linkSource = formData.get("link_source") as string | null
+    const linkVideo = formData.get("link_video") as string | null
 
-    // await db.draft.create({
-    //     data: {
-    //         title,
-    //         content,
-    //         publishedAt,
-    //         thumbnail: thumbailName,
-    //         author: { connect: { id: user.id } },
-    //         category: { connect: category != null ? { id: category } : undefined },
-    //         subCategory: { connect: sub != null ? { id: sub } : undefined },
-    //         link: { create: link?.map((item) => { return { link: { create: { url: item } } } }) },
-    //         media: { create: filename?.map((item) => { return { media: { create: { name: item } } } }) },
-    //         vote: { create: { vote: { create: { closedAt: closedAt ?? new Date(), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } }
-    //     }
-    // })
-    // revalidatePath('/backoffice/pengajuan-konten')
+    const thumbailName = thumbnail != null ? await storeObject(thumbnail, "publikasi") : null
+    const filename = await batchStoreObject(file, "publikasi")
+    const optionsThumbnailname = await batchStoreObject(voteOptionsThumb, "publikasi")
+
+
+
+    await db.draft.create({
+        data: {
+            title,
+            content,
+            thumbnail: thumbailName,
+            sourceLink: linkSource,
+            videoLink: linkVideo,
+            author: { connect: { id: user.id } },
+            subCategory: { connect: sub != null ? { id: sub } : undefined },
+            publishedAt: publishedAt != null ? new Date(publishedAt) : undefined,
+            category: { connect: category != null ? { id: category } : undefined },
+            media: { create: filename?.map((item) => { return { media: { create: { name: item } } } }) },
+            vote: closedAt != null ? { create: { vote: { create: { closedAt: new Date(closedAt), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } } : undefined
+        }
+    })
+    revalidatePath('/backoffice/pengajuan-konten')
 }
 
 export const acceptCreateService = async (id: string) => {

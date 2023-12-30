@@ -5,7 +5,7 @@ import { signOutService } from "@/services/auth"
 
 const DashboardPage = () => {
     return (
-        <Button onClick={() => signOutService()} variant={'destructive'}>Keluar</Button>
+       <div></div>
     )
 }
 

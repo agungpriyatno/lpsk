@@ -11,7 +11,7 @@ import { MoreHorizontal } from "lucide-react"
 import { DeleteUser } from "./delete"
 
 export type CategoryTable = PublicationCategory & {
-    _count: { subs: number, publication: number, draft: number }
+    _count: { subs: number, draft: number }
 }
 
 export const columnSubCategory: ColumnDef<CategoryTable>[] = [
@@ -27,12 +27,6 @@ export const columnSubCategory: ColumnDef<CategoryTable>[] = [
         header: ({ column }) =>
             <DataTableColumnHeader column={column} title="Total Sub" />,
     }, 
-    {
-        id: "Total Konten",
-        accessorKey: "_count.publication",
-        header: ({ column }) =>
-            <DataTableColumnHeader column={column} title="Total Konten" />,
-    },
     {
         id: "Total Pengajuan",
         accessorKey: "_count.draft",

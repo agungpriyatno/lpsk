@@ -101,7 +101,7 @@ export const AppNavigationMenu = () => {
                     }
                     return (
                         <NavigationMenuItem key={i}>
-                            <Link href={item.href} legacyBehavior passHref>
+                            <Link shallow href={item.href} legacyBehavior passHref>
                                 <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
                                     <TextToSpeech>
                                         {item.title}
