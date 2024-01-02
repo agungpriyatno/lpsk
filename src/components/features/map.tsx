@@ -60,7 +60,7 @@ const IDMap = () => {
   return (
     <div className="p-5 bg-background rounded">
       <div className="flex flex-col justify-center place-items-center h-full gap-2">
-        <h1 className=" text-xl font-bold text-center">PETA PAPARAN LAPORAN</h1>
+        <h1 className=" text-xl font-bold text-center">SEBARAN WILAYAH PERMOHONAN</h1>
         <div className=" w-56 h-5 bg-gradient-to-r from-orange-50 via-orange-500 to-orange-900 rounded"></div>
       </div>
       <AspectRatio ref={ref} ratio={2 / 1} >
