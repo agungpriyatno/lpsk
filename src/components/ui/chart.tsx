@@ -213,23 +213,19 @@ export const perlindunganSaksiKorban : ChartData<"bar", number[], unknown> = {
             label: "2021",
             data: [8, 348, 426, 147, 627, 60, 55, 31, 79, 5, 526, 73],
             backgroundColor: [
-                colors.orange[100],
-                colors.orange[200],
-                colors.orange[300],
+                colors.orange[500],
             ],
             borderColor: colors.slate[800],
-            borderWidth: 1,
+            // borderWidth: 1,
         },
         {
             label: "2022",
             data: [3725, 600, 536, 150, 91, 99, 80, 43, 41, 6, 617, 116],
             backgroundColor: [
-                colors.orange[100],
-                colors.orange[200],
-                colors.orange[300],
+                colors.orange[900],
             ],
             borderColor: colors.slate[800],
-            borderWidth: 1,
+            // borderWidth: 1,
         },
     ],
 };

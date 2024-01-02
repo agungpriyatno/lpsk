@@ -13,7 +13,7 @@ import { CreateUser } from "./create"
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
     const data = await db.publication.findFirstOrThrow({
         where: { id }, include:
-            { selected: { include: { link: { include: { link: true } }, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } }, author: true }
+            { selected: { include: { media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } }, author: true }
     })
     return (
         <div className=" space-y-5 w-full pb-16">
@@ -44,7 +44,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                                 <div className=" bg-background rounded" key={item.media.id}>
                                     <AspectRatio ratio={2 / 1}>
                                         <div className="p-4 2xl:p-4 flex flex-col justify-end h-full w-full gap-2">
-                                            <p className="text-sm">{item.media.name}</p>
+                                            <p className="text-sm">Dokumen</p>
                                             <div className="flex gap-2 w-full justify-end">
                                                 {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publication/' + item.media.name} />}
                                                 <Button size={'icon'} asChild>
@@ -63,33 +63,31 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                 {data.selected?.vote != undefined && (
                     <section>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
-                                {data.selected.vote?.vote.options.map((item) => (
-                                    <div className=" bg-background rounded overflow-hidden" key={item.id}>
-                                        <AspectRatio ratio={2 / 1}>
-                                            <div className="h-full w-full bg-slate-800">
-                                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.thumbnail} alt="" fill sizes="100vh" className=" object-cover opacity-40"/>
-                                            </div>
-                                            <div className=" flex flex-col justify-end place-items-center h-full absolute left-0 top-0 w-full gap-2 p-5">
-                                                <p className="text-lg">{item._count.client}</p>
-                                                <h3 className="text-base font-bold">{item.name}</h3>
-                                                <CreateUser id={item.id}/>
-                                            </div>
-                                        </AspectRatio>
-                                    </div>
-                                ))}
-                            </div>
+                            {data.selected.vote?.vote.options.map((item) => (
+                                <div className=" bg-background rounded overflow-hidden" key={item.id}>
+                                    <AspectRatio ratio={2 / 1}>
+                                        <div className="h-full w-full bg-slate-800">
+                                            <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.thumbnail} alt="" fill sizes="100vh" className=" object-cover opacity-40" />
+                                        </div>
+                                        <div className=" flex flex-col justify-end place-items-center h-full absolute left-0 top-0 w-full gap-2 p-5">
+                                            <p className="text-lg">{item._count.client}</p>
+                                            <h3 className="text-base font-bold">{item.name}</h3>
+                                            <CreateUser id={item.id} />
+                                        </div>
+                                    </AspectRatio>
+                                </div>
+                            ))}
+                        </div>
                     </section>
                 )}
-                {data.selected?.link != undefined && data.selected.link.length > 0 && (
+                {data.selected?.sourceLink != null && (
                     <section className="space-y-3">
                         <h3 className=" text-lg font-bold">Sumber</h3>
                         <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
-                            {data.selected.link.map((item) => (
-                                <Button size={'sm'} asChild key={item.link.id}>
-                                    <Link shallow href={item.link.url} target={"_blank"}>{item.link.url}</Link>
-                                </Button>
-                            ))}
-                        </div>
+                            <Button size={'sm'} asChild>
+                                <Link shallow href={data.selected?.sourceLink} target={"_blank"}>Sumber</Link>
+                            </Button>
+                        </div> 
                     </section>
                 )}
             </AppContainer>

@@ -14,8 +14,8 @@ type PageProps = {
 
 const Page = async ({ searchParams: { search } }: PageProps) => {
     const list = await db.publication.findMany({
-        include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } },
-        where: { AND: [search != undefined ? { selected: { title: { contains: search } } } : {}], selected: { NOT: { vote: null } } }
+        include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
+        where: { AND: [{ selected: { NOT: { vote: null } } }, search != undefined ? { selected: { title: { contains: search } } } : {}] }
     })
     return (
         <div className=" space-y-5 w-full pb-16">

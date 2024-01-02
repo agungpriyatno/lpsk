@@ -22,7 +22,7 @@ export const AppHeader = () => {
     const pathname = usePathname()
     const height = useAppSelector((state) => state.scrollReducer.value)
     useEffect(() => {
-        setState(height > 400)
+        setState(height > 300)
     }, [height])
 
     return (
@@ -85,9 +85,9 @@ export const AppNavigationMenu = ({ data: { title, href, children }, scrollDown,
         <li className="relative cursor-pointer group" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} >
             <div className={cn(
                 "p-3 transition-all duration-300",
-                { "hover:bg-muted": scrollDown },
+                { 'hover:bg-muted': scrollDown },
                 { 'text-slate-100': !scrollDown },
-                { "bg-muted": active && scrollDown },
+                { 'bg-muted': active && scrollDown },
                 { 'font-bold': active }
             )}>
                 <div className="flex gap-2 place-items-center">
