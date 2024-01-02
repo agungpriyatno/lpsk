@@ -1,8 +1,11 @@
 import  IDMap from "@/components/features/map"
+import { AppContainer } from "@/components/ui/container"
 
 const Page = () => {
     return (
-        <IDMap/>
+        <AppContainer>
+            <IDMap/>
+        </AppContainer>
     )
 }
 

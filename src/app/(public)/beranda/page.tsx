@@ -3,6 +3,7 @@ import { CarouselSection } from '@/components/features/carousel-section';
 import { ChartSection } from '@/components/features/chart-section';
 import { FooterFE } from '@/components/features/footer-section';
 import { GallerySection } from '@/components/features/gallery-section';
+import IDMap from '@/components/features/map';
 import { AppRunningText } from '@/components/features/running-text';
 import { AppContainer } from '@/components/ui/container';
 import { ContentCardA } from '@/components/ui/content-card';
@@ -31,6 +32,9 @@ export default function Home() {
       />
       <AplicationSection />
       <AplicationExternalSection />
+      <AppContainer>
+        <IDMap />
+      </AppContainer>
       <ChartSection />
       <GallerySection />
       <FooterFE />

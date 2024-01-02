@@ -90,7 +90,7 @@ export const AppNavigationMenu = ({ data: { title, href, children }, scrollDown,
                 { "bg-muted": active && scrollDown },
                 { 'font-bold': active }
             )}>
-                <div className="flex gap-2">
+                <div className="flex gap-2 place-items-center">
                     <span className="text-sm">{title}</span>
                     <ChevronDown size={14} className=" group-hover:rotate-180 transition-all duration-300" />
                 </div>
