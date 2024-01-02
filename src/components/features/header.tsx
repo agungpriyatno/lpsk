@@ -14,6 +14,7 @@ import { ThemeToogler } from "./theme"
 import { motion } from "framer-motion"
 import { TMenuItem } from "@/types/utils"
 import { ChevronDown } from "lucide-react"
+import { Item } from "@radix-ui/react-navigation-menu"
 
 export const AppHeader = () => {
     const [scrollDown, setState] = useState(false)
@@ -47,7 +48,7 @@ export const AppHeader = () => {
                     )}>
                         <ul className="flex place-items-center">
                             {
-                                menu.map((item) => <AppNavigationMenu data={item} scrollDown={scrollDown} active={pathname.includes(item.href)} />)
+                                menu.map((item, i) => <AppNavigationMenu key={i} data={item} scrollDown={scrollDown} active={pathname.includes(item.href)} />)
                             }
                         </ul>
                         <div className={cn("flex", { 'text-slate-100': !scrollDown })}>
@@ -73,9 +74,9 @@ export const AppNavigationMenu = ({ data: { title, href, children }, scrollDown,
                     { "hover:bg-muted": scrollDown },
                     { 'text-slate-100': !scrollDown },
                     { "bg-muted": active && scrollDown },
-                    { 'font-bold': active}
+                    { 'font-bold': active }
                 )}>
-                    <span className="text-sm">{title}</span>
+                    <Link shallow href={href}>{title}</Link>
                 </div>
             </li>
         )
@@ -86,6 +87,8 @@ export const AppNavigationMenu = ({ data: { title, href, children }, scrollDown,
                 "p-3 transition-all duration-300",
                 { "hover:bg-muted": scrollDown },
                 { 'text-slate-100': !scrollDown },
+                { "bg-muted": active && scrollDown },
+                { 'font-bold': active }
             )}>
                 <div className="flex gap-2">
                     <span className="text-sm">{title}</span>
@@ -102,68 +105,12 @@ export const AppNavigationMenu = ({ data: { title, href, children }, scrollDown,
                     <ul className="text-sm">
                         {children.map((sub) => (
                             <li className="hover:bg-muted px-3 py-2">
-                                <Link href={sub.href} className=" truncate">{sub.title}</Link>
+                                <Link shallow href={sub.href} className=" truncate">{sub.title}</Link>
                             </li>
                         ))}
                     </ul>
                 </div>
             </motion.div>}
         </li>
-    )
-}
-
-export const AppNavigastionMenu = () => {
-    const currentPath = usePathname()
-    const [menu] = useState(MENU)
-    return (
-        <NavigationMenu className="hidden xl:block">
-            <NavigationMenuList>
-                {menu.map((item, i) => {
-
-                    if (item.children) {
-                        return (
-                            <NavigationMenuItem key={i}>
-                                <NavigationMenuTrigger className="bg-transparent">
-                                    <TextToSpeech>
-                                        {item.title}
-                                    </TextToSpeech>
-                                </NavigationMenuTrigger>
-                                <NavigationMenuContent >
-                                    <ul className="grid gap-3 p-4 w-[800px] md:grid-cols-2 ">
-                                        {item.children.map((subItem, j) => (
-                                            <li key={`${i}-${j}`}>
-                                                <NavigationMenuLink asChild>
-                                                    <Link
-                                                        href={subItem.href}
-                                                        className={cn(
-                                                            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground")}>
-                                                        <div className="text-sm font-medium leading-none">
-                                                            <TextToSpeech>
-                                                                {subItem.title}
-                                                            </TextToSpeech>
-                                                        </div>
-                                                    </Link>
-                                                </NavigationMenuLink>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </NavigationMenuContent>
-                            </NavigationMenuItem>
-                        )
-                    }
-                    return (
-                        <NavigationMenuItem key={i}>
-                            <Link shallow href={item.href} legacyBehavior passHref>
-                                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
-                                    <TextToSpeech>
-                                        {item.title}
-                                    </TextToSpeech>
-                                </NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuItem>
-                    )
-                })}
-            </NavigationMenuList>
-        </NavigationMenu>
     )
 }

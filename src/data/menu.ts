@@ -7,7 +7,7 @@ export const MENU: TMenuItem[] = [
     },
     {
         title: "Profil",
-        href: "/",
+        href: "/profile",
         children: [
             {
                 title: "Sekilas LPSK",
