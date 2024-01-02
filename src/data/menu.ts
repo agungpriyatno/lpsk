@@ -18,16 +18,16 @@ export const MENU: TMenuItem[] = [
                 href: "/profile/organization-structural",
             },
             {
-                title: "Pejabat Struktural",
-                href: "/profile/official-structural",
-            },
-            {
                 title: "Road Map & Rencana Strategi",
                 href: "/profile/roadmap",
             },
             {
                 title: "Profil Pimpinan",
                 href: "/profile/official",
+            },
+            {
+                title: "Pejabat Struktural",
+                href: "/profile/official-structural",
             },
 
         ],
