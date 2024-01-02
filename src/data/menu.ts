@@ -18,7 +18,7 @@ export const MENU: TMenuItem[] = [
                 href: "/profile/organization-structural",
             },
             {
-                title: "Pejabat Strukturan",
+                title: "Pejabat Struktural",
                 href: "/profile/official-structural",
             },
             {

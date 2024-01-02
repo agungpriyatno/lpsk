@@ -93,9 +93,9 @@ const SignInPage = () => {
                             </Button>
                         </div>
                         <Button className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "MASUK"}</Button>
-                        <Button type="button" className="w-full" asChild variant={'outline'}>
+                        {/* <Button type="button" className="w-full" asChild variant={'outline'}>
                             <Link shallow href={'/backoffice/signup'}>DAFTAR</Link>
-                        </Button>
+                        </Button> */}
                     </form>
                 </Form>
             </CardContent>

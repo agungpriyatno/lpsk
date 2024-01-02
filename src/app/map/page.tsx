@@ -1,8 +1,8 @@
-import { Map } from "@/components/features/map"
+import  IDMap from "@/components/features/map"
 
 const Page = () => {
     return (
-        <Map/>
+        <IDMap/>
     )
 }
 

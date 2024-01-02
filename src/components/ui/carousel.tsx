@@ -8,56 +8,6 @@ import { Skeleton } from "./skeleton";
 import { AppContainer } from "./container";
 import { TextToSpeech } from "../features/text-to-speech";
 
-const slideVariants = {
-    hiddenRight: {
-        x: "100%",
-        opacity: 0,
-    },
-    hiddenLeft: {
-        x: "-100%",
-        opacity: 0,
-    },
-    visible: {
-        x: "0",
-        opacity: 0.4,
-        transition: {
-            duration: 1,
-        },
-    },
-    exit: {
-        opacity: 0,
-        scale: 0.8,
-        transition: {
-            duration: 0.5,
-        },
-    },
-};
-
-const titleSlideVariant = {
-    hiddenRight: {
-        x: "100%",
-        opacity: 0,
-    },
-    hiddenLeft: {
-        x: "-100%",
-        opacity: 0,
-    },
-    visible: {
-        x: "0",
-        opacity: 1,
-        transition: {
-            duration: 1,
-        },
-    },
-    exit: {
-        opacity: 0,
-        scale: 0.8,
-        transition: {
-            duration: 0.5,
-        },
-    },
-};
-
 export const CarouselLoading = () => {
     return (
         <Skeleton className="w-full h-screen relative bg-slate-800  text-slate-100  group overflow-hidden">
@@ -99,7 +49,6 @@ export const Carousel = ({ images }: { images: TCarouselItem[] }) => {
                         initial={{ x: 300, opacity: 0 }}
                         animate={{ x: 0, opacity: 0.4, transition: { duration: 0.3 } }}
                         exit={{ x: -300, opacity: 0, transition: { duration: 0.3 } }}
-
                     />
                 </div>
                 <motion.div
