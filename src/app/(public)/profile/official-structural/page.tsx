@@ -2,9 +2,7 @@
 
 
 import { FooterFE } from '@/components/features/footer-section';
-import { GallerySection } from '@/components/features/gallery-section';
 import { TextToSpeech } from '@/components/features/text-to-speech';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { AppContainer } from '@/components/ui/container';
 import { HeaderSection } from '@/components/ui/typography';
 import Image from 'next/image';
