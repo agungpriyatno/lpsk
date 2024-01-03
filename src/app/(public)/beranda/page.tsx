@@ -39,7 +39,6 @@ export default function Home() {
       <ChartSection />
       <CardSection />
       <GallerySection />
-      <FooterFE />
       <AppRunningText />
     </div>
   )

@@ -24,9 +24,9 @@ const Page = async ({ searchParams: { search } }: PageProps) => {
                     <div className='h-full w-full absolute bg-slate-800'>
                         <Image src={'/images/fondasi.png'} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
-                    <div className=' absolute left-0 top-0 flex flex-col w-screen h-full justify-center place-items-center'>
+                    {/* <div className=' absolute left-0 top-0 flex flex-col w-screen h-full justify-center place-items-center'>
                         <h1 className=' text-3xl font-bold absolute text-slate-100'>Voting</h1>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <AppContainer className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6 gap-3">

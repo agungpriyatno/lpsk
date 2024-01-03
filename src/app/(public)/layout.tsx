@@ -1,4 +1,5 @@
 import GoogleAnalytics from '@/components/features/analytic'
+import { FooterFE } from '@/components/features/footer-section'
 import { AppHeader } from '@/components/features/header'
 import { HelpdeskIcon } from '@/components/features/help-desk'
 import { AppRunningText } from '@/components/features/running-text'
@@ -16,11 +17,12 @@ export default function Layout({
 }) {
     return (
         <div className='w-full'>
-            <AppHeader/>
+            <AppHeader />
             {children}
+            <FooterFE />
             <AppRunningText />
-            <GoogleAnalytics/>
-            <HelpdeskIcon/>
+            <GoogleAnalytics />
+            <HelpdeskIcon />
         </div>
     )
 }
