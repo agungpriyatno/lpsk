@@ -89,6 +89,6 @@ export const MENU: TMenuItem[] = [
 
     {
         title: "Kontak Kami",
-        href: "/information",
+        href: "/kontak-kami",
     },
 ]
