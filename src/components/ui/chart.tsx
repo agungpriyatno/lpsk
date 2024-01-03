@@ -297,6 +297,7 @@ export function PieChart({ data }: { data: ChartData<"pie", number[], unknown> }
 export function BarChart({ data }: { data: ChartData<"bar", number[], unknown> }) {
     return <div className='w-full relative'>
         <Bar className='w-full' data={data} options={{
+            animation: false,
             plugins: {
                 legend: {
                     position: "bottom", labels: {
@@ -311,6 +312,7 @@ export function BarChart({ data }: { data: ChartData<"bar", number[], unknown> }
 export function LineChart({ data }: { data: ChartData<"line", number[], unknown> }) {
     return <div className='w-full relative'>
         <Line className='w-full' data={data} options={{
+            animation: false,
             plugins: {
                 legend: {
                     position: "bottom", labels: {
