@@ -1,0 +1,29 @@
+{
+    "title": "Tindak Pidana Terorisme",
+    "data": [
+        {
+            "label": "Permohonan",
+            "value": 147
+        },
+        {
+            "label": "Tindakan Proaktif",
+            "value": 1
+        },
+        {
+            "label": "Pemohon Tindakan Proaktif",
+            "value": 6
+        },
+        {
+            "label": "Jumlah Terlindungi",
+            "value": 252
+        },
+        {
+            "label": "Permohonan Hak Prosedural",
+            "value": 219
+        },
+        {
+            "label": "Perlindungan Fisik",
+            "value": 3
+        }
+    ]
+}

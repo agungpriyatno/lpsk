@@ -8,23 +8,7 @@ import {CategoryScale} from 'chart.js';
 
 ChartJS.register(ArcElement,CategoryScale, LinearScale ,Tooltip, Legend,...registerables);
 
-export const pelayananPublik: ChartData<"pie", number[], unknown> = {
-    labels: ["Aplikasi Permohonan Perlindungan", "Datang Langsung", "Email", "Surat", "Whatsapp"],
-    datasets: [
-        {
-            data: [93, 2077, 154, 2514, 1166],
-            backgroundColor: [
-                colors.orange[100],
-                colors.orange[200],
-                colors.orange[300],
-                colors.orange[400],
-                colors.orange[500],
-            ],
-            borderColor: colors.transparent,
-            borderWidth: 1,
-        },
-    ],
-};
+
 
 export const hamBerat: ChartData<"pie", number[], unknown> = {
     labels: ['Jumlah Permohonan', 'Jumlah Terlindung', 'Dewasa', 'Anak', 'Laki Laki', 'Perempuan', 'Carry Over 2021', 'Diterima 2022', 'Dihentikan', 'Terlindung Aktif'],
@@ -167,6 +151,24 @@ export const seksual: ChartData<"bar", number[], unknown> = {
             label: "2022",
             data: [53, 53, 53, 53, 53],
             backgroundColor: colors.orange[100],
+            borderColor: colors.transparent,
+            borderWidth: 1,
+        },
+    ],
+};
+
+export const pelayananPublik: ChartData<"bar", number[], unknown> = {
+    labels: ["Aplikasi Permohonan Perlindungan", "Datang Langsung", "Email", "Surat", "Whatsapp"],
+    datasets: [
+        {
+            data: [93, 2077, 154, 2514, 1166],
+            backgroundColor: [
+                colors.orange[100],
+                colors.orange[200],
+                colors.orange[300],
+                colors.orange[400],
+                colors.orange[500],
+            ],
             borderColor: colors.transparent,
             borderWidth: 1,
         },

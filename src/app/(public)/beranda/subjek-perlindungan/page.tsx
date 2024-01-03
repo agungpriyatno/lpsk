@@ -3,10 +3,12 @@
 
 import { FooterFE } from '@/components/features/footer-section';
 import { TextToSpeech } from '@/components/features/text-to-speech';
+import { Button } from '@/components/ui/button';
 import { AppContainer } from '@/components/ui/container';
 import { HeaderSection } from '@/components/ui/typography';
 import { MailIcon, PhoneIcon, PinIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Page() {
     return (
@@ -39,6 +41,14 @@ export default function Page() {
                                         Orang yang dapat memberikan keterangan guna kepentingan penyelidikan, penyidikan, penuntutan dan pemeriksaan di sidang pengadilan tentang suatu tindak pidana yang ia dengar sendiri, ia lihat sendiri, dan/atau ia alami sendiri termasuk pula orang yang dapat memberikan keterangan yang berhubungan dengan suatu perkara pidana meskipun tidak ia dengar sendiri, tidak ia lihat sendiri dan tidak ia alami sendiri, sepanjang keterangan orang itu berhubungan dengan tindak pidana.
                                     </p>
                                 </TextToSpeech>
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
 
                             </div>
                         </div>
@@ -48,7 +58,7 @@ export default function Page() {
             <div className='w-full relative md:h-[450px] bg-background'>
                 <AppContainer>
                     <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
-                        
+
                         <div className=" col-span-6 md:col-span-8 px-3  xl:px-5">
                             <div className='h-full flex flex-col justify-center space-y-2'>
                                 <HeaderSection className='flex gap-2'>
@@ -59,7 +69,14 @@ export default function Page() {
                                         Orang yang mengalami penderitaan fisik, mental, dan/atau kerugian ekonomi yang diakibatkan oleh suatu tindak pidana.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className=" col-span-6 md:col-span-4 xl:px-5 group">
@@ -88,7 +105,14 @@ export default function Page() {
                                         Tersangka, terdakwa, atau terpidana yang bekerja sama dengan penegak hukum untuk mengungkap suatu tindak pidana dalam kasus yang sama.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -97,7 +121,7 @@ export default function Page() {
             <div className='w-full relative md:h-[450px] bg-background'>
                 <AppContainer>
                     <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
-                        
+
                         <div className=" col-span-6 md:col-span-8 px-3  xl:px-5">
                             <div className='h-full flex flex-col justify-center space-y-2'>
                                 <HeaderSection className='flex gap-2'>
@@ -108,7 +132,14 @@ export default function Page() {
                                         Orang yang memberikan laporan, informasi, atau keterangan kepada penegak hukum mengenai tindak pidana yang akan, sedang, atau telah terjadi.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className=" col-span-6 md:col-span-4 xl:px-5 group">
@@ -137,7 +168,14 @@ export default function Page() {
                                         Orang yang memiliki keahlian di bidang tertentu yang diperlukan untuk membuat terang suatu perkara pidana guna kepentingan penyidikan, penuntutan, dan pemeriksaan di sidang pengadilan.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>

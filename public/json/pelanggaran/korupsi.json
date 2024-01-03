@@ -1,0 +1,45 @@
+{
+    "title": "Tindak Pidana Korupsi",
+    "data": [
+        {
+            "label": "Jumlah Permohonan",
+            "value": 600
+        },
+        {
+            "label": "Jumlah Terlindung",
+            "value": 590
+        },
+        {
+            "label": "Dewasa",
+            "value": 590
+        },
+        {
+            "label": "Anak",
+            "value": 0
+        },
+        {
+            "label": "Laki Laki",
+            "value": 372
+        },
+        {
+            "label": "Perempuan",
+            "value": 218
+        },
+        {
+            "label": "Carry Over 2021",
+            "value": 302
+        },
+        {
+            "label": "Diterima 2022",
+            "value": 288
+        },
+        {
+            "label": "Dihentikan",
+            "value": 123
+        },
+        {
+            "label": "Terlindung Aktif",
+            "value": 467
+        }
+    ]
+}

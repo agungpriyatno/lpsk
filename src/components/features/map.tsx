@@ -1,12 +1,13 @@
 "use client"
 import * as d3 from "d3";
 import { geoPath } from "d3-geo";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import colors from "tailwindcss/colors";
 
 import { cn } from "@/lib/utils";
 import { AspectRatio } from "../ui/aspect-ratio";
 import { motion } from "framer-motion";
+import { PathTooltip } from "react-path-tooltip"
 
 function generateNumber(min: number, max: number) {
   min = Math.ceil(min);
@@ -40,6 +41,10 @@ const selectColor = (value: number) => {
 
 const IDMap = () => {
   const ref = useRef<HTMLDivElement>(null)
+  const svgRef = React.createRef<SVGSVGElement>()
+  const pathRef = React.createRef<SVGCircleElement>()
+
+  const [hover, setHover] = useState<{ x: number, y: number, message: string } | null>()
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState<{ id: number, provinsi: string, value: number } | null>(null)
   const [{ height, width }, setSize] = useState({ height: 0, width: 0 })
@@ -57,34 +62,74 @@ const IDMap = () => {
     })
   }, [])
 
+  
+
   return (
     <div className="p-5 bg-background rounded">
       <div className="flex flex-col justify-center place-items-center h-full gap-2">
-        <h1 className=" text-xl font-bold text-center">SEBARAN WILAYAH PERMOHONAN</h1>
+        <h1 className=" text-xl font-bold text-center">SEBARAN PERLINDUNGAN SAKSI DAN KORBAN TINDAK PIDANA</h1>
         <div className=" w-56 h-5 bg-gradient-to-r from-orange-50 via-orange-500 to-orange-900 rounded"></div>
       </div>
-      <AspectRatio ref={ref} ratio={2 / 1} >
+      <AspectRatio ref={ref} ratio={2 / 1} className="relative" >
         {generator && data.length > 0 ? (
-          <svg height={height} width={width}>
-            <g>
-              {data.map((item) => (
+          <svg height={height} width={width} ref={svgRef}>
+            {data.map((item) => (
+              <>
                 <path
                   className="stroke-slate-900/25 dark:stroke-slate-50/50 hover:opacity-75"
                   id={item.properties.id}
                   key={item.properties.id}
-                  onClick={() => {
-                    console.log(item.properties.value)
+                  onClick={(e) => {
+                    console.log(e.currentTarget.transform.baseVal.consolidate())
                     setSelected({ id: item.properties.id, provinsi: item.properties.provinsi, value: item.properties.value })
                     setOpen(true)
                   }}
+                  // onMouseEnter={(e) => {
+                  //   const clientBox = e.currentTarget.getBBox();
+                  //   const clientRect = e.currentTarget.getBoundingClientRect();
+                  //   const x = Math.round(((e.clientX - clientRect.x) / clientRect.width) * clientBox.width);
+                  //   const y = Math.round(((e.clientY - clientRect.y) / clientRect.height) * clientBox.height);
+                  //   console.log({x, y, clientBox, clientRect});
+                    
+                  //   setHover({ x, y, message: item.properties.value })
+                  // }}
+                  onMouseMove={(e) => {
+                    const clientBox = e.currentTarget.getBBox();
+                    const clientRect = e.currentTarget.getBoundingClientRect();
+                    const x = e.pageX - 200
+                    const y = e.pageY -100;
+                    console.log({x, y, clientBox, clientRect});
+                    
+                    setHover({ x, y, message: item.properties.value })
+                    // const tooltipDiv = tooltipRef.current;
+                    // if (tooltipDiv) {
+                    //   d3.select(tooltipDiv).transition().duration(200).style("opacity", 0.9);
+                    //   d3.select(tooltipDiv)
+                    //     .html()
+                    //     // TODO: some logic when the tooltip could go out from container
+                    //     .style("left", event.pageX + "px")
+                    //     .style("top", event.pageY - 28 + "px");
+                    // }
+                  }}
+                  onMouseLeave={() => setHover(null)}
                   d={generator(item) ?? undefined}
                   style={{ fill: colors.orange[colorList[selectColor(item.properties.value)]] }}
+                  ref={pathRef}
                 ></path>
-              ))}
-            </g>
+                <div>data</div>
+                <div className=" absolute px-3 py-2 rounded bg-primary left-0 right-0 z-50" style={{ left: 0, top: 0 }}>Hello</div>
+                {/* <PathTooltip svgRef={svgRef} pathRef={pathRef} tip="Hello World!" /> */}
+              </>
+            ))}
           </svg>
         ) : (
           <div></div>
+        )}
+        {/* <div className=" absolute left-0 top-0 bg-red-50/20 z-50" style={{ height, width }}>
+        
+        </div> */}
+        {hover != null && (
+          <div className=" absolute px-3 py-2 rounded bg-muted" style={{ left: hover.x, top: hover.y }}>{hover.message}</div>
         )}
         {open && <motion.div
           className="bg-slate-800/50 fixed left-0 top-0 h-full w-full"

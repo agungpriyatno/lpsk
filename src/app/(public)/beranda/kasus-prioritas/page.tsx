@@ -3,10 +3,12 @@
 
 import { FooterFE } from '@/components/features/footer-section';
 import { TextToSpeech } from '@/components/features/text-to-speech';
+import { Button } from '@/components/ui/button';
 import { AppContainer } from '@/components/ui/container';
 import { HeaderSection } from '@/components/ui/typography';
 import { MailIcon, PhoneIcon, PinIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Page() {
     return (
@@ -39,7 +41,14 @@ export default function Page() {
                                         Perbuatan yang menggunakan kekerasan atau ancaman kekerasan yang menimbulkan suasana teror atau rasa takut secara meluas, yang dapat menimbulkan korban yang bersifat massal, dan/atau menimbulkan kerusakan atau kehancuran terhadap objek vital yang strategis, lingkungan hidup, fasilitas publik, atau fasilitas internasional dengan  motif ideologi, politik, atau gangguan keamanan.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,7 +68,14 @@ export default function Page() {
                                         Pelanggaran hak asasi manusia yang berat meliputi kejahatan genosida dan kejahatan terhadap kemanusiaan. Kejahatan genosida adalah setiap perbuatan yang dilakukan dengan maksud untuk menghancurkan atau memusnahkan seluruh atau sebagian kelompok bangsa, ras, kelompok etnis, kelompok agama. Sedangkan kejahatan terhadap kemanusiaan adalah salah satu perbuatan yang dilakukan sebagai bagian dari serangan yang meluas atau sistematik yang diketahuinya bahwa serangan tersebut ditujukan secara langsung terhadap penduduk sipil.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className=" col-span-6 md:col-span-4 xl:px-5 group">
@@ -88,7 +104,14 @@ export default function Page() {
                                         Setiap orang yang secara melawan hukum melakukan perbuatan memperkaya diri sendiri atau orang lain atau suatu korporasi yang dapat merugikan keuangan negara atau perekonomian negara.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -108,7 +131,14 @@ export default function Page() {
                                         Menempatkan, mentransfer, mengalihkan, membelanjakan, membayarkan, menghibahkan, menitipkan, membawa ke luar negeri, mengubah bentuk, menukarkan dengan mata uang atau surat berharga atau perbuatan lain atas Harta Kekayaan yang diketahuinya atau patut diduganya merupakan hasil tindak pidana.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className=" col-span-6 md:col-span-4 xl:px-5 group">
@@ -137,7 +167,14 @@ export default function Page() {
                                         Zat atau obat yang berasal dari tanaman atau bukan tanaman, baik sintetis maupun semisintetis, yang dapat menyebabkan penurunan atau perubahan kesadaran, hilangnya rasa, mengurangi sampai menghilangkan rasa nyeri, dan dapat menimbulkan ketergantungan, yang dibedakan ke dalam golongan-golongan sebagaimana terlampir dalam Undang-UndangNomor 35 Tahun 2009 tentang Narkotika.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -157,7 +194,14 @@ export default function Page() {
                                         Tindakan perekrutan, pengangkutan, penampungan, pengiriman, pemindahan, atau penerimaan seseorang dengan ancaman kekerasan, penggunaan kekerasan, penculikan, penyekapan, pemalsuan, penipuan, penyalahgunaan kekuasaan atau posisi rentan, penjeratan utang atau memberi bayaran atau manfaat, sehingga memperoleh persetujuan dari orang yang memegang kendali atas orang lain tersebut, baik yang dilakukan di dalam negara maupun antar negara, untuk tujuan eksploitasi atau mengakibatkan orang tereksploitasi.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className=" col-span-6 md:col-span-4 xl:px-5 group">
@@ -186,7 +230,14 @@ export default function Page() {
                                         Kekerasan adalah setiap perbuatan terhadap Anak yang berakibat timbulnya kesengsaraan atau penderitaan secara fisik, psikis, seksual, dan/atau penelantaran, termasuk ancaman untuk melakukan perbuatan, pemaksaan, atau perampasan kemerdekaan secara melawan hukum, seperti diatur dalam Undang-Undang Republik Indonesia Nomor 35 Tahun 2014 tentang Perubahan atas Undang-Undang Nomor 32 Tahun 2020 tentang Perlindungan Anak.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -207,7 +258,14 @@ export default function Page() {
                                         berada di bawah pengawasan, seperti diatur dalam Undang-Undang Republik Indonesia Nomor 26 Tahun 2000 tentang Pengadilan Hak Asasi Manusia.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className=" col-span-6 md:col-span-4 xl:px-5 group">
@@ -236,7 +294,14 @@ export default function Page() {
                                     Penganiayaan yang menyebabkan timbulnya dampak luka berat.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>

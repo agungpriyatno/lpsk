@@ -106,7 +106,7 @@ const CardReport = ({ url }: { url: string }) => {
 
 
     return (
-        <div className=" bg-background rounded p-5 transition-all duration-300 h-fit">
+        <div className=" bg-background rounded p-5 transition-all duration-300 h-full">
             <div className=" space-y-3">
                 <div className="flex justify-between w-full place-items-center gap-2">
                     <h1 className=" text-lg font-bold">{data?.title}</h1>
@@ -140,8 +140,9 @@ const CardReport = ({ url }: { url: string }) => {
                                     <h2 className="text-xl font-bold">{i + 1}</h2>
                                 </div>
                                 <p className="flex-1">{item.label}</p>
-                                <div className="">
+                                <div className="flex flex-col justify-center place-items-center">
                                     <p>{item.value}</p>
+                                    <small>Laporan</small>
                                 </div>
                             </div>
                         ))
@@ -173,23 +174,23 @@ const CardReport = ({ url }: { url: string }) => {
     )
 }
 
-const Page = () => {
-
-
+export const CardSection = () => {
     return (
         <div className="w-full">
             <AppContainer className="py-5">
                 <div className=" gap-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                     <CardReport url="/json/pelanggaran/ham-berat.json" />
                     <CardReport url="/json/pelanggaran/korupsi.json" />
-                    <CardReport url="/json/pelanggaran/ham-berat.json" />
-                    <CardReport url="/json/pelanggaran/ham-berat.json" />
-                    <CardReport url="/json/pelanggaran/ham-berat.json" />
-                    <CardReport url="/json/pelanggaran/ham-berat.json" />
+                    <CardReport url="/json/pelanggaran/sexual.json" />
+                    <CardReport url="/json/pelanggaran/penyiksaan.json" />
+                    <CardReport url="/json/pelanggaran/narkotika.json" />
+                    <CardReport url="/json/pelanggaran/perdagangan-manusia.json" />
+                    <CardReport url="/json/pelanggaran/pencucian-uang.json" />
+                    <CardReport url="/json/pelanggaran/terorisme.json" />
+                    <CardReport url="/json/pelanggaran/penganiayaan-berat.json" />
+                    <CardReport url="/json/pelanggaran/lainnya.json" />
                 </div>
             </AppContainer>
         </div>
     )
 }
-
-export default Page

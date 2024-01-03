@@ -1,0 +1,52 @@
+{
+    "title": "Tindak Pidana Perdagangan Manusia",
+    "data": [
+        {
+            "label": "Permohonan",
+            "value": 147
+        },
+        {
+            "label": "Tindakan Proaktif",
+            "value": 1
+        },
+        {
+            "label": "Pemohon Tindakan Proaktif",
+            "value": 6
+        },
+        {
+            "label": "Perlindungan Darurat",
+            "value": 0
+        },
+        {
+            "label": "Pemohon Perlindungan Darurat",
+            "value": 0
+        },  {
+            "label": "Jumlah Terlindungi",
+            "value": 252
+        },
+        {
+            "label": "Permohonan Hak Prosedural",
+            "value": 219
+        },
+        {
+            "label": "Perlindungan Fisik",
+            "value": 3
+        },
+        {
+            "label": "Bantuan Medis",
+            "value": 12
+        },
+        {
+            "label": "Bantuan Psikologis",
+            "value": 15
+        },
+        {
+            "label": "Program Psikologis",
+            "value": 8
+        },
+        {
+            "label": "Bantuan Hidup Sementara",
+            "value": 16
+        }
+    ]
+}

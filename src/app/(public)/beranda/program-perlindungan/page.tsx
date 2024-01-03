@@ -3,10 +3,12 @@
 
 import { FooterFE } from '@/components/features/footer-section';
 import { TextToSpeech } from '@/components/features/text-to-speech';
+import { Button } from '@/components/ui/button';
 import { AppContainer } from '@/components/ui/container';
 import { HeaderSection } from '@/components/ui/typography';
 import { MailIcon, PhoneIcon, PinIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Page() {
     return (
@@ -39,7 +41,14 @@ export default function Page() {
                                         Pengamanan dan pengawalan,penempatan di rumah aman, mendapat identitas baru, bantuan medis dan pemberian kesaksian tanpa hadir langsung di pengadilan, bantuan rehabilitasi psiko-sosial.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,7 +68,14 @@ export default function Page() {
                                         Pendampingan, mendapat penerjemah, mendapat informasi mengenai perkembangan kasus, penggantian biaya transportasi, mendapat nasihat hukum, bantuan biaya hidup sementara sampai batas waktu perlindungan dan lain sebagainya sesuai ketentuan Pasal 5 UU 13/2006
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className=" col-span-6 md:col-span-4 xl:px-5 group">
@@ -88,7 +104,14 @@ export default function Page() {
                                         Saksi, Korban, Saksi Pelaku, dan/atau Pelapor tidak dapat dituntut secara hukum, baik pidana maupun perdata atas kesaksian dan/atau laporan yang akan, sedang, atau telah diberikannya, kecuali kesaksian atau laporan tersebut diberikan tidak dengan iktikad baik.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,7 +133,14 @@ export default function Page() {
                                         Rehabilitasi Psikososial adalah semua bentuk pelayanan dan bantuan psikologis serta sosial yang ditujukan untuk membantu meringankan, melindungi, dan memulihkan kondisi fisik, psikologis, sosial, dan spiritual Korban sehingga mampu menjalankan fungsi sosialnya kembali secara wajar, antara lain LPSK berupaya melakukan peningkatan kualitas hidup Korban dengan melakukan kerja sama dengan instansi terkait yang berwenang berupa bantuan pemenuhan sandang, pangan, papan, bantuan memperoleh pekerjaan, atau bantuan kelangsungan pendidikan.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className=" col-span-6 md:col-span-4 xl:px-5 group">
@@ -140,7 +170,14 @@ export default function Page() {
                                         Kompensasi merupakan ganti kerugian yang diberikan oleh negara karena pelaku tidak mampu memberikan ganti kerugian sepenuhnya yang menjadi tanggung jawabnya kepada Korban atau Keluarganya.
                                     </p>
                                 </TextToSpeech>
-
+                                <div className=' flex gap-3'>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                    </Button>
+                                    <Button size={'sm'} asChild>
+                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>

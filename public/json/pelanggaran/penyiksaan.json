@@ -1,0 +1,45 @@
+{
+    "title": "Tindak Pidana Penyiksaan",
+    "data": [
+        {
+            "label": "Jumlah Permohonan",
+            "value": 43
+        },
+        {
+            "label": "Jumlah Terlindung",
+            "value": 25
+        },
+        {
+            "label": "Dewasa",
+            "value": 22
+        },
+        {
+            "label": "Anak",
+            "value": 3
+        },
+        {
+            "label": "Laki Laki",
+            "value": 12
+        },
+        {
+            "label": "Perempuan",
+            "value": 13
+        },
+        {
+            "label": "Carry Over 2021",
+            "value": 20
+        },
+        {
+            "label": "Diterima 2022",
+            "value": 5
+        },
+        {
+            "label": "Dihentikan",
+            "value": 15
+        },
+        {
+            "label": "Terlindung Aktif",
+            "value": 10
+        }
+    ]
+}

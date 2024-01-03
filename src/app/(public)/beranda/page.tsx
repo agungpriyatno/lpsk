@@ -1,4 +1,5 @@
 import { AplicationExternalSection, AplicationSection } from '@/components/features/application-section';
+import { CardSection } from '@/components/features/card-section';
 import { CarouselSection } from '@/components/features/carousel-section';
 import { ChartSection } from '@/components/features/chart-section';
 import { FooterFE } from '@/components/features/footer-section';
@@ -36,6 +37,7 @@ export default function Home() {
         <IDMap />
       </AppContainer>
       <ChartSection />
+      <CardSection />
       <GallerySection />
       <FooterFE />
       <AppRunningText />

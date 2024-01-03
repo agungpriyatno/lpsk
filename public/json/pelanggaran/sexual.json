@@ -1,0 +1,21 @@
+{
+    "title": "Tindak Pidana Kekerasan Seksual",
+    "data": [
+        {
+            "label": "Kasus",
+            "value": 70
+        },
+        {
+            "label": "Pemohon Perlindungan",
+            "value": 70
+        },
+        {
+            "label": "Perlindungan Darurat",
+            "value": 70
+        },
+        {
+            "label": "Pemohon Perlindungan Darurat",
+            "value": 70
+        }
+    ]
+}

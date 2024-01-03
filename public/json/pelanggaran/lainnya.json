@@ -1,0 +1,25 @@
+{
+    "title": "Tindak Pidana lainnya",
+    "data": [
+        {
+            "label": "Jumlah Permohonan",
+            "value": 617
+        },
+        {
+            "label": "Jumlah Terlindung",
+            "value": 265
+        },
+        {
+            "label": "Pemohon Proaktif",
+            "value": 8
+        },
+        {
+            "label": "Tindakan Proaktif",
+            "value": 48
+        },
+        {
+            "label": "Perlindungan Darurat",
+            "value": 101
+        }
+    ]
+}

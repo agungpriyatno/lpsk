@@ -1,0 +1,25 @@
+{
+    "title": "Kekerasan Terhadap Anak",
+    "data": [
+        {
+            "label": "Kasus",
+            "value": 536
+        },
+        {
+            "label": "Tindakan Proaktif",
+            "value": 23
+        },
+        {
+            "label": "Pemohon Tindakan Proaktif",
+            "value": 53
+        },
+        {
+            "label": "Perlindungan Darurat",
+            "value": 8
+        },
+        {
+            "label": "Pemohon Perlindungan Darurat",
+            "value": 16
+        }
+    ]
+}

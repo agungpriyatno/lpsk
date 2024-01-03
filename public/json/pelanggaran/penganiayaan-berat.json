@@ -1,0 +1,45 @@
+{
+    "title": "Penganiayaan Berat",
+    "data": [
+        {
+            "label": "Jumlah Permohonan",
+            "value": 41
+        },
+        {
+            "label": "Jumlah Terlindung",
+            "value": 179
+        },
+        {
+            "label": "Dewasa",
+            "value": 164
+        },
+        {
+            "label": "Anak",
+            "value": 15
+        },
+        {
+            "label": "Laki Laki",
+            "value": 26
+        },
+        {
+            "label": "Perempuan",
+            "value": 53
+        },
+        {
+            "label": "Carry Over 2021",
+            "value": 101
+        },
+        {
+            "label": "Diterima 2022",
+            "value": 78
+        },
+        {
+            "label": "Dihentikan",
+            "value": 10
+        },
+        {
+            "label": "Terlindung Aktif",
+            "value": 169
+        }
+    ]
+}
