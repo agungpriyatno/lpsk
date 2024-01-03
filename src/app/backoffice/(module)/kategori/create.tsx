@@ -7,20 +7,22 @@ import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { PubCategoryDto, pubCategoryDto } from "@/lib/validators/publication"
-import { createPubCategory } from "@/services/publication-service"
+import { createPubCategory, deleteSubCategory, findAllSubCategory } from "@/services/publication-service"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { PublicationCategory, PublicationSubCategory } from "@prisma/client"
+import { setDate } from "date-fns"
 import { PlusIcon, Trash2Icon } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useFieldArray, useForm } from "react-hook-form"
 
-export const CreateUser = () => {
+export const CreateUser = ({ id }: { id: string }) => {
     const [open, setOpen] = useState(false)
-    
+    const [current, setCurrent] = useState<PublicationSubCategory[]>([])
+
     const form = useForm<PubCategoryDto>({
         resolver: zodResolver(pubCategoryDto),
         defaultValues: {
-            name: "",
+            name: id,
             subs: []
         }
     })
@@ -30,6 +32,29 @@ export const CreateUser = () => {
         name: "subs",
         control: form.control
     })
+
+    const onDelete = async (id: string) => {
+        try {
+            await deleteSubCategory(id)
+            toast({
+                title: "Berhasil Hapus Ketegori",
+                variant: "default",
+            })
+            form.reset()
+            setOpen(false)
+        } catch (error) {
+            toast({
+                title: "Gagal Hapus Ketegori",
+                description: "",
+                variant: "destructive",
+            })
+        }
+    }
+
+    const findAll = async () => {
+        const res = await findAllSubCategory(id)
+        setCurrent(res)
+    }
 
     const submitHandler = async (data: PubCategoryDto) => {
         try {
@@ -48,20 +73,25 @@ export const CreateUser = () => {
             })
         }
     }
+
+    useEffect(() => {
+        findAll()
+    }, [])
+
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <Button asChild>
                 <DialogTrigger>
-                    Tambah Data
+                    Sesuaikan
                 </DialogTrigger>
             </Button>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Tambah Kategori</DialogTitle>
+                    <DialogTitle>Penyesuaian Kategori</DialogTitle>
                 </DialogHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-3">
-                        <FormField control={form.control} name="name" render={({ field }) => (
+                        {/* <FormField control={form.control} name="name" render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Nama</FormLabel>
                                 <FormControl>
@@ -69,7 +99,15 @@ export const CreateUser = () => {
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
-                        )} />
+                        )} /> */}
+                        {current.map((item, i) => (
+                            <div className="flex w-full gap-3" key={i}>
+                                <div className="px-3 py-2 rounded bg-muted flex-1">
+                                    {item.name}
+                                </div>
+                                <Button type="button" onClick={() => onDelete(item.id)} size={'icon'} variant={'destructive'}><Trash2Icon /></Button>
+                            </div>
+                        ))}
                         {fields.map((item, i) => (
                             <FormField control={form.control} name={`subs.${i}.name`} key={item.id} render={({ field }) => (
                                 <div className="flex gap-3 w-full">
@@ -82,7 +120,7 @@ export const CreateUser = () => {
                                     <Button type="button" onClick={() => remove(fields.length - 1)} size={'icon'} variant={'destructive'}><Trash2Icon /></Button>
                                 </div>
                             )} />
-                            
+
 
                         ))}
                         <div className="flex w-full gap-3 place-items-center">

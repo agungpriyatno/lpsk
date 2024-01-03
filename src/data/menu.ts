@@ -85,32 +85,6 @@ export const MENU: TMenuItem[] = [
     {
         title: "Kerja Sama",
         href: "/kerjasama",
-        children: [
-            {
-                title: "Instansi Aparat Penegak Hukum",
-                href: "/kerjasama",
-            },
-            {
-                title: "Instansi Hukum",
-                href: "/kerjasama",
-            },
-            {
-                title: "Internasional",
-                href: "/kerjasama",
-            },
-            {
-                title: "Kesehatan",
-                href: "/kerjasama",
-            },
-            {
-                title: "Pendidikan",
-                href: "/kerjasama",
-            },
-            {
-                title: "LSM / Pers",
-                href: "/kerjasama",
-            },
-        ],
     },
 
     {

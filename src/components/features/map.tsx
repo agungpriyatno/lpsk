@@ -136,7 +136,7 @@ const IDMap = () => {
           <div className=" absolute px-3 py-2 rounded bg-muted" style={{ left: hover.x, top: hover.y }}>{hover.message}</div>
         )}
         {open && <motion.div
-          className="bg-slate-800/50 fixed left-0 top-0 h-full w-full"
+          className="bg-slate-800/50 fixed left-0 top-0 h-full w-full z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

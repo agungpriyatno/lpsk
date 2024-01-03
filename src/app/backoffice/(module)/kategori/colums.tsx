@@ -9,6 +9,7 @@ import { PublicationCategory } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 import { DeleteUser } from "./delete"
+import { CreateUser } from "./create"
 
 export type CategoryTable = PublicationCategory & {
     _count: { subs: number, draft: number }
@@ -50,7 +51,8 @@ export const columnSubCategory: ColumnDef<CategoryTable>[] = [
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" space-x-2"><UpdateUser name={data.name} id={data.id} role={data.roleId ?? ""} /></DropdownMenuItem> */}
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteUser id={data.code} /></DropdownMenuItem>
+                        {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><DeleteUser id={data.code} /></DropdownMenuItem> */}
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><CreateUser id={data.code} /></DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

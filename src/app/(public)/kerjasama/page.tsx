@@ -44,15 +44,15 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                         <CardContent className='text-center'>
                             <p>{selected?.title}</p>
                         </CardContent>
-                        {
-                            selected?.media != undefined && <CardFooter className='flex justify-center place-items-center'>
+                        <CardFooter className='flex justify-center place-items-center'>
+                            <div className="flex gap-2">
                                 <Button className='flex gap-2'>
-                                    <Link>
-                                        <DownloadCloudIcon /> Unduh
+                                    <Link href={"/kerjasama/"+ selected?.id} className="flex gap-2">
+                                        Detail
                                     </Link>
                                 </Button>
-                            </CardFooter>
-                        }
+                            </div>
+                        </CardFooter>
                     </Card>
                 ))}
             </AppContainer>

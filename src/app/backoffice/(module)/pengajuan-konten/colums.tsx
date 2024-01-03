@@ -10,6 +10,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { FileSearchIcon, MoreHorizontal } from "lucide-react"
 import Link from "next/link"
 import { DeleteContent } from "./delete"
+import { da, ro } from "date-fns/locale"
 
 
 export type DraftTable = Draft
@@ -37,16 +38,16 @@ export const columns: ColumnDef<DraftTable>[] = [
         header: ({ column }) =>
             <DataTableColumnHeader column={column} title="Status" />,
     },
-    {
-        id: "Jenis",
-        accessorKey: "publicationId",
-        header: ({ column }) =>
-            <DataTableColumnHeader column={column} title="Jenis" />,
-        cell: ({ row }) => {
-            const data = row.original.publicationId
-            return <div className="text-left font-medium">{data == null ? "Tambah" : "Ubah"}</div>
-        },
-    },
+    // {
+    //     id: "Jenis",
+    //     accessorKey: "publicationId",
+    //     header: ({ column }) =>
+    //         <DataTableColumnHeader column={column} title="Jenis" />,
+    //     cell: ({ row }) => {
+    //         const data = row.original.publicationId
+    //         return <div className="text-left font-medium">{(data == null && row.original.status === "ACCEPT") ? "Tambah" : "Ubah"}</div>
+    //     },
+    // },
     {
         header: "Aksi",
         id: "actions",

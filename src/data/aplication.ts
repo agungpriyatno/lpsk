@@ -30,8 +30,8 @@ export const INTERNAL_APLICATION: Aplication[] = [
     },
     {
         id: "",
-        name: "SIMPELKAN",
-        description: "Sistem Informasi Pelayanan Kantor",
+        name: "TRACKING PERMOHONAN",
+        description: "",
         type: "INTERNAL",
         link: "",
         images: "/images/simpelkan.png",

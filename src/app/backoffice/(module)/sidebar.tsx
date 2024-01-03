@@ -25,6 +25,7 @@ export const SideBar = () => {
                     <SidebarItem icon={<UserIcon size={20} />} active={pathname.includes("/backoffice/pengguna")} name="Pengguna" url="/backoffice/pengguna" />
                     <SidebarItem icon={<NewspaperIcon size={20} />} active={pathname.includes("/backoffice/konten")} name="Konten" url="/backoffice/konten" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/pengajuan-konten")} name="Pengajuan Konten" url="/backoffice/pengajuan-konten" />
+                    <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/kategori")} name="Kategori Konten" url="/backoffice/kategori" />
                     <SidebarItem icon={<ShieldIcon size={20} />} active={pathname.includes("/backoffice/hak-akses")} name="Hak Akses" url="/backoffice/hak-akses" />
                 </ul>
             </div>
