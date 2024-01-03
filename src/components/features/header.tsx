@@ -103,8 +103,8 @@ export const AppNavigationMenu = ({ data: { title, href, children }, scrollDown,
             >
                 <div className=" py-2 bg-background rounded border-none w-fit">
                     <ul className="text-sm">
-                        {children.map((sub) => (
-                            <li className="hover:bg-muted px-3 py-2">
+                        {children.map((sub, i) => (
+                            <li className="hover:bg-muted px-3 py-2" key={i}>
                                 <Link shallow href={sub.href} className=" truncate">{sub.title}</Link>
                             </li>
                         ))}

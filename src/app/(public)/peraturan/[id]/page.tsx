@@ -2,24 +2,24 @@ import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Button } from "@/components/ui/button"
 import { AppContainer } from "@/components/ui/container"
 import db from "@/lib/db"
-import { DownloadIcon, EyeIcon } from "lucide-react"
+import { DownloadIcon } from "lucide-react"
 import Image from "next/image"
-import { ShowPDF } from "./showPDF"
 import Link from "next/link"
+import { ShowPDF } from "./showPDF"
 
 
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
     const data = await db.publication.findFirstOrThrow({
         where: { id }, include:
-            { selected: { include: { link: { include: { link: true } }, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } }, author: true }
+            { selected: { include: { media: { include: { media: true } } } }, author: true }
     })
     return (
         <div className=" space-y-5 w-full pb-16">
             <div className='h-[400px] w-full bg-background'>
                 <div className=' flex flex-col w-full h-full justify-center place-items-center relative'>
                     <div className='h-full w-full absolute bg-slate-800'>
-                        <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + data.selected?.thumbnail} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
+                        <Image src={process.env.BUCKET_URL_ACCESS + '/publication/' + data.selected?.thumbnail} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                 </section>
                 <section className="space-y-3">
                     {
-                        data.selected?.content.split("\n").map((content, i) => (
+                        data.selected?.content?.split("\n").map((content, i) => (
                             <p className=" text-base" key={i}>{content}</p>
                         ))
                     }
@@ -43,9 +43,9 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                                 <div className=" bg-background rounded" key={item.media.id}>
                                     <AspectRatio ratio={2 / 1}>
                                         <div className="p-4 2xl:p-4 flex flex-col justify-end h-full w-full gap-2">
-                                            <p className="text-sm">{item.media.name}</p>
+                                            <p className="text-sm">{item.media.name.split("Z")[1]}</p>
                                             <div className="flex gap-2 w-full justify-end">
-                                                {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.media.name} />}
+                                                {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publication/' + item.media.name} />}
                                                 <Button size={'icon'} asChild>
                                                     <a href={"/documents/roadmap-birokrasi.pdf"} download>
                                                         <DownloadIcon />
@@ -59,37 +59,23 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                         </div>
                     </section>
                 )}
-                {data.selected?.vote != undefined && (
-                    <section>
-                        <h3 className=" text-lg font-bold">Voting</h3>
-                        <div className=" grid grid-cols-1 md:grid-cols-2">
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-                                {data.selected.vote?.vote.options.map((item) => (
-                                    <div className=" bg-background rounded overflow-hidden" key={item.id}>
-                                        <AspectRatio ratio={2 / 1}>
-                                            <div className="h-full w-full bg-slate-800">
-                                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.thumbnail} alt="" fill sizes="100vh" className=" object-cover opacity-40"/>
-                                            </div>
-                                            <div className=" flex flex-col justify-center place-items-center h-full absolute left-0 top-0 w-full">
-                                                <p className="text-lg">{item._count.client}</p>
-                                                <h3 className="text-base font-bold">{item.name}</h3>
-                                            </div>
-                                        </AspectRatio>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-                )}
-                {data.selected?.link != undefined && data.selected.link.length > 0 && (
+                {data.selected?.sourceLink != undefined && (
                     <section className="space-y-3">
                         <h3 className=" text-lg font-bold">Sumber</h3>
                         <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
-                            {data.selected.link.map((item) => (
-                                <Button size={'sm'} asChild key={item.link.id}>
-                                    <Link shallow href={item.link.url} target={"_blank"}>{item.link.url}</Link>
-                                </Button>
-                            ))}
+                            <Button size={'sm'} asChild>
+                                <Link shallow href={data.selected.sourceLink} target={"_blank"}>{data.selected.sourceLink}</Link>
+                            </Button>
+                        </div>
+                    </section>
+                )}
+                {data.selected?.videoLink != undefined && (
+                    <section className="space-y-3">
+                        <h3 className=" text-lg font-bold">Video</h3>
+                        <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
+                            <Button size={'sm'} asChild>
+                                <Link shallow href={data.selected.videoLink} target={"_blank"}>{data.selected.videoLink}</Link>
+                            </Button>
                         </div>
                     </section>
                 )}

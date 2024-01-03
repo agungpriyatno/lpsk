@@ -101,6 +101,7 @@ export const CardReport = ({ url }: { url: string }) => {
     }
 
     useEffect(() => {
+        
         fetching()
     }, [year, month])
 

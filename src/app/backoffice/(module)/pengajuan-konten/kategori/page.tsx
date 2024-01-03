@@ -26,9 +26,9 @@ const UserPage = async ({ searchParams: { skip, take, search } }: UserPageProps)
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
                 {
                     data.map((item) => (
-                        <div className="bg-background px-3 py-2 rounded" key={item.id}>
+                        <div className="bg-background px-3 py-2 rounded" key={item.code}>
                             <h3 className="text-base">{item.name}</h3>
-                            <span className=" text-2xl font-bold">{item._count.publication}</span>
+                            <span className=" text-2xl font-bold">{item._count.draft}</span>
                         </div>
                     ))
                 }

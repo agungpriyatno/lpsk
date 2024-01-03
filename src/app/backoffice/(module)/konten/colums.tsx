@@ -27,7 +27,7 @@ export const columns: ColumnDef<PublicationColumn>[] = [
         header: ({ column }) =>
             <DataTableColumnHeader column={column} title="Konten" />,
         cell: ({ row }) => {
-            const data: string = row.original.selected?.content.slice(0, 50) + "..."
+            const data: string = row.original.selected?.content?.slice(0, 50) + "..."
             return <div className="text-left font-medium">{data}</div>
         },
     },

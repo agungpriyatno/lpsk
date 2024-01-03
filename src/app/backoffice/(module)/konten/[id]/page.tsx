@@ -9,7 +9,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { Takedown } from "./takedown"
 import { Takeup } from "./takeup"
-import CreateFeature from "./create"
 
 type PageProps = {
     params: {
@@ -116,9 +115,6 @@ const Page = async ({ params: { id } }: PageProps) => {
                     </div>
                 ))}
             </div>
-            <section>
-                <CreateFeature initial={{ publishedAt: selected?.publishedAt, ...selected }} />
-            </section>
         </section>
     )
 }

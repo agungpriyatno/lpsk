@@ -187,7 +187,7 @@ const CreateFeature = () => {
                                         <div className="w-full flex justify-center place-items-center">
                                             <Loader2Icon className=" animate-spin" />
                                         </div>
-                                    ) : category.map(((item, i) => <SelectItem key={i} value={item.id}>{item.name}</SelectItem>))
+                                    ) : category.map(((item, i) => <SelectItem key={i} value={item.code}>{item.name}</SelectItem>))
                                 }
                             </SelectContent>
                         </Select>
@@ -207,7 +207,7 @@ const CreateFeature = () => {
                                 <SelectContent>
                                     {
                                         category.map((item => {
-                                            if (item.id === form.getValues("category")) {
+                                            if (item.code === form.getValues("category")) {
                                                 return item.subs.map((sub, i) => <SelectItem key={i} value={sub.id}>{sub.name}</SelectItem>)
                                             }
                                         }))
@@ -332,7 +332,7 @@ const CreateFeature = () => {
                             </FormItem>
                         )} />
                         {voteList.fields.map((item, i) => (
-                            <div className="space-y-3">
+                            <div className="space-y-3" key={i}>
                                 <Separator className=" my-2" />
                                 <FormField control={form.control} name={`vote.${i}.name`} key={item.id} render={({ field }) => (
                                     <div className="flex gap-3 w-full">

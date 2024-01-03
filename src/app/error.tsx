@@ -1,12 +1,11 @@
-"use client"
+'use client' // Error components must be Client Components
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion';
-import { Settings2Icon, SettingsIcon } from 'lucide-react';
-import Image from 'next/image';
+import { AlertTriangleIcon, SettingsIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react'
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-
 
 const minuteSeconds = 60;
 const hourSeconds = 3600;
@@ -32,18 +31,30 @@ const getTimeMinutes = (time: number) => ((time % hourSeconds) / minuteSeconds) 
 const getTimeHours = (time: number) => ((time % daySeconds) / hourSeconds) | 0;
 const getTimeDays = (time: number) => (time / daySeconds) | 0;
 
-export default function NotFound() {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  useEffect(() => {
+    // Log the error to an error reporting service
+    console.error(error)
+  }, [error])
 
   const router = useRouter()
+
   const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
   const endTime = stratTime + 243248; // use UNIX timestamp in seconds
 
   const remainingTime = endTime - stratTime;
   const days = Math.ceil(remainingTime / daySeconds);
   const daysDuration = days * daySeconds;
+
   return (
-    <div className='h-screen w-full'>
-      <div className='h-full w-full relative'>
+    <div className="h-screen w-full">
+      <div className='h-full w-full relative '>
         <motion.img
           className="w-full h-full object-cover"
           src={'/images/lpsk-carousel.png'}
@@ -52,6 +63,7 @@ export default function NotFound() {
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
         />
         <div className=' absolute left-0 top-0 right-0 bottom-0 flex flex-col gap-5 justify-center place-items-center'>
+          {/* <AlertTriangleIcon size={50} className='' /> */}
           <h1 className='text-2xl font-bold'>COMING SOON</h1>
           <p>Our Website is under contructions</p>
           <div className='flex w-full justify-center place-items-center gap-5'>

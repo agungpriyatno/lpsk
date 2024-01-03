@@ -13,10 +13,10 @@ type PageProps = {
 }
 
 const Page = async ({ searchParams: { status, search } }: PageProps) => {
-    const data = await db.publicationCategory.findFirstOrThrow({ where: { name: "Publikasi" }, include: { subs: true } })
+    const data = await db.publicationCategory.findFirstOrThrow({ where: { code: "LPSK-PUBLIKASI" }, include: { subs: true } })
     const list = await db.publication.findMany({
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-        where: { AND: [{ selected: { category: {name: "Publikasi"}} }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+        where: { AND: [{ selected: { category: {code: "LPSK-PUBLIKASI"}} }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
     return (
         <div className=" space-y-5 w-full pb-16">

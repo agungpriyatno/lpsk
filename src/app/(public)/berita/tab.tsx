@@ -17,7 +17,7 @@ export const TabMenu = ({ data }: {
             createdAt: Date;
         }[];
     } & {
-        id: string;
+        code: string;
         name: string;
         createdAt: Date;
     }

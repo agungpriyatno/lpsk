@@ -114,7 +114,7 @@ model Draft {
   selected      Publication?
   publications  Publication?            @relation("draft", fields: [publicationId], references: [id], onDelete: Cascade)
   author        User?                   @relation(fields: [authorId], references: [id], onDelete: SetNull)
-  category      PublicationCategory?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  category      PublicationCategory?    @relation(fields: [categoryId], references: [code], onDelete: SetNull)
   subCategory   PublicationSubCategory? @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
   media         DraftMedia[]
   vote          VoteDraft?
@@ -206,7 +206,7 @@ model Client {
 // ===== DATA MASTER ======
 
 model PublicationCategory {
-  id        String                   @id @default(cuid())
+  code      String                   @id @default(cuid())
   name      String
   createdAt DateTime                 @default(now()) @map("created_at")
   draft     Draft[]
@@ -221,7 +221,7 @@ model PublicationSubCategory {
   name       String
   createdAt  DateTime            @default(now()) @map("created_at")
   draft      Draft[]
-  category   PublicationCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category   PublicationCategory @relation(fields: [categoryId], references: [code], onDelete: Cascade)
 
   @@map("publication_subcategories")
 }

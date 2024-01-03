@@ -16,7 +16,7 @@ type PageProps = {
 const Page = async ({ searchParams: { status, search } }: PageProps) => {
     const data = await db.publicationCategory.findFirstOrThrow({ where: { name: "Peraturans" }, include: { subs: true } })
     const list = await db.publication.findMany({
-        include: { selected: { include: { link: true, media: true, author: true, category: true, subCategory: true } } },
+        include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
         where: { AND: [{ selected: { category: {name: "Peraturan"}} }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
     

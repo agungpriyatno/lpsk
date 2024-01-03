@@ -74,6 +74,6 @@ export const findAllCategory = () => {
 }
 
 export const deletePubCategory = async (id: string) => {
-    await db.publicationCategory.delete({ where: { id } })
+    await db.publicationCategory.delete({ where: { code: id } })
     revalidatePath('/backoffice/konten/kategori')
 }
