@@ -6,12 +6,41 @@ import { FooterFE } from '@/components/features/footer-section';
 import { GallerySection } from '@/components/features/gallery-section';
 import IDMap from '@/components/features/map';
 import { AppRunningText } from '@/components/features/running-text';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { AppContainer } from '@/components/ui/container';
 import { ContentCardA } from '@/components/ui/content-card';
 import { LinkCard } from '@/components/ui/link-card';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { HeaderSection } from '@/components/ui/typography';
+import db from '@/lib/db';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Home() {
+export interface Artwork {
+  artist: string
+  art: string
+}
+
+export const works: Artwork[] = [
+  {
+    artist: "Ornella Binni",
+    art: "https://images.unsplash.com/photo-1465869185982-5a1a7522cbcb?auto=format&fit=crop&w=300&q=80",
+  },
+  {
+    artist: "Tom Byrom",
+    art: "https://images.unsplash.com/photo-1548516173-3cabfa4607e9?auto=format&fit=crop&w=300&q=80",
+  },
+  {
+    artist: "Vladimir Malyavko",
+    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+  },
+]
+
+export default async function Home() {
+  const list = await db.publication.findMany({
+    include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
+    where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }] }
+  })
   return (
     <div className='flex flex-col gap-10'>
       <CarouselSection />
@@ -32,7 +61,45 @@ export default function Home() {
         image='/images/lpsk-carousel.png'
       />
       <AplicationSection />
+      <div className='w-full bg-background py-5'>
+        <AppContainer>
+          <HeaderSection className='flex gap-2'>
+            BERITA
+          </HeaderSection>
+        </AppContainer>
+        <ScrollArea className="min-w-full whitespace-nowrap rounded-md">
+          <div className="flex min-w-full space-x-4 py-4">
+            <figure className="shrink-0 w-[12px] md:w-[28px] xl:w-[56px] 2xl:w-[156px] h-[400px]">
+            </figure>
+            {list.map((item) => (
+              <figure key={item.id} className="shrink-0 relative group">
+                <div className="overflow-hidden rounded-md bg-slate-800">
+                  <Image
+                    src={item.selected?.media ? process.env.BUCKET_URL_ACCESS + "/publikasi/" + item.selected.thumbnail : "/images/lpsk-lg.png"}
+                    alt={`Photo by ${item.selected?.author?.name}`}
+                    className="aspect-[3/4] h-fit w-fit object-cover opacity-50 group-hover:scale-125 duration-300 transition-all"
+                    width={300}
+                    height={400}
+                  />
+                </div>
+                <Link shallow href={"/berita/" + item.id}>
+                  <div className="flex flex-col max-w-full p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
+                    <h5 className="text-base font-bold max-w-full">{item.selected?.title.slice(0, 25)}</h5>
+                    <p className="text-sm">{item.selected?.content?.slice(0, 40)}...</p>
+                    <small className="text-xs">Diunggah oleh {item.selected?.author?.name}</small>
+                  </div>
+                </Link>
+              </figure>
+            ))}
+            <figure className="shrink-0 w-[12px] md:w-[28px] xl:w-[56px] 2xl:w-[156px] h-[400px]">
+            </figure>
+
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+      </div>
       <AplicationExternalSection />
+
       <AppContainer>
         <IDMap />
       </AppContainer>

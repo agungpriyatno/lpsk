@@ -22,8 +22,6 @@ const initialNodes = [
     { id: '8', position: { x: 10, y: 350 }, data: { label: 'Bagian Pengawasan' } },
     { id: '9', position: { x: 400, y: 350 }, data: { label: 'Perwakilan LPSK' } },
     { id: '10', position: { x: 600, y: 350 }, data: { label: 'Tenaga Ahli' } },
-
-
 ];
 
 const initialEdges = [

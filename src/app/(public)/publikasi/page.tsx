@@ -37,7 +37,7 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                         <AspectRatio ratio={1 / 1}>
                             <Link shallow href={"/publikasi/" + id}>
                                 <div className="flex flex-col p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
-                                    <h5 className="text-base font-bold">{selected?.title}</h5>
+                                 <h5 className="text-base font-bold">{selected?.title.slice(0, 20)}</h5>
                                     <p className="text-sm">{selected?.content?.slice(0, 20)}</p>
                                     <small className="text-xs">Diunggah oleh {selected?.author?.name}</small>
                                 </div>
@@ -46,11 +46,6 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                                 <Image src={process.env.BUCKET_URL_ACCESS +'/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-70 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
                             </div>
                             <div className=" absolute z-20 right-2 top-2">
-                                {/* {selected?.category != undefined && (
-                                    <div className="px-3 py-1 bg-background rounded-full flex justify-center place-items-center">
-                                        <small className="text-xs">{selected?.category?.name}</small>
-                                    </div>
-                                )} */}
                                 {selected?.subCategory != undefined && (
                                     <div className="px-3 py-1 bg-background rounded-full flex justify-center place-items-center">
                                         <small className="text-xs">{selected?.subCategory?.name}</small>
