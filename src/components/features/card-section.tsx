@@ -81,7 +81,7 @@ export const AppSelect = ({ valueKey, labelKey, fetchUrl, placeholder, defaultVa
     )
 }
 
-const CardReport = ({ url }: { url: string }) => {
+export const CardReport = ({ url }: { url: string }) => {
 
     const [state, setState] = useState<EStatus>(EStatus.INITIAL)
     const [month, setMonth] = useState<string | null>(null)

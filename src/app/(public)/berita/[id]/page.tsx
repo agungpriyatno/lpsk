@@ -12,7 +12,7 @@ import Link from "next/link"
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
     const data = await db.publication.findFirstOrThrow({
         where: { id }, include:
-            { selected: { include: { link: { include: { link: true } }, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } }, author: true }
+            { selected: { include: { media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } }, author: true }
     })
     return (
         <div className=" space-y-5 w-full pb-16">
@@ -29,11 +29,11 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                     <small>Diunggah oleh {data.author?.name}</small>
                 </section>
                 <section className="space-y-3">
-                    {
+                    {/* {
                         data.selected?.content.split("\n").map((content, i) => (
                             <p className=" text-base" key={i}>{content}</p>
                         ))
-                    }
+                    } */}
                 </section>
                 {data.selected?.media != undefined && data.selected.media.length > 0 && (
                     <section className="space-y-3">
@@ -81,18 +81,27 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                         </div>
                     </section>
                 )}
-                {data.selected?.link != undefined && data.selected.link.length > 0 && (
+                {data.selected?.sourceLink != undefined && (
                     <section className="space-y-3">
                         <h3 className=" text-lg font-bold">Sumber</h3>
                         <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
-                            {data.selected.link.map((item) => (
-                                <Button size={'sm'} asChild key={item.link.id}>
-                                    <Link shallow href={item.link.url} target={"_blank"}>{item.link.url}</Link>
-                                </Button>
-                            ))}
+                            <Button size={'sm'} asChild>
+                                <Link shallow href={data.selected.sourceLink} target={"_blank"}>{data.selected.sourceLink}</Link>
+                            </Button>
                         </div>
                     </section>
                 )}
+                {data.selected?.videoLink != undefined && (
+                    <section className="space-y-3">
+                        <h3 className=" text-lg font-bold">Video</h3>
+                        <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
+                            <Button size={'sm'} asChild>
+                                <Link shallow href={data.selected.videoLink} target={"_blank"}>{data.selected.videoLink}</Link>
+                            </Button>
+                        </div>
+                    </section>
+                )}
+            
             </AppContainer>
         </div>
     )

@@ -8,6 +8,10 @@ import { cn } from "@/lib/utils";
 import { AspectRatio } from "../ui/aspect-ratio";
 import { motion } from "framer-motion";
 import { PathTooltip } from "react-path-tooltip"
+import { CardReport, CardSection } from "./card-section";
+import { ChartSection } from "./chart-section";
+import { ScrollArea } from "../ui/scroll-area";
+import { BarChart, pelayananPublik, perlindunganSaksiKorban } from "../ui/chart";
 
 function generateNumber(min: number, max: number) {
   min = Math.ceil(min);
@@ -62,7 +66,7 @@ const IDMap = () => {
     })
   }, [])
 
-  
+
 
   return (
     <div className="p-5 bg-background rounded">
@@ -90,16 +94,16 @@ const IDMap = () => {
                   //   const x = Math.round(((e.clientX - clientRect.x) / clientRect.width) * clientBox.width);
                   //   const y = Math.round(((e.clientY - clientRect.y) / clientRect.height) * clientBox.height);
                   //   console.log({x, y, clientBox, clientRect});
-                    
+
                   //   setHover({ x, y, message: item.properties.value })
                   // }}
                   onMouseMove={(e) => {
                     const clientBox = e.currentTarget.getBBox();
                     const clientRect = e.currentTarget.getBoundingClientRect();
                     const x = e.pageX - 200
-                    const y = e.pageY -100;
-                    console.log({x, y, clientBox, clientRect});
-                    
+                    const y = e.pageY - 100;
+                    console.log({ x, y, clientBox, clientRect });
+
                     setHover({ x, y, message: item.properties.value })
                     // const tooltipDiv = tooltipRef.current;
                     // if (tooltipDiv) {
@@ -137,11 +141,29 @@ const IDMap = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="flex h-full justify-center place-items-center" onClick={() => setOpen(false)}>
-            <div className="bg-background p-5 rounded" onClick={(e) => e.stopPropagation()}>
+          <div className="flex h-full justify-center place-items-center py-16" onClick={() => setOpen(false)}>
+            <div className="bg-background p-5 rounded max-w-[800px] h-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               <h1>ID: {selected?.id}</h1>
               <h1>Nama Provinsi: {selected?.provinsi}</h1>
               <h1>Jumlah Laporan: {selected?.value}</h1>
+              {/* <div className="gap-3 xl:gap-5 w-full">
+                    <div className='flex flex-col gap-3 text-center'>
+                        <h4 className='text-lg font-bold'>Pelayan Publik</h4>
+                        <BarChart data={pelayananPublik} />
+                    </div>
+                    <div className='flex flex-col gap-3 text-center'>
+                        <h4 className='text-lg font-bold'>Perlindungan Saksi dan Korban Kejahatan</h4>
+                        <BarChart data={perlindunganSaksiKorban} />
+                    </div>
+                </div> */}
+              <div className=" gap-3 grid grid-cols-1 md:grid-cols-2">
+                <CardReport url="/json/pelanggaran/ham-berat.json" />
+                <CardReport url="/json/pelanggaran/korupsi.json" />
+                <CardReport url="/json/pelanggaran/ham-berat.json" />
+                <CardReport url="/json/pelanggaran/ham-berat.json" />
+                <CardReport url="/json/pelanggaran/ham-berat.json" />
+                <CardReport url="/json/pelanggaran/ham-berat.json" />
+              </div>
             </div>
           </div>
         </motion.div>}

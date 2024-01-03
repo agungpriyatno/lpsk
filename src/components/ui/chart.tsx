@@ -4,9 +4,9 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData, LinearScale, registerables } from 'chart.js';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import colors from "tailwindcss/colors";
-import {CategoryScale} from 'chart.js'; 
+import { CategoryScale } from 'chart.js';
 
-ChartJS.register(ArcElement,CategoryScale, LinearScale ,Tooltip, Legend,...registerables);
+ChartJS.register(ArcElement, CategoryScale, LinearScale, Tooltip, Legend, ...registerables);
 
 
 
@@ -86,7 +86,7 @@ export const pencucianUang: ChartData<"pie", number[], unknown> = {
     labels: ['Dana Pro', 'Fahrenheit', 'Evo Trade', 'Quotex', 'Fikasa', 'KSP Sejahtera Bersama', 'Yagoal', 'Viralblast', 'KSP Indo Seruya', 'Binomo', 'Sunmod Alkes', 'Olymtrade', 'ATG', 'FIN 888', 'NET 89'],
     datasets: [
         {
-            data: [1458, 774, 323, 24, 9, 4, 1, 905, 468, 48, 16, 9, 2 ,1, 1],
+            data: [1458, 774, 323, 24, 9, 4, 1, 905, 468, 48, 16, 9, 2, 1, 1],
             backgroundColor: [
                 colors.orange[100],
                 colors.orange[200],
@@ -119,7 +119,7 @@ export const penganiayaanBerat: ChartData<"pie", number[], unknown> = {
 };
 
 export const membahayakanJiwa: ChartData<"pie", number[], unknown> = {
-    labels: ['Jumlah Permohonan', 'Jumlah Terlindung','Pemohon Proaktif', 'Tindakan Proaktif', 'Perlindungan Darurat'],
+    labels: ['Jumlah Permohonan', 'Jumlah Terlindung', 'Pemohon Proaktif', 'Tindakan Proaktif', 'Perlindungan Darurat'],
     datasets: [
         {
             data: [617, 265, 8, 48, 101],
@@ -138,7 +138,7 @@ export const membahayakanJiwa: ChartData<"pie", number[], unknown> = {
 
 
 export const seksual: ChartData<"bar", number[], unknown> = {
-    labels: ['Kasus','Pemohon Perlindungan', 'Perlindungan Darurat', 'Pemohon Perlindungan Darurat'],
+    labels: ['Kasus', 'Pemohon Perlindungan', 'Perlindungan Darurat', 'Pemohon Perlindungan Darurat'],
     datasets: [
         {
             label: "2021",
@@ -178,9 +178,9 @@ export const pelayananPublik: ChartData<"bar", number[], unknown> = {
 export const perdaganganManusia: ChartData<"bar", number[], unknown> = {
     labels: [
         'Permohonan',
-        'Tindakan Proaktif', 
-        'Pemohon Tindakan Proaktif', 
-        'Perlindungan Darurat', 
+        'Tindakan Proaktif',
+        'Pemohon Tindakan Proaktif',
+        'Perlindungan Darurat',
         'Pemohon Perlindungan Darurat',
         'Jumlah Terlindung',
         'Permohonan Hak Prosedural',
@@ -208,8 +208,8 @@ export const perdaganganManusia: ChartData<"bar", number[], unknown> = {
     ],
 };
 
-export const perlindunganSaksiKorban : ChartData<"bar", number[], unknown> = {
-    labels: ['Pencucian Uang', 'Pelanggaran HAM Berat','Kekerasan Seks Anak', "Perdagangan Orang", "Terorisme", "Kekerasan Seksual", "Korupsi", "Penyiksaan", "Penganiayaan Berat", "Narkotika", "Tindak Pidana Lain", "Bukan Tindak Pidana"],
+export const perlindunganSaksiKorban: ChartData<"bar", number[], unknown> = {
+    labels: ['Pencucian Uang', 'Pelanggaran HAM Berat', 'Kekerasan Seks Anak', "Perdagangan Orang", "Terorisme", "Kekerasan Seksual", "Korupsi", "Penyiksaan", "Penganiayaan Berat", "Narkotika", "Tindak Pidana Lain", "Bukan Tindak Pidana"],
     datasets: [
         {
             label: "2021",
@@ -233,7 +233,7 @@ export const perlindunganSaksiKorban : ChartData<"bar", number[], unknown> = {
 };
 
 export const analyticData: ChartData<"line", number[], unknown> = {
-    labels: ['Oktober', 'November','Desember'],
+    labels: ['Oktober', 'November', 'Desember'],
     datasets: [
         {
             label: "Statistik Pengunjung",
@@ -253,8 +253,8 @@ export const analyticData: ChartData<"line", number[], unknown> = {
 export const terorisme: ChartData<"bar", number[], unknown> = {
     labels: [
         'Permohonan',
-        'Tindakan Proaktif', 
-        'Pemohon Tindakan Proaktif', 
+        'Tindakan Proaktif',
+        'Pemohon Tindakan Proaktif',
         'Jumlah Terlindung',
         'Permohonan Hak Prosedural',
         'Perlindungan Fisik',
@@ -263,7 +263,7 @@ export const terorisme: ChartData<"bar", number[], unknown> = {
         {
             label: "2021",
             data: [527, 1, 21, 886, 264, 55],
-            backgroundColor :colors.orange[500],
+            backgroundColor: colors.orange[500],
             borderColor: colors.transparent,
             borderWidth: 1,
         },
@@ -280,7 +280,7 @@ export const terorisme: ChartData<"bar", number[], unknown> = {
 
 
 
-export function PieChart({data}: {data: ChartData<"pie", number[], unknown>}) {
+export function PieChart({ data }: { data: ChartData<"pie", number[], unknown> }) {
     return <div className='w-full relative'>
         <Pie className='w-full' data={data} options={{
             plugins: {
@@ -294,7 +294,7 @@ export function PieChart({data}: {data: ChartData<"pie", number[], unknown>}) {
     </div>
 }
 
-export function BarChart({data}: {data: ChartData<"bar", number[], unknown>}) {
+export function BarChart({ data }: { data: ChartData<"bar", number[], unknown> }) {
     return <div className='w-full relative'>
         <Bar className='w-full' data={data} options={{
             plugins: {
@@ -308,7 +308,7 @@ export function BarChart({data}: {data: ChartData<"bar", number[], unknown>}) {
     </div>
 }
 
-export function LineChart({data}: {data: ChartData<"line", number[], unknown>}) {
+export function LineChart({ data }: { data: ChartData<"line", number[], unknown> }) {
     return <div className='w-full relative'>
         <Line className='w-full' data={data} options={{
             plugins: {
