@@ -180,7 +180,7 @@ export default function Page() {
                 </AppContainer>
             </section>
             <GallerySection />
-            <FooterFE />
+            
         </div>
     )
 }

@@ -52,8 +52,6 @@ export default function Page() {
                     </div>
                 </AppContainer>
             </div>
-          
-            <FooterFE />
         </div>
     )
 }

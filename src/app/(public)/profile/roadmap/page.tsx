@@ -63,7 +63,7 @@ export default function Page() {
                 </AppContainer>
             </div>
           
-            <FooterFE />
+            
         </div>
     )
 }
