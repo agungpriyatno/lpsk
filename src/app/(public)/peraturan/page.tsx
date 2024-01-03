@@ -14,10 +14,10 @@ type PageProps = {
 
 
 const Page = async ({ searchParams: { status, search } }: PageProps) => {
-    const data = await db.publicationCategory.findFirstOrThrow({ where: { name: "Peraturans" }, include: { subs: true } })
+    const data = await db.publicationCategory.findFirstOrThrow({ where: { code: "LPSK-PERATURAN" }, include: { subs: true } })
     const list = await db.publication.findMany({
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-        where: { AND: [{ selected: { category: {name: "Peraturan"}} }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+        where: { AND: [{ selected: { category: {code: "LPSK-PERATURAN"}} }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
     
     return (
@@ -28,7 +28,7 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                         <Image src={'/images/fondasi.png'} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
                     <div className=' absolute left-0 top-0 flex flex-col w-screen h-full justify-center place-items-center'>
-                        <h1 className=' text-3xl font-bold absolute text-slate-100'>Berita</h1>
+                        <h1 className=' text-3xl font-bold absolute text-slate-100'>Peraturan</h1>
                     </div>
                 </div>
             </div>
