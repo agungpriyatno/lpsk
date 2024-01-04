@@ -33,7 +33,7 @@ const Page = async ({ searchParams: { search } }: PageProps) => {
                 {list.map(({ selected, id }) => (
                     <div className="bg-background rounded relative overflow-hidden group" key={id}>
                         <AspectRatio ratio={1 / 1}>
-                            <Link shallow href={"/voting/" + id}>
+                            <Link  href={"/voting/" + id}>
                                 <div className="flex flex-col p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
                                     <h5 className="text-base font-bold">{selected?.title.slice(0, 20)}...</h5>
                                     <p className="text-sm">{selected?.content?.slice(0, 20)}</p>

@@ -15,7 +15,7 @@ const AdminPage = () => {
                 </CardHeader>
                 <CardContent className="">
                     <Button asChild>
-                        <Link shallow href={token ? "/backoffice/dashboard" : "/backoffice/signin"}>MASUK</Link>
+                        <Link  href={token ? "/backoffice/dashboard" : "/backoffice/signin"}>MASUK</Link>
                     </Button>
                 </CardContent>
             </Card>

@@ -65,7 +65,7 @@ const SendVerification = ({ params: { id } }: { params: { id: string } }) => {
                     </div>
                 )}
                 <Button type="button" className="w-full" asChild variant={'default'}>
-                    <Link shallow href={'/backoffice/signin'}>KEMBALI</Link>
+                    <Link  href={'/backoffice/signin'}>KEMBALI</Link>
                 </Button>
             </CardContent>
         </Card>

@@ -91,12 +91,12 @@ const SignUpPage = () => {
                         )} />
                         <div className="w-full flex justify-end">
                             <Button type="button" className="w-fit" asChild variant={'link'} size={'sm'}>
-                                <Link shallow href={'/backoffice/forgot'}>Lupa Password ?</Link>
+                                <Link  href={'/backoffice/forgot'}>Lupa Password ?</Link>
                             </Button>
                         </div>
                         <Button type="submit" className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "DAFTAR"}</Button>
                         <Button type="button" className="w-full" asChild variant={'outline'}>
-                            <Link shallow href={'/backoffice/signin'}>MASUK</Link>
+                            <Link  href={'/backoffice/signin'}>MASUK</Link>
                         </Button>
                     </form>
                 </Form>

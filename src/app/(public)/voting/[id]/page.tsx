@@ -115,7 +115,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                         <h3 className=" text-lg font-bold">Sumber</h3>
                         <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
                             <Button size={'sm'} asChild>
-                                <Link shallow href={data.selected?.sourceLink} target={"_blank"}>Sumber</Link>
+                                <Link  href={data.selected?.sourceLink} target={"_blank"}>Sumber</Link>
                             </Button>
                         </div>
                     </section>

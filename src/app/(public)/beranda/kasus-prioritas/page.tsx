@@ -43,10 +43,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -70,10 +70,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -106,10 +106,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -133,10 +133,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -169,10 +169,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -196,10 +196,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -232,10 +232,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -260,10 +260,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -296,10 +296,10 @@ export default function Page() {
                                 </TextToSpeech>
                                 <div className=' flex gap-3'>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
+                                        <Link  href="https://jdih.lpsk.go.id/" target={"_blank"}>JDIH</Link>
                                     </Button>
                                     <Button size={'sm'} asChild>
-                                        <Link shallow href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
+                                        <Link  href="https://eppid.lpsk.go.id/" target={"_blank"}>EPPID</Link>
                                     </Button>
                                 </div>
                             </div>

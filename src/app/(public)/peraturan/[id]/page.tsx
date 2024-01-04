@@ -64,7 +64,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                         <h3 className=" text-lg font-bold">Sumber</h3>
                         <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
                             <Button size={'sm'} asChild>
-                                <Link shallow href={data.selected.sourceLink} target={"_blank"}>{data.selected.sourceLink}</Link>
+                                <Link  href={data.selected.sourceLink} target={"_blank"}>{data.selected.sourceLink}</Link>
                             </Button>
                         </div>
                     </section>
@@ -74,7 +74,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                         <h3 className=" text-lg font-bold">Video</h3>
                         <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
                             <Button size={'sm'} asChild>
-                                <Link shallow href={data.selected.videoLink} target={"_blank"}>{data.selected.videoLink}</Link>
+                                <Link  href={data.selected.videoLink} target={"_blank"}>{data.selected.videoLink}</Link>
                             </Button>
                         </div>
                     </section>

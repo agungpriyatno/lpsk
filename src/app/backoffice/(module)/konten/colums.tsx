@@ -64,7 +64,7 @@ export const columns: ColumnDef<PublicationColumn>[] = [
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="space-x-2" asChild>
-                            <Link shallow href={"/backoffice/konten/" + data.id}>
+                            <Link  href={"/backoffice/konten/" + data.id}>
                                 <div className="flex gap-2">
                                     <FileSearchIcon size={20} /> <span>Detail</span>
                                 </div>

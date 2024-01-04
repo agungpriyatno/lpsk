@@ -39,7 +39,7 @@ export const SideBar = () => {
 export const SidebarItem = ({ icon, name, url, active }: { active: boolean, name: string, url: string, icon: JSX.Element }) => {
     return (
         <li className={cn("px-3 py-2 hover:bg-muted text-sm rounded", { "bg-muted": active })}>
-            <Link shallow href={url}>
+            <Link  href={url}>
                 <div className="flex gap-2">
                     {icon}
                     <span>{name}</span>

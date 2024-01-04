@@ -23,7 +23,7 @@ const Page = async ({ params: { id } }: PageProps) => {
     return (
         <section className="space-y-5 py-5">
             <Button asChild variant={'default'} size={'icon'} className=" rounded-full">
-                <Link shallow href={"/backoffice/konten"}>
+                <Link  href={"/backoffice/konten"}>
                     <ChevronLeft />
                 </Link>
             </Button>
@@ -73,7 +73,7 @@ const Page = async ({ params: { id } }: PageProps) => {
                     <h3 className=" text-lg font-bold">Sumber</h3>
                     <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
                         <Button size={'sm'} asChild>
-                            <Link shallow href={data.selected.sourceLink} target={"_blank"}>{data.selected.sourceLink}</Link>
+                            <Link  href={data.selected.sourceLink} target={"_blank"}>{data.selected.sourceLink}</Link>
                         </Button>
                     </div>
                 </section>
@@ -83,7 +83,7 @@ const Page = async ({ params: { id } }: PageProps) => {
                     <h3 className=" text-lg font-bold">Video</h3>
                     <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
                         <Button size={'sm'} asChild>
-                            <Link shallow href={data.selected.videoLink.slice(0, 10)} target={"_blank"}>{data.selected.videoLink}</Link>
+                            <Link  href={data.selected.videoLink.slice(0, 10)} target={"_blank"}>{data.selected.videoLink}</Link>
                         </Button>
                     </div>
                 </section>
@@ -93,7 +93,7 @@ const Page = async ({ params: { id } }: PageProps) => {
                 <h3 className=" text-xl font-bold">DAFTAR PENGAJUAN</h3>
                 {data.draft.map((item) => (
                     <div key={item.id} className="px-3 py-2 bg-background rounded">
-                        <Link shallow href={'/admin/pengajuan-konten/' + item.id}>
+                        <Link  href={'/admin/pengajuan-konten/' + item.id}>
                             <div className="flex w-full place-items-center gap-2">
                                 <div className="flex flex-col flex-1">
                                     <h4 className="text-base font-bold">{item.title}</h4>

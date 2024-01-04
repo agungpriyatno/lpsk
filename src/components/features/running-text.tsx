@@ -44,10 +44,10 @@ export const AppRunningText = () => {
                         variants={marqueeVariants}
                         animate="animate"
                     >
-                        <Link shallow href={'/'} className=" flex-shrink-0">
+                        <Link  href={'/'} className=" flex-shrink-0">
                             :: Penyandang Disabilitas Wajib Punya Hak yang Sama untuk Dilindungi ::
                         </Link>
-                        <Link shallow href={'/'} className=" flex-shrink-0">
+                        <Link  href={'/'} className=" flex-shrink-0">
                             :: Penyandang Disabilitas Wajib Punya Hak yang Sama untuk Dilindungi ::
                         </Link>
                         

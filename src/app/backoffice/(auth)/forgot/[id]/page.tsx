@@ -74,7 +74,7 @@ const ForgotPage = ({ params: { id } }: { params: { id: string } }) => {
                         )} />
                         <Button className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "RESET"}</Button>
                         <Button type="button" className="w-full" asChild variant={'outline'}>
-                            <Link shallow href={'/backoffice/signin'}>KEMBALI</Link>
+                            <Link  href={'/backoffice/signin'}>KEMBALI</Link>
                         </Button>
                     </form>
                 </Form>

@@ -67,7 +67,7 @@ export default async function Home() {
                     height={400}
                   />
                 </div>
-                <Link shallow href={"/berita/" + item.id}>
+                <Link  href={"/berita/" + item.id}>
                   <div className="flex flex-col max-w-full p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
                     <h5 className="text-base font-bold max-w-full">{item.selected?.title.slice(0, 25)}</h5>
                     <p className="text-sm">{item.selected?.content?.slice(0, 40)}...</p>

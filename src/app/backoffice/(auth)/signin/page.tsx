@@ -86,15 +86,15 @@ const SignInPage = () => {
                         )} />
                         <div className="w-full flex justify-between">
                             <Button type="button" className="w-fit" asChild variant={'link'} size={'sm'}>
-                                <Link shallow href={'/backoffice/verification'}>Verifikasi Email</Link>
+                                <Link  href={'/backoffice/verification'}>Verifikasi Email</Link>
                             </Button>
                             <Button type="button" className="w-fit" asChild variant={'link'} size={'sm'}>
-                                <Link shallow href={'/backoffice/forgot'}>Lupa Password ?</Link>
+                                <Link  href={'/backoffice/forgot'}>Lupa Password ?</Link>
                             </Button>
                         </div>
                         <Button className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "MASUK"}</Button>
                         {/* <Button type="button" className="w-full" asChild variant={'outline'}>
-                            <Link shallow href={'/backoffice/signup'}>DAFTAR</Link>
+                            <Link  href={'/backoffice/signup'}>DAFTAR</Link>
                         </Button> */}
                     </form>
                 </Form>

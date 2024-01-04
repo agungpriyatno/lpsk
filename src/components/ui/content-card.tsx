@@ -23,7 +23,7 @@ export const ContentCardA = ({ title, description, image, link }: ContentProps) 
                     <HeaderSection>{title}</HeaderSection>
                     <TextToSpeech><p className='text-base'>{description}</p></TextToSpeech>
                     {link != undefined && <Button asChild variant={'outline'} className="w-fit">
-                        <Link shallow href={link}>Selengkapnya</Link>
+                        <Link  href={link}>Selengkapnya</Link>
                     </Button>}
                 </div>
             </AppContainer>
@@ -46,7 +46,7 @@ export const ContentCardB = ({ title, description, image, link }: ContentProps) 
                             <HeaderSection>{title}</HeaderSection>
                             <TextToSpeech><p className='text-base'>{description}</p></TextToSpeech>
                             {link != undefined && <Button asChild variant={'outline'} className="w-fit">
-                                <Link shallow href={link}>Selengkapnya</Link>
+                                <Link  href={link}>Selengkapnya</Link>
                             </Button>}
                         </div>
                     </div>

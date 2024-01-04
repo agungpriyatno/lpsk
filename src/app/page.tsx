@@ -26,7 +26,7 @@ export default function Home() {
           >
             <h1 className='text-4xl font-bold text-slate-100'>Lembaga Perlindungan Saksi dan Korban</h1>
             <Button variant={'default'} asChild className='text-slate-100 dark:text-slate-800'>
-              <Link shallow href={'/beranda'}>
+              <Link  href={'/beranda'}>
                 MASUK
               </Link>
             </Button>

@@ -27,18 +27,18 @@ export const FooterFE = () => {
                     <div className=" grid grid-cols-2 gap-3">
                         <div className="flex flex-col gap-2">
                             <h6 className="font-bold">Aplikasi</h6>
-                            <Link shallow href={'/'} className="text-sm">Simpusako</Link>
-                            <Link shallow href={'/'} className="text-sm">Simpelkan</Link>
-                            <Link shallow href={'/'} className="text-sm">Fondasi</Link>
-                            <Link shallow href={'/'} className="text-sm">Lemon</Link>
-                            <Link shallow href={'/'} className="text-sm">L4por</Link>
-                            <Link shallow href={'/'} className="text-sm">SSK</Link>
+                            <Link  href={'/'} className="text-sm">Simpusako</Link>
+                            <Link  href={'/'} className="text-sm">Simpelkan</Link>
+                            <Link  href={'/'} className="text-sm">Fondasi</Link>
+                            <Link  href={'/'} className="text-sm">Lemon</Link>
+                            <Link  href={'/'} className="text-sm">L4por</Link>
+                            <Link  href={'/'} className="text-sm">SSK</Link>
                         </div>
                         <div className="flex flex-col gap-2">
                             <h6 className="font-bold">Sosial Media</h6>
-                            <Link shallow href={'/'} className="text-sm">Facebook</Link>
-                            <Link shallow href={'/'} className="text-sm">Instagram</Link>
-                            <Link shallow href={'/'} className="text-sm">Twitter (X)</Link>
+                            <Link  href={'/'} className="text-sm">Facebook</Link>
+                            <Link  href={'/'} className="text-sm">Instagram</Link>
+                            <Link  href={'/'} className="text-sm">Twitter (X)</Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-between h-full gap-2">
