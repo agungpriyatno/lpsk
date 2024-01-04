@@ -41,11 +41,10 @@ export const FooterFE = () => {
                             <Link shallow href={'/'} className="text-sm">Twitter (X)</Link>
                         </div>
                     </div>
-                    <div className="flex flex-col justify-between h-full">
+                    <div className="flex flex-col justify-between h-full gap-2">
                         <h3 className="font-bold text-xl">Lembaga Perlindungan Saksi dan Korban (LPSK)</h3>
                         <div className="h-[100px] w-[100px] relative">
-                        <Image src="/images/lpsk-lg.png" alt="" fill sizes="100vh" />
-
+                            <Image src="/images/lpsk-lg.png" alt="" fill sizes="100vh" />
                         </div>
                         <div className="flex flex-col gap-5">
                             <small className="flex gap-2 place-items-center"><PhoneCallIcon size={14} /> 021-111-222-333</small>
