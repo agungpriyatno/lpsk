@@ -29,7 +29,7 @@ export default function RootLayout({
         <AppProvider>
           {children}
         </AppProvider>
-        <SpeedInsights/>
+        {/* <SpeedInsights/> */}
       </body>
     </html>
   )

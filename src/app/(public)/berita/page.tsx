@@ -4,6 +4,7 @@ import db from "@/lib/db"
 import Image from "next/image"
 import Link from "next/link"
 import { TabMenu } from "./tab"
+import { DataTablePagination } from "@/components/ui/data-table-pagination"
 
 type PageProps = {
     searchParams: {
@@ -15,8 +16,10 @@ type PageProps = {
 const Page = async ({ searchParams: { status, search } }: PageProps) => {
     const data = await db.publicationCategory.findFirstOrThrow({ where: { code: "LPSK-BERITA" }, include: { subs: true } })
     const list = await db.publication.findMany({
+        skip: 0,
+        take: 50,
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-        where: { AND: [{ selected: { category: {code: "LPSK-BERITA"}} }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+        where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
     return (
         <div className=" space-y-5 w-full pb-16">
@@ -35,15 +38,15 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                 {list.map(({ selected, id }) => (
                     <div className="bg-background rounded relative overflow-hidden group" key={id}>
                         <AspectRatio ratio={1 / 1}>
-                            <Link  href={"/berita/" + id}>
+                            <Link href={"/berita/" + id}>
                                 <div className="flex flex-col p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
-                                 <h5 className="text-base font-bold">{selected?.title.slice(0, 20)}</h5>
+                                    <h5 className="text-base font-bold">{selected?.title.slice(0, 20)}</h5>
                                     <p className="text-sm">{selected?.content?.slice(0, 20)}</p>
                                     <small className="text-xs">Diunggah oleh {selected?.author?.name}</small>
                                 </div>
                             </Link>
                             <div className="relative w-full h-full bg-slate-800">
-                                <Image src={process.env.BUCKET_URL_ACCESS +'/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-70 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
+                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-70 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
                             </div>
                             <div className=" absolute z-20 right-2 top-2">
                                 {/* {selected?.category != undefined && (
@@ -71,6 +74,9 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                     </AppContainer>
                 )
             }
+            <AppContainer>
+                <DataTablePagination options={{}} />
+            </AppContainer>
         </div>
     )
 }

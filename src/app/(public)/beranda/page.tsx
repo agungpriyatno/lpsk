@@ -28,6 +28,9 @@ export default async function Home() {
   })
   return (
     <div className='flex flex-col gap-10'>
+      <div className='fixed h-screen w-screen left-0 top-0 bg-slate-800/50 z-50 flex justify-center place-items-center'>
+        <div className=' bg-background p-5 rounded w-[350px] h-[600px] md:w-[600px] md:h-[400px] xl:w-[800px] xl:h-[600px]'></div>
+      </div>
       <CarouselSection />
       <div className='w-full'>
         <AppContainer className=' space-y-5'>
@@ -76,9 +79,6 @@ export default async function Home() {
                 </Link>
               </figure>
             ))}
-            <figure className="shrink-0 w-[12px] md:w-[28px] xl:w-[56px] 2xl:w-[156px] h-[400px]">
-            </figure>
-
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -86,7 +86,7 @@ export default async function Home() {
       <AplicationExternalSection />
 
       <AppContainer>
-        <IDMap />
+        <IDMap/>
       </AppContainer>
       <ChartSection />
       <CardSection />

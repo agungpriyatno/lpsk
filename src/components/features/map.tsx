@@ -84,36 +84,15 @@ const IDMap = () => {
                   id={item.properties.id}
                   key={item.properties.id}
                   onClick={(e) => {
-                    console.log(e.currentTarget.transform.baseVal.consolidate())
                     setSelected({ id: item.properties.id, provinsi: item.properties.provinsi, value: item.properties.value })
                     setOpen(true)
                   }}
-                  // onMouseEnter={(e) => {
-                  //   const clientBox = e.currentTarget.getBBox();
-                  //   const clientRect = e.currentTarget.getBoundingClientRect();
-                  //   const x = Math.round(((e.clientX - clientRect.x) / clientRect.width) * clientBox.width);
-                  //   const y = Math.round(((e.clientY - clientRect.y) / clientRect.height) * clientBox.height);
-                  //   console.log({x, y, clientBox, clientRect});
-
-                  //   setHover({ x, y, message: item.properties.value })
-                  // }}
                   onMouseMove={(e) => {
                     const clientBox = e.currentTarget.getBBox();
                     const clientRect = e.currentTarget.getBoundingClientRect();
                     const x = e.pageX - 200
                     const y = e.pageY - 100;
-                    console.log({ x, y, clientBox, clientRect });
-
                     setHover({ x, y, message: item.properties.value })
-                    // const tooltipDiv = tooltipRef.current;
-                    // if (tooltipDiv) {
-                    //   d3.select(tooltipDiv).transition().duration(200).style("opacity", 0.9);
-                    //   d3.select(tooltipDiv)
-                    //     .html()
-                    //     // TODO: some logic when the tooltip could go out from container
-                    //     .style("left", event.pageX + "px")
-                    //     .style("top", event.pageY - 28 + "px");
-                    // }
                   }}
                   onMouseLeave={() => setHover(null)}
                   d={generator(item) ?? undefined}
@@ -122,20 +101,17 @@ const IDMap = () => {
                 ></path>
                 <div>data</div>
                 <div className=" absolute px-3 py-2 rounded bg-primary left-0 right-0 z-50" style={{ left: 0, top: 0 }}>Hello</div>
-                {/* <PathTooltip svgRef={svgRef} pathRef={pathRef} tip="Hello World!" /> */}
               </>
             ))}
           </svg>
         ) : (
           <div></div>
         )}
-        {/* <div className=" absolute left-0 top-0 bg-red-50/20 z-50" style={{ height, width }}>
-        
-        </div> */}
         {hover != null && (
-          <div className=" absolute px-3 py-2 rounded bg-muted" style={{ left: hover.x, top: hover.y }}>{hover.message}</div>
+          <div className=" absolute px-3 py-2 rounded bg-muted" key={1} style={{ left: hover.x, top: hover.y }}>{hover.message}</div>
         )}
         {open && <motion.div
+        key={2}
           className="bg-slate-800/50 fixed left-0 top-0 h-full w-full z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -167,9 +143,6 @@ const IDMap = () => {
             </div>
           </div>
         </motion.div>}
-        <div className=" absolute left-0 bottom-0 flex gap-2">
-
-        </div>
       </AspectRatio>
     </div>
 

@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation"
 export const SideBar = () => {
     const pathname = usePathname()
     return (
-        <div className=" bg-background h-full w-full rounded py-3 flex flex-col justify-between">
+        <div className="bg-background h-full w-full rounded py-3 flex flex-col justify-between">
             <div>
                 <div className="px-3 py-3 flex place-items-center gap-2">
                     <Avatar>
@@ -20,11 +20,12 @@ export const SideBar = () => {
                     </Avatar>
                     <h1 className="text-lg font-bold">LPSK</h1>
                 </div>
-                <ul className="px-3">
+                <ul className="px-3 space-y-1">
                     <SidebarItem icon={<LayoutDashboardIcon size={20} />} active={pathname.includes("/backoffice/dashboard")} name="Dashboard" url="/backoffice/dashboard" />
                     <SidebarItem icon={<UserIcon size={20} />} active={pathname.includes("/backoffice/pengguna")} name="Pengguna" url="/backoffice/pengguna" />
                     <SidebarItem icon={<NewspaperIcon size={20} />} active={pathname.includes("/backoffice/konten")} name="Konten" url="/backoffice/konten" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/pengajuan-konten")} name="Pengajuan Konten" url="/backoffice/pengajuan-konten" />
+                    <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/sorot")} name="Sorot Konten" url="/backoffice/sorot" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/kategori")} name="Kategori Konten" url="/backoffice/kategori" />
                     <SidebarItem icon={<ShieldIcon size={20} />} active={pathname.includes("/backoffice/hak-akses")} name="Hak Akses" url="/backoffice/hak-akses" />
                 </ul>

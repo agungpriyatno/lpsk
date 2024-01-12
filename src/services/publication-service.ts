@@ -30,7 +30,8 @@ export const findManyPublicationService = ({ query: { search, skip, take }, stat
         skip: isNaN(skip) ? 0 : skip,
         take: isNaN(take) ? 10 : take,
         where: { OR: [{ selected: { title: { contains: search } } }, { selected: { content: { contains: search } } }] },
-        include: { selected: true }
+        include: { selected: true },
+        orderBy: { createdAt: "desc" }
     })
 }
 

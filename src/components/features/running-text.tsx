@@ -30,7 +30,7 @@ export const AppRunningText = () => {
     }, [height])
     return (
         <div className={cn(
-            'bg-background fixed -bottom-20 left-0 right-0 w-full transition-all duration-200 z-40',
+            'bg-background h-fit fixed bottom-0 left-0 right-0 w-full transition-all duration-200 z-40',
             { 'bottom-0': state },
         )}>
             <div className=" absolute left-0 px-5 py-4 bg-secondary z-20">

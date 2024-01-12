@@ -129,10 +129,11 @@ model Publication {
   updatedAt  DateTime @updatedAt @map("updated_at")
   createdAt  DateTime @default(now()) @map("created_at")
 
-  status   StatusPublication @default(PUBLISH)
-  author   User?             @relation(fields: [authorId], references: [id], onDelete: SetNull)
-  draft    Draft[]           @relation("draft")
-  selected Draft?            @relation(fields: [selectedId], references: [id])
+  status               StatusPublication      @default(PUBLISH)
+  author               User?                  @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  draft                Draft[]                @relation("draft")
+  selected             Draft?                 @relation(fields: [selectedId], references: [id])
+  highlights HighlightPublication[]
 
   @@map("publications")
 }
@@ -243,4 +244,24 @@ model Module {
   roles       RoleModule[]
 
   @@map("modules")
+}
+
+model Highlight {
+  code                 String                 @id
+  name                 String
+  createdAt            DateTime               @default(now()) @map("created_at")
+  publications HighlightPublication[]
+
+  @@map("highlights")
+}
+
+model HighlightPublication {
+  publicationId String
+  highlightCode String
+
+  publication Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+  highlight   Highlight   @relation(fields: [highlightCode], references: [code], onDelete: Cascade)
+
+  @@id([publicationId, highlightCode])
+  @@map("highlight_publications")
 }

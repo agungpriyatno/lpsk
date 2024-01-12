@@ -64,7 +64,9 @@ export const columns: ColumnDef<DraftTable>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteContent id={data.id} /></DropdownMenuItem>
+                       {
+                        data.status != "ACCEPT" &&  <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteContent id={data.id} /></DropdownMenuItem>
+                       }
                         <DropdownMenuItem className="space-x-2" asChild>
                             <Link  href={"/backoffice/pengajuan-konten/" + data.id}>
                                 <div className="flex gap-2">
