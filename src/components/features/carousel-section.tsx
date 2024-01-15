@@ -1,36 +1,32 @@
 import { TCarouselItem } from "@/types/utils"
 import { Carousel, CarouselLoading } from "../ui/carousel"
 import { Suspense, useEffect, useState } from "react"
-
-const carouselItems: TCarouselItem[] = [
-    {
-        title: "PENGUMUMAN",
-        descriptions: "HASIL AKHIR SELEKSI CALON ANGGOTA LPSK MASA JABATAN 2024-2029",
-        image: "/images/lpsk-carousel.png"
-    },
-    {
-        title: "INFORMASI",
-        descriptions: "Sayembara Logo LPSK",
-        image: "https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-    },
-    {
-        title: "Hasil Seleksi Administrasi",
-        descriptions: "Pelamar Seleksi PPPK Lembaga Perlindungan Saksi dan Korban",
-        image: "https://images.pexels.com/photos/773471/pexels-photo-773471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-    },
-    {
-        title: "PENGUMUMAN",
-        descriptions: " PENDAFTARAN SELEKSI CALON ANGGOTA LPSK 2024-2029",
-        image: "https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-    },
-]
+import { Highlight, HighlightPublication, Publication, Draft } from "@prisma/client"
 
 
-export const CarouselSection = async () => {
+
+export const CarouselSection = async ({ data }: {
+    data: Highlight & {
+        publications: (HighlightPublication & {
+            publication: Publication & {
+                selected: Draft | null
+            }
+        })[]
+    } | null
+}) => {
+
+    const list: TCarouselItem[] = data != null ? data.publications.map((item) => {
+        const post = item.publication.selected
+        return {
+            title: post?.title ?? "",
+            descriptions: post?.content?.replace(/(<([^>]+)>)/ig, '').split(".")[0] ?? "",
+            image: process.env.BUCKET_URL_ACCESS + "/publikasi/" + (post?.thumbnail ?? "")
+        }
+    }) : []
     return (
         <section>
             <Suspense fallback={<CarouselLoading />}>
-                <Carousel images={carouselItems} />
+                <Carousel data={list} />
             </Suspense>
         </section>
     )

@@ -19,7 +19,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
             <div className='h-[400px] w-full bg-background'>
                 <div className=' flex flex-col w-full h-full justify-center place-items-center relative'>
                     <div className='h-full w-full absolute bg-slate-800'>
-                        <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + data.selected?.thumbnail} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
+                        <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + (data.selected?.thumbnail ?? "default_zz.jpg")} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
                     </div>
                 </div>
             </div>
@@ -28,12 +28,12 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                     <h1 className=" text-2xl font-bold leading-none">{data.selected?.title}</h1>
                     <small>Diunggah oleh {data.author?.name}</small>
                 </section>
-                <section className="space-y-3">
-                    {
+                <section className="space-y-3" dangerouslySetInnerHTML={{__html: data.selected?.content ?? ""}}>
+                    {/* {
                         data.selected?.content?.split("\n").map((content, i) => (
                             <p className=" text-base" key={i}>{content}</p>
                         ))
-                    }
+                    } */}
                 </section>
                 {data.selected?.media != undefined && data.selected.media.length > 0 && (
                     <section className="space-y-3">

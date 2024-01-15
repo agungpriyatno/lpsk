@@ -143,8 +143,8 @@ export const CreateUser = ({ id }: { id: string }) => {
                                             <SelectContent onClick={(e) => e.stopPropagation()} >
                                                 <Input className="mb-2" placeholder="Cari" defaultValue={search} onChange={(e) => { setSearch(e.target.value), findPublication() }} />
                                                 {
-                                                    !publication.isLoading && publication.data.map((item) => (
-                                                        <SelectItem value={item.id} onClick={(e) => { e.stopPropagation() }}>{item.selected?.title}</SelectItem>
+                                                    !publication.isLoading && publication.data.map((item, i) => (
+                                                        <SelectItem key={i} value={item.id} onClick={(e) => { e.stopPropagation() }}>{item.selected?.title}</SelectItem>
                                                     ))
                                                 }
                                             </SelectContent>

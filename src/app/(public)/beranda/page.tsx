@@ -26,12 +26,14 @@ export default async function Home() {
     include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
     where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }] }
   })
+  const carousel = await db.highlight.findUnique({ where: { code: "LPSK-CAROUSEL" }, include: { publications: { include: { publication: { include: { selected: true } } } } } })
+  
   return (
     <div className='flex flex-col gap-10'>
-      <div className='fixed h-screen w-screen left-0 top-0 bg-slate-800/50 z-50 flex justify-center place-items-center'>
+      {/* <div className='fixed h-screen w-screen left-0 top-0 bg-slate-800/50 z-50 flex justify-center place-items-center'>
         <div className=' bg-background p-5 rounded w-[350px] h-[600px] md:w-[600px] md:h-[400px] xl:w-[800px] xl:h-[600px]'></div>
-      </div>
-      <CarouselSection />
+      </div> */}
+      <CarouselSection data={carousel} />
       <div className='w-full'>
         <AppContainer className=' space-y-5'>
           <HeaderSection>INFORMASI LPSK</HeaderSection>
@@ -49,7 +51,7 @@ export default async function Home() {
         image='/images/lpsk-carousel.png'
       />
       <AplicationSection />
-      <div className='w-full bg-background py-5'>
+      {/* <div className='w-full bg-background py-5'>
         <AppContainer>
           <HeaderSection className='flex gap-2'>
             BERITA
@@ -70,7 +72,7 @@ export default async function Home() {
                     height={400}
                   />
                 </div>
-                <Link  href={"/berita/" + item.id}>
+                <Link href={"/berita/" + item.id}>
                   <div className="flex flex-col max-w-full p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
                     <h5 className="text-base font-bold max-w-full">{item.selected?.title.slice(0, 25)}</h5>
                     <p className="text-sm">{item.selected?.content?.slice(0, 40)}...</p>
@@ -82,11 +84,10 @@ export default async function Home() {
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
-      </div>
+      </div> */}
       <AplicationExternalSection />
-
       <AppContainer>
-        <IDMap/>
+        <IDMap />
       </AppContainer>
       <ChartSection />
       <CardSection />

@@ -15,21 +15,21 @@ export const CarouselLoading = () => {
     )
 }
 
-export const Carousel = ({ images }: { images: TCarouselItem[] }) => {
+export const Carousel = ({ data }: { data: TCarouselItem[] }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState('left');
 
     const handleNext = () => {
         setDirection("right");
         setCurrentIndex((prevIndex) =>
-            prevIndex + 1 === images.length ? 0 : prevIndex + 1
+            prevIndex + 1 === data.length ? 0 : prevIndex + 1
         );
     };
 
     const handlePrevious = () => {
         setDirection("left");
         setCurrentIndex((prevIndex) =>
-            prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
+            prevIndex - 1 < 0 ? data.length - 1 : prevIndex - 1
         );
     };
 
@@ -45,7 +45,7 @@ export const Carousel = ({ images }: { images: TCarouselItem[] }) => {
                     <motion.img
                         className="w-full h-full opacity-40 object-cover"
                         key={currentIndex}
-                        src={images[currentIndex].image}
+                        src={data[currentIndex].image}
                         initial={{ x: 300, opacity: 0 }}
                         animate={{ x: 0, opacity: 0.4, transition: { duration: 0.3 } }}
                         exit={{ x: -300, opacity: 0, transition: { duration: 0.3 } }}
@@ -59,8 +59,8 @@ export const Carousel = ({ images }: { images: TCarouselItem[] }) => {
                     exit={{ x: -300, opacity: 0, transition: { duration: 0.3 } }}>
                     <AppContainer>
                         <div className="flex flex-col py-20 justify-end h-full">
-                            <TextToSpeech><h1 className='text-4xl font-bold'>{images[currentIndex].title}</h1></TextToSpeech>
-                            <TextToSpeech><p className='text-base'>{images[currentIndex].descriptions}</p></TextToSpeech>
+                            <TextToSpeech><h1 className='text-4xl font-bold'>{data[currentIndex].title}</h1></TextToSpeech>
+                            <TextToSpeech><p className='text-base'>{data[currentIndex].descriptions}</p></TextToSpeech>
                         </div>
                     </AppContainer>
                 </motion.div>
@@ -73,7 +73,7 @@ export const Carousel = ({ images }: { images: TCarouselItem[] }) => {
             </Button>
             <div className="absolute left-0 bottom-14 flex">
                 <AppContainer className="flex gap-2">
-                    {images.map((_, index) => (
+                    {data.map((_, index) => (
                         <div
                             key={index}
                             className={`h-3 w-3 rounded-full ${currentIndex === index ? "bg-orange-500" : "bg-slate-100"} transition-colors duration-300`}

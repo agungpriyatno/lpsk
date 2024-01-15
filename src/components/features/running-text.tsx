@@ -9,12 +9,12 @@ import Link from "next/link"
 
 const marqueeVariants = {
     animate: {
-        x: [0, -1035],
+        x: [0, -2000],
         transition: {
             x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 10,
+                duration: 25,
                 ease: "linear",
             },
         },
@@ -22,7 +22,7 @@ const marqueeVariants = {
 };
 
 
-export const AppRunningText = () => {
+export const AppRunningText = ({ list }: { list: any[] }) => {
     const [state, setState] = useState(false)
     const height = useAppSelector((state) => state.scrollReducer.value)
     useEffect(() => {
@@ -38,21 +38,19 @@ export const AppRunningText = () => {
             </div>
             <AppContainer>
                 <div className='flex justify-between place-item-center'>
-                <div className="flex-1 overflow-hidden">
-                    <motion.div
-                        className=" px-3 py-4 flex gap-10"
-                        variants={marqueeVariants}
-                        animate="animate"
-                    >
-                        <Link  href={'/'} className=" flex-shrink-0">
-                            :: Penyandang Disabilitas Wajib Punya Hak yang Sama untuk Dilindungi ::
-                        </Link>
-                        <Link  href={'/'} className=" flex-shrink-0">
-                            :: Penyandang Disabilitas Wajib Punya Hak yang Sama untuk Dilindungi ::
-                        </Link>
-                        
-                    </motion.div>
-                </div>
+                    <div className="flex-1 overflow-hidden">
+                        <motion.div
+                            className=" px-3 py-4 flex gap-10"
+                            variants={marqueeVariants}
+                            animate="animate"
+                        >
+                            {list?.map((item) => (
+                                <Link key={item.id} href={`/berita/${item.id}`} className=" flex-shrink-0">
+                                    :: {item.selected.title ?? ""} ::
+                                </Link>
+                            ))}
+                        </motion.div>
+                    </div>
                 </div>
             </AppContainer>
         </div>

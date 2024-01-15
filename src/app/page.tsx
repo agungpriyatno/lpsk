@@ -10,9 +10,8 @@ export default function Home() {
   return (
     <div className='h-screen w-full'>
       <div className='h-full w-full relative bg-slate-800'>
-        <motion.img
+        <motion.div
           className="w-full h-full object-cover"
-          src={'/images/lpsk-carousel.png'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.5, transition: { duration: 0.3 } }}
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
@@ -24,9 +23,12 @@ export default function Home() {
             animate={{ y: 0, opacity: 1, transition: { duration: 0.3 } }}
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
           >
+            <div className='h-[200px] w-[200px] relative'>
+              <Image src={"/images/lpsk-lg.png"} alt='' fill></Image>
+            </div>
             <h1 className='text-4xl font-bold text-slate-100'>Lembaga Perlindungan Saksi dan Korban</h1>
             <Button variant={'default'} asChild className='text-slate-100 dark:text-slate-800'>
-              <Link  href={'/beranda'}>
+              <Link href={'/beranda'}>
                 MASUK
               </Link>
             </Button>

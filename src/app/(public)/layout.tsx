@@ -2,7 +2,7 @@ import GoogleAnalytics from '@/components/features/analytic'
 import { FooterFE } from '@/components/features/footer-section'
 import { AppHeader } from '@/components/features/header'
 import { HelpdeskIcon } from '@/components/features/help-desk'
-import { AppRunningText } from '@/components/features/running-text'
+import ServerRunningText from '@/components/features/server-running-text'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function Layout({
             <AppHeader />
             {children}
             <FooterFE />
-            <AppRunningText />
+            <ServerRunningText />
             <GoogleAnalytics />
             <HelpdeskIcon />
         </div>

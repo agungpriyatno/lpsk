@@ -33,13 +33,15 @@ const Page = async ({ params: { id } }: PageProps) => {
                 <h1 className=" text-2xl font-bold leading-none">{data?.title}</h1>
                 <small>Diunggah oleh {data.author?.name}</small>
             </section>
-            <section className="space-y-3">
+            {/* <section className="space-y-3">
                 {
                     data?.content?.split("\n").map((content, i) => (
                         <p className=" text-base" key={i}>{content}</p>
                     ))
                 }
-            </section>
+            </section> */}
+            <section className="space-y-3" dangerouslySetInnerHTML={{__html: data?.content ?? ""}}>
+                </section>
             {data?.media != undefined && data.media.length > 0 && (
                 <section className="space-y-3">
                     <h3 className=" text-lg font-bold">Dokumen</h3>

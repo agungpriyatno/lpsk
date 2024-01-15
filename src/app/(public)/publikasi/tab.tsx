@@ -8,7 +8,7 @@ import Link from "next/link"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { FormEvent } from "react"
 
-export const TabMenu = ({ data }: {
+export const TabMenu = ({ data, search }: {
     data: {
         subs: {
             id: string;
@@ -20,7 +20,8 @@ export const TabMenu = ({ data }: {
         code: string;
         name: string;
         createdAt: Date;
-    }
+    },
+    search?: string
 }) => {
     const pathname = usePathname()
     const searchParams = useSearchParams()
@@ -50,7 +51,7 @@ export const TabMenu = ({ data }: {
                 </NavigationMenuList>
             </NavigationMenu>
             <form className="flex gap-2 w-full" onSubmit={onSearch}>
-                <Input placeholder="Cari Data" className=" bg-background" />
+                <Input placeholder="Cari Data" className=" bg-background" defaultValue={search} />
                 <Button variant={'default'} className=""><SearchIcon size={20} /></Button>
             </form>
         </AppContainer>

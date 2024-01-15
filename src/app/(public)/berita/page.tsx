@@ -9,16 +9,22 @@ import { DataTablePagination } from "@/components/ui/data-table-pagination"
 type PageProps = {
     searchParams: {
         status?: string,
-        search?: string
+        search?: string,
+        skip?: string,
+        take?: string,
     }
 }
 
-const Page = async ({ searchParams: { status, search } }: PageProps) => {
+const Page = async ({ searchParams: { status, search, skip, take } }: PageProps) => {
     const data = await db.publicationCategory.findFirstOrThrow({ where: { code: "LPSK-BERITA" }, include: { subs: true } })
     const list = await db.publication.findMany({
-        skip: 0,
-        take: 50,
+        skip: isNaN(Number(skip)) ? 0 : Number(skip),
+        take: isNaN(Number(take)) ? 20 : Number(take),
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
+        where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, search != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+    })
+
+    const count = await db.publication.count({
         where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
     return (
@@ -30,6 +36,7 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                     </div>
                     <div className=' absolute left-0 top-0 flex flex-col w-screen h-full justify-center place-items-center'>
                         <h1 className=' text-3xl font-bold absolute text-slate-100'>Berita</h1>
+                        
                     </div>
                 </div>
             </div>
@@ -41,12 +48,11 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                             <Link href={"/berita/" + id}>
                                 <div className="flex flex-col p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
                                     <h5 className="text-base font-bold">{selected?.title.slice(0, 20)}</h5>
-                                    <p className="text-sm">{selected?.content?.slice(0, 20)}</p>
                                     <small className="text-xs">Diunggah oleh {selected?.author?.name}</small>
                                 </div>
                             </Link>
                             <div className="relative w-full h-full bg-slate-800">
-                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-70 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
+                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + (selected?.thumbnail ?? "default_zz.jpg")} alt="" className=" object-cover opacity-70 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
                             </div>
                             <div className=" absolute z-20 right-2 top-2">
                                 {/* {selected?.category != undefined && (
@@ -75,7 +81,7 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                 )
             }
             <AppContainer>
-                <DataTablePagination options={{}} />
+                <DataTablePagination options={{total: count, skip, search, take}} />
             </AppContainer>
         </div>
     )
