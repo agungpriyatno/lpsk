@@ -88,7 +88,7 @@ const Page = async ({ params: { id } }: PageProps) => {
                 <h3 className=" text-xl font-bold">DAFTAR PENGAJUAN</h3>
                 {data.draft.map((item) => (
                     <div key={item.id} className="px-3 py-2 bg-background rounded">
-                        <Link href={'/admin/pengajuan-konten/' + item.id}>
+                        <Link href={'/backoffice/pengajuan-konten/' + item.id}>
                             <div className="flex w-full place-items-center gap-2">
                                 <div className="flex flex-col flex-1">
                                     <h4 className="text-base font-bold">{item.title}</h4>
