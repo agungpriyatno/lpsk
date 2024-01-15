@@ -1,5 +1,5 @@
 import { TCarouselItem } from "@/types/utils"
-import { Carousel, CarouselLoading } from "../ui/carousel"
+import { Carousel, CarouselLoading } from "../ui/carousel-ui"
 import { Suspense, useEffect, useState } from "react"
 import { Highlight, HighlightPublication, Publication, Draft } from "@prisma/client"
 
@@ -23,6 +23,7 @@ export const CarouselSection = async ({ data }: {
             image: process.env.BUCKET_URL_ACCESS + "/publikasi/" + (post?.thumbnail ?? "")
         }
     }) : []
+    
     return (
         <section>
             <Suspense fallback={<CarouselLoading />}>

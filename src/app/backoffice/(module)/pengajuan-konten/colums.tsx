@@ -28,7 +28,7 @@ export const columns: ColumnDef<DraftTable>[] = [
         header: ({ column }) =>
             <DataTableColumnHeader column={column} title="Konten" />,
         cell: ({ row }) => {
-            const data: string = row.original.content?.slice(0, 50) + "..."
+            const data: string = row.original.content?.replace(/(<([^>]+)>)/ig, '').slice(0, 50) + "..."
             return <div className="text-left font-medium">{data}</div>
         },
     },
@@ -38,16 +38,6 @@ export const columns: ColumnDef<DraftTable>[] = [
         header: ({ column }) =>
             <DataTableColumnHeader column={column} title="Status" />,
     },
-    // {
-    //     id: "Jenis",
-    //     accessorKey: "publicationId",
-    //     header: ({ column }) =>
-    //         <DataTableColumnHeader column={column} title="Jenis" />,
-    //     cell: ({ row }) => {
-    //         const data = row.original.publicationId
-    //         return <div className="text-left font-medium">{(data == null && row.original.status === "ACCEPT") ? "Tambah" : "Ubah"}</div>
-    //     },
-    // },
     {
         header: "Aksi",
         id: "actions",

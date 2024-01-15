@@ -19,6 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { PublicationCategory, PublicationSubCategory } from "@prisma/client"
 import { format } from "date-fns"
 import { CalendarIcon, Loader2Icon, PlusIcon, Trash2Icon } from "lucide-react"
+import dynamic from "next/dynamic"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useFieldArray, useForm } from "react-hook-form"
@@ -27,6 +28,7 @@ import TextareaAutosize from 'react-textarea-autosize'
 type CategoryType = Prettify<PublicationCategory & { subs: PublicationSubCategory[] }>
 
 const CreateFeature = () => {
+    const Editor = dynamic(() => import("@/components/ui/editor"), { ssr: false });
     const { toast } = useToast()
     const router = useRouter()
     const [category, setCategory] = useState<CategoryType[]>([])
@@ -167,7 +169,7 @@ const CreateFeature = () => {
                     <FormItem>
                         <FormLabel>Konten</FormLabel>
                         <FormControl>
-                            <TextareaAutosize placeholder="Masukan konten" onKeyDown={onEnter} className="p-3 w-full text-sm  focus:outline-none mb-5 text-foreground border bg-transparent rounded" {...field}></TextareaAutosize>
+                            <Editor value={field.value} onChange={(val) => field.onChange(val)}/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -218,7 +220,7 @@ const CreateFeature = () => {
                         </FormItem>
                     )} />
                 }
-                <Separator/>
+                <Separator />
                 <LabelCheckBox id="thumbnail" label="Tambahkan Foto Sampul" checked={includeThumbnail} onCheckedChange={() => setIncludeThumbnail(!includeThumbnail)} />
                 {includeThumbnail && (
                     <div className=" border rounded p-3">

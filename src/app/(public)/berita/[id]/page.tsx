@@ -26,14 +26,9 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
             <AppContainer className=" space-y-5">
                 <section className="">
                     <h1 className=" text-2xl font-bold leading-none">{data.selected?.title}</h1>
-                    <small>Diunggah oleh {data.author?.name}</small>
+                    <small>Diunggah oleh {data.author?.name ?? "admin"}</small>
                 </section>
                 <section className="space-y-3" dangerouslySetInnerHTML={{__html: data.selected?.content ?? ""}}>
-                    {/* {
-                        data.selected?.content?.split("\n").map((content, i) => (
-                            <p className=" text-base" key={i}>{content}</p>
-                        ))
-                    } */}
                 </section>
                 {data.selected?.media != undefined && data.selected.media.length > 0 && (
                     <section className="space-y-3">

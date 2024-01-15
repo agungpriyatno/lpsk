@@ -20,6 +20,7 @@ const Page = async ({ searchParams: { status, search, skip, take } }: PageProps)
     const list = await db.publication.findMany({
         skip: isNaN(Number(skip)) ? 0 : Number(skip),
         take: isNaN(Number(take)) ? 20 : Number(take),
+        orderBy: { selected: { createdAt: "desc" } },
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
         where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, search != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
@@ -36,7 +37,7 @@ const Page = async ({ searchParams: { status, search, skip, take } }: PageProps)
                     </div>
                     <div className=' absolute left-0 top-0 flex flex-col w-screen h-full justify-center place-items-center'>
                         <h1 className=' text-3xl font-bold absolute text-slate-100'>Berita</h1>
-                        
+
                     </div>
                 </div>
             </div>
@@ -81,7 +82,7 @@ const Page = async ({ searchParams: { status, search, skip, take } }: PageProps)
                 )
             }
             <AppContainer>
-                <DataTablePagination options={{total: count, skip, search, take}} />
+                <DataTablePagination options={{ total: count, skip, search, take }} />
             </AppContainer>
         </div>
     )
