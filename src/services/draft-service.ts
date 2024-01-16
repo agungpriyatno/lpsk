@@ -79,7 +79,7 @@ export const createDraftService = async (formData: FormData) => {
             videoLink: linkVideo,
             author: { connect: { id: user.id } },
             subCategory: { connect: sub != null ? { id: sub } : undefined },
-            publishedAt: publishedAt != null ? new Date(publishedAt) : undefined,
+            createdAt: publishedAt != null ? new Date(publishedAt) : new Date(),
             category: { connect: category != null ? { code: category } : undefined },
             media: { create: filename?.map((item) => { return { media: { create: { name: item } } } }) },
             vote: closedAt != null ? { create: { vote: { create: { closedAt: new Date(closedAt), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } } : undefined

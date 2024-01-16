@@ -6,7 +6,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { AcceptDraft } from "./accept"
 import { RejectDraft } from "./reject"
-import { ShowPDF } from "@/app/(public)/publikasi/[id]/showPDF"
+import { ShowPDF } from "@/components/features/showPDF"
+
 
 type PageProps = {
     params: {

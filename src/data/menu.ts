@@ -57,7 +57,7 @@ export const MENU: TMenuItem[] = [
                 href: "/informasi/pelayanan-publik",
             },
             {
-                title: "Standar Pelayanan Pemerintah Permohonan",
+                title: "Standar Pelayanan Penerimaan Permohonan",
                 href: "/informasi/pedoman",
             },
             {

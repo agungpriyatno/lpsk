@@ -4,19 +4,17 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
-import { CreateUserDto, CreateVoteDto, createUserDto, createVoteDto } from "@/lib/validators/user"
+import { CreateVoteDto, createVoteDto } from "@/lib/validators/user"
 import { findAllRole } from "@/services/role-service"
-import { createUserService, createVoteService } from "@/services/user-service"
+import { createVoteService } from "@/services/user-service"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Role } from "@prisma/client"
-import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
-export const CreateUser = ({id}: {id: string}) => {
+export const CreateVote = ({id}: {id: string}) => {
 
     const [obsecure, setObsecure] = useState(true)
 

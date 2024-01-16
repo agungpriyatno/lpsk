@@ -22,11 +22,11 @@ const Page = async ({ searchParams: { status, search, skip, take } }: PageProps)
         take: isNaN(Number(take)) ? 20 : Number(take),
         orderBy: { selected: { createdAt: "desc" } },
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-        where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, search != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+        where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, { status: "PUBLISH" }, search != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
 
     const count = await db.publication.count({
-        where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+        where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, { status: "PUBLISH" }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
     return (
         <div className=" space-y-5 w-full pb-16">

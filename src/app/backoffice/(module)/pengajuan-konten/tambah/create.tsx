@@ -24,11 +24,12 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useFieldArray, useForm } from "react-hook-form"
 import TextareaAutosize from 'react-textarea-autosize'
+const Editor = dynamic(() => import("@/components/ui/editor"), { ssr: false });
+
 
 type CategoryType = Prettify<PublicationCategory & { subs: PublicationSubCategory[] }>
 
 const CreateFeature = () => {
-    const Editor = dynamic(() => import("@/components/ui/editor"), { ssr: false });
     const { toast } = useToast()
     const router = useRouter()
     const [category, setCategory] = useState<CategoryType[]>([])
@@ -225,7 +226,7 @@ const CreateFeature = () => {
                 {includeThumbnail && (
                     <div className=" border rounded p-3">
                         <FormItem>
-                            <Input placeholder="Foto Sampul" type={"file"} onChange={(e => { setThumbnail(e.target.files) })} accept="image/png, image/gif, image/jpeg" />
+                            <Input placeholder="Foto Sampul" type={"file"}  onChange={(e => { setThumbnail(e.target.files) })} accept="image/png, image/gif, image/jpeg" />
                         </FormItem>
                     </div>
                 )}
@@ -360,7 +361,7 @@ const CreateFeature = () => {
                                         <FormMessage />
                                     </FormItem>
                                 )} />
-                                <Input placeholder="Pilih Dokumen" type={"file"} multiple onChange={(e => onFileVote(e.target.files, i))} />
+                                <Input placeholder="Pilih Dokumen" type={"file"} accept="image/png, image/gif, image/jpeg" onChange={(e => onFileVote(e.target.files, i))} />
                             </div>
                         ))}
                         <div className="flex w-full gap-3 place-items-center">

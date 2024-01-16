@@ -1,4 +1,3 @@
-import { ShowPDF } from "@/app/(public)/publikasi/[id]/showPDF"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -9,6 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Takedown } from "./takedown"
 import { Takeup } from "./takeup"
+import { ShowPDF } from "@/components/features/showPDF"
 
 type PageProps = {
     params: {
@@ -29,7 +29,7 @@ const Page = async ({ params: { id } }: PageProps) => {
             </Button>
             <AspectRatio ratio={2 / 1} className="w-full rounded overflow-hidden">
                 <div className="w-full h-full relative">
-                    <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + data?.selected?.thumbnail} alt="" fill sizes="100vh" className=" bg-cover" />
+                    <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + (data?.selected?.thumbnail ?? "default_zz.jpg")} alt="" fill sizes="100vh" className=" object-cover" />
                 </div>
             </AspectRatio>
             <section className="">

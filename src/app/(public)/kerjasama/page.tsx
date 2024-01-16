@@ -7,20 +7,30 @@ import { TabMenu } from "./tab"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { FileIcon, DownloadCloudIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { DataTablePagination } from "@/components/ui/data-table-pagination"
 
 
 type PageProps = {
     searchParams: {
         status?: string,
-        search?: string
+        search?: string,
+        skip?: string,
+        take?: string,
     }
 }
 
-const Page = async ({ searchParams: { status, search } }: PageProps) => {
+const Page = async ({ searchParams: { status, search, skip, take } }: PageProps) => {
     const data = await db.publicationCategory.findFirstOrThrow({ where: { code: "LPSK-KERJASAMA" }, include: { subs: true } })
     const list = await db.publication.findMany({
+        skip: isNaN(Number(skip)) ? 0 : Number(skip),
+        take: isNaN(Number(take)) ? 20 : Number(take),
+        orderBy: { selected: { createdAt: "desc" } },
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-        where: { AND: [{ selected: { category: { code: "LPSK-KERJASAMA" } } }, search != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+        where: { AND: [{ selected: { category: { code: "LPSK-KERJASAMA" } } }, { status: "PUBLISH" }, search != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
+    })
+
+    const count = await db.publication.count({
+        where: { AND: [{ selected: { category: { code: "LPSK-KERJASAMA" } } }, { status: "PUBLISH" }, status != undefined ? { selected: { title: { contains: search } } } : {}, status != undefined ? { selected: { subCategoryId: status } } : {}] }
     })
     return (
         <div className=" space-y-5 w-full pb-16">
@@ -37,17 +47,17 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
             <TabMenu data={data} />
             <AppContainer className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6 gap-3">
                 {list.map(({ selected, id }) => (
-                    <Card key={id}>
+                    <Card key={id} className="flex flex-col justify-between">
                         <CardHeader className='flex justify-center place-items-center'>
                             <FileIcon size={50} />
                         </CardHeader>
                         <CardContent className='text-center'>
-                            <p>{selected?.title}</p>
+                            <p className="text-sm">{selected?.title}</p>
                         </CardContent>
                         <CardFooter className='flex justify-center place-items-center'>
                             <div className="flex gap-2">
                                 <Button className='flex gap-2'>
-                                    <Link href={"/kerjasama/"+ selected?.id} className="flex gap-2">
+                                    <Link href={"/kerjasama/" + id} className="flex gap-2">
                                         Detail
                                     </Link>
                                 </Button>
@@ -65,6 +75,9 @@ const Page = async ({ searchParams: { status, search } }: PageProps) => {
                     </AppContainer>
                 )
             }
+            <AppContainer>
+                <DataTablePagination options={{ total: count, skip, search, take }} />
+            </AppContainer>
         </div>
     )
 }

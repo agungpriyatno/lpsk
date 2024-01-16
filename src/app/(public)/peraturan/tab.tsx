@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { AppContainer } from "@/components/ui/container"
 import { Input } from "@/components/ui/input"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
+import { cn } from "@/lib/utils"
 import { SearchIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
@@ -34,14 +35,14 @@ export const TabMenu = ({ data }: {
         router.push(pathname + "?" + params.join("&"))
     }
     return (
-        <AppContainer className="flex flex-col place-items-center gap-5 w-screen">
+        <AppContainer className="flex flex-col place-items-center gap-5 w-screen ">
             
-            <NavigationMenu className="w-full">
-                <NavigationMenuList className=" flex gap-4">
+            <NavigationMenu className="w-full py-3">
+                <NavigationMenuList className=" grid grid-cols-4 gap-2">
                     {data.subs.map((item) => (
-                        <NavigationMenuItem key={item.id} >
-                            <Link  href={"/berita?status=" + item.id} legacyBehavior passHref>
-                                <NavigationMenuLink active={item.id === status} className={navigationMenuTriggerStyle()}>
+                        <NavigationMenuItem key={item.id} className=" w-full">
+                            <Link  href={"/peraturan?status=" + item.id} legacyBehavior passHref>
+                                <NavigationMenuLink active={item.id === status} className={cn(navigationMenuTriggerStyle(), "w-full py-5 text-center")}>
                                     {item.name}
                                 </NavigationMenuLink>
                             </Link>

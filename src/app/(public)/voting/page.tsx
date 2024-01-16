@@ -4,19 +4,31 @@ import db from "@/lib/db"
 import Image from "next/image"
 import Link from "next/link"
 import { TabMenu } from "./tab"
+import { DataTablePagination } from "@/components/ui/data-table-pagination"
 
 type PageProps = {
     searchParams: {
-        search?: string
+        search?: string,
+        skip?: string,
+        take?: string,
     }
 }
 
 
-const Page = async ({ searchParams: { search } }: PageProps) => {
+const Page = async ({ searchParams: { search, skip, take } }: PageProps) => {
     const list = await db.publication.findMany({
+        skip: isNaN(Number(skip)) ? 0 : Number(skip),
+        take: isNaN(Number(take)) ? 20 : Number(take),
+        orderBy: { selected: { createdAt: "desc" } },
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-        where: { AND: [{ selected: { NOT: { vote: null } } }, search != undefined ? { selected: { title: { contains: search } } } : {}] }
+        where: { AND: [{ selected: { NOT: { vote: null } } }, search != undefined ? { selected: { title: { contains: search } } } : {}, { status: "PUBLISH" }] }
     })
+
+    const count = await db.publication.count({
+        where: { AND: [{ selected: { NOT: { vote: null } } }, search != undefined ? { selected: { title: { contains: search } } } : {}, { status: "PUBLISH" }] }
+    })
+
+
     return (
         <div className=" space-y-5 w-full pb-16">
             <div className='h-[400px] w-full bg-background'>
@@ -33,15 +45,14 @@ const Page = async ({ searchParams: { search } }: PageProps) => {
                 {list.map(({ selected, id }) => (
                     <div className="bg-background rounded relative overflow-hidden group" key={id}>
                         <AspectRatio ratio={1 / 1}>
-                            <Link  href={"/voting/" + id}>
+                            <Link href={"/voting/" + id}>
                                 <div className="flex flex-col p-5 absolute left-0 top-0 w-full h-full justify-end z-10 text-slate-50">
                                     <h5 className="text-base font-bold">{selected?.title.slice(0, 20)}...</h5>
-                                    <p className="text-sm">{selected?.content?.slice(0, 20)}</p>
                                     <small className="text-xs">Diunggah oleh {selected?.author?.name}</small>
                                 </div>
                             </Link>
                             <div className="relative w-full h-full bg-slate-800">
-                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + selected?.thumbnail} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
+                                <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + (selected?.thumbnail ?? "default_zz.jpg")} alt="" className=" object-cover opacity-40 group-hover:scale-125 duration-300 transition-all" fill sizes="100vh" />
                             </div>
                             <div className=" absolute z-20 right-2 top-2">
                                 {selected?.subCategory != undefined && (
@@ -53,7 +64,6 @@ const Page = async ({ searchParams: { search } }: PageProps) => {
                         </AspectRatio>
                     </div>
                 ))}
-
             </AppContainer>
             {
                 list.length == 0 && (
@@ -64,6 +74,9 @@ const Page = async ({ searchParams: { search } }: PageProps) => {
                     </AppContainer>
                 )
             }
+            <AppContainer>
+                <DataTablePagination options={{ total: count, skip, search, take }} />
+            </AppContainer>
         </div>
     )
 }

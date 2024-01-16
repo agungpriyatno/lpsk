@@ -267,5 +267,17 @@ model HighlightPublication {
 }
 
 model Report {
-  id String @id @default(cuid())
+  id           String  @id @default(cuid())
+  name         String
+  identity     String
+  email        String
+  gender       String
+  descriptions String
+  address      String
+  phone        String
+  fax          String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("reports")
 }
