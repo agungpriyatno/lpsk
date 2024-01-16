@@ -43,7 +43,7 @@ export const Carousel = ({ data }: { data: TCarouselItem[] }) => {
             <AnimatePresence>
                 <div className="w-full h-full relative group-hover:scale-125 transition-all duration-500">
                     <motion.img
-                        className="w-full h-full opacity-40 object-cover"
+                        className="w-full h-full opacity-40 object-contain"
                         key={currentIndex}
                         src={data[currentIndex].image}
                         initial={{ x: 300, opacity: 0 }}
