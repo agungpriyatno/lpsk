@@ -1,6 +1,3 @@
-"use client"
-
-
 import { FooterFE } from '@/components/features/footer-section';
 import { GallerySection } from '@/components/features/gallery-section';
 import { TextToSpeech } from '@/components/features/text-to-speech';
