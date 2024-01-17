@@ -36,6 +36,27 @@ export const findManyDraftPubService = ({ query: { search, skip, take }, status 
 
 }
 
+export const findManyPengajuanDraftService = ({ query: { search, skip, take }, status }: FindManyDraft) => {
+
+    if (status != undefined) {
+        return db.draft.findMany({
+            orderBy: { createdAt: "desc" },
+            skip: isNaN(skip) ? 0 : skip,
+            take: isNaN(take) ? 10 : take,
+            where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }] },
+            // include: { publications: true }
+        })
+    }
+
+    return db.draft.findMany({
+        skip: isNaN(skip) ? 0 : skip,
+        take: isNaN(take) ? 10 : take,
+        where: { OR: [{ title: { contains: search } }, { content: { contains: search } }] },
+        orderBy: { createdAt: "desc" }
+        // include: { publications: true }
+    })
+
+}
 export const findManyDraftService = ({ query: { search, skip, take }, status }: FindManyDraft) => {
     if (status != undefined) {
         return db.draft.findMany({
@@ -91,7 +112,7 @@ export const createDraftService = async (formData: FormData) => {
 
 
 
-    await db.draft.create({
+    const d = await db.draft.create({
         data: {
             title,
             content,
@@ -99,6 +120,7 @@ export const createDraftService = async (formData: FormData) => {
             sourceLink: linkSource,
             videoLink: linkVideo,
             author: { connect: { id: user.id } },
+            // biro: user.biro != null ? { connect: { biro: {id: user.biro.id} } } : undefined,
             subCategory: { connect: sub != null ? { id: sub } : undefined },
             createdAt: publishedAt != null ? new Date(publishedAt) : new Date(),
             category: { connect: category != null ? { code: category } : undefined },
@@ -106,6 +128,14 @@ export const createDraftService = async (formData: FormData) => {
             vote: closedAt != null ? { create: { vote: { create: { closedAt: new Date(closedAt), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } } : undefined
         }
     })
+
+    // console.log(d);
+    // console.log(user.biro);
+
+
+    // if (user.biro) {
+    //     await db.biro.update({ where: { id: user.biro.id }, data: { draft: { connect: { draftId: d.id } } } })
+    // }
     revalidatePath('/backoffice/pengajuan-konten')
 }
 

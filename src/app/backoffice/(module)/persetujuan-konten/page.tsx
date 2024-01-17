@@ -21,10 +21,12 @@ const Page = async ({ searchParams: { skip, take, search, status } }: PageProps)
     const data = await db.draft.findMany({
         skip: isNaN(Number(skip)) ? 0 : Number(skip),
         take: isNaN(Number(take)) ? 10 : Number(take),
+        orderBy: {createdAt: "desc"},
         include: { selected: true },
         where: {
             AND: [
                 { NOT: { status: "PROCESS" } },
+                { OR: [{ title: { contains: search } }, { content: { contains: search } }] },
                 status === "ACCEPT" ? { status, NOT: { selected: null } } :
                     status === "PROCESS" ? { status: "ACCEPT", selected: null } : { status }
             ]

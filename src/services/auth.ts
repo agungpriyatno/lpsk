@@ -8,7 +8,7 @@ import { EmailDto, ResetDto, SignInDto, SignUpDto } from "@/lib/validators/auth"
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { ApiError } from "next/dist/server/api-utils";
 import { cookies } from 'next/headers';
-import { redirect } from "next/navigation";
+import { RedirectType, redirect } from "next/navigation";
 
 export const signInService = async ({ email, password }: SignInDto) => {
     const account = await db.account.findUniqueOrThrow({ where: { email } })
@@ -90,6 +90,9 @@ export const sessionService = async () => {
         throw Error(ReasonPhrases.UNAUTHORIZED)
     }
     const id = decryptToken(token.value)
-    const account = await db.account.findUniqueOrThrow({ where: { id }, include: { user: true } })
+    const account = await db.account.findUnique({ where: { id }, include: { user: {include: {biro: true}} } })
+    if (!account) {
+        return redirect("/backoffice/signin", RedirectType.push)
+    }
     return account.user
 }

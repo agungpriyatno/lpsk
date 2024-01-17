@@ -121,7 +121,7 @@ export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
                         <FormField control={form.control} name={"biro"} render={({ field }) => (
                             <FormItem className="flex-1">
                                 <div onClick={(e) => e.stopPropagation()}>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value} onOpenChange={() => role.length == 0 && findBiro()} >
+                                    <Select onValueChange={field.onChange} defaultValue={field.value} onOpenChange={() => biro.length == 0 && findBiro()} >
                                         <FormControl className="w-full">
                                             <SelectTrigger className="w-full">
                                                 <SelectValue placeholder="Biro" />
