@@ -8,18 +8,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { UpdateUserDto, updateUserDto } from "@/lib/validators/user"
-import { findAllBiro } from "@/services/biro-service"
 import { findAllRole } from "@/services/role-service"
 import { updateUserService } from "@/services/user-service"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Biro, Role } from "@prisma/client"
+import { Role } from "@prisma/client"
 import { Edit2Icon, Loader2Icon, Trash2Icon } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
 
-
+    
     const [open, setOpen] = useState(false)
     const form = useForm<UpdateUserDto>({
         resolver: zodResolver(updateUserDto),
@@ -27,23 +26,6 @@ export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
             name: data.name
         }
     })
-
-    const [loadingBiro, setLoadingBiro] = useState<boolean>(false)
-    const [biro, setBiro] = useState<Biro[]>([])
-
-    const findBiro = async () => {
-        try {
-            setLoadingBiro(true)
-            const res = await findAllBiro()
-            console.log(res);
-
-            setBiro(res)
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false)
-        }
-    }
 
     const { toast } = useToast()
     const [loading, setLoading] = useState(true)
@@ -63,7 +45,7 @@ export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
 
     const submitHandler = async (value: UpdateUserDto) => {
         try {
-            await updateUserService({ name: value.name, id: data.id, role: value.role, biro: value.biro })
+            await updateUserService({ name: value.name, id: data.id, role: value.role })
             toast({
                 title: "Berhasil Ubah Pengguna",
                 variant: "default",
@@ -108,30 +90,11 @@ export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {loading ? <Loader2Icon className=" animate-spin" /> : (
-                                            role.map((item, i) => <SelectItem key={i} value={item.id} onClick={(e) => e.stopPropagation()}>{item.name}</SelectItem>)
+                                        {loading ? <Loader2Icon className=" animate-spin"/> : (
+                                            role.map((item, i) => <SelectItem key={i} value={item.id}>{item.name}</SelectItem>)
                                         )}
                                     </SelectContent>
                                 </Select>
-                                <FormMessage />
-                            </FormItem>
-                        )} />
-                        <FormField control={form.control} name={"biro"} render={({ field }) => (
-                            <FormItem className="flex-1">
-                                <div onClick={(e) => e.stopPropagation()}>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value} onOpenChange={() => role.length == 0 && findBiro()} >
-                                        <FormControl className="w-full">
-                                            <SelectTrigger className="w-full">
-                                                <SelectValue placeholder="Biro" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent onClick={(e) => console.log(e)}>
-                                            {!loadingBiro ? <Loader2Icon className=" animate-spin" /> : (
-                                                biro.map((item, i) => <SelectItem key={i} value={item.id} onClick={(e) => e.stopPropagation()}>{item.name}</SelectItem>)
-                                            )}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
                                 <FormMessage />
                             </FormItem>
                         )} />

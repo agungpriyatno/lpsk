@@ -42,11 +42,25 @@ model User {
 }
 
 model Biro {
-  id        String   @id @default(cuid())
+  id        String      @id @default(cuid())
   name      String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
   users     User[]
+  draft     BiroDraft[]
+
+  @@map("biro")
+}
+
+model BiroDraft {
+  biroId  String
+  draftId String @unique
+
+  biro  Biro  @relation(fields: [biroId], references: [id], onDelete: Cascade)
+  draft Draft @relation(fields: [draftId], references: [id], onDelete: Cascade)
+
+  @@id([biroId, draftId])
+  @@map("biro_drafts")
 }
 
 model Account {
@@ -129,6 +143,7 @@ model Draft {
   subCategory   PublicationSubCategory? @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
   media         DraftMedia[]
   vote          VoteDraft?
+  biro          BiroDraft?
 
   @@map("drafts")
 }

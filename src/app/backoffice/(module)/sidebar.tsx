@@ -22,9 +22,11 @@ export const SideBar = () => {
                 <ul className="px-3 space-y-1">
                     <SidebarItem icon={<LayoutDashboardIcon size={20} />} active={pathname.includes("/backoffice/dashboard")} name="Dashboard" url="/backoffice/dashboard" />
                     <SidebarItem icon={<UserIcon size={20} />} active={pathname.includes("/backoffice/pengguna")} name="Pengguna" url="/backoffice/pengguna" />
+                    <SidebarItem icon={<UserIcon size={20} />} active={pathname.includes("/backoffice/biro")} name="Biro" url="/backoffice/biro" />
                     <SidebarItem icon={<NewspaperIcon size={20} />} active={pathname.includes("/backoffice/konten")} name="Konten" url="/backoffice/konten" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/pengajuan-draft")} name="Pengajuan Draft" url="/backoffice/pengajuan-draft" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/persetujuan-draft")} name="Persetujuan Draft" url="/backoffice/persetujuan-draft" />
+                    <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/persetujuan-konten")} name="Persetujuan Konten" url="/backoffice/persetujuan-konten" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/sorot")} name="Sorot Konten" url="/backoffice/sorot" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/kategori")} name="Kategori Konten" url="/backoffice/kategori" />
                     <SidebarItem icon={<ShieldIcon size={20} />} active={pathname.includes("/backoffice/hak-akses")} name="Hak Akses" url="/backoffice/hak-akses" />

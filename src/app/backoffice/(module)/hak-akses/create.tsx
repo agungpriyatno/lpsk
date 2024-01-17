@@ -8,8 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { RoleDto, roleDto } from "@/lib/validators/roles"
+import { findAllModule } from "@/services/module-service"
 import { createRoleService } from "@/services/role-service"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Module } from "@prisma/client"
 import { PlusIcon, Trash2Icon } from "lucide-react"
 import { useState } from "react"
 import { useFieldArray, useForm } from "react-hook-form"
@@ -30,6 +32,21 @@ export const CreateRole = () => {
         name: "modules",
         control: form.control
     })
+
+    const [loading, setLoading] = useState(true)
+    const [roles, setRole] = useState<Module[]>([])
+
+    const fetchRole = async () => {
+        setLoading(true)
+        try {
+            const res = await findAllModule()
+            setRole(res)
+        } catch (error) {
+
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const submitHandler = async (data: RoleDto) => {
         try {
@@ -83,17 +100,18 @@ export const CreateRole = () => {
                             <FormField control={form.control} name={`modules.${i}.code`} key={item.id} render={({ field }) => (
                                 <div className="flex gap-3 w-full">
                                     <FormItem className="flex-1">
-                                        <Select onValueChange={field.onChange} defaultValue={field.value} >
+                                        <Select onValueChange={field.onChange} defaultValue={field.value} onOpenChange={fetchRole} >
                                             <FormControl className="w-full">
                                                 <SelectTrigger className="w-full">
                                                     <SelectValue placeholder="Hak Akses" />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="LPSK-USER">Manajemen Pengguna</SelectItem>
-                                                <SelectItem value="LPSK-ROLE">Manajemen Hak Akses</SelectItem>
-                                                <SelectItem value="LPSK-DRAFT">Manajemen Pengajuan Konten</SelectItem>
-                                                <SelectItem value="LPSK-CONTENT">Manajemen Penerimaan Konten</SelectItem>
+                                                {
+                                                    roles.map((item) => (
+                                                        <SelectItem value={item.code} key={item.code}>{item.name}</SelectItem>
+                                                    ))
+                                                }
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />

@@ -4,14 +4,15 @@ import { Button } from "@/components/ui/button"
 import { DataTableColumnHeader } from "@/components/ui/data-table-header"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { PublicationCategory } from "@prisma/client"
+import { Biro, PublicationCategory } from "@prisma/client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
-import { CreateUser } from "./create"
+import { Delete } from "./delete"
+import { Update } from "./update"
 
-export type CategoryTable = PublicationCategory & {
-    _count: { subs: number, draft: number }
+export type CategoryTable = Biro & {
+    _count: { draft: number, users: number }
 }
 
 export const columnSubCategory: ColumnDef<CategoryTable>[] = [
@@ -22,16 +23,16 @@ export const columnSubCategory: ColumnDef<CategoryTable>[] = [
             <DataTableColumnHeader column={column} title="Name" />,
     },
     {
-        id: "Total Sub",
-        accessorKey: "_count.subs",
+        id: "Total Pengguna",
+        accessorKey: "_count.users",
         header: ({ column }) =>
             <DataTableColumnHeader column={column} title="Total Sub" />,
-    }, 
+    },
     {
-        id: "Total Pengajuan",
+        id: "Total Draft",
         accessorKey: "_count.draft",
         header: ({ column }) =>
-            <DataTableColumnHeader column={column} title="Total Pengajuan" />,
+            <DataTableColumnHeader column={column} title="Total Draft" />,
     },
     {
         header: "Aksi",
@@ -50,8 +51,9 @@ export const columnSubCategory: ColumnDef<CategoryTable>[] = [
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" space-x-2"><UpdateUser name={data.name} id={data.id} role={data.roleId ?? ""} /></DropdownMenuItem> */}
-                        {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><DeleteUser id={data.code} /></DropdownMenuItem> */}
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><CreateUser id={data.code} /></DropdownMenuItem>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><Delete id={data.id} /></DropdownMenuItem>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><Update id={data.id} name={data.name} /></DropdownMenuItem>
+                        {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><CreateUser id={data.code} /></DropdownMenuItem> */}
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

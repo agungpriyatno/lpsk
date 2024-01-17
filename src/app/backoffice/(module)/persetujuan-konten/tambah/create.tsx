@@ -58,7 +58,16 @@ const CreateFeature = () => {
             linkVideo: "",
         }
     })
-    
+
+    const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter' && e.shiftKey === false) {
+            const current = form.getValues("content")
+            form.setValue("content", current + "\n")
+        }
+    }
+
+
+
     const voteList = useFieldArray({
         name: "vote",
         control: form.control

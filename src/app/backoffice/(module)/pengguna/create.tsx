@@ -8,10 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { CreateUserDto, createUserDto } from "@/lib/validators/user"
+import { findAllBiro } from "@/services/biro-service"
 import { findAllRole } from "@/services/role-service"
 import { createUserService } from "@/services/user-service"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Role } from "@prisma/client"
+import { Biro, Role } from "@prisma/client"
 import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -19,6 +20,23 @@ import { useForm } from "react-hook-form"
 export const CreateUser = () => {
 
     const [obsecure, setObsecure] = useState(true)
+    const [loadingBiro, setLoadingBiro] = useState<boolean>(false)
+    const [biro, setBiro] = useState<Biro[]>([])
+
+    const findBiro = async () => {
+        try {
+            setLoadingBiro(true)
+            const res = await findAllBiro()
+            console.log(res);
+            
+            setBiro(res)
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false)
+        }
+    }
+
 
     const [loading, setLoading] = useState(true)
     const [role, setRole] = useState<Role[]>([])
@@ -55,7 +73,7 @@ export const CreateUser = () => {
                 description: "Email anda sudah digunakan!",
                 variant: "destructive",
             })
-        } 
+        }
     }
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -104,6 +122,7 @@ export const CreateUser = () => {
                         )} />
                         <FormField control={form.control} name={`role`} render={({ field }) => (
                             <FormItem className="flex-1">
+                                <FormLabel>Hak Akses</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value} onOpenChange={() => role.length == 0 && fetchRole()} >
                                     <FormControl className="w-full">
                                         <SelectTrigger className="w-full">
@@ -111,9 +130,31 @@ export const CreateUser = () => {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {loading ? <Loader2Icon className=" animate-spin"/> : (
+                                        {loading ? <Loader2Icon className=" animate-spin" /> : (
                                             role.map((item, i) => <SelectItem key={i} value={item.id}>{item.name}</SelectItem>)
                                         )}
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
+                        <FormField control={form.control} name={"biro"} render={({ field }) => (
+                            <FormItem className="flex-1">
+                                <FormLabel>Biro</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value ?? ""} onOpenChange={findBiro} >
+                                    <FormControl className="w-full">
+                                        <SelectTrigger className="w-full">
+                                            <SelectValue placeholder="Pilih Kategori" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        {
+                                            !loadingBiro ? (
+                                                <div className="w-full flex justify-center place-items-center">
+                                                    <Loader2Icon className=" animate-spin" />
+                                                </div>
+                                            ) : biro.map(((item, i) => <SelectItem key={i} value={item.id}>{item.name}</SelectItem>))
+                                        }
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />

@@ -15,6 +15,27 @@ export type FindManyDraft = {
     status: $Enums.StatusDraft | undefined
 }
 
+export const findManyDraftPubService = ({ query: { search, skip, take }, status }: FindManyDraft) => {
+    if (status != undefined) {
+        return db.draft.findMany({
+            orderBy: { createdAt: "desc" },
+            skip: isNaN(skip) ? 0 : skip,
+            take: isNaN(take) ? 10 : take,
+            where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }] },
+            // include: { publications: true }
+        })
+    }
+
+    return db.draft.findMany({
+        skip: isNaN(skip) ? 0 : skip,
+        take: isNaN(take) ? 10 : take,
+        where: { OR: [{ title: { contains: search } }, { content: { contains: search } }] },
+        orderBy: { createdAt: "desc" }
+        // include: { publications: true }
+    })
+
+}
+
 export const findManyDraftService = ({ query: { search, skip, take }, status }: FindManyDraft) => {
     if (status != undefined) {
         return db.draft.findMany({
@@ -37,11 +58,11 @@ export const findManyDraftService = ({ query: { search, skip, take }, status }: 
 }
 
 export const findDraftService = async (id: string) => {
-    return await db.draft.findUniqueOrThrow({ where: { id }, include: { author: true, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } })
+    return await db.draft.findUniqueOrThrow({ where: { id }, include: { selected: true, author: true, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } })
 }
 
 export const deleteDraftService = async ({ id }: { id: string }) => {
-    const data = await db.draft.findFirstOrThrow({ where: { id }, include: {publications: true} })
+    const data = await db.draft.findFirstOrThrow({ where: { id }, include: { publications: true } })
     if (data.publicationId) throw new Error()
     await db.draft.delete({ where: { id } })
     revalidatePath('/backoffice/pengajuan-konten')
@@ -101,6 +122,27 @@ export const acceptCreateService = async (id: string) => {
     //     await db.publication.create({ data: { selected: { connect: { id: draft.id } }, author: { connect: { id: draft.authorId } }, draft: { connect: { id: draft.id } } } })
     // }
     await db.draft.update({ where: { id }, data: { status: "ACCEPT" } })
+    revalidatePath('/backoffice/pengajuan-konten')
+}
+
+export const acceptToPublication = async (id: string) => {
+    const draft = await db.draft.findUniqueOrThrow({ where: { id } })
+
+    if (draft.authorId == null) {
+        throw Error("error")
+    }
+
+    if (draft.publicationId) {
+        await db.publication.update({ where: { id: draft.publicationId }, data: { selectedId: draft.id, draft: { connect: { id: draft.id } } } })
+    } else {
+        await db.publication.create({ data: { selected: { connect: { id: draft.id } }, author: { connect: { id: draft.authorId } }, draft: { connect: { id: draft.id } } } })
+    }
+
+    revalidatePath('/backoffice/pengajuan-konten')
+}
+
+export const rejectFromPublication = async (id: string) => {
+    await db.draft.update({ where: { id }, data: { status: "REJECT" } })
     revalidatePath('/backoffice/pengajuan-konten')
 }
 
