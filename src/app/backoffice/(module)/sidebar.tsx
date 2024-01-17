@@ -29,6 +29,7 @@ export const SideBar = () => {
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/persetujuan-konten")} name="Persetujuan Konten" url="/backoffice/persetujuan-konten" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/sorot")} name="Sorot Konten" url="/backoffice/sorot" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/kategori")} name="Kategori Konten" url="/backoffice/kategori" />
+                    <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/laporan")} name="Laporan" url="/backoffice/laporan" />
                     <SidebarItem icon={<ShieldIcon size={20} />} active={pathname.includes("/backoffice/hak-akses")} name="Hak Akses" url="/backoffice/hak-akses" />
                 </ul>
             </div>
