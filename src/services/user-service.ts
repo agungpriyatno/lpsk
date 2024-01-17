@@ -18,7 +18,7 @@ export const findManyUser = ({ query: { search, skip, take } }: FindManyUserProp
         skip: isNaN(skip) ? 0 : skip,
         take: isNaN(take) ? 10 : take,
         where: { OR: [{ name: { contains: search } }, { account: { email: { contains: search } } }] },
-        include: { account: { select: { email: true, verifiedAt: true } }, role: true },
+        include: { account: { select: { email: true, verifiedAt: true } }, role: true, biro: true },
         orderBy: { createdAt: "desc" }
 
     })

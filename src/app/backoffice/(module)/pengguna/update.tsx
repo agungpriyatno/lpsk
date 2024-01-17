@@ -24,7 +24,9 @@ export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
     const form = useForm<UpdateUserDto>({
         resolver: zodResolver(updateUserDto),
         defaultValues: {
-            name: data.name
+            name: data.name,
+            biro: data.biro,
+            role: data.role,
         }
     })
 
