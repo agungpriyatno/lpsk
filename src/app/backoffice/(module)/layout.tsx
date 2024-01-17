@@ -1,17 +1,20 @@
 import { Scroller } from "@/components/features/scroll"
 import { AppContainer } from "@/components/ui/container"
 import { SideBar } from "./sidebar"
+import { sessionService } from "@/services/auth"
 
-export default function ModuleLayout({
+export default async function ModuleLayout({
     children,
 }: {
     children: React.ReactNode
 }) {
+
+    const session = await sessionService()
     return (
         <AppContainer>
             <div className='w-full flex gap-3'>
                 <div className="xl:w-[250px] py-3 hidden xl:block">
-                        <SideBar/>
+                        <SideBar modules={session.role?.modules ?? []}/>
                 </div>
                 <div className="flex-1 relative">
                     <Scroller>

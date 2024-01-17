@@ -37,12 +37,14 @@ const Page = async ({ searchParams: { skip, take, search, status } }: PageProps)
     })
 
     const totalPage = await db.draft.count({
-        where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }, { authorId: session.id }] },
+        where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }, { author: { biro: { id: session.biroId ?? "" } } }] },
     })
-    const total = await db.draft.count()
-    const process = await db.draft.count({ where: { status: "PROCESS" } })
-    const rejected = await db.draft.count({ where: { status: "REJECT" } })
-    const accepted = await db.draft.count({ where: { status: "ACCEPT" } })
+
+    const total = await db.draft.count({ where: { author: { biro: { id: session.biroId ?? "" } } } })
+    const process = await db.draft.count({ where: { AND: [{ status: "PROCESS" }, { author: { biro: { id: session.biroId ?? "" } } }] } })
+    const rejected = await db.draft.count({ where: { AND: [{ status: "REJECT" }, { author: { biro: { id: session.biroId ?? "" } } }] } })
+    const accepted = await db.draft.count({ where: { AND: [{ status: "ACCEPT" }, { author: { biro: { id: session.biroId ?? "" } } }] } })
+
     const selectedTotal = status === "ACCEPT" ? accepted : status === "PROCESS" ? process : status === "REJECT" ? rejected : total
 
     return (

@@ -21,13 +21,13 @@ const Page = async ({ params: { id } }: PageProps) => {
     return (
         <section className="space-y-5 py-5">
             <Button asChild variant={'default'} size={'icon'} className=" rounded-full">
-                <Link  href={"/backoffice/pengajuan-konten"}>
+                <Link  href={"/backoffice/persetujuan-konten"}>
                     <ChevronLeft />
                 </Link>
             </Button>
             <AspectRatio ratio={2 / 1} className="w-full rounded overflow-hidden">
                 <div className="w-full h-full relative">
-                    <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + data?.thumbnail} alt="" fill sizes="100vh" className=" bg-cover" />
+                    <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + (data?.thumbnail ?? "default_zz.jpg")} alt="" fill sizes="100vh" className=" object-cover" />
                 </div>
             </AspectRatio>
             <section className="">

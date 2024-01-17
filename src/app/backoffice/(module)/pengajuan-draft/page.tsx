@@ -29,11 +29,14 @@ const Page = async ({ searchParams: { skip, take, search, status } }: PageProps)
         where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }, { authorId: session.id }] },
     })
 
-    const total = await db.draft.count()
-    const process = await db.draft.count({ where: { status: "PROCESS" } })
-    const rejected = await db.draft.count({ where: { status: "REJECT" } })
-    const accepted = await db.draft.count({ where: { status: "ACCEPT" } })
-    const selectedTotal = status === "ACCEPT" ? accepted : status === "PROCESS" ? process : status === "REJECT" ? rejected : total
+    const totalPage = await db.draft.count({
+        where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }, { authorId: session.id }] },
+    })
+
+    const total = await db.draft.count({ where: { authorId: session.id } })
+    const process = await db.draft.count({ where: { AND: [{ status: "PROCESS" }, { authorId: session.id }] } })
+    const rejected = await db.draft.count({ where: { AND: [{ status: "REJECT" }, { authorId: session.id }] } })
+    const accepted = await db.draft.count({ where: { AND: [{ status: "ACCEPT" }, { authorId: session.id }] } })
 
     return (
         <div className="space-y-3 py-3">
@@ -59,7 +62,7 @@ const Page = async ({ searchParams: { skip, take, search, status } }: PageProps)
                     <span className=" text-2xl font-bold">{rejected}</span>
                 </div>
             </div>
-            <DataTable columns={columns} data={data} options={{ skip, search, take, total: selectedTotal }}>
+            <DataTable columns={columns} data={data} options={{ skip, search, take, total: totalPage }}>
                 <TabMenu />
             </DataTable>
         </div>

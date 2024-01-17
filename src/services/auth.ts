@@ -87,10 +87,10 @@ export const signOutService = () => {
 export const sessionService = async () => {
     const token = cookies().get("session")
     if (!token) {
-        throw Error(ReasonPhrases.UNAUTHORIZED)
+        return redirect("/backoffice/signin", RedirectType.push)
     }
     const id = decryptToken(token.value)
-    const account = await db.account.findUnique({ where: { id }, include: { user: {include: {biro: true}} } })
+    const account = await db.account.findUnique({ where: { id }, include: { user: {include: {biro: true, role: {include: {modules: true}}}} } })
     if (!account) {
         return redirect("/backoffice/signin", RedirectType.push)
     }
