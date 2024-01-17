@@ -45,7 +45,7 @@ export const UpdateUser = (data: UpdateUserDto & { id: string }) => {
 
     const submitHandler = async (value: UpdateUserDto) => {
         try {
-            await updateUserService({ name: value.name, id: data.id, role: value.role })
+            await updateUserService({ name: value.name, id: data.id, role: value.role, biro: value.biro })
             toast({
                 title: "Berhasil Ubah Pengguna",
                 variant: "default",

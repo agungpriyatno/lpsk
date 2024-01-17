@@ -31,8 +31,8 @@ export const createUserService = async ({ name, email, password, role }: CreateU
     revalidatePath('/pengguna')
 }
 
-export const updateUserService = async ({ name, id, role }: UpdateUserDto & { id: string }) => {
-    await db.user.update({ where: { id }, data: { name, role: { connect: { id: role } } } })
+export const updateUserService = async ({ name, id, role, biro }: UpdateUserDto & { id: string }) => {
+    await db.user.update({ where: { id }, data: { name, role: { connect: { id: role } }, biro: { connect: { id: biro } } } })
     revalidatePath('/pengguna')
 }
 
