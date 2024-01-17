@@ -95,11 +95,11 @@ export const acceptCreateService = async (id: string) => {
         throw Error("error")
     }
 
-    if (draft.publicationId) {
-        await db.publication.update({ where: { id: draft.publicationId }, data: { selectedId: draft.id, draft: { connect: { id: draft.id } } } })
-    } else {
-        await db.publication.create({ data: { selected: { connect: { id: draft.id } }, author: { connect: { id: draft.authorId } }, draft: { connect: { id: draft.id } } } })
-    }
+    // if (draft.publicationId) {
+    //     await db.publication.update({ where: { id: draft.publicationId }, data: { selectedId: draft.id, draft: { connect: { id: draft.id } } } })
+    // } else {
+    //     await db.publication.create({ data: { selected: { connect: { id: draft.id } }, author: { connect: { id: draft.authorId } }, draft: { connect: { id: draft.id } } } })
+    // }
     await db.draft.update({ where: { id }, data: { status: "ACCEPT" } })
     revalidatePath('/backoffice/pengajuan-konten')
 }

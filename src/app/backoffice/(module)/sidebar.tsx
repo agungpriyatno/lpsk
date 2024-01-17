@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { signOutService } from "@/services/auth"
 import { FileIcon, LayoutDashboardIcon, NewspaperIcon, ShieldIcon, UserIcon, icons } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -24,14 +23,15 @@ export const SideBar = () => {
                     <SidebarItem icon={<LayoutDashboardIcon size={20} />} active={pathname.includes("/backoffice/dashboard")} name="Dashboard" url="/backoffice/dashboard" />
                     <SidebarItem icon={<UserIcon size={20} />} active={pathname.includes("/backoffice/pengguna")} name="Pengguna" url="/backoffice/pengguna" />
                     <SidebarItem icon={<NewspaperIcon size={20} />} active={pathname.includes("/backoffice/konten")} name="Konten" url="/backoffice/konten" />
-                    <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/pengajuan-konten")} name="Pengajuan Konten" url="/backoffice/pengajuan-konten" />
+                    <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/pengajuan-draft")} name="Pengajuan Draft" url="/backoffice/pengajuan-draft" />
+                    <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/persetujuan-draft")} name="Persetujuan Draft" url="/backoffice/persetujuan-draft" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/sorot")} name="Sorot Konten" url="/backoffice/sorot" />
                     <SidebarItem icon={<FileIcon size={20} />} active={pathname.includes("/backoffice/kategori")} name="Kategori Konten" url="/backoffice/kategori" />
                     <SidebarItem icon={<ShieldIcon size={20} />} active={pathname.includes("/backoffice/hak-akses")} name="Hak Akses" url="/backoffice/hak-akses" />
                 </ul>
             </div>
             <div className="w-full px-3">
-                <Button className=" w-full" onClick={() => signOutService()} variant={'destructive'}>Keluar</Button>
+                <Button className="w-full" onClick={() => signOutService()} variant={'destructive'}>Keluar</Button>
             </div>
         </div>
     )

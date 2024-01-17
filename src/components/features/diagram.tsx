@@ -15,7 +15,7 @@ const initialNodes = [
     { id: '1', position: { x: 400, y: 10 }, data: { label: 'Pimpinan' } },
     { id: '2', position: { x: 600, y: 100 }, data: { label: 'Dewan Penasihat' } },
     { id: '3', position: { x: 400, y: 100 }, data: { label: 'Sekretariat Jendral' } },
-    { id: '5', position: { x: 100, y: 200 }, data: { label: 'Biro Hukum, Kerjasama, dan Lingkungan Masyarakat' } },
+    { id: '5', position: { x: 100, y: 200 }, data: { label: 'Biro Hukum, Kerjasama, dan Hubungan Masyarakat' } },
     { id: '4', position: { x: 300, y: 200 }, data: { label: 'Biro Umum dan Kepegawaian' } },
     { id: '6', position: { x: 500, y: 200 }, data: { label: 'Biro Penelaahan Permohonan' } },
     { id: '7', position: { x: 700, y: 200 }, data: { label: 'Biro Pemenuhan Hak Saksi dan Korban' } },

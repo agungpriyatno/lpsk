@@ -58,7 +58,7 @@ export const columns: ColumnDef<DraftTable>[] = [
                         data.status != "ACCEPT" &&  <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteContent id={data.id} /></DropdownMenuItem>
                        }
                         <DropdownMenuItem className="space-x-2" asChild>
-                            <Link  href={"/backoffice/pengajuan-konten/" + data.id}>
+                            <Link  href={"/backoffice/pengajuan-draft/" + data.id}>
                                 <div className="flex gap-2">
                                     <FileSearchIcon size={20} /> <span>Detail</span>
                                 </div>

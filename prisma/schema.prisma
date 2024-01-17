@@ -24,18 +24,29 @@ enum StatusDraft {
 }
 
 model User {
-  id          String        @id @default(cuid())
-  roleId      String?       @map("role_id")
-  name        String
-  avatar      String?
+  id     String  @id @default(cuid())
+  roleId String? @map("role_id")
+  biroId String? @map("bro_id")
+  name   String
+  avatar String?
+
   createdAt   DateTime      @default(now()) @map("created_at")
   updatedAt   DateTime      @updatedAt @map("updated_at")
   account     Account?
   role        Role?         @relation(fields: [roleId], references: [id], onDelete: SetNull)
+  biro        Biro?         @relation(fields: [biroId], references: [id], onDelete: SetNull)
   draft       Draft[]
   publication Publication[]
 
   @@map("users")
+}
+
+model Biro {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  users     User[]
 }
 
 model Account {
@@ -267,7 +278,7 @@ model HighlightPublication {
 }
 
 model Report {
-  id           String  @id @default(cuid())
+  id           String   @id @default(cuid())
   name         String
   identity     String
   email        String
@@ -276,8 +287,8 @@ model Report {
   address      String
   phone        String
   fax          String?
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
 
   @@map("reports")
 }
