@@ -7,7 +7,7 @@ export type InitialState = {
 export type TextToSpeechState = boolean
 
 export const initialState: InitialState = {
-    value: true
+    value: false
 }
 
 export const textToSpeech = createSlice({
