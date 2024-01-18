@@ -84,14 +84,14 @@ const SignInPage = () => {
                                 <FormMessage />
                             </FormItem>
                         )} />
-                        <div className="w-full flex justify-between">
+                        {/* <div className="w-full flex justify-between">
                             <Button type="button" className="w-fit" asChild variant={'link'} size={'sm'}>
                                 <Link  href={'/backoffice/verification'}>Verifikasi Email</Link>
                             </Button>
                             <Button type="button" className="w-fit" asChild variant={'link'} size={'sm'}>
                                 <Link  href={'/backoffice/forgot'}>Lupa Password ?</Link>
                             </Button>
-                        </div>
+                        </div> */}
                         <Button className={cn("w-full", { "bg-muted-foreground": loading })}>{loading ? "Mengunggah..." : "MASUK"}</Button>
                         {/* <Button type="button" className="w-full" asChild variant={'outline'}>
                             <Link  href={'/backoffice/signup'}>DAFTAR</Link>

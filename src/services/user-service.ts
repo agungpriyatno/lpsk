@@ -26,8 +26,8 @@ export const findManyUser = ({ query: { search, skip, take } }: FindManyUserProp
 
 export const createUserService = async ({ name, email, password, role, biro }: CreateUserDto) => {
     const hash = await generateHash(password)
-    await db.user.create({ data: { name, account: { create: { email, hash } }, role: { connect: { id: role } }, biro: {connect: {id: biro}} } })
-    await sendVerificationService({ email })
+    await db.user.create({ data: { name, account: { create: { email, hash, verifiedAt: new Date() } }, role: { connect: { id: role } }, biro: {connect: {id: biro}} } })
+    // await sendVerificationService({ email })
     revalidatePath('/pengguna')
 }
 
