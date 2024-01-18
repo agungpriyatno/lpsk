@@ -78,9 +78,11 @@ const DetailPost = async ({ id }: { id: string }) => {
                                 </div>
                             </section>
                         )}
-                        <ReChartBar data={data.selected?.vote?.vote.options.map((item) => {
+                       <div className="h-[400px] w-full">
+                       <ReChartBar data={data.selected?.vote?.vote.options.map((item) => {
                             return { ...item, count: item._count.client }
                         }) ?? []} />
+                       </div>
                         {data.selected?.vote != undefined && (
                             <section>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">

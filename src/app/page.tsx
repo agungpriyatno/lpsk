@@ -28,7 +28,7 @@ export default function Home() {
             <div className='h-[200px] w-[200px] relative'>
               <Image src={"/images/lpsk-lg.png"} alt='' fill></Image>
             </div>
-            <h1 className='text-4xl font-bold text-slate-100'>Lembaga Perlindungan Saksi dan Korban</h1>
+            <h1 className='text-4xl font-bold text-slate-100 text-center'>Lembaga Perlindungan Saksi dan Korban</h1>
             <Button variant={'default'} asChild className='text-slate-100 dark:text-slate-800'>
               <Link href={'/beranda'}>
                 MASUK

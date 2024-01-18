@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { signOutService } from "@/services/auth"
 import { RoleModule } from "@prisma/client"
-import { FileCheck2Icon, FileCheckIcon, FileIcon, FileUpIcon, FlagIcon, HighlighterIcon, LayoutDashboardIcon, LayoutGridIcon, LucideIcon, NewspaperIcon, ShieldIcon, User2Icon, UserIcon, Users2Icon, icons } from "lucide-react"
+import { FileCheck2Icon, FileCheckIcon, FileIcon, FileUpIcon, FilesIcon, FlagIcon, HighlighterIcon, InfoIcon, LayoutDashboardIcon, LayoutGridIcon, LucideIcon, NewspaperIcon, ShieldIcon, User2Icon, UserIcon, Users2Icon, icons } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -16,7 +16,7 @@ type TMenuSidebar = {
     icon: JSX.Element,
 }
 
-const listMenu: TMenuSidebar[] = [
+export const listMenu: TMenuSidebar[] = [
     {
         name: "Dashboard",
         url: "/backoffice/dashboard",
@@ -81,6 +81,11 @@ const listMenu: TMenuSidebar[] = [
         url: "/backoffice/hak-akses",
         code: "LPSK-HAK-AKSES",
         icon: <ShieldIcon size={20} />
+    },
+    {
+        name: "Petunjuk Teknis",
+        url: "/backoffice/petunjuk",
+        icon: <InfoIcon size={20} />
     }
 ]
 

@@ -10,6 +10,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { HeaderSection } from '@/components/ui/typography';
 import { DownloadCloudIcon, FileIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const listA = [
     {
@@ -35,6 +36,16 @@ const listA = [
     }
 ]
 
+const listB = [
+    {
+        name: "Dr. Ir. Noor Sidharta, M.H. MBA",
+        position: "Sekretaris Jenderal LPSK RI",
+        data: [
+            { year: "2020", file: "687489b5930f34b5324629c35a26d8da.pdf" }
+        ],
+    },
+]
+
 export default function Page() {
     return (
         <div className='flex flex-col gap-10'>
@@ -48,7 +59,7 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-            <div className='w-full'>
+            <div className='w-full space-y-5'>
                 <AppContainer>
                     <div className=' bg-background p-5 rounded space-y-3'>
                         {/* <CreateFeature /> */}
@@ -73,6 +84,50 @@ export default function Page() {
                                             <TableCell>{item.name}</TableCell>
                                             <TableCell>{item.position}</TableCell>
                                             <TableCell className="text-left">
+                                                <Select >
+                                                    <SelectTrigger className="w-[100px]">
+                                                        <SelectValue placeholder="Tahun" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {
+                                                            item.data.map((sub) => (
+                                                                <a key={sub.file} href={"https://storage.agungpriyatno.my.id/publikasi/" +sub.file} type={"_blank"} className=' text-sm px-3 py-2'>{sub.year}</a>
+                                                            ))
+                                                        }
+                                                    </SelectContent>
+                                                </Select>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                        </Table>
+                    </div>
+                </AppContainer>
+                <AppContainer>
+                    <div className=' bg-background p-5 rounded space-y-3'>
+                        {/* <CreateFeature /> */}
+                        <HeaderSection>
+                            LHKPN Pejabat Struktural LPSK
+                        </HeaderSection>
+                        <Table>
+                            <TableCaption> List LHKPN Ketua dan Wakil Ketua LPSK.</TableCaption>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead className="w-[100px]">No</TableHead>
+                                    <TableHead>Nama</TableHead>
+                                    <TableHead>Jabatan</TableHead>
+                                    <TableHead className="text-left">Pelaporan LHKP</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {
+                                    listB.map((item, i) => (
+                                        <TableRow key={item.name}>
+                                            <TableCell className="font-medium">{i + 1}</TableCell>
+                                            <TableCell>{item.name}</TableCell>
+                                            <TableCell>{item.position}</TableCell>
+                                            <TableCell className="text-left">
                                                 <Select>
                                                     <SelectTrigger className="w-[100px]">
                                                         <SelectValue placeholder="Tahun" />
@@ -80,7 +135,7 @@ export default function Page() {
                                                     <SelectContent>
                                                         {
                                                             item.data.map((sub) => (
-                                                                <SelectItem key={sub.year} value="light">{sub.year}</SelectItem>
+                                                                <a key={sub.file} href={"https://storage.agungpriyatno.my.id/publikasi/" +sub.file} type={"_blank"} className=' text-sm px-3 py-2'>{sub.year}</a>
                                                             ))
                                                         }
                                                     </SelectContent>

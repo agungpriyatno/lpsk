@@ -62,8 +62,8 @@ export const Carousel = ({ data, types }: { data: TCarouselItem[], types?: "moda
                     exit={{ x: -300, opacity: 0, transition: { duration: 0.3 } }}>
                     {types != null ? (
                         <div className="flex flex-col py-20 justify-end h-full p-5" >
-                            <Link href={'/detail/' + data[currentIndex].id}><TextToSpeech><h1 className='text-4xl font-bold'>{data[currentIndex].title}</h1></TextToSpeech></Link>
-                            <TextToSpeech><p className='text-base'>{data[currentIndex].descriptions}</p></TextToSpeech>
+                            <Link href={'/detail/' + data[currentIndex].id}><TextToSpeech><h1 className='text-xl lg:text-4xl font-bold'>{data[currentIndex].title}</h1></TextToSpeech></Link>
+                            <TextToSpeech><p className='text-sm lg:text-base'>{data[currentIndex].descriptions}</p></TextToSpeech>
                         </div>
                     ) : (
                         <AppContainer>

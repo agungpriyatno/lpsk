@@ -39,7 +39,7 @@ export default function Page() {
                                 </TextToSpeech>
                                 <HeaderSection className='flex gap-2'><PhoneIcon/> Hubungi Kami</HeaderSection>
                                 <TextToSpeech>
-                                    <p className='text-base pl-5'>Telp (021)29681560. Fax (021)29681551</p>
+                                    <p className='text-base pl-5'>Telp. (021) 29681560, Fax. (021) 29681551</p>
                                 </TextToSpeech>
                                 <HeaderSection className='flex gap-2'><MailIcon/> Email</HeaderSection>
                                 <TextToSpeech>

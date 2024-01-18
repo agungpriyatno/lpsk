@@ -13,8 +13,9 @@ import { TextToSpeech, TextToSpeechToogler } from "./text-to-speech"
 import { ThemeToogler } from "./theme"
 import { motion } from "framer-motion"
 import { TMenuItem } from "@/types/utils"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Divide, MenuIcon } from "lucide-react"
 import { Item } from "@radix-ui/react-navigation-menu"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
 
 export const AppHeader = () => {
     const [scrollDown, setState] = useState(false)
@@ -43,10 +44,10 @@ export const AppHeader = () => {
                         </Avatar>
                     </div>
                     <div className={cn(
-                        "flex gap-2 place-items-center",
+                        " gap-2 place-items-center flex",
                         { "bg-background": scrollDown },
                     )}>
-                        <ul className="flex place-items-center">
+                        <ul className=" place-items-center hidden lg:flex">
                             {
                                 menu.map((item, i) => <AppNavigationMenu key={i} data={item} scrollDown={scrollDown} active={pathname.includes(item.href)} />)
                             }
@@ -54,6 +55,57 @@ export const AppHeader = () => {
                         <div className={cn("flex", { 'text-slate-100': !scrollDown })}>
                             <TextToSpeechToogler />
                             <ThemeToogler />
+                            <Sheet>
+                                <SheetTrigger>
+                                    <MenuIcon/>
+                                </SheetTrigger>
+                                <SheetContent side={'left'}>
+                                    <SheetHeader>
+                                        <SheetTitle>
+                                            <div className="px-3 py-3 flex place-items-center gap-2">
+                                                <Avatar>
+                                                    <AvatarImage src="/images/lpsk-lg.png" />
+                                                </Avatar>
+                                                <h1 className="text-lg font-bold">LPSK</h1>
+                                            </div>
+                                        </SheetTitle>
+                                        <ul className="flex flex-col gap-2">
+                                            {
+                                                menu.map((item, i) => {
+                                                    if (item.children) {
+                                                        return (
+                                                            <li className={cn(
+                                                                "px-3 py-1.5 hover:bg-muted rounded text-left group",
+                                                                { "bg-muted": pathname.includes(item.href) }
+                                                            )}>
+                                                                {item.title}
+                                                                <ul className=" group-hover:block hidden">
+                                                                    {item.children.map((item, j) => (
+                                                                        <Link href={item.href} key={j}>
+                                                                            <li className={cn(
+                                                                                "px-3 py-1.5 hover:bg-muted-foreground/50 rounded text-left",
+                                                                                { "bg-muted": pathname === item.href }
+                                                                            )}>{item.title}</li>
+                                                                        </Link>
+                                                                    ))}
+                                                                </ul>
+                                                            </li>
+                                                        )
+                                                    }
+                                                    return (
+                                                        <Link href={item.href} key={i}>
+                                                            <li className={cn(
+                                                                "px-3 py-1.5 hover:bg-muted rounded text-left",
+                                                                { "bg-muted": pathname.includes(item.href) }
+                                                            )}>{item.title}</li>
+                                                        </Link>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+                                    </SheetHeader>
+                                </SheetContent>
+                            </Sheet>
                         </div>
                     </div>
                 </div>
@@ -76,7 +128,7 @@ export const AppNavigationMenu = ({ data: { title, href, children }, scrollDown,
                     { "bg-muted": active && scrollDown },
                     { 'font-bold': active }
                 )}>
-                    <Link  href={href}>{title}</Link>
+                    <Link href={href}>{title}</Link>
                 </div>
             </li>
         )
@@ -105,7 +157,7 @@ export const AppNavigationMenu = ({ data: { title, href, children }, scrollDown,
                     <ul className="text-sm">
                         {children.map((sub, i) => (
                             <li className="hover:bg-muted px-3 py-2" key={i}>
-                                <Link  href={sub.href} className=" truncate">{sub.title}</Link>
+                                <Link href={sub.href} className=" truncate">{sub.title}</Link>
                             </li>
                         ))}
                     </ul>

@@ -22,13 +22,13 @@ export const HelpdeskIcon = () => {
                 <div className={cn("p-3 rounded-l bg-background transition-all duration-200 overflow-hidden w-12 hover:w-full")}>
                     <div className="flex gap-3 w-fit">
                         <PhoneIcon size={25} />
-                        <span className=" truncate">021-111-222-333</span>
+                        <span className=" truncate">(021) 29681560</span>
                     </div>
                 </div>
                 <div className={cn("p-3 rounded-l bg-background transition-all duration-200 overflow-hidden w-12 hover:w-full")}>
                     <div className="flex gap-3 w-fit">
                         <MailIcon size={25} />
-                        <span>lpsk@email.go.id</span>
+                        <span>lpsk_ri@lpsk.go.id</span>
                     </div>
                 </div>
                 <div className={cn("p-3 rounded-l bg-background transition-all duration-200 overflow-hidden w-12 hover:w-full")}>
