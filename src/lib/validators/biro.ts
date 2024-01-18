@@ -5,8 +5,8 @@ export const biroDto = z.object({
 })
 
 export const reportDto = z.object({
-    name: z.string().email().max(255),
-    email: z.string().min(1).max(255),
+    name: z.string().min(1).max(255),
+    email: z.string().email().max(255),
     identity: z.string().min(1).max(255),
     gender: z.string().min(1).max(255),
     address: z.string().min(1).max(255),

@@ -18,6 +18,7 @@ export const CarouselSection = async ({ data }: {
     const list: TCarouselItem[] = data != null ? data.publications.map((item) => {
         const post = item.publication.selected
         return {
+            id: item.publication.id ?? "",
             title: post?.title ?? "",
             descriptions: post?.content?.replace(/(<([^>]+)>)/ig, '').split(".")[0] ?? "",
             image: process.env.BUCKET_URL_ACCESS + "/publikasi/" + (post?.thumbnail ?? "")
@@ -25,10 +26,8 @@ export const CarouselSection = async ({ data }: {
     }) : []
     
     return (
-        <section>
-            <Suspense fallback={<CarouselLoading />}>
-                <Carousel data={list} />
-            </Suspense>
+        <section className=" h-screen w-full">
+            <Carousel data={list} />
         </section>
     )
 }

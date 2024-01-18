@@ -7,6 +7,8 @@ import { Button } from "./button";
 import { Skeleton } from "./skeleton";
 import { AppContainer } from "./container";
 import { TextToSpeech } from "../features/text-to-speech";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const CarouselLoading = () => {
     return (
@@ -15,9 +17,10 @@ export const CarouselLoading = () => {
     )
 }
 
-export const Carousel = ({ data }: { data: TCarouselItem[] }) => {
+export const Carousel = ({ data, types }: { data: TCarouselItem[], types?: "modal" }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState('left');
+    const router = useRouter()
 
     const handleNext = () => {
         setDirection("right");
@@ -39,7 +42,7 @@ export const Carousel = ({ data }: { data: TCarouselItem[] }) => {
 
 
     return (
-        <div className="w-full h-screen relative bg-slate-800  text-slate-100  group overflow-hidden">
+        <div className="w-full h-full relative bg-slate-800  text-slate-100  group overflow-hidden" onClick={(e) => e.stopPropagation()}>
             <AnimatePresence>
                 <div className="w-full h-full relative group-hover:scale-125 transition-all duration-500">
                     <motion.img
@@ -57,12 +60,20 @@ export const Carousel = ({ data }: { data: TCarouselItem[] }) => {
                     initial={{ x: 300, opacity: 0 }}
                     animate={{ x: 0, opacity: 1, transition: { duration: 0.3 } }}
                     exit={{ x: -300, opacity: 0, transition: { duration: 0.3 } }}>
-                    <AppContainer>
-                        <div className="flex flex-col py-20 justify-end h-full">
-                            <TextToSpeech><h1 className='text-4xl font-bold'>{data[currentIndex].title}</h1></TextToSpeech>
+                    {types != null ? (
+                        <div className="flex flex-col py-20 justify-end h-full p-5" >
+                            <Link href={'/detail/' + data[currentIndex].id}><TextToSpeech><h1 className='text-4xl font-bold'>{data[currentIndex].title}</h1></TextToSpeech></Link>
                             <TextToSpeech><p className='text-base'>{data[currentIndex].descriptions}</p></TextToSpeech>
                         </div>
-                    </AppContainer>
+                    ) : (
+                        <AppContainer>
+                            <div className="flex flex-col py-20 justify-end h-full" >
+                                <Link href={'/detail/' + data[currentIndex].id}><TextToSpeech><h1 className='text-4xl font-bold'>{data[currentIndex].title}</h1></TextToSpeech></Link>
+                                <TextToSpeech><p className='text-base'>{data[currentIndex].descriptions}</p></TextToSpeech>
+                            </div>
+                        </AppContainer>
+
+                    )}
                 </motion.div>
             </AnimatePresence>
             <Button size={'icon'} variant={'ghost'} className="absolute left-5 top-1/2 translate-y-1/2" onClick={handlePrevious}>

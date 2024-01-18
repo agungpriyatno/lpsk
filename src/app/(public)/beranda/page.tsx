@@ -14,6 +14,7 @@ import { HeaderSection } from '@/components/ui/typography';
 import db from '@/lib/db';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SorotModal } from './modal';
 
 export interface Artwork {
   artist: string
@@ -28,12 +29,14 @@ export default async function Home() {
     where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }] }
   })
   const carousel = await db.highlight.findUnique({ where: { code: "LPSK-CAROUSEL" }, include: { publications: { include: { publication: { include: { selected: true } } } } } })
+  const modal = await db.highlight.findUnique({
+    where: { code: "LPSK-MODAL" },
+    include: { publications: { include: { publication: { include: { selected: true } } } } }
+  })
 
   return (
     <div className='flex flex-col gap-10'>
-      {/* <div className='fixed h-screen w-screen left-0 top-0 bg-slate-800/50 z-50 flex justify-center place-items-center'>
-        <div className=' bg-background p-5 rounded w-[350px] h-[600px] md:w-[600px] md:h-[400px] xl:w-[800px] xl:h-[600px]'></div>
-      </div> */}
+      <SorotModal data={modal} />
       <CarouselSection data={carousel} />
       <div className='w-full'>
         <AppContainer className=' space-y-5'>

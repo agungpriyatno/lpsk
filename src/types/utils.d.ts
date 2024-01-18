@@ -5,7 +5,8 @@ export type TMenuItem = {
 }
 
 export type TCarouselItem = {
-    title: string
+    id: string,
+    title: string,
     descriptions?: string
     image: string
 }

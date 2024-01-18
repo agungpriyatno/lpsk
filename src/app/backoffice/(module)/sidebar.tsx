@@ -111,8 +111,8 @@ export const SideBar = ({ modules }: { modules: RoleModule[] }) => {
                                     <SidebarItem key={item.code} icon={item.icon} active={pathname.includes(item.url)} name={item.name} url={item.url} />
                                 )
                             }
-                            return <div key={item.code}></div>
                         }
+                        return <div key={item.code}></div>
                     })}
                 </ul>
             </div>

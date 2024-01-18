@@ -10,6 +10,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 import { Delete } from "./delete"
 import { Update } from "./update"
+import { DetailReport } from "./modal"
 
 export type CategoryTable = Report
 
@@ -48,10 +49,7 @@ export const columnSubCategory: ColumnDef<CategoryTable>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" space-x-2"><UpdateUser name={data.name} id={data.id} role={data.roleId ?? ""} /></DropdownMenuItem> */}
-                        {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><Delete id={data.id} /></DropdownMenuItem>
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><Update id={data.id} name={data.name} /></DropdownMenuItem> */}
-                        {/* <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive space-x-2"><CreateUser id={data.code} /></DropdownMenuItem> */}
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="space-x-2"><DetailReport data={row.original} /></DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

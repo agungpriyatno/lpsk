@@ -74,11 +74,11 @@ export const MENU: TMenuItem[] = [
             },
             {
                 title: "Informasi LHKPN",
-                href: "/informasi",
+                href: "/informasi/lhkpn",
             },
             {
                 title: "Pengaduan Pelayanan Publik",
-                href: "/informasi",
+                href: "/informasi/pengaduan",
             },
         ],
     },

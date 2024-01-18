@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { AppContainer } from '@/components/ui/container';
 import { DownloadCloudIcon, FileIcon } from 'lucide-react';
 import Image from 'next/image';
+import CreateFeature from './create';
 
 export default function Page() {
     return (
@@ -23,11 +24,13 @@ export default function Page() {
             </div>
             <div className='w-full'>
                 <AppContainer>
-               s
+                    <div className=' bg-background p-5 rounded'>
+                        <CreateFeature />
+                    </div>
                 </AppContainer>
             </div>
-          
-            
+
+
         </div>
     )
 }
