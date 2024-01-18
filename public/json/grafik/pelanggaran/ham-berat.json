@@ -1,0 +1,25 @@
+{
+    "name": "Tindak Pidana Pelanggaran HAM Berat",
+    "data": [
+        {
+            "name": 2017,
+            "value": 983
+        },
+        {
+            "name": 2018,
+            "value": 311
+        },
+        {
+            "name": 2019,
+            "value": 323
+        },
+        {
+            "name": 2020,
+            "value": 62
+        },
+        {
+            "name": 2021,
+            "value": 348
+        }
+    ]
+}

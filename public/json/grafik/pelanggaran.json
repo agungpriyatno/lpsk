@@ -1,0 +1,148 @@
+{
+    "name": "Jumlah Permohonan Perlindungan Berdasarkan Tindak Pidana",
+    "data": [
+        {
+            "year": 2019,
+            "list": [
+                {
+                    "name": "Korupsi",
+                    "value": 115
+                },
+                {
+                    "name": "TPPO",
+                    "value": 318
+                },
+                {
+                    "name": "Penyiksaan",
+                    "value": 26
+                },
+                {
+                    "name": "Kekerasan Seksual",
+                    "value": 507
+                },
+                {
+                    "name": "PHB",
+                    "value": 1611
+                },
+                {
+                    "name": "Terorisme",
+                    "value": 415
+                },
+                {
+                    "name": "Narkotika",
+                    "value": 3
+                },
+                {
+                    "name": "Tindak Pidana Lain",
+                    "value": 370
+                }
+            ]
+        },
+        {
+            "year": 2020,
+            "list": [
+                {
+                    "name": "Terorisme",
+                    "value": 278
+                },
+                {
+                    "name": "Kekerasan Seksual Anak",
+                    "value": 223
+                },
+                {
+                    "name": "Pelanggaran HAM",
+                    "value": 162
+                },
+                {
+                    "name": "Perdagangan Orang",
+                    "value": 203
+                },
+                {
+                    "name": "Penganiayaan Berat",
+                    "value": 58
+                },
+                {
+                    "name": "Kekerasan Seksual",
+                    "value": 22
+                },
+                {
+                    "name": "Korupsi",
+                    "value": 1
+                },
+                {
+                    "name": "Penyiksaan",
+                    "value": 13
+                },
+                {
+                    "name": "Pencucian Uang",
+                    "value": 2
+                },
+                {
+                    "name": "Narkotika",
+                    "value": 1
+                },
+                {
+                    "name": "Tindak Pidana Lain",
+                    "value": 431
+                },
+                {
+                    "name": "Bukan Tindak Pidana",
+                    "value": 13
+                }
+            ]
+        },
+        {
+            "year": 2021,
+            "list": [
+                {
+                    "name": "Terorisme",
+                    "value": 527
+                },
+                {
+                    "name": "Kekerasan Seksual Anak",
+                    "value": 426
+                },
+                {
+                    "name": "Pelanggaran HAM",
+                    "value": 348
+                },
+                {
+                    "name": "Perdagangan Orang",
+                    "value": 147
+                },
+                {
+                    "name": "Penganiayaan Berat",
+                    "value": 79
+                },
+                {
+                    "name": "Kekerasan Seksual",
+                    "value": 60
+                },
+                {
+                    "name": "Korupsi",
+                    "value": 55
+                },
+                {
+                    "name": "Penyiksaan",
+                    "value": 31
+                },
+                {
+                    "name": "Pencucian Uang",
+                    "value": 8
+                },
+                {
+                    "name": "Narkotika",
+                    "value": 5
+                },
+                {
+                    "name": "Tindak Pidana Lain",
+                    "value": 423
+                },
+                {
+                    "name": "Bukan Tindak Pidana",
+                    "value": 73
+                }
+            ]
+        }
+    ]
+}

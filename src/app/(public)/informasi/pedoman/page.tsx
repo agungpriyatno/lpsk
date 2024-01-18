@@ -1,14 +1,16 @@
-"use client"
-
-
-import { FooterFE } from '@/components/features/footer-section';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { AppContainer } from '@/components/ui/container';
+import db from '@/lib/db';
 import { DownloadCloudIcon, FileIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Page() {
+export default async function Page() {
+
+    const data = await db.draft.findMany({ where: { categoryId: "LPSK-INFORMASI", subCategoryId: "clrj7sqfs000113d8rffmeiya" }, include: { media: {include: {media: true}} } })
+    console.log(data[0].media);
+
     return (
         <div className='flex flex-col gap-10'>
             <div className=' h-[400px] w-full bg-background'>
@@ -24,78 +26,31 @@ export default function Page() {
             <div className='w-full'>
                 <AppContainer>
                     <div className=' grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
-                        <Card>
-                            <CardHeader className='flex justify-center place-items-center'>
-                                <FileIcon size={50}/>
-                            </CardHeader>
-                            <CardContent className='text-center'>
-                                <p>Prosedur Pelayanan Informasi Publik</p>
-                            </CardContent>
-                            <CardFooter className='flex justify-center place-items-center'>
-                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
-                            </CardFooter>
-                        </Card>
-                        <Card>
-                            <CardHeader  className='flex justify-center place-items-center'>
-                                <FileIcon size={50}/>
-                            </CardHeader>
-                            <CardContent className='text-center'>
-                                <p>Petunjuk Teknis Informasi Pelayanan Publik</p>
-                            </CardContent>
-                            <CardFooter className='flex justify-center place-items-center'>
-                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
-                            </CardFooter>
-                        </Card>
-                        <Card>
-                            <CardHeader  className='flex justify-center place-items-center'>
-                                <FileIcon size={50}/>
-                            </CardHeader>
-                            <CardContent className='text-center'>
-                                <p>Maklumat</p>
-                            </CardContent>
-                            <CardFooter className='flex justify-center place-items-center'>
-                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
-                            </CardFooter>
-                        </Card>
-                        <Card>
-                            <CardHeader  className='flex justify-center place-items-center'>
-                                <FileIcon size={50}/>
-                            </CardHeader>
-                            <CardContent className='text-center'>
-                                <p>Tata Cara Permohonan Informasi</p>
-                            </CardContent>
-                            <CardFooter className='flex justify-center place-items-center'>
-                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
-                            </CardFooter>
-                        </Card>
-                        <Card>
-                            <CardHeader  className='flex justify-center place-items-center'>
-                                <FileIcon size={50}/>
-                            </CardHeader>
-                            <CardContent className='text-center'>
-                                <p>Standar Pelayanan Penerimaan Permohonan</p>
-                            </CardContent>
-                            <CardFooter className='flex justify-center place-items-center'>
-                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
-                            </CardFooter>
-                        </Card>
-                        <Card>
-                            <CardHeader  className='flex justify-center place-items-center'>
-                                <FileIcon size={50}/>
-                            </CardHeader>
-                            <CardContent className='text-center'>
-                                <p>Standar Pelayanan Penanganan Pengaduan</p>
-                            </CardContent>
-                            <CardFooter className='flex justify-center place-items-center'>
-                                <Button className='flex gap-2'><DownloadCloudIcon/> Unduh</Button>
-                            </CardFooter>
-                        </Card>
-
+                        {
+                            data.map((item) => (
+                                <Card key={item.id}>
+                                    <CardHeader className='flex justify-center place-items-center'>
+                                        <FileIcon size={50} />
+                                    </CardHeader>
+                                    <CardContent className='text-center'>
+                                        <p>{item.title}</p>
+                                    </CardContent>
+                                    <CardFooter className='flex justify-center place-items-center'>
+                                        <Button className='flex gap-2'>
+                                            <a href={process.env.BUCKET_URL_ACCESS + "/publikasi/" + item.media[0]?.media.name} target={'_blank'} download className='flex gap-2'>
+                                                <DownloadCloudIcon /> Unduh
+                                            </a>
+                                        </Button>
+                                    </CardFooter>
+                                </Card>
+                            ))
+                        }
+                
                     </div>
                 </AppContainer>
             </div>
-          
-            
+
+
         </div>
     )
 }

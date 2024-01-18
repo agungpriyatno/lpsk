@@ -1,0 +1,25 @@
+{
+    "name": "Tindak Pidana Lain",
+    "data": [
+        {
+            "name": 2017,
+            "value": 506
+        },
+        {
+            "name": 2018,
+            "value": 313
+        },
+        {
+            "name": 2019,
+            "value": 352
+        },
+        {
+            "name": 2020,
+            "value": 431
+        },
+        {
+            "name": 2021,
+            "value": 423
+        }
+    ]
+}

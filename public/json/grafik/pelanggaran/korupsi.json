@@ -1,0 +1,25 @@
+{
+    "name": "Tindak Pidana Korupsi",
+    "data": [
+        {
+            "name": 2017,
+            "value": 67
+        },
+        {
+            "name": 2018,
+            "value": 130
+        },
+        {
+            "name": 2019,
+            "value": 72
+        },
+        {
+            "name": 2020,
+            "value": 48
+        },
+        {
+            "name": 2021,
+            "value": 55
+        }
+    ]
+}

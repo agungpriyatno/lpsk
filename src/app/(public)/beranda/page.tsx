@@ -15,6 +15,7 @@ import db from '@/lib/db';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SorotModal } from './modal';
+import { ChartPidana } from '@/components/features/chart-pidana';
 
 export interface Artwork {
   artist: string
@@ -26,7 +27,7 @@ export default async function Home() {
     take: 20,
     orderBy: { selected: { createdAt: "desc" } },
     include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-    where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }] }
+    where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, { status: "PUBLISH" }] }
   })
   const carousel = await db.highlight.findUnique({ where: { code: "LPSK-CAROUSEL" }, include: { publications: { include: { publication: { include: { selected: true } } } } } })
   const modal = await db.highlight.findUnique({
@@ -37,6 +38,7 @@ export default async function Home() {
   return (
     <div className='flex flex-col gap-10'>
       <SorotModal data={modal} />
+
       <CarouselSection data={carousel} />
       <div className='w-full'>
         <AppContainer className=' space-y-5'>
@@ -57,7 +59,7 @@ export default async function Home() {
       <AplicationSection />
       <AppContainer className=' space-y-3'>
         <HeaderSection>
-          Berita
+          BERITA
         </HeaderSection>
         <Carousel
           opts={{
@@ -97,7 +99,9 @@ export default async function Home() {
         <IDMap />
       </AppContainer>
       <ChartSection />
-      <CardSection />
+      <ChartPidana />
+
+      {/* <CardSection /> */}
       <GallerySection />
     </div>
   )

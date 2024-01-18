@@ -1,0 +1,69 @@
+{
+    "name": "Saluran Pengaduan LPSK",
+    "data": [
+        {
+            "year": 2019,
+            "list": [
+                {
+                    "name": "Call Center",
+                    "value": 171
+                },
+                {
+                    "name": "Surat Elektronik",
+                    "value": 80
+                }
+            ]
+        },
+        {
+            "year": 2020,
+            "list": [
+                {
+                    "name": "Whatsapp",
+                    "value": 321
+                },
+                {
+                    "name": "Call Center",
+                    "value": 72
+                },
+                {
+                    "name": "Surat",
+                    "value": 196
+                },
+                {
+                    "name": "Datang Langsung",
+                    "value": 44
+                }
+                
+            ]
+        },
+        {
+            "year": 2021,
+            "list": [
+                {
+                    "name": "Whatsapp",
+                    "value": 1444
+                },
+                {
+                    "name": "Call Center",
+                    "value": 72
+                },
+                {
+                    "name": "Surat",
+                    "value": 1207
+                },
+                {
+                    "name": "Surat Elektronik",
+                    "value": 80
+                },
+                {
+                    "name": "Datang Langsung",
+                    "value": 225
+                },
+                {
+                    "name": "Aplikasi",
+                    "value": 72
+                }
+            ]
+        }
+    ]
+}

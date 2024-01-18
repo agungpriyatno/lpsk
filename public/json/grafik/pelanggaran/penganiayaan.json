@@ -1,0 +1,25 @@
+{
+    "name": "Tindak Pidana Penganiayaan Berat",
+    "data": [
+        {
+            "name": 2017,
+            "value": 34
+        },
+        {
+            "name": 2018,
+            "value": 5
+        },
+        {
+            "name": 2019,
+            "value": 34
+        },
+        {
+            "name": 2020,
+            "value": 58
+        },
+        {
+            "name": 2021,
+            "value": 82
+        }
+    ]
+}

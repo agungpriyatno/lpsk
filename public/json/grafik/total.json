@@ -1,0 +1,33 @@
+{
+    "name": "Jumlah Permohonan LPSK",
+    "data": [
+        {
+            "name": 2015,
+            "value": 2099
+        },
+        {
+            "name": 2016,
+            "value": 2387
+        },
+        {
+            "name": 2017,
+            "value": 1901
+        },
+        {
+            "name": 2018,
+            "value": 1401
+        },
+        {
+            "name": 2019,
+            "value": 1898
+        },
+        {
+            "name": 2020,
+            "value": 1454
+        },
+        {
+            "name": 2021,
+            "value": 2182
+        }
+    ]
+}

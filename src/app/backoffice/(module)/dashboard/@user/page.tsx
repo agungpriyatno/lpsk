@@ -57,8 +57,8 @@ const Page = async () => {
         <div className=" space-y-5">
             <h3 className=" text-xl font-bold">Dashboard Pengguna</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-                {biro.map((item) => (
-                <div className="bg-background px-3 py-2 rounded">
+                {biro.map((item, i) => (
+                <div key={i} className="bg-background px-3 py-2 rounded">
                     <h3 className="text-base">{item.name}</h3>
                     <span className=" text-2xl font-bold">{item._count.users}</span>
                 </div>

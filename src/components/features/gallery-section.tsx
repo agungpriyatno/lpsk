@@ -15,7 +15,7 @@ export const GallerySection = async () => {
     return (
         <div className='w-full'>
             <AppContainer className=" space-y-3">
-                <HeaderSection>Galeri</HeaderSection>
+                <HeaderSection>GALERI</HeaderSection>
                 <div className=' grid grid-cols-2 md:grid-cols-5 gap-[16px]'>
                     {
                         list.map((item, i) => {

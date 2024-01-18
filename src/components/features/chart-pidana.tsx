@@ -12,8 +12,8 @@ import { HeaderSection } from "../ui/typography"
 type TTotal = { name: string, data: { name: number, value: number }[] }
 type TSaluran = { name: string, data: { year: number, list: { name: string, value: string }[] }[] }
 
-const fetchTotal = async () => {
-    const res = await fetch("/json/grafik/total.json");
+const fetchTotal = async (url: string) => {
+    const res = await fetch(url);
     return (await res.json()) as TTotal;
 };
 
@@ -35,17 +35,24 @@ const fetchPelanggaran = async (year?: string) => {
 
 const queryClient = new QueryClient()
 
-export const ChartSection = () => {
+export const ChartPidana = () => {
 
     return (
         <QueryClientProvider client={queryClient}>
             <section className="w-full">
                 <AppContainer className="space-y-5 bg-background py-5">
-                    <HeaderSection>STATISTIK PERLINDUNGAN SAKSI DAN KORBAN</HeaderSection>
+                    <HeaderSection>STATISTIK PIDANA PERLINDUNGAN SAKSI DAN KORBAN</HeaderSection>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 justify-around gap-3 xl:gap-5">
-                        <ChartTotal />
-                        <ChartSaluran />
-                        <ChartPelanggaran/>
+                        <ChartTotal url="/json/grafik/pelanggaran/seksual.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/ham-berat.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/terorisme.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/cuci.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/korupsi.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/penyiksaan.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/perdagangan.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/narkotika.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/penganiayaan.json"/>
+                        <ChartTotal url="/json/grafik/pelanggaran/lain.json"/>
                     </div>
                 </AppContainer>
             </section>
@@ -86,9 +93,9 @@ export const ChartPelanggaran = () => {
     )
 }
 
-export const ChartTotal = () => {
+export const ChartTotal = ({url}:{url: string}) => {
     // const queryClient = useQueryClient()
-    const { data, isLoading } = useQuery({ queryKey: ['todos'], queryFn: fetchTotal })
+    const { data, isLoading } = useQuery({ queryKey: ['todos', url], queryFn: () => fetchTotal(url) })
 
     if (isLoading) {
         return (

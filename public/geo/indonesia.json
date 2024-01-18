@@ -2809,7 +2809,12 @@
             "properties": {
                 "id": 2,
                 "kode": 52,
-                "provinsi": "NUSATENGGARA BARAT",
+                "total": 36,
+                "seksual": 1,
+                "terorisme": 6,
+                "perdagangan": 27,
+                "lain": 3,
+                "provinsi": "NUSA TENGGARA BARAT",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
         },
@@ -3147,6 +3152,8 @@
             "properties": {
                 "id": 3,
                 "kode": 75,
+                "total":  1,
+                "terorisme": 1,
                 "provinsi": "GORONTALO",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -4381,6 +4388,9 @@
             "properties": {
                 "id": 4,
                 "kode": 74,
+                "total":  1,
+                "terorisme": 2,
+                "lain": 2,
                 "provinsi": "SULAWESI TENGGARA",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -4513,6 +4523,12 @@
             "properties": {
                 "id": 5,
                 "kode": 34,
+                "total": 117,
+                "seksual": 24,
+                "ham": 57,
+                "terorisme": 6,
+                "penyiksaan": 2,
+                "lain": 1,
                 "provinsi": "DAERAH ISTIMEWA YOGYAKARTA",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -5119,6 +5135,13 @@
             "properties": {
                 "id": 6,
                 "kode": 3329,
+                "total": 364,
+                "seksual": 35,
+                "ham": 216,
+                "terorisme": 24,
+                "perdagangan": 7,
+                "penganiayaan": 15,
+                "lain": 15,
                 "provinsi": "JAWA TENGAH",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -5465,7 +5488,10 @@
             "properties": {
                 "id": 7,
                 "kode": 36,
-                "provinsi": "PROBANTEN",
+                "total": 77,
+                "terorisme": 13,
+                "lain": 2,
+                "provinsi": "BANTEN",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
         },
@@ -6439,6 +6465,11 @@
             "properties": {
                 "id": 8,
                 "kode": 35,
+                "total": 90,
+                "seksual": 19,
+                "terorisme": 21,
+                "perdagangan": 10,
+                "lain": 8,
                 "provinsi": "JAWA TIMUR",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -8189,6 +8220,8 @@
             "properties": {
                 "id": 9,
                 "kode": 81,
+                "total":  8,
+                "seksual": 8,
                 "provinsi": "MALUKU UTARA",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -11131,6 +11164,8 @@
             "properties": {
                 "id": 10,
                 "kode": 82,
+                "total":  5,
+                "terorisme": 5,
                 "provinsi": "MALUKU",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -11745,6 +11780,10 @@
             "properties": {
                 "id": 11,
                 "kode": 63,
+                "total": 12,
+                "seksual": 1,
+                "penganiayaan": 8,
+                "lain": 2,
                 "provinsi": "KALIMANTAN SELATAN",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -13251,6 +13290,10 @@
             "properties": {
                 "id": 12,
                 "kode": 0,
+                "total": 16,
+                "seksual": 4,
+                "perdagangan": 1,
+                "lain": 7,
                 "provinsi": "KALIMANTAN BARAT",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -14393,6 +14436,12 @@
             "properties": {
                 "id": 13,
                 "kode": 73,
+                "total": 119,
+                "seksual": 24,
+                "terorisme": 59,
+                "penyiksaan": 1,
+                "perdagangan": 3,
+                "lain": 5,
                 "provinsi": "SULAWESI SELATAN",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -14469,6 +14518,14 @@
             "properties": {
                 "id": 14,
                 "kode": 31,
+                "total": 230,
+                "seksual": 83,
+                "ham": 1,
+                "terorisme": 60,
+                "penyiksaan": 3,
+                "perdagangan": 2,
+                "penganiayaan": 8,
+                "lain": 33,
                 "provinsi": "DKI JAKARTA",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -14925,6 +14982,12 @@
             "properties": {
                 "id": 15,
                 "kode": 32,
+                "total": 402,
+                "seksual": 100,
+                "ham": 21,
+                "terorisme": 36,
+                "perdagangan": 60,
+                "lain": 43,
                 "provinsi": "JAWA BARAT",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -18261,6 +18324,11 @@
             "properties": {
                 "id": 17,
                 "kode": 53,
+                "total": 27,
+                "terorisme": 2,
+                "penyiksaan": 13,
+                "perdagangan": 3,
+                "lain": 15,
                 "provinsi": "NUSA TENGGARA TIMUR",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -18495,6 +18563,11 @@
             "properties": {
                 "id": 18,
                 "kode": 51,
+                "total": 94,
+                "seksual": 23,
+                "terorisme": 65,
+                "perdagangan": 1,
+                "lain": 2,
                 "provinsi": "BALI",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -20461,6 +20534,9 @@
             "properties": {
                 "id": 19,
                 "kode": 14,
+                "total": 20,
+                "seksual": 7,
+                "perdagangan": 1,
                 "provinsi": "RIAU",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -22405,6 +22481,10 @@
             "properties": {
                 "id": 20,
                 "kode": 72,
+                "total": 180,
+                "seksual": 1,
+                "ham": 1,
+                "terorisme": 173,
                 "provinsi": "SULAWESI TENGAH",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -24775,6 +24855,9 @@
             "properties": {
                 "id": 21,
                 "kode": 64,
+                "total": 16,
+                "seksual": 8,
+                "penyiksaan": 1,
                 "provinsi": "KALIMANTAN TIMUR",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -25413,6 +25496,12 @@
             "properties": {
                 "id": 22,
                 "kode": 71,
+                "total": 17,
+                "seksual": 3,
+                "ham": 3,
+                "terorisme": 4,
+                "perdagangan": 1,
+                "lain": 4,
                 "provinsi": "SULAWESI UTARA",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -27771,6 +27860,8 @@
             "properties": {
                 "id": 23,
                 "kode": 83,
+                "total":  11,
+                "seksual": 8,
                 "provinsi": "IRIAN JAYA BARAT",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -28911,6 +29002,14 @@
             "properties": {
                 "id": 24,
                 "kode": 12,
+                "total": 114,
+                "seksual": 37,
+                "ham": 1,
+                "terorisme": 7,
+                "penyiksaan": 2,
+                "perdagangan": 1,
+                "penganiayaan": 7,
+                "lain": 8,
                 "provinsi": "SUMATERA UTARA",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -29513,6 +29612,8 @@
             "properties": {
                 "id": 25,
                 "kode": 19,
+                "total":  9,
+                "seksual": 4,
                 "provinsi": "BANGKA BELITUNG",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -30423,6 +30524,10 @@
             "properties": {
                 "id": 26,
                 "kode": 13,
+                "seksual": 11,
+                "ham": 3,
+                "penyiksaan": 4,
+                "lain": 2,
                 "provinsi": "SUMATERA BARAT",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -31463,6 +31568,8 @@
             "properties": {
                 "id": 27,
                 "kode": 0,
+                "total": 8,
+                "penganiayaan": 4,
                 "provinsi": "KALIMANTAN TENGAH",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -32359,6 +32466,10 @@
             "properties": {
                 "id": 28,
                 "kode": 16,
+                "total": 13,
+                "seksual": 4,
+                "perdagangan": 1,
+                "lain": 1,
                 "provinsi": "SUMATERA SELATAN",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -32945,6 +33056,7 @@
             "properties": {
                 "id": 29,
                 "kode": 15,
+                "total":  5,
                 "provinsi": "JAMBI",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -33509,6 +33621,10 @@
             "properties": {
                 "id": 30,
                 "kode": 18,
+                "total": 47,
+                "seksual": 28,
+                "terorisme": 3,
+                "perdagangan": 7,
                 "provinsi": "LAMPUNG",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -34019,6 +34135,10 @@
             "properties": {
                 "id": 31,
                 "kode": 17,
+                "total": 14,
+                "seksual": 11,
+                "terorisme": 1,
+                "lain": 1,
                 "provinsi": "BENGKULU",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }
@@ -34817,6 +34937,10 @@
             "properties": {
                 "id": 32,
                 "kode": 11,
+                "total": 31,
+                "seksual": 7,
+                "terorisme": 9,
+                "lain": 6,
                 "provinsi": "DI. ACEH",
                 "SUMBER": "Peta Dasar BAKOSURTANAL Skala 1 : 250.000"
             }

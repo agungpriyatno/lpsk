@@ -111,7 +111,7 @@ export default function Page() {
                             LHKPN Pejabat Struktural LPSK
                         </HeaderSection>
                         <Table>
-                            <TableCaption> List LHKPN Ketua dan Wakil Ketua LPSK.</TableCaption>
+                            <TableCaption>LHKPN Pejabat Struktural LPSK.</TableCaption>
                             <TableHeader>
                                 <TableRow>
                                     <TableHead className="w-[100px]">No</TableHead>

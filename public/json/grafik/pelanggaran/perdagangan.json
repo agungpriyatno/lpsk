@@ -1,0 +1,25 @@
+{
+    "name": "Tindak Pidana Perdagangan Manusia",
+    "data": [
+        {
+            "name": 2017,
+            "value": 98
+        },
+        {
+            "name": 2018,
+            "value": 104
+        },
+        {
+            "name": 2019,
+            "value": 183
+        },
+        {
+            "name": 2020,
+            "value": 209
+        },
+        {
+            "name": 2021,
+            "value": 147
+        }
+    ]
+}

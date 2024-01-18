@@ -1,0 +1,25 @@
+{
+    "name": "Tindak Pidana Pelanggaran Terorisme",
+    "data": [
+        {
+            "name": 2017,
+            "value": 49
+        },
+        {
+            "name": 2018,
+            "value": 142
+        },
+        {
+            "name": 2019,
+            "value": 318
+        },
+        {
+            "name": 2020,
+            "value": 278
+        },
+        {
+            "name": 2021,
+            "value": 527
+        }
+    ]
+}

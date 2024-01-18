@@ -74,7 +74,7 @@ export const AppHeader = () => {
                                                 menu.map((item, i) => {
                                                     if (item.children) {
                                                         return (
-                                                            <li className={cn(
+                                                            <li key={i} className={cn(
                                                                 "px-3 py-1.5 hover:bg-muted rounded text-left group",
                                                                 { "bg-muted": pathname.includes(item.href) }
                                                             )}>

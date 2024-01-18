@@ -50,7 +50,7 @@ const IDMap = () => {
 
   const [hover, setHover] = useState<{ x: number, y: number, message: string } | null>()
   const [open, setOpen] = useState(false)
-  const [selected, setSelected] = useState<{ id: number, provinsi: string, value: number } | null>(null)
+  const [selected, setSelected] = useState<any | null>(null)
   const [{ height, width }, setSize] = useState({ height: 0, width: 0 })
   const [{ data, generator }, setData] = useState<{ data: any[], generator: d3.GeoPath<any, d3.GeoPermissibleObjects> | null }>({ data: [], generator: null })
 
@@ -62,7 +62,7 @@ const IDMap = () => {
       const features = geoJson.features as any[]
       const projection = d3.geoMercator().fitSize([ref.current?.offsetWidth ?? 0, ref.current?.offsetHeight ?? 0], geoJson)
       const generate = geoPath().projection(projection)
-      setData({ data: features.map(({ properties, ...item }) => { return { ...item, properties: { ...properties, value: generateNumber(0, 100) } } }), generator: generate })
+      setData({ data: features.map(({ properties, ...item }) => { return { ...item, properties: { ...properties } } }), generator: generate })
     })
   }, [])
 
@@ -84,19 +84,18 @@ const IDMap = () => {
                   id={item.properties.id}
                   key={item.properties.id}
                   onClick={(e) => {
-                    setSelected({ id: item.properties.id, provinsi: item.properties.provinsi, value: item.properties.value })
+                    setSelected(item.properties)
+                    console.log(item.properties)
                     setOpen(true)
                   }}
                   onMouseMove={(e) => {
-                    const clientBox = e.currentTarget.getBBox();
-                    const clientRect = e.currentTarget.getBoundingClientRect();
                     const x = e.pageX - 200
                     const y = e.pageY - 100;
-                    setHover({ x, y, message: item.properties.value })
+                    setHover({ x, y, message: item.properties.total ?? 0 })
                   }}
                   onMouseLeave={() => setHover(null)}
                   d={generator(item) ?? undefined}
-                  style={{ fill: colors.orange[colorList[selectColor(item.properties.value)]] }}
+                  style={{ fill: colors.orange[colorList[selectColor(item.properties.total ?? 0)]] }}
                   ref={pathRef}
                 ></path>
                 <div>data</div>
@@ -111,7 +110,7 @@ const IDMap = () => {
           <div className=" absolute px-3 py-2 rounded bg-muted" key={1} style={{ left: hover.x, top: hover.y }}>{hover.message}</div>
         )}
         {open && <motion.div
-        key={2}
+          key={2}
           className="bg-slate-800/50 fixed left-0 top-0 h-full w-full z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -121,7 +120,7 @@ const IDMap = () => {
             <div className="bg-background p-5 rounded max-w-[800px] h-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               <h1>ID: {selected?.id}</h1>
               <h1>Nama Provinsi: {selected?.provinsi}</h1>
-              <h1>Jumlah Laporan: {selected?.value}</h1>
+              <h1>Jumlah Laporan: {selected?.total}</h1>
               {/* <div className="gap-3 xl:gap-5 w-full">
                     <div className='flex flex-col gap-3 text-center'>
                         <h4 className='text-lg font-bold'>Pelayan Publik</h4>
@@ -132,13 +131,49 @@ const IDMap = () => {
                         <BarChart data={perlindunganSaksiKorban} />
                     </div>
                 </div> */}
-              <div className=" gap-3 grid grid-cols-1 md:grid-cols-2">
-                <CardReport url="/json/pelanggaran/ham-berat.json" />
-                <CardReport url="/json/pelanggaran/korupsi.json" />
-                <CardReport url="/json/pelanggaran/ham-berat.json" />
-                <CardReport url="/json/pelanggaran/ham-berat.json" />
-                <CardReport url="/json/pelanggaran/ham-berat.json" />
-                <CardReport url="/json/pelanggaran/ham-berat.json" />
+              <div className=" grid grid-cols-2 gap-2 mt-3">
+                <div className="flex w-full flex-row border px-3 py-2 justify-between place-items-center rounded gap-3">
+                  <h1 className="text-base font-semibold">
+                    Tindak Pidana HAM Berat
+                  </h1>
+                  <h4>{selected.ham ?? 0}</h4>
+                </div>
+                <div className="flex w-full flex-row border px-3 py-2 justify-between place-items-center rounded gap-3">
+                  <h1 className="text-base font-semibold">
+                    Tindak Pidana Narkotika
+                  </h1>
+                  <h4>{selected.narkotika ?? 0}</h4>
+                </div>
+                <div className="flex w-full flex-row border px-3 py-2 justify-between place-items-center rounded gap-3">
+                  <h1 className="text-base font-semibold">
+                    Tindak Pidana Penganiayaan Berat
+                  </h1>
+                  <h4>{selected.penganiayaan ?? 0}</h4>
+                </div>
+                <div className="flex w-full flex-row border px-3 py-2 justify-between place-items-center rounded gap-3">
+                  <h1 className="text-base font-semibold">
+                    Tindak Pidana Penyiksaan
+                  </h1>
+                  <h4>{selected.penyiksaan ?? 0}</h4>
+                </div>
+                <div className="flex w-full flex-row border px-3 py-2 justify-between place-items-center rounded gap-3">
+                  <h1 className="text-base font-semibold">
+                    Tindak Pidana Perdagangan Orang
+                  </h1>
+                  <h4>{selected.perdagangan ?? 0}</h4>
+                </div>
+                <div className="flex w-full flex-row border px-3 py-2 justify-between place-items-center rounded gap-3">
+                  <h1 className="text-base font-semibold">
+                    Tindak Pidana Seksual
+                  </h1>
+                  <h4>{selected.seksual ?? 0}</h4>
+                </div>
+                <div className="flex w-full flex-row border px-3 py-2 justify-between place-items-center rounded gap-3">
+                  <h1 className="text-base font-semibold">
+                    Tindak Pidana Terorisme
+                  </h1>
+                  <h4>{selected.terorisme ?? 0}</h4>
+                </div>
               </div>
             </div>
           </div>

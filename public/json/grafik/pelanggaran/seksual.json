@@ -1,0 +1,21 @@
+{
+    "name": "Tindak Pidana Seksual",
+    "data": [
+        {
+            "name": 2018,
+            "value": 305
+        },
+        {
+            "name": 2019,
+            "value": 359
+        },
+        {
+            "name": 2020,
+            "value": 245
+        },
+        {
+            "name": 2021,
+            "value": 486
+        }
+    ]
+}
