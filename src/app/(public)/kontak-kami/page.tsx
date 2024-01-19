@@ -35,7 +35,7 @@ export default function Page() {
                             <div className='h-full flex flex-col justify-center space-y-2'>
                                 <h1>Kantor Pusat</h1>
                                 <HeaderSection className='flex gap-2'><Clock10Icon />Jam Operasional</HeaderSection>
-                                <p className='text-base pl-5'>Senin - Jum'at : 08.00 - 16.30 </p>
+                                <p className='text-base pl-5'>Senin - Jumat : 08.00 - 16.30 </p>
                                 <HeaderSection className='flex gap-2'><PinIcon />Hubungi Kantor Perwakilan</HeaderSection>
                                 <div className=' space-y-2'>
                                     <p className='text-base pl-5'><b>Kantor Pusat LPSK</b> Jalan Raya Bogor KM 24 No. 47-49, Jakarta Timur. Telp. 021-29681560</p>
