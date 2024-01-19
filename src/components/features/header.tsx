@@ -56,7 +56,7 @@ export const AppHeader = () => {
                             <TextToSpeechToogler />
                             <ThemeToogler />
                             <Sheet>
-                                <SheetTrigger>
+                                <SheetTrigger className="xl:hidden">
                                     <MenuIcon/>
                                 </SheetTrigger>
                                 <SheetContent side={'left'}>

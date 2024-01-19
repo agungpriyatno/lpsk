@@ -23,7 +23,7 @@ export const HeaderBackend = ({ data }: { data: User & { role: (Role & { modules
             <div className="flex w-full justify-between place-items-center">
 
                 <Sheet>
-                    <SheetTrigger className="lg:hidden">
+                    <SheetTrigger className="xl:hidden">
                         <MenuIcon/>
                     </SheetTrigger>
                     <SheetContent side={"left"}>
