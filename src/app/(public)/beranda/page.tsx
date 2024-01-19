@@ -31,11 +31,11 @@ export default async function Home() {
   })
   const carousel = await db.highlight.findUnique({
     where: { code: "LPSK-CAROUSEL" },
-    include: { publications: { orderBy: { publication: { createdAt: "desc" } }, include: { publication: { include: { selected: true } } } } },
+    include: { publications: { orderBy: { publication: { selected: { createdAt: "desc" } } }, include: { publication: { include: { selected: true } } } } },
   })
   const modal = await db.highlight.findUnique({
     where: { code: "LPSK-MODAL" },
-    include: { publications: { orderBy: { publication: { createdAt: "desc" } }, include: { publication: { include: { selected: true } } } } }
+    include: { publications: { orderBy: { publication: { selected: { createdAt: "desc" } } }, include: { publication: { include: { selected: true } } } } }
   })
 
   return (
