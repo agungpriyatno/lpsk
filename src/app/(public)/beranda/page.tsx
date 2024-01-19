@@ -29,10 +29,13 @@ export default async function Home() {
     include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
     where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, { status: "PUBLISH" }] }
   })
-  const carousel = await db.highlight.findUnique({ where: { code: "LPSK-CAROUSEL" }, include: { publications: { include: { publication: { include: { selected: true } } } } } })
+  const carousel = await db.highlight.findUnique({
+    where: { code: "LPSK-CAROUSEL" },
+    include: { publications: { orderBy: { publication: { createdAt: "desc" } }, include: { publication: { include: { selected: true } } } } },
+  })
   const modal = await db.highlight.findUnique({
     where: { code: "LPSK-MODAL" },
-    include: { publications: { include: { publication: { include: { selected: true } } } } }
+    include: { publications: { orderBy: { publication: { createdAt: "desc" } }, include: { publication: { include: { selected: true } } } } }
   })
 
   return (
