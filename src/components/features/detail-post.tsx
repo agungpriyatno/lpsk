@@ -54,30 +54,7 @@ const DetailPost = async ({ id }: { id: string }) => {
 
                 {!!data.selected?.vote && (
                     <div className="space-y-3">
-                        {data.selected?.media != undefined && data.selected.media.length > 0 && (
-                            <section className="space-y-3">
-                                <h3 className=" text-lg font-bold">Dokumen</h3>
-                                <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
-                                    {data.selected.media.map((item) => (
-                                        <div className=" bg-background rounded" key={item.media.id}>
-                                            <AspectRatio ratio={2 / 1}>
-                                                <div className="p-4 2xl:p-4 flex flex-col justify-end h-full w-full gap-2">
-                                                    <p className="text-sm">Dokumen</p>
-                                                    <div className="flex gap-2 w-full justify-end">
-                                                        {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.media.name} />}
-                                                        <Button size={'icon'} asChild>
-                                                            <a href={"/documents/roadmap-birokrasi.pdf"} download>
-                                                                <DownloadIcon />
-                                                            </a>
-                                                        </Button>
-                                                    </div>
-                                                </div>
-                                            </AspectRatio>
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
-                        )}
+                    
                        <div className="h-[400px] w-full">
                        <ReChartBar data={data.selected?.vote?.vote.options.map((item) => {
                             return { ...item, count: item._count.client }
@@ -132,11 +109,11 @@ const DetailPost = async ({ id }: { id: string }) => {
                 {data.selected?.media != undefined && data.selected.media.length > 0 && (
                     <section className="space-y-3">
                         <h3 className=" text-lg font-bold">Dokumen</h3>
-                        <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-6">
+                        <div className=" grid grid-cols-1 md:grid-cols-4 2xl:grid-cols-4">
                             {data.selected.media.map((item) => (
                                 <div className=" bg-background rounded" key={item.media.id}>
                                     <div className="p-4 2xl:p-4 flex flex-col justify-end h-full w-full gap-2">
-                                        <p className="text-sm">{item.media.name}</p>
+                                        <p className="text-sm truncate">{item.media.name}</p>
                                         <div className="flex gap-2 w-full justify-end">
                                             {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.media.name} />}
                                             <Button size={'icon'} asChild>

@@ -1,12 +1,13 @@
 "use client"
 
-
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Home() {
+export default  function Home() {
+
+  // await db.$connect()
   return (
     <div className='h-screen w-full'>
       <div className='h-full w-full relative bg-slate-800'>

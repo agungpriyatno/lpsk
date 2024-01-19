@@ -9,7 +9,7 @@ import Link from 'next/link';
 export default async function Page() {
 
     const data = await db.draft.findMany({ where: { categoryId: "LPSK-INFORMASI", subCategoryId: "clrj7sqfs000113d8rffmeiya" }, include: { media: {include: {media: true}} } })
-    console.log(data[0].media);
+    
 
     return (
         <div className='flex flex-col gap-10'>
