@@ -35,9 +35,6 @@ export default async function Home() {
     include: { publications: { include: { publication: { include: { selected: true } } } } }
   })
 
-  console.log(modal);
-  
-
   return (
     <div className='flex flex-col gap-10'>
       <SorotModal data={modal} />
