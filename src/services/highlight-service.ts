@@ -27,6 +27,7 @@ export const findManyHighlight = async ({ query: { search, skip, take } }: FindM
 export const deleteHighlightPost = async (id: string, postId: string) => {
     await db.highlightPublication.deleteMany({ where: { publicationId: postId, highlightCode: id } })
     revalidatePath('/backoffice/kategori')
+    revalidatePath('/beranda')
 }
 
 export const createManyPubHiglight = async ({ name, subs }: PubCategoryDto) => {
@@ -34,6 +35,7 @@ export const createManyPubHiglight = async ({ name, subs }: PubCategoryDto) => {
         data: subs.map((item) => { return { publicationId: item.name, highlightCode: name } })
     })
     revalidatePath('/backoffice/konten/sorot')
+    revalidatePath('/beranda')
 }
 
 export const findAllHighlightPub = async (code: string) => {
