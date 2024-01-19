@@ -49,7 +49,7 @@ const Page = async () => {
         return session.role?.modules.find((item) => item.moduleCode === data)
     }
 
-    if (!findModule("LPSK-PERSETUJUAN-USER")) {
+    if (!findModule("LPSK-PENGGUNA")) {
         return null
     }
 
