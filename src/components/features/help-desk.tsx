@@ -28,7 +28,7 @@ export const HelpdeskIcon = () => {
                 <div className={cn("p-3 rounded-l bg-background transition-all duration-200 overflow-hidden w-12 hover:w-full")}>
                     <div className="flex gap-3 w-fit">
                         <MailIcon size={25} />
-                        <span>lpsk_ri@lpsk.go.id</span>
+                        <span>lpsk_ri[at]lpsk.go.id</span>
                     </div>
                 </div>
                 <div className={cn("p-3 rounded-l bg-background transition-all duration-200 overflow-hidden w-12 hover:w-full")}>

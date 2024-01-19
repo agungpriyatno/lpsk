@@ -48,7 +48,7 @@ export const FooterFE = () => {
                         </div>
                         <div className="flex flex-col gap-5">
                             <small className="flex gap-2 place-items-center"><PhoneCallIcon size={14} /> (021) 29681560</small>
-                            <small className="flex gap-2 place-items-center"><MailIcon size={14} /> lpsk_ri@lpsk.go.id</small>
+                            <small className="flex gap-2 place-items-center"><MailIcon size={14} /> lpsk_ri[at]lpsk.go.id</small>
                             <small className="flex gap-2 place-items-center"><PinIcon size={14} /> Jl. Raya Bogor KM 24 No. 47-49 Ciracas Jakarta Timur 13750</small>
                         </div>
                     </div>
