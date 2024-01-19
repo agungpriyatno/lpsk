@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { ComboboxDemo } from "@/components/ui/combobox"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -9,7 +10,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { PubCategoryDto, pubCategoryDto } from "@/lib/validators/publication"
 import { createManyPubHiglight, deleteHighlightPost, findAllHighlightPub } from "@/services/highlight-service"
-import { createPubCategory, deleteSubCategory, findAllSubCategory, findManyPublicationService } from "@/services/publication-service"
+import { createPubCategory, deleteSubCategory, findAllSubCategory, findManyPublicationService, findManyPublicationasdService } from "@/services/publication-service"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { HighlightPublication, Publication, Draft, PublicationCategory, PublicationSubCategory } from "@prisma/client"
 
@@ -44,7 +45,7 @@ export const CreateUser = ({ id }: { id: string }) => {
 
     const findPublication = async () => {
         setPublication({ data: [], isLoading: false })
-        const resp = await findManyPublicationService({ query: { search, skip: 0, take: 10 }, status: undefined })
+        const resp = await findManyPublicationasdService({ query: { search, skip: 0, take: 10 }, status: "PUBLISH" })
         setPublication({ data: resp, isLoading: false })
     }
 
@@ -106,11 +107,12 @@ export const CreateUser = ({ id }: { id: string }) => {
                     Sesuaikan
                 </DialogTrigger>
             </Button>
-            <DialogContent className=" overflow-clip" onKeyDown={(e) => handleKeyDown(e) 
+            <DialogContent className=" overflow-clip" onKeyDown={(e) => handleKeyDown(e)
             }>
                 <DialogHeader>
-                    <DialogTitle>Penyesuaian Kategori</DialogTitle>
+                    <DialogTitle>Penyesuaian Sorot</DialogTitle>
                 </DialogHeader>
+
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-3">
                         {/* <FormField control={form.control} name="name" render={({ field }) => (

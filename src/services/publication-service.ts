@@ -35,6 +35,26 @@ export const findManyPublicationService = ({ query: { search, skip, take }, stat
     })
 }
 
+export const findManyPublicationasdService = ({ query: { search, skip, take }, status }: FindManyPublication) => {
+    if (status != undefined) {
+        return db.publication.findMany({
+            skip: isNaN(skip) ? 0 : skip,
+            take: isNaN(take) ? 10 : take,
+            where: { AND: [{ status }, { OR: [{ selected: { title: { contains: search } } }] }] },
+            include: { selected: true },
+            orderBy: { selected: { createdAt: "desc" } }
+        })
+    }
+
+    return db.publication.findMany({
+        skip: isNaN(skip) ? 0 : skip,
+        take: isNaN(take) ? 10 : take,
+        where: { OR: [{ selected: { title: { contains: search } } }, { selected: { content: { contains: search } } }] },
+        include: { selected: true },
+        orderBy: { createdAt: "desc" }
+    })
+}
+
 export const findPublicationService = async (id: string) => {
     return await db.publication.findUniqueOrThrow({ where: { id }, include: { author: true, selected: { include: { author: true, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } }, draft: true } })
 }
