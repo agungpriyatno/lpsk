@@ -49,7 +49,7 @@ export default async function Home() {
             <LinkCard href='/beranda/subjek-perlindungan' title='SUBJEK PERLINDUNGAN' description='Saksi, Korban, Saksi Pelaku, Pelapor, Ahli' image='/images/subjek-perlindungan.png' />
             <LinkCard href='/beranda/kasus-prioritas' title='KASUS PRIORITAS' description='Terorisme, Pelanggaran HAM yang Berat, Korupsi,Pencucian Uang, Tindak pidana lain' image='/images/kasus-prioritas.png' />
             <LinkCard href='/beranda/program-perlindungan' title='PROGRAM PERLINDUNGAN' description='Perlindungan Fisik, Perlindungan Prosedural, Perlindungan Hukum, dan lainnya' image='/images/program-perlindungan.png' />
-            <LinkCard href='/beranda/cara-mengajukan' title='CARA MENGAJUKAN PERMOHONAN' description='Tuntunan Cara Pengajuan Permohonan Perlindungan' image='/images/melakukan-permohonan.png' />
+            <LinkCard href='/beranda/cara-mengajukan' title='MEKANISME MENGAJUKAN PERMOHONAN' description='Tuntunan Cara Pengajuan Permohonan Perlindungan' image='/images/melakukan-permohonan.png' />
           </div>
         </AppContainer>
       </div>
