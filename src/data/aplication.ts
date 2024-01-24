@@ -6,7 +6,7 @@ export const INTERNAL_APLICATION: Aplication[] = [
         name: "SIMPUSAKO",
         description: "Sistem Informasi Perlindungan Saksi dan Korban",
         type: "INTERNAL",
-        link: "http://103.84.206.141/layanan/",
+        link: "https://simpusako.lpsk.go.id/layanan-simpusako/",
         images: "/images/simpusako.png",
         createdAt: new Date()
     },
