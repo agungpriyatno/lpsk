@@ -1,7 +1,7 @@
 import db from "@/lib/db"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(request: NextRequest, { params: { id } }: { params: { id: string } }) {
+export async function GET(_: NextRequest, { params: { id } }: { params: { id: string } }) {
     const data = await db.publication.findFirstOrThrow({
         where: { id }, include:
         {
