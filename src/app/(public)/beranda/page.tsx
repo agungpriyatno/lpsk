@@ -40,9 +40,6 @@ export default async function Home() {
     },
   })
 
-  console.log(carousel?.publications);
-
-
   const modal = await db.highlight.findUnique({
     where: { code: "LPSK-MODAL" },
     include: {

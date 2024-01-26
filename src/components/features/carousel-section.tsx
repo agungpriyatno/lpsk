@@ -27,7 +27,7 @@ export const CarouselSection = async ({ data }: {
     
     return (
         <section className=" h-screen w-full">
-            <Carousel data={list.reverse()} />
+            <Carousel data={list} />
         </section>
     )
 }
