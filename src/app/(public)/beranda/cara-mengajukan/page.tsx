@@ -62,7 +62,7 @@ export default function Page() {
                                     </div>
                                     <div className=' bg-blue-500 rounded p-5 flex gap-3 shadow'>
                                         <EnvelopeClosedIcon className=' text-white' />
-                                        <h1 className='text-base font-bold text-white'>Email: lpsk_ri[at]lpsk.go.id</h1>
+                                        <h1 className='text-base font-bold text-white'>Email: lpsk_ri@lpsk.go.id</h1>
                                     </div>
                                 </div>
                             </div>

@@ -48,7 +48,7 @@ export default function Page() {
                                 </TextToSpeech>
                                 <HeaderSection className='flex gap-2'><MailIcon /> Email</HeaderSection>
                                 <TextToSpeech>
-                                    <p className='text-base pl-5'>lpsk_ri[at]lpsk.go.id</p>
+                                    <p className='text-base pl-5'>lpsk_ri@lpsk.go.id</p>
                                 </TextToSpeech>
 
                             </div>
