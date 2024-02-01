@@ -57,14 +57,14 @@ export const CreateUser = ({ id }: { id: string }) => {
         try {
             await deleteHighlightPost(id, idPost)
             toast({
-                title: "Berhasil Hapus Ketegori",
+                title: "Berhasil Hapus Kategori",
                 variant: "default",
             })
             form.reset()
             setOpen(false)
         } catch (error) {
             toast({
-                title: "Gagal Hapus Ketegori",
+                title: "Gagal Hapus Kategori",
                 description: "",
                 variant: "destructive",
             })

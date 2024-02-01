@@ -65,7 +65,7 @@ export const listMenu: TMenuSidebar[] = [
         icon: <HighlighterIcon size={20} />
     },
     {
-        name: "Ketegori Konten",
+        name: "Kategori Konten",
         url: "/backoffice/kategori",
         code: "LPSK-KATEGORI-KONTEN",
         icon: <LayoutGridIcon size={20} />

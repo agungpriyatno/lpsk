@@ -44,14 +44,14 @@ export const CreateUser = ({ id }: { id: string }) => {
         try {
             await deleteSubCategory(id)
             toast({
-                title: "Berhasil Hapus Ketegori",
+                title: "Berhasil Hapus Kategori",
                 variant: "default",
             })
             form.reset()
             setOpen(false)
         } catch (error) {
             toast({
-                title: "Gagal Hapus Ketegori",
+                title: "Gagal Hapus Kategori",
                 description: "",
                 variant: "destructive",
             })
@@ -67,14 +67,14 @@ export const CreateUser = ({ id }: { id: string }) => {
         try {
             await createPubCategory(data)
             toast({
-                title: "Berhasil Tambah Ketegori",
+                title: "Berhasil Tambah Kategori",
                 variant: "default",
             })
             form.reset()
             setOpen(false)
         } catch (error) {
             toast({
-                title: "Gagal Tambah Ketegori",
+                title: "Gagal Tambah Kategori",
                 description: "",
                 variant: "destructive",
             })
