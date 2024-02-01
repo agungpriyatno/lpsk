@@ -21,7 +21,7 @@ const Page = async ({ params: { id } }: PageProps) => {
     return (
         <section className="space-y-5 py-5">
             <Button asChild variant={'default'} size={'icon'} className=" rounded-full">
-                <Link  href={"/backoffice/persetujuan-konten"}>
+                <Link  href={"/backoffice/persetujuan-draft"}>
                     <ChevronLeft />
                 </Link>
             </Button>
