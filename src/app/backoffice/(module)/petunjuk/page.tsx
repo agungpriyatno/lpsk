@@ -7,7 +7,7 @@ const Page = () => {
             <div className="flex w-full justify-between place-items-center">
                 <h1 className=" font-bold text-base">Dokumen Petunjuk Teknis</h1>
                 <Button asChild size={'icon'}>
-                    <a href={'/documents/petunjuk-teknis.pdf'} target={"_blank"}>
+                    <a href={'/documents/buku-petunjuk-teknis.pdf'} target={"_blank"}>
                         <DownloadIcon size={20} />
                     </a>
                 </Button>
