@@ -58,7 +58,7 @@ export default function Page() {
                                     </Link>
                                     <div className=' bg-red-500 rounded p-5 flex gap-3 shadow'>
                                         <PhoneCallIcon className=' text-white' />
-                                        <h1 className='text-base font-bold text-white'>Hotline: 148</h1>
+                                        <h1 className='text-base font-bold text-white'>Hotline: 1500 - 148</h1>
                                     </div>
                                     <div className=' bg-blue-500 rounded p-5 flex gap-3 shadow'>
                                         <EnvelopeClosedIcon className=' text-white' />
