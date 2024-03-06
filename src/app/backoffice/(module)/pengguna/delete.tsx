@@ -42,10 +42,10 @@ export const DeleteUser = ({ id }: { id: string }) => {
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete your account
+                    <>
+                        This action cAlertDialogDescriptionannot be undone. This will permanently delete your account
                         and remove your data from our servers.
-                    </AlertDialogDescription>
+                    </>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <Button variant={'destructive'} className={cn({ "bg-muted-foreground": loading })} onClick={submitHandler}>{loading ? "Mengunggah..." : "Hapus"}</Button>
