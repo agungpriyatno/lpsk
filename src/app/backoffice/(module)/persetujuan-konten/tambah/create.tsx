@@ -170,7 +170,7 @@ const CreateFeature = () => {
                     <FormItem>
                         <FormLabel>Konten</FormLabel>
                         <FormControl>
-                            <Editor value={field.value} onChange={(val) => field.onChange(val)}/>
+                            <Editor name={field.name} value={field.value} onChange={(val) => field.onChange(val)}/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>

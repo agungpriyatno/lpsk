@@ -9,6 +9,7 @@ import { Role } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 import { DeleteRole } from "./delete"
+import { UpdateRole } from "./update"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -17,6 +18,10 @@ export type RoleTable = Role & {
         modules: number;
         users: number;
     };
+    modules: {
+        roleId: string;
+        moduleCode: string;
+    }[];
 }
 
 export const roleColums: ColumnDef<RoleTable>[] = [
@@ -83,6 +88,7 @@ export const roleColums: ColumnDef<RoleTable>[] = [
                         <DropdownMenuLabel>Aksi</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" text-destructive space-x-2"><DeleteRole id={data.id} /></DropdownMenuItem>
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className=" space-x-2"><UpdateRole id={data.id} name={data.name} descriptions={data.descriptions ?? ""} modules={data.modules} /></DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

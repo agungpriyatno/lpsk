@@ -36,7 +36,7 @@ export const HeaderBackend = ({ data }: { data: User & { role: (Role & { modules
                                     <h1 className="text-lg font-bold">LPSK</h1>
                                 </div>
                             </SheetTitle>
-                            <ul className="px-3 space-y-1">
+                            <nav className="px-3 space-y-1">
                                 {listMenu.map((item) => {
                                     if (!item.code) {
                                         return (
@@ -51,7 +51,7 @@ export const HeaderBackend = ({ data }: { data: User & { role: (Role & { modules
                                     }
                                     return <div key={item.code}></div>
                                 })}
-                            </ul>
+                            </nav>
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>

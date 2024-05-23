@@ -15,7 +15,7 @@ export const findManyRole = ({ query: { search, skip, take } }: FindManyRoleProp
         skip: isNaN(skip) ? 0 : skip,
         take: isNaN(take) ? 10 : take,
         where: { OR: [{ name: { contains: search } }, { descriptions: { contains: search } }] },
-        include: { _count: { select: { modules: true, users: true } } },
+        include: {modules: true , _count: { select: { modules: true, users: true } } },
         orderBy: { createdAt: "desc" }
     })
 }
@@ -31,8 +31,15 @@ export const createRoleService = async ({ name, descriptions, modules }: RoleDto
     revalidatePath('/hak-akses')
 }
 
+export const updateRoleService = async (id: string,{ name, descriptions, modules }: RoleDto) => {
+    const data = modules.map((item) => { return { moduleCode: item.code } })
+    await db.role.update({where: {id}, data: {name, descriptions, modules: {deleteMany: {}}}})
+    await db.role.update({where: {id}, data: {name, descriptions, modules: {createMany: {data}}}})
+    revalidatePath('/hak-akses')
+}
+
 
 export const deleteRoleService = async ({ id }: { id: string }) => {
     await db.role.delete({ where: { id } })
-    revalidatePath('/hal-akses')
+    revalidatePath('/hak-akses')
 }

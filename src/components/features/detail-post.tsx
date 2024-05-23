@@ -39,7 +39,7 @@ const DetailPost = async ({ id }: { id: string }) => {
                     <h1 className=" text-2xl font-bold leading-none">{data.selected?.title}</h1>
                     <small>Diunggah oleh {data.author?.name ?? "admin"}</small>
                 </section>
-                <section className="space-y-3" dangerouslySetInnerHTML={{ __html: data.selected?.content ?? "" }}>
+                <section className="space-y-3 prose max-w-none [&_ol]:list-decimal [&_ul]:list-disc" dangerouslySetInnerHTML={{ __html: data.selected?.content ?? "" }}>
                 </section>
 
                 {data.selected?.videoLink != undefined && data.selected.videoLink.includes("www.youtube.com") && (

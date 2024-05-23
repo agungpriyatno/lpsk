@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Checkbox } from "@/components/ui/checkbox"
+import Editor from "@/components/ui/editor"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -24,7 +25,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useFieldArray, useForm } from "react-hook-form"
 import TextareaAutosize from 'react-textarea-autosize'
-const Editor = dynamic(() => import("@/components/ui/editor"), { ssr: false });
+// const Editor = dynamic(() => import("@/components/ui/editor"), { ssr: false });
 
 
 type CategoryType = Prettify<PublicationCategory & { subs: PublicationSubCategory[] }>
@@ -161,7 +162,7 @@ const CreateFeature = () => {
                     <FormItem>
                         <FormLabel>Konten</FormLabel>
                         <FormControl>
-                            <Editor value={field.value} onChange={(val) => field.onChange(val)}/>
+                            <Editor name={field.name} value={field.value} onChange={(val) => field.onChange(val)}/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>

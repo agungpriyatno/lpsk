@@ -14,6 +14,7 @@ type UserPageProps = {
 
 const UserPage = async ({ searchParams: { skip, take, search } }: UserPageProps) => {
     const data = await findManyRole({ query: { search: (search ?? ""), skip: Number(skip), take: Number(take) } })
+    
     const total = await db.role.count()
 
     return (
