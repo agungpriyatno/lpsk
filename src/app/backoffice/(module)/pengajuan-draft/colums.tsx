@@ -7,7 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Draft } from "@prisma/client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { FileSearchIcon, MoreHorizontal } from "lucide-react"
+import { Edit2Icon, FileSearchIcon, MoreHorizontal } from "lucide-react"
 import Link from "next/link"
 import { DeleteContent } from "./delete"
 import { da, ro } from "date-fns/locale"
@@ -64,6 +64,7 @@ export const columns: ColumnDef<DraftTable>[] = [
                                 </div>
                             </Link>
                         </DropdownMenuItem>
+    
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

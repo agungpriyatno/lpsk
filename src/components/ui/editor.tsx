@@ -33,6 +33,7 @@ const Editor = ({ name, value, onChange }: EditorProps) => {
   //   <img src="https://source.unsplash.com/8xznAGy4HcY/800x400" />
   //   <img src="https://source.unsplash.com/K9QHL52rE2k/800x400" />
   // `,
+  content: value,
     editorProps: {
       attributes: {
         class: `prose max-w-none [&_ol]:list-decimal [&_ul]:list-disc w-[342px] md:w-[664px] lg:w-[920px] xl:w-[900px] 2xl:w-[1300px] rounded-md border border-input bg-transparent px-3 py-1 shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50`,
@@ -43,6 +44,8 @@ const Editor = ({ name, value, onChange }: EditorProps) => {
       onChange(editor.getHTML());
     },
   });
+
+  
 
 
   return (

@@ -89,6 +89,57 @@ export const deleteDraftService = async ({ id }: { id: string }) => {
     revalidatePath('/backoffice/pengajuan-konten')
 }
 
+export const updateDraftService = async (id: string, formData: FormData) => {
+    const user = await sessionService()
+
+    const title = formData.get("title") as string
+    const category = formData.get("category") as string | null
+    const sub = formData.get("sub_category") as string | null
+    const content = formData.get("content") as string
+    const publishedAt = formData.get("published_at") as string | null
+    const thumbnail = formData.get("thumbnail") as File | null
+    const file = formData.getAll("file") as File[] | null
+    const voteOptions = formData.getAll("vote_options") as string[] | null
+    const voteOptionsDesc = formData.getAll("vote_descriptions") as string[] | null
+    const voteOptionsThumb = formData.getAll("vote_thumbnail") as File[] | null
+    const closedAt = formData.get("closed_at") as string | null
+    const linkSource = formData.get("link_source") as string | null
+    const linkVideo = formData.get("link_video") as string | null
+
+    const thumbailName = thumbnail != null ? await storeObject(thumbnail, "publikasi") : null
+    const filename = await batchStoreObject(file, "publikasi")
+    const optionsThumbnailname = await batchStoreObject(voteOptionsThumb, "publikasi")
+
+
+
+     await db.draft.update({
+        where: {id},
+        data: {
+            title,
+            content,
+            thumbnail: thumbailName,
+            sourceLink: linkSource,
+            videoLink: linkVideo,
+            author: { connect: { id: user.id } },
+            // biro: user.biro != null ? { connect: { biro: {id: user.biro.id} } } : undefined,
+            subCategory: { connect: sub != null ? { id: sub } : undefined },
+            createdAt: publishedAt != null ? new Date(publishedAt) : new Date(),
+            category: { connect: category != null ? { code: category } : undefined },
+            media: { create: filename?.map((item) => { return { media: { create: { name: item } } } }) },
+            vote: closedAt != null ? { create: { vote: { create: { closedAt: new Date(closedAt), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } } : undefined
+        }
+    })
+
+    // console.log(d);
+    // console.log(user.biro);
+
+
+    // if (user.biro) {
+    //     await db.biro.update({ where: { id: user.biro.id }, data: { draft: { connect: { draftId: d.id } } } })
+    // }
+    revalidatePath('/backoffice/pengajuan-konten')
+}
+
 export const createDraftService = async (formData: FormData) => {
     const user = await sessionService()
 

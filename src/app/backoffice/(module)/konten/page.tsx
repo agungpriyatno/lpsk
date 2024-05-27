@@ -3,7 +3,6 @@ import db from "@/lib/db"
 import { findManyPublicationService } from "@/services/publication-service"
 import { $Enums } from "@prisma/client"
 import { columns } from "./colums"
-import { CreateUser } from "./create"
 import { TabMenu } from "./tab"
 
 type PageProps = {
