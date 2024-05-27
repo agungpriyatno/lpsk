@@ -125,34 +125,6 @@ export const SideBar = ({ modules }: { modules: RoleModule[] }) => {
         </div>
         <nav className="px-3 space-y-1">
           {listMenu.map((item) => {
-            return (
-              <React.Fragment key={item.code}>
-                {!item.code && (
-                  <SidebarItem
-                    icon={item.icon}
-                    active={pathname.includes(item.url)}
-                    name={item.name}
-                    url={item.url}
-                  />
-                )}
-                {findModule(item.code ?? "") && (
-                  <SidebarItem
-                    icon={item.icon}
-                    active={pathname.includes(item.url)}
-                    name={item.name}
-                    url={item.url}
-                  />
-                )}
-                {item.code && !findModule(item.code ?? "") && (
-                  <SidebarItem
-                    icon={item.icon}
-                    active={pathname.includes(item.url)}
-                    name={item.name}
-                    url={item.url}
-                  />
-                )}
-              </React.Fragment>
-            );
             if (!item.code) {
               return (
                 <SidebarItem
