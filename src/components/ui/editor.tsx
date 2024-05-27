@@ -12,10 +12,12 @@ import {
   type Editor as TEditor,
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { ImageIcon, Loader2, icons } from "lucide-react";
+import { Heading, ImageIcon, Loader2, icons } from "lucide-react";
 import React, { useState } from "react";
 import { Button, ButtonProps, buttonVariants } from "./button";
 import { store } from "@/services/store";
+import ImageResize from 'tiptap-extension-resize-image';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./dropdown-menu";
 
 type EditorProps = {
   name: string;
@@ -25,7 +27,7 @@ type EditorProps = {
 
 const Editor = ({ name, value, onChange }: EditorProps) => {
   const editor = useEditor({
-    extensions: [StarterKit, Image, Dropcursor, Document, Paragraph, Text],
+    extensions: [StarterKit, Image, ImageResize ,Dropcursor, Document, Paragraph, Text],
   //   content: `
   //   <p>This is a basic example of implementing images. Drag to re-order.</p>
   //   <img src="https://source.unsplash.com/8xznAGy4HcY/800x400" />
@@ -110,6 +112,15 @@ const Toolbar = ({ editor, content }: ToolbarProps) => {
     }
   }
 
+  const onHeader = (level: Level) => {
+    editor?.chain().focus().toggleHeading({ level }).run();
+  };
+
+  const onResetHeader = () => {
+    editor?.chain().focus().toggleHeading({level: 6}).run();
+    editor?.chain().focus().toggleHeading({level: 6}).run();
+  }
+
   return (
     <div className="flex gap-1">
       <ToolbarButton
@@ -127,11 +138,27 @@ const Toolbar = ({ editor, content }: ToolbarProps) => {
         icon={"Strikethrough"}
         onClick={onStrike}
       />
-      <ToolbarButton
-        active={editor?.isActive("heading")}
-        icon={"Heading2"}
-        onClick={onHeading}
-      />
+      <DropdownMenu>
+  <DropdownMenuTrigger asChild>
+  <Button
+      type={"button"}
+      className={cn("w-7 h-7")}
+      variant={editor?.isActive("heading") ? "default" : "outline"}
+      size={"icon"}
+    >
+      <Heading size={12} />
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem onClick={onResetHeader}>Reset</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => onHeader(1)}>Level 1</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => onHeader(2)}>Level 2</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => onHeader(3)}>Level 3</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => onHeader(4)}>Level 4</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => onHeader(5)}>Level 5</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => onHeader(6)}>Level 6</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
       <ToolbarButton
         active={editor?.isActive("bulletList")}
         icon={"List"}

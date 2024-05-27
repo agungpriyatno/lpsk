@@ -52,7 +52,7 @@ const CreateFeature = () => {
         resolver: zodResolver(draftCreateDto),
         defaultValues: {
             publishedAt: null,
-            category: null,
+            category: "",
             sub: null,
             closedAt: null,
             linkSource: "",
