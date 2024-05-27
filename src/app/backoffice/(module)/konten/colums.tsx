@@ -17,7 +17,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Edit2Icon, FileSearchIcon, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 
-type DraftFull = Draft & {category: PublicationCategory}
+type DraftFull = Draft & {category: any}
 export type PublicationColumn = Publication & {
   selected?: DraftFull | null;
 };

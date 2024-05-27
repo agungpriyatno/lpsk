@@ -2,7 +2,7 @@ import { DataTable } from "@/components/ui/data-table"
 import db from "@/lib/db"
 import { findManyPublicationService } from "@/services/publication-service"
 import { $Enums } from "@prisma/client"
-import { columns } from "./colums"
+import { PublicationColumn, columns } from "./colums"
 import { TabMenu } from "./tab"
 
 type PageProps = {
@@ -15,7 +15,8 @@ type PageProps = {
 }
 
 const Page = async ({ searchParams: { skip, take, search, status } }: PageProps) => {
-    const data = await findManyPublicationService({ query: { search: (search ?? ""), skip: Number(skip), take: Number(take) }, status })
+    const data= await findManyPublicationService({ query: { search: (search ?? ""), skip: Number(skip), take: Number(take) }, status })
+    
     const total = await db.publication.count()
     const publish = await db.publication.count({ where: { status: "PUBLISH" } })
     const takedown = await db.publication.count({ where: { status: "TAKEDOWN" } })
