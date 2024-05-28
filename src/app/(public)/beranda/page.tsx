@@ -16,6 +16,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SorotModal } from './modal';
 import { ChartPidana } from '@/components/features/chart-pidana';
+import { GalleryItem } from '@/components/ui/gallery';
 
 export interface Artwork {
   artist: string
@@ -24,7 +25,7 @@ export interface Artwork {
 
 export default async function Home() {
   const list = await db.publication.findMany({
-    take: 20,
+    take: 12,
     orderBy: { selected: { createdAt: "desc" } },
     include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
     where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, { status: "PUBLISH" }] }
@@ -49,6 +50,30 @@ export default async function Home() {
       }
     }
   })
+
+  const gallery = await db.publication.findMany({
+    skip: 0,
+    take: 12,
+    orderBy: { createdAt: "desc" },
+    include: {
+      selected: {
+        include: {
+          media: true,
+          author: true,
+          category: true,
+          subCategory: true,
+        },
+      },
+    },
+    where: {
+      AND: [
+        { selected: { category: { code: "LPSK-PUBLIKASI" } } },
+        { selected: { subCategoryId: "clraaing4000d65qnqdxshbh6" } },
+        { status: "PUBLISH" },
+      ],
+    },
+  });
+
 
   return (
     <div className='flex flex-col gap-10'>
@@ -115,8 +140,39 @@ export default async function Home() {
       <ChartSection />
       <ChartPidana />
 
-      {/* <CardSection /> */}
-      <GallerySection />
+      <div className="w-full">
+      <AppContainer className=" space-y-3">
+        <HeaderSection>GALERI</HeaderSection>
+        <div className=" grid grid-cols-2 md:grid-cols-5 gap-[16px]">
+          {gallery.map((item, i) => {
+            if (i == 0) {
+              return (
+                <div className="col-span-2 row-span-2 h-full" key={item.id}>
+                  <GalleryItem
+                    url={
+                      process.env.BUCKET_URL_ACCESS +
+                      "/publikasi/" +
+                      (item.selected?.thumbnail ?? "default_zz.jpg")
+                    }
+                  />
+                </div>
+              );
+            }
+            return (
+              <div className="col-span-1" key={item.id}>
+                <GalleryItem
+                  url={
+                    process.env.BUCKET_URL_ACCESS +
+                    "/publikasi/" +
+                    (item.selected?.thumbnail ?? "default_zz.jpg")
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
+      </AppContainer>
+    </div>
     </div>
   )
 }

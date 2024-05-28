@@ -62,13 +62,13 @@ export const findPublicationService = async (id: string) => {
 export const takedownPublication = async (id: string) => {
     await db.publication.update({ where: { id }, data: { status: "TAKEDOWN" } })
     revalidatePath('/backoffice/konten/' + id)
-    revalidatePath("/")
+    revalidatePath("/beranda")
 }
 
 export const publishPublication = async (id: string) => {
     await db.publication.update({ where: { id }, data: { status: "PUBLISH" } })
     revalidatePath('/backoffice/konten/' + id)
-    revalidatePath("/")
+    revalidatePath("/beranda")
 }
 
 export const createPubCategory = async ({ name, subs }: PubCategoryDto) => {
