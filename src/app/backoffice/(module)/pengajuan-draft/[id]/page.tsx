@@ -46,7 +46,7 @@ const Page = async ({ params: { id } }: PageProps) => {
                                         <div className="flex gap-2 w-full justify-end">
                                             {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.media.name} />}
                                             <Button size={'icon'} asChild>
-                                                <a href={"/documents/roadmap-birokrasi.pdf"} download>
+                                                <a href={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.media.name} download>
                                                     <DownloadIcon />
                                                 </a>
                                             </Button>
