@@ -26,11 +26,11 @@ const Page = async ({ searchParams: { skip, take, search, status } }: PageProps)
         orderBy: { createdAt: "desc" },
         skip: isNaN(Number(skip)) ? 0 : Number(skip),
         take: isNaN(Number(take)) ? 10 : Number(take),
-        where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }, { authorId: session.id }] },
+        where: { AND: [{ status }, { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }] }, { authorId: session.id }] },
     })
 
     const totalPage = await db.draft.count({
-        where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }, { authorId: session.id }] },
+        where: { AND: [{ status }, { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }] }, { authorId: session.id }] },
     })
 
     const total = await db.draft.count({ where: { authorId: session.id } })

@@ -26,7 +26,7 @@ const Page = async ({ searchParams: { skip, take, search, status } }: PageProps)
         where: {
             AND: [
                 { NOT: { status: "PROCESS" } },
-                { OR: [{ title: { contains: search } }, { content: { contains: search } }] },
+                { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] },
                 status === "ACCEPT" ? { status, NOT: { selected: null } } :
                     status === "PROCESS" ? { status: "ACCEPT", selected: null } : { status }
             ]

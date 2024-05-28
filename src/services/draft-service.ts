@@ -26,7 +26,7 @@ export const findManyDraftPubService = ({ query: { search, skip, take }, status 
             orderBy: { createdAt: "desc" },
             skip: isNaN(skip) ? 0 : skip,
             take: isNaN(take) ? 10 : take,
-            where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }] },
+            where: { AND: [{ status }, { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] }] },
             // include: { publications: true }
         })
     }
@@ -34,7 +34,7 @@ export const findManyDraftPubService = ({ query: { search, skip, take }, status 
     return db.draft.findMany({
         skip: isNaN(skip) ? 0 : skip,
         take: isNaN(take) ? 10 : take,
-        where: { OR: [{ title: { contains: search } }, { content: { contains: search } }] },
+        where: { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] },
         orderBy: { createdAt: "desc" }
         // include: { publications: true }
     })
@@ -48,7 +48,7 @@ export const findManyPengajuanDraftService = ({ query: { search, skip, take }, s
             orderBy: { createdAt: "desc" },
             skip: isNaN(skip) ? 0 : skip,
             take: isNaN(take) ? 10 : take,
-            where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }] },
+            where: { AND: [{ status }, { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] }] },
             // include: { publications: true }
         })
     }
@@ -56,7 +56,7 @@ export const findManyPengajuanDraftService = ({ query: { search, skip, take }, s
     return db.draft.findMany({
         skip: isNaN(skip) ? 0 : skip,
         take: isNaN(take) ? 10 : take,
-        where: { OR: [{ title: { contains: search } }, { content: { contains: search } }] },
+        where: { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] },
         orderBy: { createdAt: "desc" }
         // include: { publications: true }
     })
@@ -68,7 +68,7 @@ export const findManyDraftService = ({ query: { search, skip, take }, status }: 
             orderBy: { createdAt: "desc" },
             skip: isNaN(skip) ? 0 : skip,
             take: isNaN(take) ? 10 : take,
-            where: { AND: [{ status }, { OR: [{ title: { contains: search } }, { content: { contains: search } }] }] },
+            where: { AND: [{ status }, { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] }] },
             // include: { publications: true }
         })
     }
@@ -76,7 +76,7 @@ export const findManyDraftService = ({ query: { search, skip, take }, status }: 
     return db.draft.findMany({
         skip: isNaN(skip) ? 0 : skip,
         take: isNaN(take) ? 10 : take,
-        where: { OR: [{ title: { contains: search } }, { content: { contains: search } }] },
+        where: { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] },
         orderBy: { createdAt: "desc" }
         // include: { publications: true }
     })

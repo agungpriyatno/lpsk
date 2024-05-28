@@ -19,13 +19,13 @@ const Page = async ({ searchParams: { search, skip, take } }: PageProps) => {
     const list = await db.publication.findMany({
         skip: isNaN(Number(skip)) ? 0 : Number(skip),
         take: isNaN(Number(take)) ? 20 : Number(take),
-        orderBy: { selected: { createdAt: "desc" } },
+        orderBy: { createdAt: "desc" },
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-        where: { AND: [{ selected: { NOT: { vote: null } } }, search != undefined ? { selected: { title: { contains: search } } } : {}, { status: "PUBLISH" }] }
+        where: { AND: [{ selected: { NOT: { vote: null } } }, search != undefined ? { selected: { title: { contains: search, mode: "insensitive" } } } : {}, { status: "PUBLISH" }] }
     })
 
     const count = await db.publication.count({
-        where: { AND: [{ selected: { NOT: { vote: null } } }, search != undefined ? { selected: { title: { contains: search } } } : {}, { status: "PUBLISH" }] }
+        where: { AND: [{ selected: { NOT: { vote: null } } }, search != undefined ? { selected: { title: { contains: search, mode: "insensitive" } } } : {}, { status: "PUBLISH" }] }
     })
 
 
