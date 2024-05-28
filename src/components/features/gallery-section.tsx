@@ -8,7 +8,7 @@ export const GallerySection = async () => {
     const list = await db.publication.findMany({
         skip: 0,
         take: 12,
-        orderBy: { selected: { createdAt: "desc" } },
+        orderBy: { createdAt: "desc" },
         include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
         where: { AND: [{ selected: { category: { code: "LPSK-PUBLIKASI" } } }, { selected: { subCategoryId: "clraaing4000d65qnqdxshbh6" } }] }
     })
