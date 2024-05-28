@@ -30,14 +30,14 @@ const Page = async ({ searchParams: { skip, take, search, status } }: PageProps)
         where: {
             AND: [
                 { status },
-                { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] },
+                { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }] },
                 { author: { biroId: session.biroId ?? "" } }
             ]
         },
     })
 
     const totalPage = await db.draft.count({
-        where: { AND: [{ status }, { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }]] }, { author: { biro: { id: session.biroId ?? "" } } }] },
+        where: { AND: [{ status }, { OR: [{ title: { contains: search, mode: "insensitive" } }, { content: { contains: search, mode: "insensitive" } }] }, { author: { biro: { id: session.biroId ?? "" } } }] },
     })
 
     const total = await db.draft.count({ where: { author: { biro: { id: session.biroId ?? "" } } } })
