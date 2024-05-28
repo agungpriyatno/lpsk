@@ -21,12 +21,14 @@ export const GallerySection = async () => {
     },
     where: {
       AND: [
-        { status: "PUBLISH" },
         { selected: { category: { code: "LPSK-PUBLIKASI" } } },
         { selected: { subCategoryId: "clraaing4000d65qnqdxshbh6" } },
+        { status: "PUBLISH" },
       ],
     },
   });
+
+
   return (
     <div className="w-full">
       <AppContainer className=" space-y-3">
@@ -35,7 +37,7 @@ export const GallerySection = async () => {
           {list.map((item, i) => {
             if (i == 0) {
               return (
-                <div className="col-span-2 row-span-2 h-full" key={i}>
+                <div className="col-span-2 row-span-2 h-full" key={item.id}>
                   <GalleryItem
                     url={
                       process.env.BUCKET_URL_ACCESS +
@@ -47,7 +49,7 @@ export const GallerySection = async () => {
               );
             }
             return (
-              <div className="col-span-1" key={i}>
+              <div className="col-span-1" key={item.id}>
                 <GalleryItem
                   url={
                     process.env.BUCKET_URL_ACCESS +
