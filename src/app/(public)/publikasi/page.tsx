@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TabMenu } from "./tab";
 import { DataTablePagination } from "@/components/ui/data-table-pagination";
+import { fetchPublication } from "@/services/fetching";
 
 type PageProps = {
   searchParams: {
@@ -22,31 +23,7 @@ const Page = async ({
     where: { code: "LPSK-PUBLIKASI" },
     include: { subs: true },
   });
-  const list = await db.publication.findMany({
-    skip: isNaN(Number(skip)) ? 0 : Number(skip),
-    take: isNaN(Number(take)) ? 12 : Number(take),
-    orderBy: { createdAt: "desc" },
-    include: {
-      selected: {
-        include: {
-          media: true,
-          author: true,
-          category: true,
-          subCategory: true,
-        },
-      },
-    },
-    where: {
-      AND: [
-        { selected: { category: { code: "LPSK-PUBLIKASI" } } },
-        { status: "PUBLISH" },
-        search != undefined
-          ? { selected: { title: { contains: search, mode: "insensitive" } } }
-          : {},
-        status != undefined ? { selected: { subCategoryId: status } } : {},
-      ],
-    },
-  });
+  const list = await fetchPublication({ skip, take, status, search });
   const count = await db.publication.count({
     where: {
       AND: [

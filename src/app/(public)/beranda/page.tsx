@@ -17,6 +17,7 @@ import Link from 'next/link';
 import { SorotModal } from './modal';
 import { ChartPidana } from '@/components/features/chart-pidana';
 import { GalleryItem } from '@/components/ui/gallery';
+import { fetchNews, fetchPublication } from '@/services/fetching';
 
 export interface Artwork {
   artist: string
@@ -24,12 +25,7 @@ export interface Artwork {
 }
 
 export default async function Home() {
-  const list = await db.publication.findMany({
-    take: 12,
-    orderBy: { selected: { createdAt: "desc" } },
-    include: { selected: { include: { media: true, author: true, category: true, subCategory: true } } },
-    where: { AND: [{ selected: { category: { code: "LPSK-BERITA" } } }, { status: "PUBLISH" }] }
-  })
+  const list = await fetchNews({skip: 0, take: 12});
 
   const carousel = await db.highlight.findUnique({
     where: { code: "LPSK-CAROUSEL" },
@@ -51,28 +47,30 @@ export default async function Home() {
     }
   })
 
-  const gallery = await db.publication.findMany({
-    skip: 0,
-    take: 12,
-    orderBy: { createdAt: "desc" },
-    include: {
-      selected: {
-        include: {
-          media: true,
-          author: true,
-          category: true,
-          subCategory: true,
-        },
-      },
-    },
-    where: {
-      AND: [
-        { selected: { category: { code: "LPSK-PUBLIKASI" } } },
-        { selected: { subCategoryId: "clraaing4000d65qnqdxshbh6" } },
-        { status: "PUBLISH" },
-      ],
-    },
-  });
+  const gallery = await fetchPublication({skip: 0, take: 12, status: "clraaing4000d65qnqdxshbh6"});
+
+  // const gallery = await db.publication.findMany({
+  //   skip: 0,
+  //   take: 12,
+  //   orderBy: { createdAt: "desc" },
+  //   include: {
+  //     selected: {
+  //       include: {
+  //         media: true,
+  //         author: true,
+  //         category: true,
+  //         subCategory: true,
+  //       },
+  //     },
+  //   },
+  //   where: {
+  //     AND: [
+  //       { selected: { category: { code: "LPSK-PUBLIKASI" } } },
+  //       { selected: { subCategoryId: "clraaing4000d65qnqdxshbh6" } },
+  //       { status: "PUBLISH" },
+  //     ],
+  //   },
+  // });
 
 
   return (
