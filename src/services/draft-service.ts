@@ -15,6 +15,11 @@ export type FindManyDraft = {
     status: $Enums.StatusDraft | undefined
 }
 
+export const deleteMedia = async (contentId: string, mediaId: string) => {
+    await db.media.delete({ where: { id: mediaId } })
+    revalidatePath('/backoffice/kontent/[id]')
+}
+
 export const findManyDraftPubService = ({ query: { search, skip, take }, status }: FindManyDraft) => {
     if (status != undefined) {
         return db.draft.findMany({

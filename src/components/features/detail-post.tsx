@@ -24,6 +24,10 @@ const DetailPost = async ({ id }: { id: string }) => {
             }, author: true
         }
     })
+
+    if (data.status === "TAKEDOWN") {
+        throw Error("error");
+    }
     return (
         <div className=" space-y-5 w-full pb-16">
             <div className='h-[400px] w-full bg-background'>
