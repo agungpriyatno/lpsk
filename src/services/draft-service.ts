@@ -113,7 +113,7 @@ export const updateDraftService = async (id: string, formData: FormData) => {
     const linkSource = formData.get("link_source") as string | null
     const linkVideo = formData.get("link_video") as string | null
 
-    const thumbailName = thumbnail != null ? await storeObject(thumbnail, "publikasi") : null
+    const thumbailName = thumbnail != null ? await storeObject(thumbnail, "publikasi") : undefined
     const filename = await batchStoreObject(file, "publikasi")
     const optionsThumbnailname = await batchStoreObject(voteOptionsThumb, "publikasi")
 
@@ -132,7 +132,7 @@ export const updateDraftService = async (id: string, formData: FormData) => {
             subCategory: { connect: sub != null ? { id: sub } : undefined },
             createdAt: publishedAt != null ? new Date(publishedAt) : new Date(),
             category: { connect: category != null ? { code: category } : undefined },
-            media: { create: filename?.map((item) => { return { media: { create: { name: item } } } }) },
+            media: filename.length > 0 ? { create: filename?.map((item) => { return { media: { create: { name: item } } } }) } : undefined,
             vote: closedAt != null ? { create: { vote: { create: { closedAt: new Date(closedAt), options: { create: voteOptions?.map((item, i) => { return { name: item, thumbnail: optionsThumbnailname[i], descriptions: voteOptionsDesc != null ? voteOptionsDesc[i] : null } }) } } } } } : undefined
         }
     })

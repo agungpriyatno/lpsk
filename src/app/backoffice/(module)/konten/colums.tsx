@@ -16,8 +16,9 @@ import { Draft, Publication, PublicationCategory } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit2Icon, FileSearchIcon, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
+import { DeleteContent } from "./delete";
 
-type DraftFull = Draft & {category: any}
+type DraftFull = Draft & { category: any };
 export type PublicationColumn = Publication & {
   selected?: DraftFull | null;
 };
@@ -72,8 +73,12 @@ export const columns: ColumnDef<PublicationColumn>[] = [
       <DataTableColumnHeader column={column} title="Kategori" />
     ),
     cell: ({ row }) => {
-        return <div className="text-left font-medium">{row.original.selected?.category?.name ?? "Tanpa Kategori"}</div>;
-    }
+      return (
+        <div className="text-left font-medium">
+          {row.original.selected?.category?.name ?? "Tanpa Kategori"}
+        </div>
+      );
+    },
   },
   {
     header: "Aksi",
@@ -91,6 +96,7 @@ export const columns: ColumnDef<PublicationColumn>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Aksi</DropdownMenuLabel>
             <DropdownMenuSeparator />
+            {data.status == "TAKEDOWN" && <DeleteContent id={data.id} />}
             <DropdownMenuItem className="space-x-2" asChild>
               <Link href={"/backoffice/konten/" + data.id}>
                 <div className="flex gap-2">
@@ -98,7 +104,6 @@ export const columns: ColumnDef<PublicationColumn>[] = [
                 </div>
               </Link>
             </DropdownMenuItem>
-
             <DropdownMenuItem className="space-x-2" asChild>
               <Link href={`/backoffice/konten/ubah/${data.selected?.id}`}>
                 <div className="flex gap-2">
