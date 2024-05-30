@@ -37,7 +37,7 @@ export default async function Page() {
                                     </CardContent>
                                     <CardFooter className='flex justify-center place-items-center'>
                                         <Button className='flex gap-2'>
-                                            <a href={process.env.BUCKET_URL_ACCESS + "/publikasi/" + item.media[0]?.media.name} target={'_blank'} download className='flex gap-2'>
+                                            <a href={process.env.BUCKET_URL_ACCESS + item.media[0]?.media.name} target={'_blank'} download className='flex gap-2'>
                                                 <DownloadCloudIcon /> Unduh
                                             </a>
                                         </Button>

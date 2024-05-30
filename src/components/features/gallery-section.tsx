@@ -41,7 +41,7 @@ export const GallerySection = async () => {
                   <GalleryItem
                     url={
                       process.env.BUCKET_URL_ACCESS +
-                      "/publikasi/" +
+         
                       (item.selected?.thumbnail ?? "default_zz.jpg")
                     }
                   />
@@ -53,7 +53,7 @@ export const GallerySection = async () => {
                 <GalleryItem
                   url={
                     process.env.BUCKET_URL_ACCESS +
-                    "/publikasi/" +
+       
                     (item.selected?.thumbnail ?? "default_zz.jpg")
                   }
                 />

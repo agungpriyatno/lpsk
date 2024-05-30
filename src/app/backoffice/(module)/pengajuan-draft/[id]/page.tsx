@@ -25,7 +25,7 @@ const Page = async ({ params: { id } }: PageProps) => {
             </Button>
             <AspectRatio ratio={2 / 1} className="w-full rounded overflow-hidden">
                 <div className="w-full h-full relative">
-                    <Image src={process.env.BUCKET_URL_ACCESS + '/publikasi/' + (data?.thumbnail ?? "default_zz.jpg")} alt="" fill sizes="100vh" className=" object-cover" />
+                    <Image src={process.env.BUCKET_URL_ACCESS + (data?.thumbnail ?? "default_zz.jpg")} alt="" fill sizes="100vh" className=" object-cover" />
                 </div>
             </AspectRatio>
             <section className="">
@@ -44,9 +44,9 @@ const Page = async ({ params: { id } }: PageProps) => {
                                     <div className="p-4 2xl:p-4 flex flex-col justify-end h-full w-full gap-2">
                                         <p className="text-sm">{item.media.name.split("Z-")[1]}</p>
                                         <div className="flex gap-2 w-full justify-end">
-                                            {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.media.name} />}
+                                            {item.media.name.split(".")[item.media.name.split(".").length - 1] === "pdf" && <ShowPDF url={process.env.BUCKET_URL_ACCESS + item.media.name} />}
                                             <Button size={'icon'} asChild>
-                                                <a href={process.env.BUCKET_URL_ACCESS + '/publikasi/' + item.media.name} download>
+                                                <a href={process.env.BUCKET_URL_ACCESS + item.media.name} download>
                                                     <DownloadIcon />
                                                 </a>
                                             </Button>

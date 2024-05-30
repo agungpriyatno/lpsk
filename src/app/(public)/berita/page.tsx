@@ -83,7 +83,7 @@ const Page = async ({
                 <Image
                   src={
                     process.env.BUCKET_URL_ACCESS +
-                    "/publikasi/" +
+       
                     (selected?.thumbnail ?? "default_zz.jpg")
                   }
                   alt=""

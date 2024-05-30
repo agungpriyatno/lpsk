@@ -23,7 +23,7 @@ export const SorotModal = ({ data }: {
             id: item.publication.id ?? "",
             title: post?.title ?? "",
             descriptions: post?.content?.replace(/(<([^>]+)>)/ig, '').split(".")[0] ?? "",
-            image: "https://bucket.lpsk.go.id/publikasi/" + (post?.thumbnail ?? "default_zz.jpg")
+            image: "/api/storage/" + (post?.thumbnail ?? "default_zz.jpg")
         }
     }) : []
     return (

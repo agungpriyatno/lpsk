@@ -110,7 +110,7 @@ export default async function Home() {
                 <figure key={item.id} className="shrink-0 relative group">
                   <div className="overflow-hidden rounded-md bg-slate-800">
                     <Image
-                      src={process.env.BUCKET_URL_ACCESS + "/publikasi/" + (item.selected?.thumbnail ?? "default_zz.jpg")}
+                      src={process.env.BUCKET_URL_ACCESS + (item.selected?.thumbnail ?? "default_zz.jpg")}
                       alt={`Photo by ${item.selected?.author?.name}`}
                       className="aspect-[3/4] h-fit w-fit object-cover opacity-50 group-hover:scale-125 duration-300 transition-all"
                       width={300}
@@ -149,7 +149,7 @@ export default async function Home() {
                   <GalleryItem
                     url={
                       process.env.BUCKET_URL_ACCESS +
-                      "/publikasi/" +
+         
                       (item.selected?.thumbnail ?? "default_zz.jpg")
                     }
                   />
@@ -161,7 +161,7 @@ export default async function Home() {
                 <GalleryItem
                   url={
                     process.env.BUCKET_URL_ACCESS +
-                    "/publikasi/" +
+       
                     (item.selected?.thumbnail ?? "default_zz.jpg")
                   }
                 />

@@ -21,7 +21,7 @@ export const CarouselSection = async ({ data }: {
             id: item.publication.id ?? "",
             title: post?.title ?? "",
             descriptions: post?.content?.replace(/(<([^>]+)>)/ig, '').split(".")[0] ?? "",
-            image: process.env.BUCKET_URL_ACCESS + "/publikasi/" + (post?.thumbnail ?? "")
+            image: process.env.BUCKET_URL_ACCESS + (post?.thumbnail ?? "")
         }
     }) : []
     
