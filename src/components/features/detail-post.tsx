@@ -30,7 +30,7 @@ const DetailPost = async ({ id }: { id: string }) => {
     }
     return (
         <div className=" space-y-5 w-full pb-16">
-            <div className='h-[400px] w-full bg-background'>
+            <div className=' aspect-[2.39/1] w-full bg-background'>
                 <div className=' flex flex-col w-full h-full justify-center place-items-center relative'>
                     <div className='h-full w-full absolute bg-slate-800'>
                         <Image src={process.env.BUCKET_URL_ACCESS + (data.selected?.thumbnail ?? "default_zz.jpg")} fill alt='' sizes='100vh' className=' object-cover opacity-50' />
