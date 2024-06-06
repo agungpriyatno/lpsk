@@ -194,6 +194,7 @@ const CreateFeature = () => {
         variant: "default",
       });
       reset();
+      window.localStorage.removeItem("draft");
     } catch (error) {
       toast({
         title: "Gagal Tambah Pengajuan",
