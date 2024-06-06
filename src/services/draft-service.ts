@@ -86,6 +86,8 @@ export const findManyDraftService = ({ query: { search, skip, take }, status }: 
 }
 
 export const findDraftService = async (id: string) => {
+    console.log(id);
+    
     return await db.draft.findUniqueOrThrow({ where: { id }, include: { selected: true, author: true, media: { include: { media: true } }, vote: { include: { vote: { include: { options: { include: { _count: { select: { client: true } } } } } } } } } })
 }
 
