@@ -98,9 +98,9 @@ const CreateFeature = () => {
   const [stats, setStats] = useState(true);
   const { saveDraft, draft } = useDraft();
 
-  const form = useForm<DraftCreateDto>({
-    resolver: zodResolver(draftCreateDto),
-    defaultValues: JSON.parse(window?.localStorage.getItem("draft") ?? `{
+  const local = window.localStorage.getItem("draft")
+
+  const defaultValues = local ? JSON.parse(local) : {
     title: "",
     content: "",
     publishedAt: null,
@@ -109,7 +109,11 @@ const CreateFeature = () => {
     closedAt: null,
     linkSource: "",
     linkVideo: "",
-  }`),
+  } 
+
+  const form = useForm<DraftCreateDto>({
+    resolver: zodResolver(draftCreateDto),
+    defaultValues,
   });
 
   const voteList = useFieldArray({
