@@ -6,8 +6,8 @@ export const draftCreateDto = z.object({
     publishedAt: z.date().nullable(),
     category: z.string().min(1),
     sub: z.string().nullable(),
-    linkSource: z.string().nullable(),
-    linkVideo: z.string().nullable(),
+    linkSource: z.string(),
+    linkVideo: z.string(),
     vote: z.array(z.object({name: z.string(), description: z.string()})),
     closedAt: z.date().nullable()
 })
