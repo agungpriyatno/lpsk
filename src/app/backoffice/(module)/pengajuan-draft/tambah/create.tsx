@@ -100,7 +100,16 @@ const CreateFeature = () => {
 
   const form = useForm<DraftCreateDto>({
     resolver: zodResolver(draftCreateDto),
-    defaultValues: JSON.parse(window?.localStorage.getItem("draft") ?? "{}"),
+    defaultValues: JSON.parse(window?.localStorage.getItem("draft") ?? `{
+    title: "",
+    content: "",
+    publishedAt: null,
+    category: "",
+    sub: null,
+    closedAt: null,
+    linkSource: "",
+    linkVideo: "",
+  }`),
   });
 
   const voteList = useFieldArray({
