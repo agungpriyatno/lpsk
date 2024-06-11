@@ -98,18 +98,20 @@ const CreateFeature = () => {
   const [stats, setStats] = useState(true);
   const { saveDraft, draft } = useDraft();
 
-  const local = window.localStorage.getItem("draft")
+  const local = window.localStorage.getItem("draft");
 
-  const defaultValues = local ? JSON.parse(local) : {
-    title: "",
-    content: "",
-    publishedAt: null,
-    category: "",
-    sub: null,
-    closedAt: null,
-    linkSource: "",
-    linkVideo: "",
-  } 
+  const defaultValues = local
+    ? JSON.parse(local)
+    : {
+        title: "",
+        content: "",
+        publishedAt: null,
+        category: "",
+        sub: null,
+        closedAt: null,
+        linkSource: "",
+        linkVideo: "",
+      };
 
   const form = useForm<DraftCreateDto>({
     resolver: zodResolver(draftCreateDto),
@@ -163,6 +165,7 @@ const CreateFeature = () => {
     setFileVote(null);
     setFile(null);
     setThumbnail(null);
+    localStorage.removeItem("draft");
     router.back();
   };
 
@@ -581,6 +584,13 @@ const CreateFeature = () => {
           <Button
             type={"button"}
             onClick={() => router.back()}
+            variant={"destructive"}
+          >
+            Kembali
+          </Button>
+          <Button
+            type={"button"}
+            onClick={reset}
             variant={"destructive"}
           >
             Kembali
