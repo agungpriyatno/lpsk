@@ -49,29 +49,6 @@ export default async function Home() {
 
   const gallery = await fetchPublication({skip: 0, take: 12, status: "clraaing4000d65qnqdxshbh6"});
 
-  // const gallery = await db.publication.findMany({
-  //   skip: 0,
-  //   take: 12,
-  //   orderBy: { createdAt: "desc" },
-  //   include: {
-  //     selected: {
-  //       include: {
-  //         media: true,
-  //         author: true,
-  //         category: true,
-  //         subCategory: true,
-  //       },
-  //     },
-  //   },
-  //   where: {
-  //     AND: [
-  //       { selected: { category: { code: "LPSK-PUBLIKASI" } } },
-  //       { selected: { subCategoryId: "clraaing4000d65qnqdxshbh6" } },
-  //       { status: "PUBLISH" },
-  //     ],
-  //   },
-  // });
-
 
   return (
     <div className='flex flex-col gap-10'>

@@ -50,37 +50,7 @@ export const MENU: TMenuItem[] = [
     },
     {
         title: "Informasi & Pelayanan",
-        href: "/informasi",
-        children: [
-            {
-                title: "Standar Pelayanan Publik",
-                href: "/informasi/pelayanan-publik",
-            },
-            {
-                title: "Standar Pelayanan Penerimaan Permohonan",
-                href: "/informasi/pedoman",
-            },
-            {
-                title: "Standar Pelayanan Pro Aktif dan Darurat",
-                href: "/informasi/proaktif-darurat",
-            },
-            {
-                title: "Standar Pelayanan Informasi Publik",
-                href: "/informasi/informasi-publik",
-            },
-            {
-                title: "Standar Pelayanan Pemenuhan Hak",
-                href: "/informasi/pemenuhan-hak",
-            },
-            {
-                title: "Informasi LHKPN",
-                href: "/informasi/lhkpn",
-            },
-            {
-                title: "Pengaduan Pelayanan Publik",
-                href: "/informasi/pengaduan",
-            },
-        ],
+        href: "https://eppid.lpsk.go.id/",
     },
     {
         title: "Kerja Sama",
