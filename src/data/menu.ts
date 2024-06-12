@@ -50,35 +50,51 @@ export const MENU: TMenuItem[] = [
     },
     {
         title: "Informasi & Pelayanan",
-        href: "/informasi",
+        href: "/informasi-pelayanan",
         children: [
             {
-                title: "Standar Pelayanan Publik",
-                href: "/informasi/pelayanan-publik",
+                title: "Maklumat Pelayanan",
+                href: "/informasi-pelayanan/maklumat-pelayanan",
+            },
+            {
+                title: "Standar Pelayanan Publik di lingkungan LPSK",
+                href: "/informasi-pelayanan/pelayanan-publik",
             },
             {
                 title: "Standar Pelayanan Penerimaan Permohonan",
-                href: "/informasi/pedoman",
+                href: "/informasi-pelayanan/penerimaan-permohonan",
             },
             {
-                title: "Standar Pelayanan Pro Aktif dan Darurat",
-                href: "/informasi/proaktif-darurat",
+                title: "Standar Pelayanan Pemberian Pelayanan Darurat",
+                href: "/informasi-pelayanan/pemberian-perlindungan-darurat",
             },
             {
-                title: "Standar Pelayanan Informasi Publik",
-                href: "/informasi/informasi-publik",
+                title: "Standar Pelayanan Tindakan Proaktif",
+                href: "/informasi-pelayanan/tindakan-proaktif",
             },
             {
-                title: "Standar Pelayanan Pemenuhan Hak",
-                href: "/informasi/pemenuhan-hak",
+                title: "Standar Pelayana Pemberian Perlindungan",
+                href: "/informasi-pelayanan/pemberian-perlindungan",
             },
             {
-                title: "Informasi LHKPN",
-                href: "/informasi/lhkpn",
+                title: "Standar Pelayanan Permintaan Informasi Publik LPSK",
+                href: "/informasi-pelayanan/permintaan-informasi-publik",
+            },
+            {
+                title: "Laporan Surver Kepuasan Masyarakat",
+                href: "/informasi-pelayanan/laporan-survey",
             },
             {
                 title: "Pengaduan Pelayanan Publik",
-                href: "/informasi/pengaduan",
+                href: "https://docs.google.com/forms/d/e/1FAIpQLScZtI-6ViU-TwZ4dfqhtE2kqj3HzKsFru_-Smx7RroqhOmSWg/viewform?pli=1",
+            },
+            {
+                title: "LAPOR!!",
+                href: "https://www.lapor.go.id/",
+            },
+            {
+                title: "E-PPID",
+                href: "https://eppid.lpsk.go.id/",
             },
         ],
     },
