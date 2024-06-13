@@ -68,7 +68,7 @@ export default async function Home() {
       <ContentCardA
         title='TENTANG LPSK'
         description='Lembaga Perlindungan Saksi dan Korban adalah lembaga nonstruktural yang didirikan dan bertanggung jawab untuk menangani pemberian perlindungan dan bantuan pada saksi dan korban. LPSK dibentuk berdasarkan UU No 13 Tahun 2006 tentang Perlindungan Saksi dan Korban.'
-        image='/images/lpsk-carousel.png'
+        image='/images/about.jpg'
       />
       <AplicationSection />
       <AppContainer className=' space-y-3'>
