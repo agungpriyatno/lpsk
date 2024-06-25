@@ -4,6 +4,12 @@ export type TMenuItem = {
     children?: Prettify<Omit<TMenuItem, "children">>[]
 }
 
+export type TProfilPimpinan = {
+    name: string,
+    description: string,
+    image: string
+}
+
 export type TCarouselItem = {
     id: string,
     title: string,
