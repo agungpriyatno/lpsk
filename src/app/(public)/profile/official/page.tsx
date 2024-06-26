@@ -79,6 +79,71 @@ export default function Page() {
           </div>
         </AppContainer>
       </div>
+      
+      <div className="w-full relative md:h-[450px] bg-background">
+        <AppContainer>
+          <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
+            <div className=" col-span-3 xl:px-5 group">
+              <div className="h-[300px] md:h-full w-full relative overflow-hidden">
+                <Image
+                  src={
+                    "/images/profil-pimpinan/Brigjen. Pol. (Purn). Dr. Achmadi, S.H.,M.A.P.jpg"
+                  }
+                  fill
+                  sizes="100vh"
+                  alt=""
+                  className=" object-cover group-hover:scale-125 transition-all duration-300"
+                />
+              </div>
+            </div>
+            <div className=" col-span-9 px-3  xl:px-5">
+              <div className="h-full flex flex-col justify-center space-y-2">
+                <HeaderSection>
+                  Brigjen. Pol. (Purn). Dr. Achmadi, S.H.,M.A.P.
+                </HeaderSection>
+                <p className="text-base pt-2">
+                  DR. Achmadi Saat ini ia kembali terpilih sebagai anggota LPSK
+                  Periode 2024-2029. Lahir di Sragen, 20 September 1960, Ia
+                  merupakan lulusan AKABRI Tahun 1984, Perguruan Tinggi Ilmu
+                  Kepolisian (PTIK) angkatan 23, Sekolah Staf dan Komando TNI
+                  Angkatan Udara (SESKOAU) angkatan 35 tahun 1999, Sekolah Staf
+                  dan Pimpinan Administrasi Tingkat Tinggi Polri (SESPATI Polri)
+                  Dikreg 13 tahun 2007, dan lulus dari Program Pendidikan
+                  Singkat Angkatan 19 LEMHANNAS RI tahun 2013.
+                </p>
+                <p className="text-base pt-2">
+                  Achmadi menyelesaikan Program Studi Doktor Ilmu Administrasi
+                  di Universitas Brawijaya tahun 2010, Pascasarjana (S2) Ilmu
+                  Administrasi Publik di Universitas Brawijaya Malang pada 2004,
+                  dan mendapat gelar sarjana Fakultas Hukum di Universitas
+                  Wisnuwardhana pada 2004.
+                </p>
+                <p className="text-base pt-2">
+                  Pada periode pertama sebagai Wakil Ketua LPSK (2019-2024),
+                  Achmadi bertanggung jawab dalam memberikan penilaian ganti
+                  rugi dalam pemberian restitusi dan kompensasi, memberikan
+                  perlindungan saksi dan korban dalam proses peradilan pidana,
+                  membidangi peraturan, pengawasan internal, dan koordinasi
+                  antarlembaga.
+                </p>
+                <p className=" text-base pt-2">
+                  Sebelumnya, Achmadi juga pernah menjabat sebagai Direktur
+                  Penyidikan Sektor Jasa Keuangan Otoritas Jasa Keuangan (OJK)
+                  di Instansi Bareskrim Polri (2017-2018), bertugas menangani
+                  tindak pidana industri perdagangan, perbankan, Tindak Pidana
+                  Pencucian Uang, serta Tindak Pidana Perpajakan dan Asuransi.
+                  Ia meniti karir selama 25 tahun di kepolisian sejak 1993,
+                  pernah menjabat sebagai Kapolsek Kuta, Kapolres Bangkalan
+                  (2000-2001), Kapolres Malang (2001-2002), Kasat OPS Kabag BIN
+                  OPS (2002-2005), Penyidik Utama Pidkor Bareskrim (2005-2006),
+                  Kapolwil Madiun (2008-2010), Wadir Pamobvit Baharkam
+                  (2010-2012), dan Karorenmin Baharkam (2012-2015).
+                </p>
+              </div>
+            </div>
+          </div>
+        </AppContainer>
+      </div>
       <div className="w-full relative md:h-[450px] bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
@@ -273,70 +338,6 @@ export default function Page() {
                   Violations In The General Election (2022) dan menulis buku
                   Sengketa Proses Pemilu; Sejarah, Perkembangan, dan Praktek
                   (Pustaka Ilmu 2021).
-                </p>
-              </div>
-            </div>
-          </div>
-        </AppContainer>
-      </div>
-      <div className="w-full relative md:h-[450px] bg-background">
-        <AppContainer>
-          <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
-            <div className=" col-span-3 xl:px-5 group">
-              <div className="h-[300px] md:h-full w-full relative overflow-hidden">
-                <Image
-                  src={
-                    "/images/profil-pimpinan/Brigjen. Pol. (Purn). Dr. Achmadi, S.H.,M.A.P.jpg"
-                  }
-                  fill
-                  sizes="100vh"
-                  alt=""
-                  className=" object-cover group-hover:scale-125 transition-all duration-300"
-                />
-              </div>
-            </div>
-            <div className=" col-span-9 px-3  xl:px-5">
-              <div className="h-full flex flex-col justify-center space-y-2">
-                <HeaderSection>
-                  Brigjen. Pol. (Purn). Dr. Achmadi, S.H.,M.A.P.
-                </HeaderSection>
-                <p className="text-base pt-2">
-                  DR. Achmadi Saat ini ia kembali terpilih sebagai anggota LPSK
-                  Periode 2024-2029. Lahir di Sragen, 20 September 1960, Ia
-                  merupakan lulusan AKABRI Tahun 1984, Perguruan Tinggi Ilmu
-                  Kepolisian (PTIK) angkatan 23, Sekolah Staf dan Komando TNI
-                  Angkatan Udara (SESKOAU) angkatan 35 tahun 1999, Sekolah Staf
-                  dan Pimpinan Administrasi Tingkat Tinggi Polri (SESPATI Polri)
-                  Dikreg 13 tahun 2007, dan lulus dari Program Pendidikan
-                  Singkat Angkatan 19 LEMHANNAS RI tahun 2013.
-                </p>
-                <p className="text-base pt-2">
-                  Achmadi menyelesaikan Program Studi Doktor Ilmu Administrasi
-                  di Universitas Brawijaya tahun 2010, Pascasarjana (S2) Ilmu
-                  Administrasi Publik di Universitas Brawijaya Malang pada 2004,
-                  dan mendapat gelar sarjana Fakultas Hukum di Universitas
-                  Wisnuwardhana pada 2004.
-                </p>
-                <p className="text-base pt-2">
-                  Pada periode pertama sebagai Wakil Ketua LPSK (2019-2024),
-                  Achmadi bertanggung jawab dalam memberikan penilaian ganti
-                  rugi dalam pemberian restitusi dan kompensasi, memberikan
-                  perlindungan saksi dan korban dalam proses peradilan pidana,
-                  membidangi peraturan, pengawasan internal, dan koordinasi
-                  antarlembaga.
-                </p>
-                <p className=" text-base pt-2">
-                  Sebelumnya, Achmadi juga pernah menjabat sebagai Direktur
-                  Penyidikan Sektor Jasa Keuangan Otoritas Jasa Keuangan (OJK)
-                  di Instansi Bareskrim Polri (2017-2018), bertugas menangani
-                  tindak pidana industri perdagangan, perbankan, Tindak Pidana
-                  Pencucian Uang, serta Tindak Pidana Perpajakan dan Asuransi.
-                  Ia meniti karir selama 25 tahun di kepolisian sejak 1993,
-                  pernah menjabat sebagai Kapolsek Kuta, Kapolres Bangkalan
-                  (2000-2001), Kapolres Malang (2001-2002), Kasat OPS Kabag BIN
-                  OPS (2002-2005), Penyidik Utama Pidkor Bareskrim (2005-2006),
-                  Kapolwil Madiun (2008-2010), Wadir Pamobvit Baharkam
-                  (2010-2012), dan Karorenmin Baharkam (2012-2015).
                 </p>
               </div>
             </div>
