@@ -36,57 +36,6 @@ export default function Page() {
               <div className="h-[300px] md:h-full w-full relative overflow-hidden">
                 <Image
                   src={
-                    "/images/profil-pimpinan/(Dr. iur.) Anton PS Wibowo, S.H., M.H.jpg"
-                  }
-                  fill
-                  sizes="100vh"
-                  alt=""
-                  className=" object-cover group-hover:scale-125 transition-all duration-300"
-                />
-              </div>
-            </div>
-            <div className=" col-span-9 px-3  xl:px-5">
-              <div className="h-full flex flex-col justify-center space-y-2">
-                <HeaderSection>
-                  (Dr. iur.) Anton PS Wibowo, S.H., M.H.
-                </HeaderSection>
-                <p className="text-base pt-2">
-                  Anton Prijadi Soesilo Wibowo terpilih kembali menjadi pimpinan
-                  LPSK periode 2024-2029. Lahir di Ponorogo, 10 Mei 1964,
-                  Antonius meraih gelar S3 hukum di Justus Liebig University of
-                  Giessen, Jerman (2012), magister Hukum dan Sistem Peradilan
-                  Pidana di Universitas Indonesia (2001), dan Sarjana Hukum di
-                  Universitas Gadjah Mada (1989).
-                </p>
-                <p className="text-base pt-2">
-                  Pada periode pertama di LPSK (2019-2024), Antonius fokus dalam
-                  Pemenuhan Hak Saksi dan Korban, TPPO, serta menjadi Satgas
-                  Penilai Ganti Kerugian (Restitusi dan Kompensasi). Selama
-                  bertugas Ia aktif tergabung dalam Gugus Tugas TPPO dan
-                  ASEAN-ACT (Asean Australia Combating Trafficking in Person).
-                  Ia juga aktif menulis kolom opini di media dan kerap menjadi
-                  narasumber di forum ilmiah nasional dan internasional.
-                </p>
-                <p className="text-base pt-2">
-                  Sebelum di LPSK, Antonius pengajar di Fakultas Hukum Unika
-                  Atma Jaya Jakarta dan Ketua Program Studi Magister Ilmu Hukum
-                  (2014-2018), Koordinator Penelitian dan Pengabdian Masyarakat
-                  (2018), Kepala Bagian Hukum Pidana (2014), dan Dekan Fakultas
-                  Hukum Unika Atma Jaya Jakarta (2003-2007).
-                </p>
-              </div>
-            </div>
-          </div>
-        </AppContainer>
-      </div>
-      
-      <div className="w-full relative md:h-[450px] bg-background">
-        <AppContainer>
-          <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
-            <div className=" col-span-3 xl:px-5 group">
-              <div className="h-[300px] md:h-full w-full relative overflow-hidden">
-                <Image
-                  src={
                     "/images/profil-pimpinan/Brigjen. Pol. (Purn). Dr. Achmadi, S.H.,M.A.P.jpg"
                   }
                   fill
@@ -144,6 +93,58 @@ export default function Page() {
           </div>
         </AppContainer>
       </div>
+      <div className="w-full relative md:h-[450px] bg-background">
+        <AppContainer>
+          <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
+            <div className=" col-span-3 xl:px-5 group">
+              <div className="h-[300px] md:h-full w-full relative overflow-hidden">
+                <Image
+                  src={
+                    "/images/profil-pimpinan/(Dr. iur.) Anton PS Wibowo, S.H., M.H.jpg"
+                  }
+                  fill
+                  sizes="100vh"
+                  alt=""
+                  className=" object-cover group-hover:scale-125 transition-all duration-300"
+                />
+              </div>
+            </div>
+            <div className=" col-span-9 px-3  xl:px-5">
+              <div className="h-full flex flex-col justify-center space-y-2">
+                <HeaderSection>
+                  (Dr. iur.) Anton PS Wibowo, S.H., M.H.
+                </HeaderSection>
+                <p className="text-base pt-2">
+                  Anton Prijadi Soesilo Wibowo terpilih kembali menjadi pimpinan
+                  LPSK periode 2024-2029. Lahir di Ponorogo, 10 Mei 1964,
+                  Antonius meraih gelar S3 hukum di Justus Liebig University of
+                  Giessen, Jerman (2012), magister Hukum dan Sistem Peradilan
+                  Pidana di Universitas Indonesia (2001), dan Sarjana Hukum di
+                  Universitas Gadjah Mada (1989).
+                </p>
+                <p className="text-base pt-2">
+                  Pada periode pertama di LPSK (2019-2024), Antonius fokus dalam
+                  Pemenuhan Hak Saksi dan Korban, TPPO, serta menjadi Satgas
+                  Penilai Ganti Kerugian (Restitusi dan Kompensasi). Selama
+                  bertugas Ia aktif tergabung dalam Gugus Tugas TPPO dan
+                  ASEAN-ACT (Asean Australia Combating Trafficking in Person).
+                  Ia juga aktif menulis kolom opini di media dan kerap menjadi
+                  narasumber di forum ilmiah nasional dan internasional.
+                </p>
+                <p className="text-base pt-2">
+                  Sebelum di LPSK, Antonius pengajar di Fakultas Hukum Unika
+                  Atma Jaya Jakarta dan Ketua Program Studi Magister Ilmu Hukum
+                  (2014-2018), Koordinator Penelitian dan Pengabdian Masyarakat
+                  (2018), Kepala Bagian Hukum Pidana (2014), dan Dekan Fakultas
+                  Hukum Unika Atma Jaya Jakarta (2003-2007).
+                </p>
+              </div>
+            </div>
+          </div>
+        </AppContainer>
+      </div>
+      
+    
       <div className="w-full relative md:h-[450px] bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
