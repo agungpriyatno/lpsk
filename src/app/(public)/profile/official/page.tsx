@@ -1,9 +1,5 @@
 "use client";
 
-import { FooterFE } from "@/components/features/footer-section";
-import { GallerySection } from "@/components/features/gallery-section";
-import { TextToSpeech } from "@/components/features/text-to-speech";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { AppContainer } from "@/components/ui/container";
 import { HeaderSection } from "@/components/ui/typography";
 import Image from "next/image";
@@ -29,7 +25,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="w-full relative md:h-[450px] bg-background">
+      <div className="w-full relative  bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
             <div className=" col-span-3 xl:px-5 group">
@@ -93,7 +89,7 @@ export default function Page() {
           </div>
         </AppContainer>
       </div>
-      <div className="w-full relative md:h-[450px] bg-background">
+      <div className="w-full relative  bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
             <div className=" col-span-3 xl:px-5 group">
@@ -143,9 +139,8 @@ export default function Page() {
           </div>
         </AppContainer>
       </div>
-      
-    
-      <div className="w-full relative md:h-[450px] bg-background">
+
+      <div className="w-full relative  bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
             <div className=" col-span-3 xl:px-5 group">
@@ -190,7 +185,7 @@ export default function Page() {
           </div>
         </AppContainer>
       </div>
-      <div className="w-full relative md:h-[450px] bg-background">
+      <div className="w-full relative  bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
             <div className=" col-span-3 xl:px-5 group">
@@ -251,7 +246,7 @@ export default function Page() {
           </div>
         </AppContainer>
       </div>
-      <div className="w-full relative md:h-[450px] bg-background">
+      <div className="w-full relative  bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
             <div className=" col-span-3 xl:px-5 group">
@@ -301,7 +296,7 @@ export default function Page() {
           </div>
         </AppContainer>
       </div>
-      <div className="w-full relative md:h-[450px] bg-background">
+      <div className="w-full relative  bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
             <div className=" col-span-3 xl:px-5 group">
@@ -346,7 +341,7 @@ export default function Page() {
         </AppContainer>
       </div>
 
-      <div className="w-full relative md:h-[450px] bg-background">
+      <div className="w-full relative  bg-background">
         <AppContainer>
           <div className="grid grid-cols-6 md:grid-cols-12 h-full gap-5 py-5">
             <div className=" col-span-3 xl:px-5 group">

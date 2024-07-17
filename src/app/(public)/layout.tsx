@@ -20,7 +20,7 @@ export default function Layout({
             <AppHeader />
             {children}
             <FooterFE />
-            <ServerRunningText />
+            {/* <ServerRunningText /> */}
             <GoogleAnalytics />
             <HelpdeskIcon />
         </div>
