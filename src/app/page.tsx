@@ -33,7 +33,7 @@ export default function Home() {
             onClick={() => setOpen(false)}
           >
             <div className="bg-background rounded w-[350px] h-[600px] md:w-[600px] md:h-[400px] xl:w-[800px] xl:h-[600px] overflow-clip border-4 relative">
-              <Image src={"/images/maklumat-new.jpg"} alt="" fill/>
+              <Image src={"/images/image.png"} alt="" fill/>
               <Button
                 className="absolute right-5 top-5"
                 onClick={() => setOpen(false)}
