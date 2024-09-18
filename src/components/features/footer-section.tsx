@@ -20,12 +20,13 @@ export const FooterFE = () => {
                     <div className=" grid grid-cols-2 gap-3">
                         <div className="flex flex-col gap-2">
                             <h6 className="font-bold">Aplikasi</h6>
-                            <Link  href={'/'} className="text-sm">Simpusako</Link>
+                            <Link  href={'https://simpusako.lpsk.go.id/layanan-simpusako/'} className="text-sm">Simpusako</Link>
                             <Link  href={'/'} className="text-sm">Simpelkan</Link>
-                            <Link  href={'/'} className="text-sm">Fondasi</Link>
+                            <Link  href={'https://layanan.lpsk.go.id/monev'} className="text-sm">Fondasi</Link>
                             <Link  href={'/'} className="text-sm">Lemon</Link>
-                            <Link  href={'/'} className="text-sm">L4por</Link>
-                            <Link  href={'/'} className="text-sm">SSK</Link>
+                            <Link  href={'https://www.lapor.go.id/'} className="text-sm">L4por</Link>
+                            <Link  href={'https://ssk.lpsk.go.id/'} className="text-sm">SSK</Link>
+                            <Link href={'https://layanan.lpsk.go.id '} className="text-sm">LPSK</Link>
                         </div>
                         <div className="flex flex-col gap-2">
                             <h6 className="font-bold">Sosial Media</h6>
