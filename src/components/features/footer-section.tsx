@@ -23,7 +23,7 @@ export const FooterFE = () => {
                             <Link  href={'https://simpusako.lpsk.go.id/layanan-simpusako/'} className="text-sm">Simpusako</Link>
                             <Link  href={'/'} className="text-sm">Simpelkan</Link>
                             <Link  href={'https://layanan.lpsk.go.id/monev'} className="text-sm">Fondasi</Link>
-                            <Link  href={'/'} className="text-sm">Lemon</Link>
+                            <Link href={'https://jdih.lpsk.go.id '} className="text-sm">JDIH</Link>	
                             <Link  href={'https://www.lapor.go.id/'} className="text-sm">L4por</Link>
                             <Link  href={'https://ssk.lpsk.go.id/'} className="text-sm">SSK</Link>
                             <Link href={'https://layanan.lpsk.go.id '} className="text-sm">LPSK</Link>
