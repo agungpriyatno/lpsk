@@ -96,7 +96,7 @@ export const CreateUser = ({ id }: { id: string }) => {
 
     useEffect(() => {
         findAll()
-    }, [])
+    }, [findAll])
 
     return (
         <Dialog open={open} onOpenChange={setOpen} >
@@ -105,14 +105,14 @@ export const CreateUser = ({ id }: { id: string }) => {
                     Sesuaikan
                 </DialogTrigger>
             </Button>
-            <DialogContent className=" overflow-clip" onKeyDown={(e) => handleKeyDown(e)
+            <DialogContent className=" overflow-y-auto w-[50%]" onKeyDown={(e) => handleKeyDown(e)
             }>
                 <DialogHeader>
                     <DialogTitle>Penyesuaian Sorot</DialogTitle>
                 </DialogHeader>
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-3">
+                    <form onSubmit={form.handleSubmit(submitHandler)} className="grid grid-cols-2 gap-2">
                         {/* <FormField control={form.control} name="name" render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Nama</FormLabel>

@@ -30,10 +30,10 @@ export const INTERNAL_APLICATION: Aplication[] = [
     },
     {
         id: "",
-        name: "TRACKING PERMOHONAN",
-        description: "",
+        name: "OPERA",
+        description: "Opini Penyusunan Peraturan di Linkungan LPSK",
         type: "INTERNAL",
-        link: "",
+        link: "https://hukum.lpsk.go.id",
         images: "/images/simpelkan.png",
         createdAt: new Date()
     },
