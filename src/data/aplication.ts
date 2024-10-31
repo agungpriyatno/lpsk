@@ -3,10 +3,10 @@ import { Aplication } from "@prisma/client";
 export const INTERNAL_APLICATION: Aplication[] = [
     {
         id: "",
-        name: "SIMPUSAKO",
+        name: "SIMPUSAKA",
         description: "Sistem Informasi Perlindungan Saksi dan Korban",
         type: "INTERNAL",
-        link: "https://simpusako.lpsk.go.id/layanan-simpusako/",
+        link: "https://simpusaka.lpsk.go.id/layanan-simpusaka/",
         images: "/images/simpusako.png",
         createdAt: new Date()
     },
