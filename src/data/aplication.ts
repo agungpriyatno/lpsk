@@ -31,7 +31,7 @@ export const INTERNAL_APLICATION: Aplication[] = [
     {
         id: "",
         name: "OPERA",
-        description: "Opini Penyusunan Peraturan di Linkungan LPSK",
+        description: "Opini Penyusunan Peraturan di Lingkungan LPSK",
         type: "INTERNAL",
         link: "https://hukum.lpsk.go.id",
         images: "/images/simpelkan.png",
