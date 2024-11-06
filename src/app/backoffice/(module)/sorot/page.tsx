@@ -1,11 +1,7 @@
 import { DataTable } from "@/components/ui/data-table"
 import db from "@/lib/db"
-import { findManyPubCategory } from "@/services/publication-service"
-import { findAllRole } from "@/services/role-service"
-import { CreateUser } from "./create"
-import { columnSubCategory } from "./colums"
-import { Input } from "@/components/ui/input"
 import { findManyHighlight } from "@/services/highlight-service"
+import { columnSubCategory } from "./colums"
 
 type UserPageProps = {
     searchParams: {
@@ -23,7 +19,6 @@ const UserPage = async ({ searchParams: { skip, take, search } }: UserPageProps)
         <div className="space-y-3 py-3">
             <div className="flex flex-col xl:flex-row xl:justify-between gap-3">
                 <h1 className="text-2xl font-bold">Manajemen Sorot Konten</h1>
-                {/* <CreateUser /> */}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
                 {
