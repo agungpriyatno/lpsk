@@ -80,7 +80,7 @@ export const listMenu: TMenuSidebar[] = [
   {
     name: "Sorot Konten",
     url: "/backoffice/sorot",
-    // code: "LPSK-SOROT-KONTEN",
+    code: "LPSK-SOROT-KONTEN",
     icon: <HighlighterIcon size={20} />,
   },
   {
