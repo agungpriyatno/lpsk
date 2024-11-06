@@ -1,23 +1,20 @@
 import { AplicationExternalSection, AplicationSection } from '@/components/features/application-section';
-import { CardSection } from '@/components/features/card-section';
 import { CarouselSection } from '@/components/features/carousel-section';
 import { ChartSection } from '@/components/features/chart-section';
-import { GallerySection } from '@/components/features/gallery-section';
 import IDMap from '@/components/features/map';
-import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
+import { ChartPidana } from '@/components/features/chart-pidana';
 import { AppContainer } from '@/components/ui/container';
 import { ContentCardA } from '@/components/ui/content-card';
+import { GalleryItem } from '@/components/ui/gallery';
 import { LinkCard } from '@/components/ui/link-card';
 import { HeaderSection } from '@/components/ui/typography';
 import db from '@/lib/db';
+import { fetchNews, fetchPublication } from '@/services/fetching';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SorotModal } from './modal';
-import { ChartPidana } from '@/components/features/chart-pidana';
-import { GalleryItem } from '@/components/ui/gallery';
-import { fetchNews, fetchPublication } from '@/services/fetching';
 
 export interface Artwork {
   artist: string
